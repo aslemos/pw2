@@ -1,5 +1,8 @@
-Alessandro
+Alessandro Lemos
+
 The MIT License (MIT)
+
+Nouvelle version / ligne
 
 Copyright (c) 2014 - 2017, British Columbia Institute of Technology
 
