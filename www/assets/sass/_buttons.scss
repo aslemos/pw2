@@ -1,0 +1,46 @@
+@if $buttons ==null {
+    $buttonTextColor:black;
+    $buttonBgColor:transparent;
+    $butttonBorder:solid 2px black;
+    $buttonBorderRadius:0;
+    $buttonDisplay:block;
+    $buttonsFontFamily: $defaultFontFamily;
+    $buttonFontSize:16px;
+    $buttonFontWeight: bold;
+    $buttonHeight:60px;
+    $buttonLetterSpacing:2px;
+    $buttonLineHeight:60px;
+    $buttonMargin:auto;
+    $buttonPadding:0;
+    $buttonVerticalAlign:middle;
+    $buttonWidth:160px;
+    $buttonEffectBgColor:black;
+    $buttonEffectBorder:solid 2px black;
+    $buttonEffectColor:white;
+}
+
+.btn{
+    background-color: $buttonBgColor;
+    background-color: $buttonBgColor;
+    border: $butttonBorder;
+    border-radius: $buttonBorderRadius;
+    color: $buttonTextColor;
+    display: $buttonDisplay;
+    font-family: $buttonsFontFamily;
+    font-size: $buttonFontSize;
+    font-weight: $buttonFontWeight;
+    height: $buttonHeight;
+    line-height: $buttonLineHeight;
+    margin: $buttonMargin;
+    padding: $buttonPadding;
+    vertical-align: $buttonVerticalAlign;
+    width: $buttonWidth;
+    letter-spacing: $buttonLetterSpacing;
+    @include transit(.6s);
+    
+    &:active, &:hover, &:focus {
+        background-color: $buttonEffectBgColor;
+        border: $buttonEffectBorder;
+        color: $buttonEffectColor;
+    }
+}

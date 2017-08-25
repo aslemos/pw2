@@ -1,0 +1,830 @@
+@media (max-width: 1630px){
+    /* PAGE EVENEMENTS */
+    #evenements {
+        .filter-container {
+            top: 0;
+        }
+    }
+}
+
+//---------------------
+
+@media (max-width: 1470px){
+    /* --- FOOTER --- */
+    footer {
+        .list-container {
+            margin: 0 35px;
+        }
+    }
+}
+
+//---------------------
+
+@media (max-width: 1450px){
+    /* --- SUBPAGES-HEADER --- */
+    .subpages {
+        header {
+            nav {
+                .menu {
+                    li {
+                        margin: 0 35px 0 0;
+
+                        &.no-margin {
+                            margin: 0;
+                        }
+                    }
+                }
+            }
+
+            .subpages-logo {
+                max-width: 100%;
+            }
+        }
+    }
+
+    /* --- PUB-HOME --- */
+    #pub-home {
+        h2 {
+            font-size: 32px;
+        }
+
+        .single-pub, .map {
+            height: 350px;
+        }
+
+        #pub-5 {
+            height: 730px;
+        }
+    }
+
+    /* --- ABOUT-HOME --- */
+
+    #about-home {
+        p {
+            max-width: 95%;
+        }
+    }
+
+    /* --- PAGE CAMIONS --- */
+    #camions {
+        .text-container {
+            padding: 0;
+
+            .title-container {
+                margin-bottom: 15px;
+                padding-bottom: 15px;
+
+                h4 {
+                    font-size: 16px;
+                }
+            }
+        }
+    }
+
+    /* --- PAGE CONTACT --- */
+    #contact {
+        form {
+            max-width: 100%;
+        }
+    }
+
+    /* --- PAGE REGLEMENTS --- */
+    #reglements {
+        .nav-rules {
+            margin: auto;
+            margin-bottom: 20px;
+            max-width: 300px;
+            position: initial;
+        }
+    }
+
+    /* --- FOOTER --- */
+    footer {
+        .list-container {
+            margin: 0 15px;
+        }
+    }
+}
+
+//---------------------
+
+@media (max-width: 1200px){
+    /* --- HEADER --- */
+    header {
+        nav {
+            .menu {
+                li {
+                    margin: 0 20px 0 0;
+                }
+            }
+        }
+    }
+
+    /* --- SUBPAGES-HEADER --- */
+    .subpages {
+        header {
+            nav {
+                .menu {
+                    li {
+                        margin: 0 20px 0 0;
+                    }
+                }
+            }
+        }
+    }
+
+    /* --- PUB-HOME --- */
+    #pub-home {
+        h2 {
+            font-size: 26px;
+        }
+
+        .single-pub, .map {
+            height: 300px;
+        }
+
+        #pub-5 {
+            height: 630px;
+        }
+    }
+
+    /* --- PAGE CAMIONS --- */
+    #camions {
+        .text-container {
+            .title-container {
+                h2 {
+                    font-size: 30px;
+                }
+
+                h4 {
+                    font-size: 13px;
+                }
+            }
+        }
+    }
+
+    /* --- FOOTER --- */
+    footer {
+        .list-container {
+            margin: 0 5px;
+
+            ul {
+                li {
+                    a {
+                        font-size: 13px;
+                    }
+                }
+            }
+        }
+
+        .text-container {
+            h4 {
+                font-size: 13px;
+            }
+        }
+    }
+}
+
+//---------------------
+
+@media (max-width: 1024px){
+    /* --- HEADER --- */
+    header {
+        nav {
+            .menu {
+                li {
+                    a {
+                        font-size: 13px;
+                    }
+                }
+            }
+        }
+    }
+
+    /* --- PAGE CAMIONS --- */
+    #camions {
+        .text-container {
+            p {
+                font-size: 12px;
+            }
+        }
+    }
+
+    /* --- PAGE EVENEMENTS --- */
+    /*#evenements {
+        .single-evenement{
+            .img-container {
+                width: 100%;
+                height: auto;
+            }
+        }
+    }*/
+
+    /* --- FOOTER --- */
+    footer {
+        .list-container {
+            ul {
+                li {
+                    a {
+                        font-size: 12px;
+                    }
+                }
+            }
+        }
+    }
+}
+
+//---------------------
+
+@media (max-width: 992px){
+    .menu-open{
+        header{
+            nav{
+                left: 0;
+            }
+        }
+    }
+
+    header {
+        .row{
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        [class^="col-"]{
+            float:none;
+            display: flex;
+        }
+
+        nav {
+            background: white;
+            color: black;
+            display: inline-block;
+            float: none;
+            left: -300px;
+            height: 100%;
+            position: fixed;
+            padding: 25px;
+            top: 0;
+            width: 300px;
+            z-index: 9;
+            @include transit(.6s);
+
+            .menu{
+
+                li{
+                    display: block;
+                    height: auto;
+                    margin: 0;
+
+                    a{
+                        color: black;
+                        display: block;
+                        font-size: 16px;
+                        font-weight: 700;
+                        line-height: normal;
+                        margin-bottom: 10px;
+                        padding: 0;
+                        text-align: left;
+                        text-transform: uppercase;
+                        @include transit(.6s);
+
+                        &:hover, &:focus, &:active {
+                            color: $mainColor!important;
+                        }
+
+                        &:after{
+                            content: none;
+                        }
+                    }
+
+                    &.active{
+                        background-color: black;
+
+                        a{
+                            color: $mainColor!important; 
+                        }
+                    }
+
+                    &.active, &:hover, &:focus{
+                        background-color: transparent;
+
+                        a{
+                            color: $mainColor;
+                        }
+                    }
+
+                    &.dropdown{
+                        &:hover, &:focus{
+                            .submenu{
+                                display: none;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        .logo-container {
+            text-align: center;
+        }
+
+        .slogan-container {
+            text-align: center;
+            width: 100%;
+
+            img {
+                max-width: 95%;
+            }
+        }
+
+        #defile-link {
+            bottom: 30px;
+        }
+    }
+
+    form {
+        width: 100% !important;
+    }
+
+    /* --- SUBPAGES-HEADER --- */
+    .subpages {
+        #subpages-hero {
+            height: 400px;
+        }
+    }
+
+    #slider-header {
+        height: 400px;
+    }
+
+    /* --- PUB-HOME --- */
+    #pub-home {
+
+        .row {
+            &.special-row {
+                padding-bottom: 15px;
+
+                .special-col {
+                    padding: 0 15px 15px 15px;
+                }
+            }
+
+            .responsive-col {
+                padding: 0;
+            }
+        }
+
+        #pub-5 {
+            height: 300px;
+            margin: 0;
+        }
+    }
+
+    /* --- ABOUT-HOME --- */
+    #about-home {
+        .bordered {
+            border: none;
+        }
+
+        .text-container {
+            padding: 50px 0;
+        }
+    }
+
+    /* --- PAGE HISTORIQUE --- */
+    #historique {
+        .img-container {
+            padding: 15px 0;
+        }
+
+        .desc-container {
+            margin: 0;
+        }
+    }
+
+    /* --- PAGE CAMIONS --- */
+    #camions {
+        .text-container {
+            .title-container {
+                h2 {
+                    font-size: 22px;
+                }
+            }
+        }
+    }
+
+    /* --- PAGE EVENEMENTS --- */
+    #evenements {
+        .title-container {
+            margin-bottom: 35px;
+        }
+
+        .filter-container {
+            margin: auto;
+            margin-bottom: 20px;
+            max-width: 300px;
+            position: initial;
+        }
+
+        .single-evenement {
+            .text-container {
+                padding: 20px;
+
+                .date-place, p {
+                    margin-bottom: 20px;
+                }
+            }
+        }
+    }
+
+    /* --- FOOTER --- */
+
+    footer {
+        #col-nav {
+            order: 1;
+        }
+
+        #col-social {
+            order: 2;
+        }
+
+        #col-coord {
+            order: 3;
+        }
+
+        .list-container {
+            margin: 0 35px 20px;;
+
+            ul {
+                li a{
+                    font-size: 14px;
+                }
+            }
+        }
+
+        .text-container {
+            h4 {
+                font-size: 14px;
+            }
+        }
+    }
+}
+
+//---------------------
+
+@media (max-width: 768px){
+    /* --- HEADER --- */
+    header {
+        .slogan-container {
+            img {
+                margin-bottom: 35px;
+            }
+        }
+    }
+
+    /* --- SUBPAGES-HEADER --- */
+    .subpages {
+        #subpages-hero {
+            height: 300px;
+
+            img {
+                max-width: 95%;
+            }
+        }
+    }
+
+    #slider-header {
+        height: 300px;
+
+        .slogan-container {
+            text-align: center;
+            width: 100%;
+
+            img {
+                max-width: 95%;
+            }
+        }
+    }
+
+    /* --- PUB-HOME --- */
+    #pub-home {
+        #pub-5 {
+            margin-bottom: 15px;
+        }
+    }
+
+    /* --- ABOUT-HOME --- */
+    #about-home {
+        .bordered {
+            border: none;
+        }
+
+        .text-container {
+            padding: 35px 0;
+        }
+    }
+
+    /* --- PAGE HISTORIQUE --- */
+    #historique {
+        padding: 35px 0 0;
+    }
+
+    /* --- PAGE CAMIONS --- */
+    #camions {
+        .button-group {
+            margin-bottom: 35px;
+        }
+    }
+
+    /* --- PAGE DEVENIR MEMBRE --- */
+    #devenir-membre {
+        form {
+            .cust-chkbox {
+                margin-bottom: 15px;
+                padding-top: 0;
+            }
+        }
+    }
+
+    /* --- PAGE EVENEMENTS --- */
+    #evenements {
+        .single-evenement {
+            .img-container {
+                max-height: 175px;
+            }
+
+            .text-container {
+                padding: 10px;
+
+                .date-place {
+                    font-size: 12px;
+                }
+
+                h2 {
+                    font-size: 24px;
+                }
+
+                .link-container {
+                    a {
+                        font-size: 16px;
+                        margin-right: 10px;
+
+                        &.no-margin {
+                            margin-right: 0; 
+                        }
+                    }
+                }
+
+                .date-place, h2, p {
+                    margin-bottom: 10px;
+                }
+            }
+        }
+    }
+
+    /* --- PAGE REGLEMENTS --- */
+    #reglements {
+        padding: 35px 0 0;
+
+        .single-reglement {
+            .text-container {
+                padding: 20px 0 0 20px;
+            }
+
+            ul {
+                padding-left: 40px;
+
+                li.sublist-container {
+                    ul.big-padding.list-roman, ul.big-padding {
+                        padding-left: 30px;
+                    }
+                }
+            }
+        }
+    }
+
+    /* --- FOOTER MEMBER --- */
+    #footer-member {
+        h2 {
+            font-size: 28px;
+            padding: 0;
+        }
+    }
+
+    /* --- FOOTER --- */
+    footer {
+        .icon-container {
+            margin-bottom: 20px;
+        }
+
+        .text-container {
+            h4 {
+                margin-bottom: 15px;
+            }
+        }
+    }
+
+    /* --- MULTIPLE PAGES AND SECTIONS --- */
+
+    #footer-member, footer, #camions, #devenir-membre, #evenements, #contact {
+        padding: 35px 0;
+    }
+}
+
+//---------------------
+
+@media (max-width: 480px){
+    /* --- GENERAL --- */
+    body {
+        h2 {
+            font-size: 32px;
+        }
+    }
+
+    /* --- SUBPAGES-HEADER --- */
+    .subpages {
+        #subpages-hero {
+            height: 250px;
+        }
+    }
+
+    #slider-header {
+        height: 250px;
+
+        .slick-dots {
+            bottom: 5px;
+            right: 5px;
+        }
+    }
+
+    /* --- PUB-HOME --- */
+    #pub-home {
+        padding: 5px 0 25px;
+
+        .row {
+            padding-left: 0;
+            padding-right: 0;
+
+            [class^="col-"] {
+                padding: 0 15px;
+
+                &.special-col {
+                    padding: 0;
+                }
+            }
+
+            &.secon-row {
+                padding-left: 0;
+                padding-right: 0;
+                padding-top: 0;
+            }
+
+            &.special-row {
+                padding: 0 15px;
+            }
+        }
+
+        .map, #pub-1, #pub-2, #pub-3, #pub-4, #pub-5, #pub-6 {
+            margin-bottom: 5px;
+        }
+    }
+
+    /* --- ABOUT-HOME --- */
+    #about-home {
+        .container-fluid {
+            padding: 0 15px;
+        }
+    }
+
+    /* --- PAGE HISTORIQUE --- */
+    #historique-galerie {
+        .row {
+            padding-left: 15px;
+            padding-right: 15px;
+
+            [class^="col-"] {
+                padding: 5px 0;
+            }
+        }
+    }
+
+    /* --- PAGE CAMIONS --- */
+    #camions {
+        .button-group {
+            button {
+                font-size: 18px;
+                margin: 0 3px;
+            }
+        }
+    }
+
+    /* --- PAGE EVENEMENTS --- */
+    #evenements {
+        .title-container {
+            h2 {
+                font-size: 28px;
+            }
+        }
+
+        .filter-container {
+            h4 {
+                font-size: 15px;
+            }
+        }
+
+        .single-evenement {
+            .img-container {
+                max-height: 135px;
+            }
+
+            .text-container {
+                padding: 5px;
+
+                .date-place {
+                    font-size: 11px;
+                }
+
+                h2 {
+                    font-size: 16px;
+                }
+
+                .link-container {
+                    a {
+                        font-size: 11px;
+                        margin-right: 1px;
+
+                        &.no-margin {
+                            margin-right: 0; 
+                        }
+                    }
+                }
+
+                p {
+                    font-size: 10px;
+                }
+
+                .date-place, h2, p {
+                    margin-bottom: 5px;
+                }
+            }
+        }
+    }
+
+    /* --- PAGE REGLEMENTS --- */
+    #reglements {
+        padding: 35px 0 0;
+
+        h2 {
+            font-size: 26px;
+        }
+
+        .single-reglement {
+            .text-container {
+                padding: 10px 0 0 10px;
+            }
+
+            ul {
+                padding-left: 30px;
+
+                li.sublist-container {
+                    ul.big-padding.list-roman, ul.big-padding {
+                        padding-left: 20px;
+                    }
+                }
+            }
+        }
+    }
+
+    /* --- THANKS --- */
+    #thanks {
+        h2 {
+            font-size: 24px;
+        }
+    }
+
+    /* --- FOOTER --- */
+    footer {
+
+        .list-container {
+            margin: 0 5px 20px;
+
+            ul {
+                li {
+                    a {
+                        font-size: 11px;
+                    }
+                }
+            }
+        }
+
+        .text-container {
+            text-align: center;
+
+            h4 {
+                font-size: 12px;
+            }
+        }
+    }
+}

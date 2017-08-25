@@ -1,0 +1,71 @@
+@if $text == null {
+    $defaultFontFamily: "Arial", sans-serif;
+    $defaultTextColor: black;
+    $defaultTextSize: 18px;
+    $defaultTextWeight: 300;
+    $defaultTextLetterSpacing:normal;
+    $defaultTextLineHeight: 19.2px;
+    $defaultLinkColor: black;
+    $defaultLinkTextDecoration:none;
+    $effectLinkColor: $mainColor;
+    $headingDefaultColor: black;
+    $headingDefaultFontFamily: "Arial", sans-serif;
+    $headingFontSizeStart: 48px;
+    $headingFontWeight: bold;
+    $headingDefaultTextTransform:uppercase;
+}
+
+body, html {
+    height: 100%;
+}
+
+body {
+    color: $defaultTextColor;
+    font-family: $defaultFontFamily;
+
+    // font weight & size 
+
+    @for $i from 1 through 6 {
+        h#{$i} {
+            color: $headingDefaultColor;
+            font-family: $headingDefaultFontFamily;
+            font-size: $headingFontSizeStart / $i;
+            font-weight: $headingFontWeight;
+            text-transform: $headingDefaultTextTransform;
+        }
+    }
+
+    p {
+        font-size: $defaultTextSize;
+        font-weight: $defaultTextWeight;
+        letter-spacing: $defaultTextLetterSpacing;
+        line-height: $defaultTextLineHeight;
+    }
+
+    li {
+        font-size: $defaultTextSize;
+        font-weight: $defaultTextWeight;
+
+        &.active {
+            a {
+                color: $defaultLinkColor;
+                text-decoration: $defaultLinkTextDecoration;
+            }
+        }
+    }
+
+    // -----------------------------
+
+    // links
+    a {
+        color: $defaultLinkColor;
+        @include transit(.6s);
+
+        &:hover, &:focus, .active {
+
+            color: $effectLinkColor;
+            text-decoration: $defaultLinkTextDecoration;
+        }
+    }
+
+}

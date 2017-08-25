@@ -1,0 +1,64 @@
+@if $slider == null {
+    $sliderImageHeight: 650px;
+    $sliderImageWidth: 100%;
+    $sliderDotsPositionBottom: 60px;
+    $sliderDotsPositionRight: 290px;
+    $sliderDotsTextAlign: right;
+    $sliderDotsMargin: 0 0 0 5px;
+    $sliderButtonsBgColor: white;
+    $sliderButtonsBorder: solid 2px black;
+    $sliderButtonsBoxShadow:none;
+    $sliderButtonsHeight: 15px;
+    $sliderButtonsWidth: 15px;
+    $sliderButtonsEffectBackground: red;
+    $sliderButtonsEffectBorderColor: black;
+}
+
+#mycarousel {
+    img {
+        max-height: $sliderImageHeight;
+        width: $sliderImageWidth;
+    }
+}
+
+.slick-dots {
+    bottom: $sliderDotsPositionBottom; 
+    right: $sliderDotsPositionRight;
+    text-align: $sliderDotsTextAlign;
+    
+    li {
+        height: auto;
+        margin: $sliderDotsMargin;
+        width: auto;
+        @include transit(.6s);
+        
+        button{
+            background: $sliderButtonsBgColor;
+            border: $sliderButtonsBorder;
+            box-shadow: $sliderButtonsBoxShadow;
+            height: $sliderButtonsHeight;
+            width: $sliderButtonsWidth;
+            @include transit(.6s);
+            
+            &:before {
+                content: none;
+            }
+        }
+        
+        &.slick-active, &:hover, &:focus{
+            button{
+                background: $sliderButtonsEffectBackground;
+                border-color: $sliderButtonsEffectBorderColor;
+            }
+        }
+    }
+}
+
+.slick-dotted.slick-slider{
+    margin: 0;
+}
+
+.slick-prev:before, .slick-next:before{
+    content: '';
+    right: auto;
+}

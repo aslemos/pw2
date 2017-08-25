@@ -1,0 +1,43 @@
+// paddings et margins
+
+.no-margin {
+    margin: 0;
+}
+
+.no-padding {
+    padding: 0;
+}
+
+//--------------------------
+
+// colors
+
+.white {
+    color: white;
+}
+
+.black {
+    color: black;
+}
+
+.colorFont {
+    color: $defaultTextColor;
+}
+
+.colorLinks {
+    color: $defaultLinkColor;
+}
+
+//-----------
+
+// font syles
+
+.light {
+    font-weight: 300;
+}
+
+//------------------
+
+:focus {
+    outline: none;
+}

@@ -1,0 +1,127 @@
+@if $forms == null {
+    $formWidth:480px;
+    $formsFieldMargin: 0 0 10px;
+    $formFieldBgColor: white;
+    $formsFieldBorder: solid 1px black;
+    $formsFieldFontColor:black;
+    $formsFieldFontSize: 16px;
+    $formsFieldFontWeight:bold;
+    $formFieldHeight:50px;
+    $formFieldLineHeight:50px;
+    $formFieldWidth:100%;
+    $formsFieldRadius:0;
+    $formsFieldFocusBorder:solid 1px $defaultLinkColor;
+    $formsFieldShadow:none;
+    $formsFieldFocusShadow:none;
+    $formsFieldOutline:none;
+    $formsFieldFocusOutline:none;
+    $formsFieldHolderColor:black;
+    $formsFieldHolderWeight: bold;
+    $formsFieldTextAreaHeight:210px;
+    $formFieldTextAreaLineHeight:normal;
+    $formsFieldTextAreaPadding:20px;
+    $formsFieldTextAreaWidth:100%;
+    $formsButtonsBackgroundColor: transparent;
+    $formsButtonsBorder: solid 2px black;
+    $formsButtonsBorderRadius:0;
+    $formButtonColor:black;
+    $formsButtonsDisplay:inline-block;
+    $formsButtonsFontSize: 16px;
+    $formsButtonsFontWeight: bold;
+    $formsButtonsHeight: 60px;
+    $formsButtonsLetterSpacing:2px;
+    $formsButtonsLineHeight:60px;
+    $formsButtonsMargin:0 15px;
+    $formsButtonsPadding:0;
+    $formsButtonsVerticalAlign:middle;
+    $formsButtonsWidth:160px;
+    $formsButtonsEffectsColor:white;
+    $formsButtonsEffectsBgColor:black;
+    $formsButtonsEffectsOutline:none;
+}
+
+form {
+    width:$formWidth;
+    
+    input[type="text"], input[type="email"], input[type="tel"], input[type="number"], input[type="url"], textarea#comment {
+        background-color: $formFieldBgColor;
+        border: $formsFieldBorder;
+        border-radius: $formsFieldRadius;
+        color: $formsFieldFontColor;
+        font-size: $formsFieldFontSize;
+        font-weight: $formsFieldFontWeight;
+        height: $formFieldHeight;
+        line-height: $formFieldLineHeight;
+        margin: $formsFieldMargin;
+        outline: $formsFieldOutline;
+        width: $formFieldWidth;
+        @include box-shadow($formsFieldShadow);
+        
+
+        &:focus {
+            border: $formsFieldFocusBorder;
+            @include box-shadow($formsFieldFocusShadow);
+            outline: $formsFieldFocusOutline;
+        }
+
+        @include placeholder {
+            color: $formsFieldHolderColor;
+            font-weight: $formsFieldHolderWeight;
+        }
+    }
+
+    textarea#comment {
+        height: $formsFieldTextAreaHeight;
+        line-height: $formFieldTextAreaLineHeight;
+        padding: $formsFieldTextAreaPadding;
+        width: $formsFieldTextAreaWidth;
+    }
+
+    input[type="reset"], input[type="submit"] {
+        background-color: $formsButtonsBackgroundColor;
+        border: $formsButtonsBorder;
+        border-radius: $formsButtonsBorderRadius;
+        color: $formButtonColor;
+        display: $formsButtonsDisplay;
+        font-size: $formsButtonsFontSize;
+        font-weight: $formsButtonsFontWeight;
+        height: $formsButtonsHeight;
+        letter-spacing: $formsButtonsLetterSpacing;
+        line-height: $formsButtonsLineHeight;
+        margin: $formsButtonsMargin;
+        padding: $formsButtonsPadding;
+        vertical-align: $formsButtonsVerticalAlign;
+        width: $formsButtonsWidth;
+        @include transit(.6s);
+
+        &:hover, &:focus, &:active {
+            background-color: $formsButtonsEffectsBgColor;
+            color: $formsButtonsEffectsColor;
+            outline: $formsButtonsEffectsOutline;
+        }
+    }
+    
+    button.g-recaptcha {
+        background-color: $formsButtonsBackgroundColor;
+        border: $formsButtonsBorder;
+        border-radius: $formsButtonsBorderRadius;
+        color: $formButtonColor;
+        display: $formsButtonsDisplay;
+        font-size: $formsButtonsFontSize;
+        font-weight: $formsButtonsFontWeight;
+        height: $formsButtonsHeight;
+        letter-spacing: $formsButtonsLetterSpacing;
+        line-height: $formsButtonsLineHeight;
+        margin: $formsButtonsMargin;
+        padding: $formsButtonsPadding;
+        vertical-align: $formsButtonsVerticalAlign;
+        width: $formsButtonsWidth;
+        @include transit(.6s);
+
+        &:hover, &:focus, &:active {
+            background-color: $formsButtonsEffectsBgColor;
+            color: $formsButtonsEffectsColor;
+            outline: $formsButtonsEffectsOutline;
+        }
+    }
+}

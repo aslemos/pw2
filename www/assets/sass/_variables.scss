@@ -1,0 +1,180 @@
+/* MAIN COLORS STYLES DEFINITION */
+
+$mainColor:#575757;
+
+/* END MAIN COLORS STYLES DEFINITION */
+
+/*  TYPOGRAPHY STYLES DEFINITION */
+
+$text:costum;
+    $defaultFontFamily: 'Maison Neue', sans-serif;
+    $defaultTextColor: #575757;
+    $defaultTextSize: 13px;
+    $defaultTextWeight: 300;
+    $defaultTextLetterSpacing:normal;
+    $defaultTextLineHeight: normal;
+    $defaultLinkColor: black;
+    $defaultLinkTextDecoration:none;
+    $effectLinkColor:$mainColor;
+    $headingDefaultColor: black;
+    $headingDefaultFontFamily: 'Maison Neue', sans-serif;
+    $headingFontSizeStart: 72px;
+    $headingFontWeight: bold;
+    $headingDefaultTextTransform:uppercase;
+
+/*  END TYPOGRAPHY STYLES DEFINITION */
+
+/* MENU STYLES DEFINITION  */
+
+$menu:costum;
+    $menuHeight:auto;
+    $menuMargin:0;
+    $menuPadding:20px 0 0;
+    $menuNavBg:transparent;
+    $menuNavDisplay:block;
+    $menuNavHeight:auto;
+    $menuNaxTextAlign:right;
+    $menuNavWidth:auto;
+    $menuLiBg:transparent;
+    $menuLiHeight: 100%;
+    $menuLiLineHeight: normal;
+    $menuLiVerticalAlign:middle;
+    $menuLiMargin:0 40px 0 0;
+    $menuLiPadding:0;
+    $menuLiEffectBgColor:transparent;
+    $menuLinkColor:white;
+    $menuLinkDisplay:block;
+    $menuLinkFontSize:16px;
+    $menuLinkFontWeight:bold;
+    $menuLinkLetterSpacing:0;
+    $menuLinkLineHeight:normal;
+    $menuLinkPadding:0;
+    $menuLinkPosition:initial;
+    $menuLinkAfterBg:transparent;
+    $menuLinkAfterHeight: 0;
+    $menuLinkAfterWidth: 0;
+    $menuEffectLinkColor:white;
+    $menuEffectLinkAfterWidth:0;
+    $submenuBg:white;
+    $submenuZIndex:1;
+    $submenuLiMargin:0;
+    $submenuHeight:auto;
+    $submenuPositionLeft:0;
+    $submenuPositionTop:100%;
+    $submenuPadding:0;
+    $submenuLinkColor:black;
+
+/* END MENU STYLES DEFINITION */
+
+/* FORMS STYLES DEFINITION  */ 
+$forms:costum;
+    $formWidth:815px;
+    $formsFieldMargin: 0 0 25px;
+    $formFieldBgColor: #f0f0f0;
+    $formsFieldBorder: solid 1px #f0f0f0;
+    $formsFieldFontColor:black;
+    $formsFieldFontSize: 14px;
+    $formsFieldFontWeight:normal;
+    $formFieldHeight:50px;
+    $formFieldLineHeight:50px;
+    $formFieldWidth:100%;
+    $formsFieldRadius:0;
+    $formsFieldFocusBorder:solid 1px black;
+    $formsFieldShadow:none;
+    $formsFieldFocusShadow:none;
+    $formsFieldOutline:none;
+    $formsFieldFocusOutline:none;
+    $formsFieldHolderColor:black;
+    $formsFieldHolderWeight: bold;
+    $formsFieldTextAreaHeight:115px;
+    $formFieldTextAreaLineHeight:normal;
+    $formsFieldTextAreaPadding:6px 12px;
+    $formsFieldTextAreaWidth:100%;
+    $formsButtonsBackgroundColor: transparent;
+    $formsButtonsBorder: solid 2px #575757;
+    $formsButtonsBorderRadius:2px;
+    $formButtonColor:#575757;
+    $formsButtonsDisplay:inline-block;
+    $formsButtonsFontSize: 15px;
+    $formsButtonsFontWeight: bold;
+    $formsButtonsHeight: 60px;
+    $formsButtonsLetterSpacing:0;
+    $formsButtonsLineHeight:60px;
+    $formsButtonsMargin:0;
+    $formsButtonsPadding:0;
+    $formsButtonsVerticalAlign:middle;
+    $formsButtonsWidth:170px;
+    $formsButtonsEffectsColor:white;
+    $formsButtonsEffectsBgColor:#575757;
+    $formsButtonsEffectsOutline:none;
+
+/* END FORMS STYLES DEFINITION */ 
+
+/* SLIDER STYLES DEFINITION */
+
+$slider:costum;
+    $sliderImageHeight: 650px;
+    $sliderImageWidth: 100%;
+    $sliderDotsPositionBottom: 30px;
+    $sliderDotsPositionRight: 30px;
+    $sliderDotsTextAlign: right;
+    $sliderDotsMargin: 0 0 0 10px;
+    $sliderButtonsBgColor: white;
+    $sliderButtonsBorder: solid 2px white;
+    $sliderButtonsBoxShadow:none;
+    $sliderButtonsHeight: 15px;
+    $sliderButtonsWidth: 15px;
+    $sliderButtonsEffectBackground: #e0e0e0;
+    $sliderButtonsEffectBorderColor: #e0e0e0;
+
+/* END SLIDER STYLES DEFINITION */
+
+/* BUTTONS STYLES DEFINITION */
+
+$buttons:costum;
+    $buttonTextColor:white;
+    $buttonBgColor:transparent;
+    $butttonBorder:solid 2px white;
+    $buttonBorderRadius:2px;
+    $buttonDisplay:block;
+    $buttonsFontFamily: $defaultFontFamily;
+    $buttonFontSize:15px;
+    $buttonFontWeight: bold;
+    $buttonHeight:60px;
+    $buttonLetterSpacing:0;
+    $buttonLineHeight:60px;
+    $buttonMargin:auto;
+    $buttonPadding:0;
+    $buttonVerticalAlign:middle;
+    $buttonWidth:170px;
+    $buttonEffectBgColor:white;
+    $buttonEffectBorder:solid 2px white;
+    $buttonEffectColor:black;
+
+/* END BUTTONS STYLES DEFINITION */
+
+/* GALERIE STYLES DEFINITION  */
+
+$galerie:null;
+    $galerieImgWidth: 100%;
+    $galerieMessageBorderBottom: solid thin #FFFFFF;
+    $galerieMessageBorderLeft: none;
+    $galerieMessageBorderRight: none;
+    $galerieMessageBorderTop: solid thin #FFFFFF;
+    $galerieMessageColor: white;
+    $galerieMessageFontFamily: $defaultFontFamily;
+    $galerieMessageFontSize:18px;
+    $galerieMessageFontWeight:normal;
+    $galerieMessagePositionLeft:50%;
+    $galerieMessagePositionTop:50%;
+    $galerieMessageTransformTranslate:translate(-50%, -50%);
+    $galerieMessageLetterSpacing:2px;
+    $galerieMessagePadding:10px;
+    $galerieMessageTextAlign:center;
+    $galerieMessageWidth: 100%;
+    $galerieBeforeBgColor:$mainColor;
+    $galerieMessageHoverPositionLeft:50%;
+    $galerieMessageHoverPositionTop: 50%;
+    $galerieMessageHoverTransfromTranslate: translate(-50%, -50%);
+
+/* END GALERIE STYLES DEFINITION  */

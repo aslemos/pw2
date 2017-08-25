@@ -1,0 +1,53 @@
+/* CSS Document */
+
+@mixin placeholder{
+	&::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+		@content;
+	}
+	&::-moz-placeholder { /* Firefox 19+ */
+		@content;
+	}
+	&:-ms-input-placeholder { /* IE 10+ */
+		@content;
+	}
+	&:-moz-placeholder { /* Firefox 18- */
+		@content;
+	}
+}
+
+@mixin transit($time){
+    -webkit-transition: $time ease;
+    -moz-transition: $time ease;
+    -o-transition: $time ease;
+    transition: $time ease;
+}
+
+%abscenter{
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+
+%flexcolumns{
+    .row{
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+    }
+    
+    [class^="col-"]{
+        float:none;
+        display: flex;
+    }
+}
+
+%galeriepaddings {
+    .row {
+
+        [class^="col-"] {
+            padding-left: 0;
+            padding-right: 0;
+        }
+    }
+}

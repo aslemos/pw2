@@ -1,0 +1,155 @@
+@if $menu == null {
+    $menuHeight:auto;
+    $menuMargin:0;
+    $menuPadding:0;
+    $menuNavBg:transparent;
+    $menuNavDisplay:block;
+    $menuNavHeight:auto;
+    $menuNaxTextAlign:center;
+    $menuNavWidth:auto;
+    $menuLiBg:transparent;
+    $menuLiHeight: 100%;
+    $menuLiLineHeight: normal;
+    $menuLiVerticalAlign:middle;
+    $menuLiMargin:0 10px;
+    $menuLiPadding:0;
+    $menuLiEffectBgColor:transparent;
+    $menuLinkColor:black;
+    $menuLinkDisplay:block;
+    $menuLinkFontSize:18px;
+    $menuLinkFontWeight:bold;
+    $menuLinkLetterSpacing:1px;
+    $menuLinkLineHeight:normal;
+    $menuLinkPadding:0;
+    $menuLinkPosition:initial;
+    $menuLinkAfterBg:transparent;
+    $menuLinkAfterHeight: 0;
+    $menuLinkAfterWidth: 0;
+    $menuEffectLinkColor:red;
+    $menuEffectLinkAfterWidth:0;
+    $submenuBg:white;
+    $submenuZIndex:100;
+    $submenuLiMargin:0;
+    $submenuHeight:auto;
+    $submenuPositionLeft:-15px;
+    $submenuPositionTop:100%;
+    $submenuPadding:10px 15px;
+    $submenuLinkColor:black;
+}
+
+nav {
+    background: $menuNavBg;
+    display: $menuNavDisplay;
+    height: $menuNavHeight;
+    text-align: $menuNaxTextAlign;
+    width: $menuNavWidth;
+    
+    .menu {
+        list-style: none;
+        height: $menuHeight;
+        margin: $menuMargin;
+        padding: $menuPadding;
+
+        li {
+            background: $menuLiBg;
+            display: inline-block;
+            height: $menuLiHeight;
+            line-height: $menuLiLineHeight;
+            padding: $menuLiPadding;
+            position: relative;
+            margin: $menuLiMargin;
+            vertical-align: $menuLiVerticalAlign;
+            @include transit (0.6s);
+
+            a {
+                color: $menuLinkColor;
+                display: $menuLinkDisplay;
+                font-size: $menuLinkFontSize;
+                font-weight: $menuLinkFontWeight;
+                letter-spacing: $menuLinkLetterSpacing;
+                line-height: $menuLinkLineHeight;
+                padding: $menuLinkPadding;
+                position: $menuLinkPosition;
+                @include transit (0.6s);
+                
+                &:after {
+                    background:$menuLinkAfterBg;
+                    bottom:0;
+                    content:" ";
+                    height: $menuLinkAfterHeight;
+                    left:0;
+                    margin:auto;
+                    position:absolute;
+                    right:0;
+                    width:$menuLinkAfterWidth;
+                }
+            }
+
+            &.active, &:hover, &:focus{
+                background-color: $menuLiEffectBgColor;
+                
+                a{
+                    color: $menuEffectLinkColor;
+                    
+                    &:after {
+                        width: $menuEffectLinkAfterWidth;
+                    }
+                }
+
+                .submenu{
+                    li{
+                        @include transit (0.6s);
+                        a{
+                            @include transit (0.6s);
+                        }
+                    }
+                }
+            }
+
+            &:hover, &:focus{
+                .submenu{
+
+                }
+            }
+
+            //-------------------
+            &.dropdown{
+                &:hover, &:focus{
+                    .submenu{
+                        display: block;
+                    }
+                }
+            }
+
+            .submenu {
+                background: $submenuBg;
+                display: none;
+                height: $submenuHeight;
+                left: -15px;
+                padding: 10px 15px;
+                position: absolute;
+                top: $submenuPositionTop;
+                z-index: $submenuZIndex;
+                box-sizing:border-box;
+
+                li {
+                    display: block;
+                    margin: $submenuLiMargin;
+                    &:first-child a{
+                        border-top:none;
+                    } 
+                    a{
+                        color: $submenuLinkColor;
+                        display:block;
+                        min-width:330px;
+                        border-top:1px solid grey;
+                        text-align:left;
+                        padding:15px 0px 10px 0px;
+                        box-sizing: border-box;
+                        
+                    }
+                }
+            }
+        }
+    }
+}

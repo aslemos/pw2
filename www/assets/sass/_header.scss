@@ -1,0 +1,391 @@
+header{
+    background: url('../images/header/bg_header.jpg') center center/cover no-repeat;
+    height: 100%;
+    //overflow: hidden;
+    padding-top: 35px;
+    position: relative;
+
+    /* --- MENU --- */
+
+    @import "menu";
+
+    .menu-container {
+        width: 100%;
+    }
+
+    nav {
+        .menu {
+            li {
+                &.no-margin {
+                    margin: 0;
+                }
+                &.active{
+                         text-decoration: underline;
+                }
+            }
+        }
+    }
+
+    /* --- END MENU --- */
+
+    .logo-container {
+        width: 100%;
+
+        .standard-logo {
+            max-width: 200px;
+        }
+
+        .subpages-logo {
+            display: none;
+            max-width: 220px;
+        }
+    }
+
+    .slogan-container {
+        @extend %abscenter;
+
+        img {
+            margin-bottom: 60px;
+            max-width: 795px;
+        }
+
+        #logo-welcome {
+            display: none;
+        }
+    }
+
+    #defile-link {
+        bottom: 60px;
+        font-size: 13px;
+        font-weight: bold;
+        left: 0;
+        margin: auto;
+        position: absolute;
+        right: 0;
+        text-align: center;
+
+        a {
+            color: white;
+        }
+    }
+}
+
+#subpages-hero {
+    display: none;
+}
+
+.subpages {
+    header {
+        background: white;
+        border-bottom: solid 5px black;
+        height: auto;
+        padding: 22px 0;
+        @extend %flexcolumns;
+
+        .standard-logo, .slogan-container, #defile-link {
+            display: none;
+        }
+
+        .subpages-logo {
+            display: inherit;
+        }
+
+        nav {
+            .menu {
+                padding-top: 0;
+
+                li {
+                    a {
+                        color: black;
+                    }
+                    &.active{
+                         text-decoration: underline;
+                    }
+                }
+            }
+        }
+    }
+
+    #subpages-hero {
+        display: block;
+        height: 500px;
+        position: relative;
+
+        img {
+            display: none;
+            max-width: 655px;
+            @extend %abscenter;
+        }
+    }
+
+    &.historique {
+        #subpages-hero {
+            background: url('../images/historique/bg_historique.jpg') center center/cover no-repeat;
+        }
+
+        #slogan-historique {
+            display: block;
+        }
+    }
+
+    &.historic {
+        #subpages-hero {
+            background: url('../images/historique/bg_historique.jpg') center center/cover no-repeat;
+        }
+
+        #slogan-historic {
+            display: block;
+        }
+    }
+
+    &.camions {
+        #subpages-hero {
+            background: url('../images/camions/bg_camions.jpg') center center/cover no-repeat;
+        }
+
+        #slogan-camions {
+            display: block;
+        }
+    }
+
+    &.trucks {
+        #subpages-hero {
+            background: url('../images/camions/bg_camions.jpg') center center/cover no-repeat;
+        }
+
+        #slogan-trucks {
+            display: block;
+        }
+    }
+
+    &.devenir-membre {
+        #subpages-hero {
+            background: url('../images/devenir-membre/bg_devenir_membre.jpg') center center/cover no-repeat;
+        }
+
+        #slogan-devenir-membre {
+            display: block;
+        }
+    }
+
+    &.become-membre {
+        #subpages-hero {
+            background: url('../images/devenir-membre/bg_devenir_membre.jpg') center center/cover no-repeat;
+        }
+
+        #slogan-become-membre {
+            display: block;
+        }
+    }
+
+    &.reglements {
+        #subpages-hero {
+            background: url('../images/reglements/bg_reglements.jpg') center center/cover no-repeat;
+        }
+
+        #slogan-reglements {
+            display: block;
+        }
+    }
+
+    &.aperos {
+        #subpages-hero {
+            background: url('../images/reglements/bg_reglements.jpg') center center/cover no-repeat;
+        }
+
+        #slogan-aperos {
+            display: block;
+        }
+    }
+
+    &.marche-nuit {
+        #subpages-hero {
+            background: url('../images/evenements/marche-nuit/bg_marche_nuit.png') center center/cover no-repeat;
+        }
+    }
+
+    &.yul-eat {
+        #subpages-hero {
+            background: url('../images/evenements/yul-eat/bg_yul_eat.jpg') center center/cover no-repeat;
+        }
+    }
+
+    &.premiers-vendredis {
+        #subpages-hero {
+            background: url('../images/evenements/premiers-vendredis/bg_premiers_vendredis.jpg') center center/cover no-repeat;
+        }
+    }
+
+    &.anniversaire-montreal {
+        #subpages-hero {
+            background: url('../images/evenements/anniversaire-montreal/bg_grands_aperos_375e-anniversaire_montreal.jpg') center center/cover no-repeat;
+        }
+    }
+
+
+    &.contact {
+        #subpages-hero {
+            background: url('../images/contact/bg_contact.jpg') center center/cover no-repeat;
+        }
+
+        #slogan-contact {
+            display: block;
+        }
+    }
+
+    &.contactEn {
+        #subpages-hero {
+            background: url('../images/contact/bg_contact.jpg') center center/cover no-repeat;
+        }
+
+        #slogan-contact-en {
+            display: block;
+        }
+    }
+
+    &.calendar {
+        #subpages-hero {
+            background: url('../images/evenements/slide1.jpg') center center/cover no-repeat;
+        }
+
+        #slogan-calendar {
+            display: block;
+        }
+    }
+
+    &.reservationEn {
+        #subpages-hero {
+            background: url('../images/evenements/slide1.jpg') center center/cover no-repeat;
+        }
+
+        #slogan-reservation-en {
+            display: block;
+        }
+    }
+
+    &.evenements {
+        #subpages-hero {
+            background: url('../images/evenements/slide1.jpg') center center/cover no-repeat;
+        }
+
+        #slogan-evenements {
+            display: block;
+        }
+    }
+
+    &.events {
+        #subpages-hero {
+            background: url('../images/evenements/slide1.jpg') center center/cover no-repeat;
+        }
+
+        #slogan-events {
+            display: block;
+        }
+    }
+}
+
+/* --- PAGE WELCOME --- */
+
+.welcome {
+    header {
+        .slogan-container {
+            #logo-accueil {
+                display: none;
+            }
+
+            #logo-welcome {
+                display: block;
+            }
+        }
+    }
+}
+
+#slider-header {
+    display: none;
+    height: 500px;
+    position: relative;
+
+    .slogan-container {
+        @extend %abscenter;
+
+        img {
+            max-width: 595px;
+        }
+    }
+}
+
+#mycarousel {
+    .item {
+        height: 100%;
+        width: 100%;
+    }
+
+    #slide-1 {
+        background: url(../images/evenements/slide1.jpg) no-repeat center center/cover;
+    }
+
+    #slide-2 {
+        background: url(../images/evenements/slide1.jpg) no-repeat center center/cover;
+    }
+
+    #slide-3 {
+        background: url(../images/evenements/slide1.jpg) no-repeat center center/cover;
+    }
+
+    #slide-4 {
+        background: url(../images/evenements/slide1.jpg) no-repeat center center/cover;
+    }
+}
+
+.evenements {
+    #slider-header {
+        display: block;
+    }
+
+    #subpages-hero {
+        display: none;
+    }
+}
+
+#close-side-menu {
+    background-color: transparent;
+    border: none;
+    color: black;
+    font-size: 20px;
+    font-weight: bold;
+    height: auto;
+    letter-spacing: 1px;
+    position: static;
+    padding-top: 25px;
+    text-align: center;
+    text-transform: uppercase;
+    width: 100%;
+    @include transit(.6s);
+
+    &:active, &:hover, &:focus {
+        color: $mainColor;
+        outline: none;
+    }
+}
+
+#open-side-menu {
+    background: transparent;
+    border: none;
+    color: white;
+    display: block;
+    font-size: 24px;
+    font-weight: bold;
+    margin: auto;
+    z-index: 2;
+
+    &:active, &:focus, &:hover {
+        color: $mainColor;
+        outline: none;
+    }
+}
+
+.subpages {
+    #open-side-menu {
+        color: black;
+    }
+}

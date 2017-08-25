@@ -1,0 +1,27 @@
+@import "compass/reset";
+@import "compass/css3";
+@import "font-face";
+@import "bootstrap";
+@import "hover";
+@import "font-awesome";
+@import "lightbox";
+@import "slick-theme";
+@import "slick";
+@import "animate";
+@import "variables";
+@import "mixins";
+//--------------
+//Pages
+@import "general";
+@import "buttons";
+@import "slider";
+@import "form";
+@import "galerie";
+@import "page";
+@import "header";
+@import "footer";
+@import "custom";  // [asl] Fichier de style du projet
+
+//---------------
+//Responsive
+@import "responsive";
