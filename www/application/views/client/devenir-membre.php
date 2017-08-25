@@ -1,8 +1,4 @@
 <?php
-$meta_keywords = "";
-$meta_description = "";
-$page_title = "Devenir Membre";
-$body_class = "subpages devenir-membre";
 
 // Header
 include VIEWPATH . '/common/header.php';
@@ -233,6 +229,7 @@ include VIEWPATH . '/common/header.php';
 
 
                             <script>
+                                $(document).ready(function() {
 
                                 // Ramplir Date de naissance
                                 var liste_jour = "<select name='jour' class='form-control'>    <option value='0'>Jour</option>";
@@ -273,7 +270,7 @@ include VIEWPATH . '/common/header.php';
                                     d.options[d.length - 1].text = generMarque[i];
                                 }
 
-
+                                });
                             </script>
 
                         </div>

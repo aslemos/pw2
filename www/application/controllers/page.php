@@ -2,7 +2,7 @@
 
 class Page extends CI_Controller {
 
-    public function view($page = 'home') {
+    public function view($page) {
 //        if (file_exists(APPPATH . 'views/statique/' . $page . '.php')) {
             $data['title'] = ucfirst($page);
 

@@ -1,30 +1,5 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <title>Bootstrap Example</title>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
-  <!-- Website Font style -->
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
-  <link rel="stylesheet" href="style.css">
-    <!-- Google Fonts -->
-  <link href='https://fonts.googleapis.com/css?family=Passion+One' rel='stylesheet' type='text/css'>
-  <link href='https://fonts.googleapis.com/css?family=Oxygen' rel='stylesheet' type='text/css'>
-
-
- <link rel="stylesheet" type="text/css" href="formMember.css">
-<script src="formMember.js"></script>
-
-
-
-</head>
-
-<body>
-    <h2>Formulaire d'inscription member</h2>
+<?php include VIEWPATH . '/common/header.php'; ?>
 
 <form name="monFormulaire" class="form-horizontal" id="needs-validation" novalidate >
 
@@ -45,13 +20,13 @@
   <div class="form-group">
     <label class="control-label col-xs-3">Date de naissance:</label>
     <div class="col-xs-2" id="input_jour">
-      
+
     </div>
     <div class="col-xs-2" id="input_mois">
-      
+
     </div>
     <div class="col-xs-2" id="input_annee">
-      
+
     </div>
   </div>
 
@@ -95,10 +70,10 @@
   </div>
 
 
-  <div class="form-group">  
+  <div class="form-group">
     <label class="control-label col-xs-3" for="inputEmail">Email:</label>
     <div class="col-xs-6">
-      <input  type="email" class="form-control" id="inputEmail" placeholder="Email"> 
+      <input  type="email" class="form-control" id="inputEmail" placeholder="Email">
     </div>
   </div>
 
@@ -116,7 +91,7 @@
       <input type="password" class="form-control" id="confirmPassword" placeholder="Retapez le mot de passe">
     </div>
   </div>
-  
+
   <div class="form-group">
     <label  class="control-label col-xs-3" for="inputAddress">Adresse</label>
     <div class="col-xs-6">
@@ -136,13 +111,13 @@
     <div class="col-xs-2">
       <input type="text" class="form-control" id="inputVille" placeholder="Ville" required>
     </div>
-    
+
     <div class="col-xs-2">
       <select name="choixProvince" class="form-control">
         <option SELECTED>Province</option>
       </select>
     </div>
-    
+
     <div class="col-xs-2">
       <input type="text" class="form-control" id="inputCode" placeholder="Code" required>
     </div>
@@ -152,23 +127,23 @@
   <div class="form-group">
     <label class="control-label col-xs-3">Payment:</label>
     <div class="col-xs-2">
-      <label for="visa" class="btn btn-primary form-control">Visa 
-        <input type="checkbox" id="visa" class="badgebox" value=""> 
-        <span class="badge">&check;</span> 
+      <label for="visa" class="btn btn-primary form-control">Visa
+        <input type="checkbox" id="visa" class="badgebox" value="">
+        <span class="badge">&check;</span>
       </label>
     </div>
 
     <div class="col-xs-2">
-    <label class="btn btn-primary form-control" for="masterCard">MasterCard 
-        <input type="checkbox" id="masterCard" class="badgebox" value=""> 
-        <span class="badge">&check;</span> 
+    <label class="btn btn-primary form-control" for="masterCard">MasterCard
+        <input type="checkbox" id="masterCard" class="badgebox" value="">
+        <span class="badge">&check;</span>
         </label>
     </div>
 
     <div class="col-xs-2">
-    <label class="btn btn-primary form-control" for="americanExpress ">American Express 
-        <input type="checkbox" id="default3" class="badgebox" value=""> 
-        <span class="badge">&check;</span> 
+    <label class="btn btn-primary form-control" for="americanExpress ">American Express
+        <input type="checkbox" id="default3" class="badgebox" value="">
+        <span class="badge">&check;</span>
     </label>
     </div>
   </div>
@@ -176,23 +151,23 @@
   <div class="form-group">
     <label class="control-label col-xs-3"></label>
     <div class="col-xs-2">
-     <label for="default4" class="btn btn-primary form-control"> 
-        <input type="checkbox" id="default4" class="badgebox" value="">PayPal 
-        <span class="badge">&check;</span> 
+     <label for="default4" class="btn btn-primary form-control">
+        <input type="checkbox" id="default4" class="badgebox" value="">PayPal
+        <span class="badge">&check;</span>
       </label>
     </div>
 
     <div class="col-xs-2">
-      <label for="default5" class="btn btn-primary form-control">Discover 
-        <input type="checkbox" id="default5" class="badgebox" value=""> 
-        <span class="badge">&check;</span> 
+      <label for="default5" class="btn btn-primary form-control">Discover
+        <input type="checkbox" id="default5" class="badgebox" value="">
+        <span class="badge">&check;</span>
       </label>
     </div>
 
     <div class="col-xs-2">
-      <label for="default6" class="btn btn-primary form-control">Interac 
-        <input type="checkbox" id="default6" class="badgebox" value=""> 
-        <span class="badge">&check;</span> 
+      <label for="default6" class="btn btn-primary form-control">Interac
+        <input type="checkbox" id="default6" class="badgebox" value="">
+        <span class="badge">&check;</span>
       </label>
     </div>
   </div>
@@ -206,7 +181,7 @@
       <!-- Modal -->
       <div class="modal fade" id="myModal" role="dialog">
       <div class="modal-dialog">
-    
+
       <!-- Modal content-->
         <div class="modal-content">
         <div class="modal-header">
@@ -265,16 +240,14 @@
 
 
 /*ramlir Province*/
- var generMarque= new Array("AB","BC","MB","NB","ON","QC"); 
-   var d=document.monFormulaire.choixProvince; 
-    for(var i=0; i < generMarque.length ; i++) 
-   {  d.length++; 
-      d.options[d.length-1].text = generMarque[i]; 
-   } 
+ var generMarque= new Array("AB","BC","MB","NB","ON","QC");
+   var d=document.monFormulaire.choixProvince;
+    for(var i=0; i < generMarque.length ; i++)
+   {  d.length++;
+      d.options[d.length-1].text = generMarque[i];
+   }
 
 
 </script>
 
-
-</body>
-</html>
+<?php include VIEWPATH . '/common/footer.php'; ?>

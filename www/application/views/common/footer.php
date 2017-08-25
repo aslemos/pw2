@@ -3,7 +3,7 @@
     <div class="container">
         <h2>DEVENEZ UN MEMBRE</h2>
         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur metus nisi, pellentesque a mi sit amet, convallis interdum erat. Ut condimentum magna et consectetur faucibus. Quisque semper viverra tellus, vitae egestas est posuere eu.  Donec ac lorem sed est suscipit venenatis. Phasellus nibh ex, molestie ac pellentesque ut, efficitur vel enim.</p>
-        <a class="btn" href="devenir-membre" title="">PLUS DE DÉTAILS</a>
+        <a class="btn" href="/usager/inscription" title="">PLUS DE DÉTAILS</a>
     </div>
 </section>
 
@@ -27,12 +27,12 @@
                 <div class="flex-container">
                     <div class="list-container">
                         <ul>
-                            <li><a href="./" title="">ACCUEIL</a></li>
+                            <li><a href="/" title="">ACCUEIL</a></li>
                             <li class="sublist-container">
-                                <a href="page/apropos.php" title="">À PROPOS</a>
+                                <a href="/page/view/a-propos" title="">À PROPOS</a>
                             </li>
                             <li class="sublist-container">
-                                <a href="page/voitures.php" title=""> VOITURES</a>
+                                <a href="/page/view/voitures" title=""> VOITURES</a>
                             </li>
                             <li class="sublist-container">
                                 <a href="" title=""> CONTACTER</a>

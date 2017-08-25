@@ -18,7 +18,7 @@ include VIEWPATH . '/common/header.php';
             <div class="panel-heading">
                <ul class="nav nav-tabs">
                   <li class="active"><a href="#login" data-toggle="tab"> Login </a></li>
-                  <li><a href="devenir-membre.php"> S'inscrire </a></li>
+                  <li><a href="/usager/inscription"> S'inscrire </a></li>
                </ul>
             </div>
 

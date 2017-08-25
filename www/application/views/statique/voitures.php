@@ -40,7 +40,7 @@ include VIEWPATH . '/common/header.php';
                 <div class="cols8 col-md-12 col-sm-12 col-xs-12">
                     <div class="blocks">
                         <div class="img-container">
-                            <img src="assets/images/header/bg_header.jpg" alt="">
+                            <img src="/assets/images/header/bg_header.jpg" alt="">
                         </div>
                         <div class="desc-container">
                             <p>Mauris pellentesque vestibulum suscipit. Suspendisse potenti. Nunc eget maximus ipsum. Quisque sed sagittis nisi. Donec rutrum commodo tortor, sit amet condimentum quam rutrum quis. Proin et posuere enim. Nullam sodales diam at tincidunt placerat. Phasellus ornare velit nunc, non tristique magna auctor sit amet. Duis ut justo eget eros hendrerit semper. Nunc fringilla nunc eget est interdum, non tempus massa sodales. Suspendisse eget libero leo. Vivamus nec pretium nibh, ac facilisis metus. Aliquam dui metus, vehicula id malesuada non, sollicitudin sit amet orci. Vestibulum efficitur ullamcorper pulvinar.</p>
@@ -53,7 +53,7 @@ include VIEWPATH . '/common/header.php';
                 <div class="cols9 col-md-12 col-sm-12 col-xs-12">
                     <div class="blocks">
                         <div class="img-container">
-                            <img src="assets/images/header/bg_header.jpg" alt="">
+                            <img src="/assets/images/header/bg_header.jpg" alt="">
                         </div>
                         <div class="desc-container">
                             <p>Mauris pellentesque vestibulum suscipit. Suspendisse potenti. Nunc eget maximus ipsum. Quisque sed sagittis nisi. Donec rutrum commodo tortor, sit amet condimentum quam rutrum quis. Proin et posuere enim. Nullam sodales diam at tincidunt placerat. Phasellus ornare velit nunc, non tristique magna auctor sit amet. Duis ut justo eget eros hendrerit semper. Nunc fringilla nunc eget est interdum, non tempus massa sodales. Suspendisse eget libero leo. Vivamus nec pretium nibh, ac facilisis metus. Aliquam dui metus, vehicula id malesuada non, sollicitudin sit amet orci. Vestibulum efficitur ullamcorper pulvinar.</p>
@@ -65,7 +65,7 @@ include VIEWPATH . '/common/header.php';
                 <div class="cols10 col-md-12 col-sm-12 col-xs-12">
                     <div class="blocks">
                         <div class="img-container">
-                            <img src="assets/images/header/bg_header.jpg" alt="">
+                            <img src="/assets/images/header/bg_header.jpg" alt="">
                         </div>
                         <div class="desc-container">
                             <p>Mauris pellentesque vestibulum suscipit. Suspendisse potenti. Nunc eget maximus ipsum. Quisque sed sagittis nisi. Donec rutrum commodo tortor, sit amet condimentum quam rutrum quis. Proin et posuere enim. Nullam sodales diam at tincidunt placerat. Phasellus ornare velit nunc, non tristique magna auctor sit amet. Duis ut justo eget eros hendrerit semper. Nunc fringilla nunc eget est interdum, non tempus massa sodales. Suspendisse eget libero leo. Vivamus nec pretium nibh, ac facilisis metus. Aliquam dui metus, vehicula id malesuada non, sollicitudin sit amet orci. Vestibulum efficitur ullamcorper pulvinar.</p>

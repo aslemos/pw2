@@ -32,7 +32,7 @@ include VIEWPATH . '/common/header.php';
                 <div class="cols8 col-md-6 col-sm-12 col-xs-12">
                     <div class="blocks8">
                         <div class="img-container">
-                            <img src="assets/images/header/bg_header.jpg" alt="">
+                            <img src="/assets/images/header/bg_header.jpg" alt="">
                         </div>
                     </div>
                 </div>
@@ -40,7 +40,7 @@ include VIEWPATH . '/common/header.php';
                 <div class="cols9 col-md-6 col-sm-12 col-xs-12">
                     <div class="blocks9">
                         <div class="img-container">
-                            <img src="assets/images/header/bg_header.jpg" alt="">
+                            <img src="/assets/images/header/bg_header.jpg" alt="">
                         </div>
                     </div>
                 </div>
