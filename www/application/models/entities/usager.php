@@ -4,7 +4,7 @@ class Usager implements IUsager {
 
     private $membre_id; // ID
     private $role_id;   // FK roles
-    
+
     private $prenom;
     private $nom;
     private $permis_conduire;

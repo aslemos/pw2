@@ -20,7 +20,7 @@ class Usager extends CI_Controller {
 
     public function inscription() {
         $data['meta_keywords'] = "";
-        $data['$meta_description'] = "";
+        $data['meta_description'] = "";
         $data['page_title'] = "Devenir Membre";
         $data['body_class'] = "subpages devenir-membre";
 

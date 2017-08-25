@@ -23,6 +23,9 @@ class ModelUsager extends CI_Model {
      */
     public function updateUsager(Usager $usager) {
 
+        $this->load->database();
+        $sql = 'INSERT INTO usagers nom =  ' . $usager->getNom();
+
     }
 
     public function deleteUsager($usager_id) {
