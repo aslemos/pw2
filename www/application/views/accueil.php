@@ -7,7 +7,7 @@ $body_class = "";
 $page_autre_langue = "en/";
 
 // Header
-include 'common/header.php';
+include VIEWPATH . '/common/header.php';
 //========================================================
 ?>
 
@@ -23,13 +23,13 @@ include 'common/header.php';
                         </div>
                         <div class="row secon-row">
                             <div class="col-md-6 col-sm-6 col-xs-12">
-                                <a href="devenir-membre.php" class="single-pub" id="pub-1">
+                                <a href="/page/view/devenir-membre" class="single-pub" id="pub-1">
                                     <h2 class="pub-title"> Devenir membre </h2>
                                 </a>
                             </div>
 
                             <div class="col-md-6 col-sm-6 col-xs-12">
-                                <a href="voitures.php" class="single-pub" id="pub-2">
+                                <a href="/page/view/voitures.php" class="single-pub" id="pub-2">
                                     <h2 class="pub-title"> Voitures </h2>
                                 </a>
                             </div>
@@ -130,4 +130,4 @@ include 'common/header.php';
 <?php
 //========================================================
 //Footer
-include 'common/footer.php';
+include VIEWPATH . '/common/footer.php';

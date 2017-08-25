@@ -1,6 +1,4 @@
-<?php
-defined('BASEPATH') OR exit('No direct script access allowed');
-?>
+<?php defined('BASEPATH') OR exit('No direct script access allowed'); ?>
 <section id="footer-member">
     <div class="container">
         <h2>DEVENEZ UN MEMBRE</h2>
@@ -31,13 +29,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                         <ul>
                             <li><a href="./" title="">ACCUEIL</a></li>
                             <li class="sublist-container">
-                                <a href="historique" title="">À PROPOS</a>
+                                <a href="page/apropos.php" title="">À PROPOS</a>
                             </li>
                             <li class="sublist-container">
-                                <a href="camions" title=""> VOITURES</a>
+                                <a href="page/voitures.php" title=""> VOITURES</a>
                             </li>
                             <li class="sublist-container">
-                                <a href="camions" title=""> CONTACT</a>
+                                <a href="" title=""> CONTACTER</a>
                             </li>
                         </ul>
                     </div>
