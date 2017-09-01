@@ -1,10 +1,10 @@
 <div class="btn-liens" >
 	<!-- Boutton pour afficher la liste des voiture en location d'un membres -->
-	<a class="btn btn-danger" href="<?= base_url(); ?>membre.php" >Liste des membres</a> 
+	<a class="btn btn-danger" href="<?= $base_url; ?>membre.php" >Liste des membres</a> 
 	<!-- Boutton pour afficher la liste des voitures -->
-	<a class="btn btn-danger" href="<?= base_url(); ?>information.php" >Liste des voitures</a>
+	<a class="btn btn-danger" href="<?= $base_url; ?>information.php" >Liste des voitures</a>
 	<!-- Boutton pour afficher la des adminitrateurs -->
-	<a class="btn btn-danger" href="<?= base_url(); ?>admin.php">Liste des admins </a>  
+	<a class="btn btn-danger" href="<?= $base_url; ?>admin.php">Liste des admins </a>  
 </div>	
 <h1>Membres</h1>
 	<form action="" name="formulaire" id="form-voitures-id">
