@@ -8,6 +8,6 @@ class Acces extends CI_Controller {
 
     public function logout() {
         unset($this->session['user_data']);
-        $this->request->redirect('accueil');
+        $this->request->redirect('accueil'); // pseudo code.
     }
 }

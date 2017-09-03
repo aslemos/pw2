@@ -1,10 +1,5 @@
 <?php
 
-$data['meta_keywords'] = '';
-$data['meta_description'] = '';
-$data['page_title'] = 'membre';
-$data['body_class'] = 'subpages membre';
-
 // Header
 include VIEWPATH . '/common/header.php';
 //========================================================

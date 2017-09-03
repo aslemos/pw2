@@ -1,9 +1,4 @@
 <?php
-$meta_keywords = "";
-$meta_description = "";
-$page_title = "Voitures";
-$body_class = "subpages voitures";
-
 // Header
 include VIEWPATH . '/common/header.php';
 //========================================================

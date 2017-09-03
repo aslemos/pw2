@@ -1,9 +1,4 @@
 <?php
-$meta_keywords = "";
-$meta_description = "";
-$page_title = "Liste des voitures";
-$body_class = "subpages listeVoiture";
-
 // Header
 include 'header.php';
 //========================================================
@@ -13,14 +8,14 @@ include 'header.php';
         <div class="container">
             <div class="btn-liens" >
                 <!-- Boutton pour afficher la liste des voiture en location d'un membres -->
-                <a class="btn btn-danger" href="information.php" >Liste de <br />mes voitures</a> 
+                <a class="btn btn-danger" href="information.php" >Liste de <br />mes voitures</a>
                 <!-- Boutton pour ajouter une voitures -->
                 <a class="btn btn-danger" href="ajouter-voiture.php" >Ajouter <br />une voiture</a>
                 <!-- Boutton pour afficher les demandes de location pour aprobation -->
                 <a class="btn btn-danger" href="location.php" >Approuver <br>une demande </a>
                 <!-- Boutton pour afficher l'historique des location pour un membre -->
-                <a class="btn btn-danger" href="historique.php">Historique <br>des locations </a>  
-            </div>	
+                <a class="btn btn-danger" href="historique.php">Historique <br>des locations </a>
+            </div>
             <h1>Historique des locations</h1>
             <form action="" name="formulaire" id="form-demandes-id">
                 <div class="table-responsive">
@@ -54,8 +49,8 @@ include 'header.php';
                                 <td class="">test</td>
                                 <td class="">test</td>
                                 <td class="">test</td>
-                            </tr>						
-                        </tbody>	
+                            </tr>
+                        </tbody>
                     </table>
                 </div>
             </form>

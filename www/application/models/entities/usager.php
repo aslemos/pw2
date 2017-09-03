@@ -15,11 +15,11 @@ class Usager implements IUsager {
     private $courriel;
     private $mdp;
 
-    public function getMembre_id() {
+    public function getMembreId() {
         return $this->membre_id;
     }
 
-    public function getRole_id() {
+    public function getRoleId() {
         return $this->role_id;
     }
 
@@ -31,7 +31,7 @@ class Usager implements IUsager {
         return $this->nom;
     }
 
-    public function getPermis_conduire() {
+    public function getPermisConduire() {
         return $this->permis_conduire;
     }
 
@@ -43,7 +43,7 @@ class Usager implements IUsager {
         return $this->ville;
     }
 
-    public function getCode_postal() {
+    public function getCodePostal() {
         return $this->code_postal;
     }
 
@@ -59,11 +59,11 @@ class Usager implements IUsager {
         return $this->mdp;
     }
 
-    public function setMembre_id($membre_id) {
+    public function setMembreId($membre_id) {
         $this->membre_id = $membre_id;
     }
 
-    public function setRole_id($role_id) {
+    public function setRoleId($role_id) {
         $this->role_id = $role_id;
     }
 
@@ -75,7 +75,7 @@ class Usager implements IUsager {
         $this->nom = $nom;
     }
 
-    public function setPermis_conduire($permis_conduire) {
+    public function setPermisConduire($permis_conduire) {
         $this->permis_conduire = $permis_conduire;
     }
 
@@ -87,7 +87,7 @@ class Usager implements IUsager {
         $this->ville = $ville;
     }
 
-    public function setCode_postal($code_postal) {
+    public function setCodePostal($code_postal) {
         $this->code_postal = $code_postal;
     }
 
