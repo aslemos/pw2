@@ -5,7 +5,6 @@ class Admin extends CI_Controller {
     private $data = [];
     public function __construct() {
         parent::__construct();
-        $this->load->helper('url');
         $this->data['base_url'] = base_url();
     }
 
@@ -21,5 +20,12 @@ class Admin extends CI_Controller {
         $this->load->view('admin/liste_voitures_admin', $this->data);
     }
 
+    public function view($page) {
+            $this->load->helper('url');
+            $data['title'] = ucfirst($page);
 
+            $data['base_url'] = base_url();
+
+            $this->load->view('admin/' . $page, $data);
+    }
 }

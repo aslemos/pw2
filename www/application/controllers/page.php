@@ -9,6 +9,8 @@ class Page extends CI_Controller {
 //            $this->load->view('common/header');
 
             $this->load->view('statique/' . $page, $data);
+            
+            $this->load->view('admin/' . $page, $data);
 
 //            $this->load->view('common/footer');
 //        } else
