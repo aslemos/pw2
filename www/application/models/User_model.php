@@ -14,10 +14,10 @@ class User_model extends CI_Model {
 
     public function getUsers() {
 
-        $this->db->order_by('usagers.user_id', 'ASC');
+        $this->db->order_by('usagers.prenom', 'ASC');
         $this->db->join('roles', 'roles.role_id = usagers.role_id');
         $query = $this->db->get('usagers');
-        return $query->result_array();
+        return $query->result();
     }
 
     public function getUserById($user_id) {
