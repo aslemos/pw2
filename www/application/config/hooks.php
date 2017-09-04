@@ -21,6 +21,5 @@ $hook['pre_controller'] = function() {
             . 'models' . DIRECTORY_SEPARATOR
             . 'entities');
     spl_autoload_extensions('.class.php');
-    var_dump(get_include_path());
     spl_autoload_register();
 };
