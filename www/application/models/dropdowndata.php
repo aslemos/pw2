@@ -7,8 +7,8 @@ class DropDownData extends CI_Model {
         $this->load->database();
     }
 
-    public function getArrondissements() {
-        return $this->execSql('SELECT * FROM arrondissements ORDER BY nom_arr ASC;');
+    public function getArrondissements($ville_id) {
+        return $this->execSql('SELECT * FROM arrondissements WHERE ville_id = ' . $ville_id . ' ORDER BY nom_arr ASC;');
     }
 
     public function getCarburants() {

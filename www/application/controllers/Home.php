@@ -20,7 +20,7 @@ class Home extends CI_Controller {
         
         $data['title'] = 'Liste des vehicules';
         
-        $data['vehicules'] = $this->vehicule_model->get_vehicules();		
+        $data['vehicules'] = $this->vehicule_model->getVehicules();		
         //print_r($data['vehicules']);
 
         $this->load->view('templates/header');
@@ -41,7 +41,7 @@ class Home extends CI_Controller {
         
         $data['title'] = 'Lite des véhicules';
         
-        $data['vehicules'] = $this->vehicule_model->get_vehicules();
+        $data['vehicules'] = $this->vehicule_model->getVehicules();
         
         $this->load->view('templates/header');
         $this->load->view('home/vehicule', $data);
@@ -52,13 +52,13 @@ class Home extends CI_Controller {
 
     $data['title'] = 'Formulaire de recherche';
 
-    $data['usagers'] = $this->vehicule_model->get_usagers();
-    $data['type_vehicules'] = $this->vehicule_model->get_vehicules();
-    $data['marques'] = $this->vehicule_model->get_marques();
-    $data['modeles'] = $this->vehicule_model->get_modeles();
-    $data['carburants'] = $this->vehicule_model->get_carburants();
-    $data['transmissions'] = $this->vehicule_model->get_transmissions();
-    $data['arrondissements'] = $this->vehicule_model->get_arrondissements();
+    $data['usagers'] = $this->vehicule_model->getUsers();
+    $data['type_vehicules'] = $this->vehicule_model->getVehicules();
+    $data['marques'] = $this->vehicule_model->getMarques();
+    $data['modeles'] = $this->vehicule_model->getModeles();
+    $data['carburants'] = $this->vehicule_model->getCarburants();
+    $data['transmissions'] = $this->vehicule_model->getTransmissions();
+    $data['arrondissements'] = $this->vehicule_model->getArrondissements();
 
     $this->vehicule_model->search_vehicule($search_field);
     redirect('vehicules');
