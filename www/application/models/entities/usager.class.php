@@ -2,7 +2,7 @@
 
 class Usager implements IUsager {
 
-    private $membre_id; // ID
+    private $user_id;   // ID
     private $role_id;   // FK roles
 
     private $prenom;
@@ -15,8 +15,8 @@ class Usager implements IUsager {
     private $courriel;
     private $mdp;
 
-    public function getMembreId() {
-        return $this->membre_id;
+    public function getUserId() {
+        return $this->user_id;
     }
 
     public function getRoleId() {
@@ -59,8 +59,8 @@ class Usager implements IUsager {
         return $this->mdp;
     }
 
-    public function setMembreId($membre_id) {
-        $this->membre_id = $membre_id;
+    public function setUserId($membre_id) {
+        $this->user_id = $membre_id;
     }
 
     public function setRoleId($role_id) {

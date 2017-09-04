@@ -9,14 +9,17 @@ class Message {
     const MSG_ETAT_NON_LU = 0;
     const MSG_ETAT_LU = 1;
 
-    private $message_id;
-    private $emetteur_id;
-    private $destinataire_id;
-    private $date;
-    private $sujet;
-    private $contenu;
-    private $type;
-    private $etat;
+    const MSG_TYPE_NORMAL = 0;
+    const MSG_TYPE_RECLAMATION = 1;
+
+    private $message_id = 0;
+    private $emetteur_id = 0;
+    private $destinataire_id = 0;
+    private $date = NULL;
+    private $sujet = '';
+    private $contenu = '';
+    protected $type = self::MSG_TYPE_NORMAL;
+    private $etat = self::MSG_ETAT_NON_LU;
 
     public function getMessageId() {
         return $this->message_id;
@@ -31,6 +34,9 @@ class Message {
     }
 
     public function getDate() {
+        if ($this->date === NULL) {
+            $this->date = Date('Y-m-d H:i:s');
+        }
         return $this->date;
     }
 
@@ -77,11 +83,6 @@ class Message {
 
     public function setContenu($contenu) {
         $this->contenu = $contenu;
-        return $this;
-    }
-
-    public function setType($type) {
-        $this->type = $type;
         return $this;
     }
 
