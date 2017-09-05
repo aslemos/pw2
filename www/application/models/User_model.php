@@ -51,7 +51,7 @@ class User_model extends CI_Model {
     }
 
     // Log user in
-    public function login($username, $password) {
+    public function getUserByLogin($username, $password) {
 
         //echo $username .' '. $password;die();
         // Validate
@@ -62,12 +62,9 @@ class User_model extends CI_Model {
         $result = $this->db->get('usagers');
 
         if ($result->num_rows() == 1) {
-
-            return $result->row(0)->user_id;
-        } else {
-
-            return false;
+            return new Usager($result->row(0));
         }
+        return NULL;
     }
 
     // Check username exists
