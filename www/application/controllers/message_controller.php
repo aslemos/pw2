@@ -11,7 +11,7 @@ class Message_Controller extends CI_Controller {
     }
 
     public function index() {
-        $user = Acces::getUser();
+        $user = UserAcces::getUser();
         $this->load->model('message_model');
 
         $data['base_url'] = base_url();
@@ -36,18 +36,28 @@ class Message_Controller extends CI_Controller {
 
     public function enregistrer() {
 
+        // touve le destinataire
+        $this->load->model('user_model');
+        $dest = new Usager(
+                    $this->user_model->getUserById($this->input->post('destinataire_id'))
+                );
+
+        // crée le message
         $msg = new Message();
-        $msg->setEmetteurId(Acces::getUser()->getUserId());
-        $msg->setDestinataireId($this->input->post('destinataire_id'));
+        $msg->setEmetteur(UserAcces::getUser());
+        $msg->setDestinataire($dest);
         $msg->setSujet($this->input->post('sujet'));
         $msg->setContenu($this->input->post('message'));
 
+        // enregistre le message
         $this->load->model('message_model');
         $this->message_model->createMessage($msg);
 
+        // appelle la page de résultat
         $data['base_url'] = base_url();
         $data['page_title'] = 'Composer message';
         $data['body_class'] = '';
+        $data['destinaraire'] = $dest;
         $this->load->view('messenger/message_enregistre', $data);
     }
 }
