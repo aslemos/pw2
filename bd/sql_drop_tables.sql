@@ -1,6 +1,7 @@
 
 -- Supprime les tables de la BD du projet web 2
 
+DROP TABLE IF EXISTS `notes`;
 DROP TABLE IF EXISTS `commentaires`;
 
 DROP TABLE IF EXISTS `locations`;
