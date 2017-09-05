@@ -11,11 +11,7 @@ class Usager extends CI_Controller {
 
         $data['title'] = 'Liste des membres';
 
-        $data['usagers'] = $this->membre_model->get_membres();
-//        print_r($data['membres']);
-//        $this->load->view('templates/header');
-        $this->load->view('user/', $data);
-//        $this->load->view('templates/footer');
+        $this->load->view('client/devenir-memb', $data);
     }
 
     public function inscription() {
@@ -24,7 +20,16 @@ class Usager extends CI_Controller {
         $data['page_title'] = "Devenir Membre";
         $data['body_class'] = "subpages devenir-membre";
 
-//        $this->load->view('client/form_membre.php', $data);
         $this->load->view('client/devenir-membre.php', $data);
+    }
+
+    function getUsersInfo() {
+
+        $this->load->model('usager2');
+
+        $data['users'] = $this->usager2->getUsersInfo();
+
+        $this->load->view('client/form_location_1',  $data);
+        print_r($data);
     }
 }

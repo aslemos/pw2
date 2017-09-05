@@ -30,7 +30,7 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.37/js/bootstrap-datetimepicker.min.js"></script>
 
     </head>
-    <body class="<?php echo $body_class; ?>">
+    <body class="">
         <header>
             <div class="container-fluid">
                 <div class="row">
