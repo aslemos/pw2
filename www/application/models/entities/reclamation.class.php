@@ -6,5 +6,13 @@
  */
 
 class Reclamation extends Message {
+
     protected $type = self::MSG_TYPE_RECLAMATION;
+
+    public function __construct(array $data = NULL) {
+        parent::__construct($data);
+        if ($data !== NULL) {
+            $this->type = self::MSG_TYPE_RECLAMATION;
+        }
+    }
 }

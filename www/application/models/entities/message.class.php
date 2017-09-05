@@ -13,24 +13,49 @@ class Message {
     const MSG_TYPE_RECLAMATION = 1;
 
     private $message_id = 0;
-    private $emetteur_id = 0;
-    private $destinataire_id = 0;
+    private $emetteur = NULL;
+    private $destinaraire = NULL;
     private $date = NULL;
     private $sujet = '';
     private $contenu = '';
     protected $type = self::MSG_TYPE_NORMAL;
     private $etat = self::MSG_ETAT_NON_LU;
 
+    public function __construct(array $data = NULL) {
+        if ($data !== NULL) {
+            $this->setMessageId($data['message_id']);
+            $this->setDate($data['date']);
+            $this->setSujet($data['sujet']);
+            $this->setContenu($data['contenu']);
+            $this->setEtat($data['etat']);
+            $this->type = self::MSG_TYPE_NORMAL;
+
+            $this->emetteur = new Usager();
+            $this->emetteur->setUserId($data['emetteur_id']);
+
+            $this->destinataire = new Usager();
+            $this->destinataire->setUserId($data['destinataire_id']);
+        }
+    }
+
     public function getMessageId() {
         return $this->message_id;
     }
 
+    public function getEmetteur() {
+        return $this->emetteur;
+    }
+
     public function getEmetteurId() {
-        return $this->emetteur_id;
+        return $this->emetteur->getUserId();
+    }
+
+    public function getDestinataire() {
+        return $this->destinaraire;
     }
 
     public function getDestinataireId() {
-        return $this->destinataire_id;
+        return $this->destinaraire->getUserId();
     }
 
     public function getDate() {
@@ -61,14 +86,12 @@ class Message {
         return $this;
     }
 
-    public function setEmetteurId($emetteur_id) {
-        $this->emetteur_id = $emetteur_id;
-        return $this;
+    public function setEmetteur(Usager $user) {
+        $this->emetteur = $user;
     }
 
-    public function setDestinataireId($destinataire_id) {
-        $this->destinataire_id = $destinataire_id;
-        return $this;
+    public function setDestinataire(Usager $user) {
+        $this->destinaraire = $user;
     }
 
     public function setDate($date) {
