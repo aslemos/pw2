@@ -11,14 +11,22 @@ include VIEWPATH . '/common/header.php';
 
 <main>
     <section id="listeAdmin">
-        <div class="btn-liens" >
-            <!-- Boutton pour afficher la liste des voiture en location d'un membres -->
+<!--        <div class="btn-liens" >
+             Boutton pour afficher la liste des voiture en location d'un membres 
             <a class="btn btn-danger position" href="<?= $base_url; ?>membre.php" >Liste des membres</a> 
-            <!-- Boutton pour afficher la liste des voitures -->
+             Boutton pour afficher la liste des voitures 
             <a class="btn btn-danger position" href="<?= $base_url; ?>information.php" >Liste des voitures</a>
-            <!-- Boutton pour afficher la des adminitrateurs -->
+             Boutton pour afficher la des adminitrateurs 
             <a class="btn btn-danger position" href="<?= $base_url; ?>admin.php">Liste des admins </a>  
-        </div>	
+        </div>	-->
+        <div class="btn-liens" >
+	<!-- Boutton pour afficher la liste des voiture en location d'un membres -->
+	<a class="btn btn-danger" href="<?= $base_url; ?>admin/listeUsagers" >Liste des membres</a>
+	<!-- Boutton pour afficher la liste des voitures -->
+	<a class="btn btn-danger" href="<?= $base_url; ?>admin/listeVoitures" >Liste des voitures</a>
+	<!-- Boutton pour afficher la des adminitrateurs -->
+	<a class="btn btn-danger" href="<?= $base_url; ?>admin/listeAdmins">Liste des admins </a>
+        </div>
         <h1>Membres</h1>
         <form action="" name="formulaire" id="form-voitures-id">
             <div class="table-responsive">

@@ -20,7 +20,7 @@
                 <li role="presentation" class="divider"></li>
                 <li role="presentation"> <a role="menuitem" tabindex="-1" href =''> <span class="text"> LES ADMINS </span></a></li>
             </ul>
-            
+
         </li>
         <li class="<?php //echo $tpl->checkCurrentURL("evenements"); ?>"><a href="/usager" title="">SE CONNECTER</a></li>
         

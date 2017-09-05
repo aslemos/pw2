@@ -173,14 +173,29 @@ CREATE TABLE IF NOT EXISTS transmissions(
 
 
 #------------------------------------------------------------
+# Table: villes
+#------------------------------------------------------------
+
+CREATE TABLE IF NOT EXISTS villes (
+        ville_id  int (11) Auto_increment  NOT NULL,
+        province Varchar(2),
+        nom_ville Varchar (100),
+        PRIMARY KEY (ville_id),
+        INDEX (province, nom_ville)
+) ENGINE=InnoDB Default charset=utf8;
+
+
+#------------------------------------------------------------
 # Table: arrondissements
 #------------------------------------------------------------
 
 CREATE TABLE IF NOT EXISTS arrondissements(
         arr_id  int (11) Auto_increment  NOT NULL,
+        ville_id int (11),
         nom_arr Varchar (100),
-        PRIMARY KEY (arr_id ),
-        INDEX (nom_arr)
+        PRIMARY KEY (arr_id),
+        FOREIGN KEY (ville_id) REFERENCES villes(ville_id),
+        INDEX (ville_id, nom_arr)
 ) ENGINE=InnoDB Default charset=utf8;
 
 
@@ -196,16 +211,21 @@ CREATE TABLE IF NOT EXISTS accepte_modes_paiements(
 
 
 #------------------------------------------------------------
-# Table: envoi_messages
+# Table: messages
 #------------------------------------------------------------
 
-CREATE TABLE IF NOT EXISTS envoi_messages(
-        Date_message      TimeStamp,
-        titre_message     Varchar (255),
-        contenu           Text,
-        user_id         Int NOT NULL,
-        user_id_usagers Int NOT NULL,
-        PRIMARY KEY (user_id, user_id_usagers)
+CREATE TABLE IF NOT EXISTS messages(
+        message_id       Int(11) AUTO_INCREMENT,
+        emetteur_id      Int(11) NOT NULL,
+        destinataire_id  Int(11) NOT NULL,
+        date             TimeStamp,
+        sujet            Varchar (255),
+        contenu          Text,
+        type             Varchar(1),
+        etat             Varchar(1),
+        PRIMARY KEY (message_id),
+        FOREIGN KEY (emetteur_id) REFERENCES usagers (user_id),
+        FOREIGN KEY (destinataire_id) REFERENCES usagers (user_id)
 ) ENGINE=InnoDB Default charset=utf8;
 
 #------------------------------------------------------------
@@ -213,9 +233,10 @@ CREATE TABLE IF NOT EXISTS envoi_messages(
 #------------------------------------------------------------
 
 CREATE TABLE notes(
+        user_id       Int (11) NOT NULL,
+        vehicule_id     Int (11) NOT NULL,
         date_evaluation TimeStamp,
-        user_id       Int NOT NULL,
-        vehicule_id     Int NOT NULL,
+        note Int (11) NOT NULL,
         PRIMARY KEY (user_id, vehicule_id)
 )ENGINE=InnoDB Default charset=utf8;
 
@@ -233,7 +254,5 @@ ALTER TABLE locations ADD CONSTRAINT FK_locations_paiement_id FOREIGN KEY (paiem
 ALTER TABLE infos_bancaires ADD CONSTRAINT FK_infos_bancaires_user_id FOREIGN KEY (user_id) REFERENCES usagers(user_id);
 ALTER TABLE accepte_modes_paiements ADD CONSTRAINT FK_accepte_mode_paiement_user_id FOREIGN KEY (user_id) REFERENCES usagers(user_id);
 ALTER TABLE accepte_modes_paiements ADD CONSTRAINT FK_accepte_mode_paiement_mode_id FOREIGN KEY (mode_id) REFERENCES modes_paiements(mode_id);
-ALTER TABLE envoi_messages ADD CONSTRAINT FK_envoi_messages_user_id FOREIGN KEY (user_id) REFERENCES usagers(user_id);
-ALTER TABLE envoi_messages ADD CONSTRAINT FK_envoi_messages_user_id_usagers FOREIGN KEY (user_id_usagers) REFERENCES usagers(user_id);
 ALTER TABLE notes ADD CONSTRAINT FK_notes_user_id FOREIGN KEY (user_id) REFERENCES usagers(user_id);
 ALTER TABLE notes ADD CONSTRAINT FK_notes_vehicule_id FOREIGN KEY (vehicule_id) REFERENCES vehicules(vehicule_id);
