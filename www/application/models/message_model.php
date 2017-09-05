@@ -35,10 +35,30 @@ class Message_Model extends CI_Model {
         return $st->result();
     }
 
+    public function getMessagesEnvoyes(Usager $user) {
+        $sql = 'SELECT messages.*, usagers.prenom as nom_emetteur FROM messages'
+                . ' LEFT JOIN usagers ON (messages.emetteur_id = usagers.user_id)'
+                . ' WHERE emetteur_id = \'' . $this->db->escape($user->getUserId()) . '\''
+                . ' AND messages.type = ' . Message::MSG_TYPE_NORMAL
+                . ' ORDER BY date DESC;';
+        $st = $this->db->query($sql);
+        return $st->result();
+    }
+
     public function getReclamations() {
         $sql = 'SELECT messages.*, usagers.prenom as nom_emetteur FROM messages'
                 . ' LEFT JOIN usagers ON (messages.emetteur_id = usagers.user_id)'
                 . ' WHERE messages.type = ' . Message::MSG_TYPE_RECLAMATION
+                . ' ORDER BY date DESC;';
+        $st = $this->db->query($sql);
+        return $st->result();
+    }
+
+    public function getReclamationsEnvoyes(Usager $user) {
+        $sql = 'SELECT messages.*, usagers.prenom as nom_emetteur FROM messages'
+                . ' LEFT JOIN usagers ON (messages.emetteur_id = usagers.user_id)'
+                . ' WHERE emetteur_id = \'' . $this->db->escape($user->getUserId()) . '\''
+                . ' AND messages.type = ' . Message::MSG_TYPE_RECLAMATION
                 . ' ORDER BY date DESC;';
         $st = $this->db->query($sql);
         return $st->result();
