@@ -10,11 +10,11 @@
 	<form action="/pw2/PageAffichageAdmins.php" method="get" class="alignement_Admins" id="form_Admins"></form>
 			
 	    <!-- Boutton pour Affichage Members-->
-	    <button class="btn btn-danger" form="form_Members" id="btn_Affichage_Members" type="submit"  value="Submit">Afficher <br> Members</button>
+	    <button class="btn btn-danger position" form="form_Members" id="btn_Affichage_Members" type="submit"  value="Submit">Afficher <br> Members</button>
 	    <!-- Boutton pour Affichage Voitures- -->
-		<button class="btn btn-danger" form="form_Voiture" id="btn_Affichage_Voitures">Afficher <br> Voitures</button> 
+		<button class="btn btn-danger position" form="form_Voiture" id="btn_Affichage_Voitures">Afficher <br> Voitures</button> 
 		<!-- Boutton pour Affichage Admins- -->		 
-		<button class="btn btn-danger" form="form_Admins" id="btn_Affichage_Admins">Afficher <br> Admins</button> 
+		<button class="btn btn-danger position" form="form_Admins" id="btn_Affichage_Admins">Afficher <br> Admins</button> 
 			
 			<?php // }?>
 </div>	

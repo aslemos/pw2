@@ -4,7 +4,7 @@ $meta_keywords = "";
 $meta_description = "";
 $page_title = "Accueil";
 $body_class = "";
-$page_autre_langue = "en/";
+//$page_autre_langue = "en/";
 
 // Header
 include VIEWPATH . '/common/header.php';
@@ -23,13 +23,15 @@ include VIEWPATH . '/common/header.php';
                         </div>
                         <div class="row secon-row">
                             <div class="col-md-6 col-sm-6 col-xs-12">
-                                <a href="/page/view/devenir-membre" class="single-pub" id="pub-1">
+                                <!--<a href="/membre/view/devenir-membre" class="single-pub" id="pub-1">-->
+                                <a href="/usager/inscription" class="single-pub" id="pub-1">
+                                    
                                     <h2 class="pub-title"> Devenir membre </h2>
                                 </a>
                             </div>
 
                             <div class="col-md-6 col-sm-6 col-xs-12">
-                                <a href="/page/view/voitures.php" class="single-pub" id="pub-2">
+                                <a href="/page/view/voitures" class="single-pub" id="pub-2">
                                     <h2 class="pub-title"> Voitures </h2>
                                 </a>
                             </div>

@@ -1,4 +1,8 @@
 <?php
+//$meta_keywords = "";
+//$meta_description = "";
+//$page_title = "Devenir Membre";
+//$body_class = "subpages devenir-membre";
 
 // Header
 include VIEWPATH . '/common/header.php';
@@ -142,7 +146,7 @@ include VIEWPATH . '/common/header.php';
                                 </div>
 
 
-                                <div class="form-group">
+<!--                                <div class="form-group">
                                     <label class="control-label col-xs-3">Payment:</label>
                                     <div class="col-xs-2">
                                         <label for="visa" class="btn btn-primary form-control">Visa
@@ -188,7 +192,7 @@ include VIEWPATH . '/common/header.php';
                                             <span class="badge">&check;</span>
                                         </label>
                                     </div>
-                                </div>
+                                </div>-->
 
                                 <div class="form-group">
                                     <div class="col-xs-offset-3 col-xs-9">

@@ -9,12 +9,13 @@ class Usager extends CI_Controller {
 
     public function index() {
 
-        $data['title'] = 'Liste des membres';
-
-        $data['usagers'] = $this->membre_model->get_membres();
+ 
+//        $data['title'] = 'Liste des membres';
+//
+//        $data['usagers'] = $this->membre_model->get_membres();
 //        print_r($data['membres']);
 //        $this->load->view('templates/header');
-        $this->load->view('user/', $data);
+        $this->load->view('user/login');
 //        $this->load->view('templates/footer');
     }
 
@@ -25,6 +26,6 @@ class Usager extends CI_Controller {
         $data['body_class'] = "subpages devenir-membre";
 
 //        $this->load->view('client/form_membre.php', $data);
-        $this->load->view('client/devenir-membre.php', $data);
+        $this->load->view('membre/devenir-membre.php', $data);
     }
 }

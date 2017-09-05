@@ -118,45 +118,27 @@ header{
         }
     }
 
-    &.historique {
+    &.apropos {
         #subpages-hero {
-            background: url('../images/historique/bg_historique.jpg') center center/cover no-repeat;
+            background: url('../images/apropos/bg_historique1.jpg') center center/cover no-repeat;
         }
 
-        #slogan-historique {
+        #slogan-apropos {
             display: block;
         }
     }
 
-    &.historic {
+
+    &.voitures {
         #subpages-hero {
-            background: url('../images/historique/bg_historique.jpg') center center/cover no-repeat;
+            background: url('../images/voitures/bg_voitures2.jpg') center center/cover no-repeat;
         }
 
-        #slogan-historic {
+        #slogan-voiture {
             display: block;
         }
     }
-
-    &.camions {
-        #subpages-hero {
-            background: url('../images/camions/bg_camions.jpg') center center/cover no-repeat;
-        }
-
-        #slogan-camions {
-            display: block;
-        }
-    }
-
-    &.trucks {
-        #subpages-hero {
-            background: url('../images/camions/bg_camions.jpg') center center/cover no-repeat;
-        }
-
-        #slogan-trucks {
-            display: block;
-        }
-    }
+ 
 
     &.devenir-membre {
         #subpages-hero {
@@ -167,118 +149,34 @@ header{
             display: block;
         }
     }
-
-    &.become-membre {
+    
+    &.login {
         #subpages-hero {
-            background: url('../images/devenir-membre/bg_devenir_membre.jpg') center center/cover no-repeat;
+            background: url('../images/connect/bg_login.jpg') center center/cover no-repeat;
         }
 
-        #slogan-become-membre {
+        #slogan-login {
+            display: block;
+        }
+    }
+    
+    &.membre {
+        #subpages-hero {
+            background: url('../images/membre/bg_membre.jpg') center center/cover no-repeat;
+        }
+
+        #slogan-membre {
             display: block;
         }
     }
 
-    &.reglements {
+
+    &.listeAdmin {
         #subpages-hero {
-            background: url('../images/reglements/bg_reglements.jpg') center center/cover no-repeat;
+            background: url('../images/admin/bg_admin.jpg') center center/cover no-repeat;
         }
 
-        #slogan-reglements {
-            display: block;
-        }
-    }
-
-    &.aperos {
-        #subpages-hero {
-            background: url('../images/reglements/bg_reglements.jpg') center center/cover no-repeat;
-        }
-
-        #slogan-aperos {
-            display: block;
-        }
-    }
-
-    &.marche-nuit {
-        #subpages-hero {
-            background: url('../images/evenements/marche-nuit/bg_marche_nuit.png') center center/cover no-repeat;
-        }
-    }
-
-    &.yul-eat {
-        #subpages-hero {
-            background: url('../images/evenements/yul-eat/bg_yul_eat.jpg') center center/cover no-repeat;
-        }
-    }
-
-    &.premiers-vendredis {
-        #subpages-hero {
-            background: url('../images/evenements/premiers-vendredis/bg_premiers_vendredis.jpg') center center/cover no-repeat;
-        }
-    }
-
-    &.anniversaire-montreal {
-        #subpages-hero {
-            background: url('../images/evenements/anniversaire-montreal/bg_grands_aperos_375e-anniversaire_montreal.jpg') center center/cover no-repeat;
-        }
-    }
-
-
-    &.contact {
-        #subpages-hero {
-            background: url('../images/contact/bg_contact.jpg') center center/cover no-repeat;
-        }
-
-        #slogan-contact {
-            display: block;
-        }
-    }
-
-    &.contactEn {
-        #subpages-hero {
-            background: url('../images/contact/bg_contact.jpg') center center/cover no-repeat;
-        }
-
-        #slogan-contact-en {
-            display: block;
-        }
-    }
-
-    &.calendar {
-        #subpages-hero {
-            background: url('../images/evenements/slide1.jpg') center center/cover no-repeat;
-        }
-
-        #slogan-calendar {
-            display: block;
-        }
-    }
-
-    &.reservationEn {
-        #subpages-hero {
-            background: url('../images/evenements/slide1.jpg') center center/cover no-repeat;
-        }
-
-        #slogan-reservation-en {
-            display: block;
-        }
-    }
-
-    &.evenements {
-        #subpages-hero {
-            background: url('../images/evenements/slide1.jpg') center center/cover no-repeat;
-        }
-
-        #slogan-evenements {
-            display: block;
-        }
-    }
-
-    &.events {
-        #subpages-hero {
-            background: url('../images/evenements/slide1.jpg') center center/cover no-repeat;
-        }
-
-        #slogan-events {
+        #slogan-admin {
             display: block;
         }
     }

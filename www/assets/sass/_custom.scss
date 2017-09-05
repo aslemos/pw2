@@ -1,3 +1,379 @@
+/* --- General --- */
+img {
+    vertical-align: inherit;
+    max-width: 100%;
+    max-height: 100%;
+}
+
+.information{
+            margin-left: 33%;
+}
+
+
+h2 {
+        margin: 0;
+        margin-top: 65px;
+        margin-bottom: 65px;
+        padding-bottom: 25px;
+        position: relative;
+        text-align: center;
+
+        &:after {
+            background-color: #575757;
+            bottom: 0;
+            content: " ";
+            height: 3px;
+            left: 0;
+            margin: auto;
+            position: absolute;
+            right: 0;
+            text-align: center;
+            width: 40px;
+        }
+    }
+    
+// bouton du gestion des membres et des admins
+
+.position {
+    display: inline-block;
+}
+ 
+
+/* --- ACCUEIL --- */
+
+#pub-home {
+    padding-top: 15px;
+
+    .row {
+        padding-left: 15px;
+        padding-right: 15px;
+
+        [class^="col-"] {
+            padding: 15px;
+
+            &.special-col {
+                padding: 0;
+            }
+        }
+
+        &.secon-row {
+            padding-left: 0;
+            padding-right: 0;
+            padding-top: 15px;
+        }
+
+        &.special-row {
+            padding: 0 15px;
+        }
+    }
+
+    .single-pub {
+        display: block;
+        height: 400px;
+        position: relative;
+        width: 100%;
+
+        .pub-title {
+            color: white;
+            margin: 0;
+            text-align: center;
+            width: 100%;
+            z-index: 3;
+            @extend %abscenter;
+        }
+
+        &:after {
+            background-color: black;
+            content: " ";
+            left: 0;
+            height: 100%;
+            opacity: 0;
+            position: absolute;
+            top: 0;
+            width: 100%;
+            z-index: 2;
+            @include transit(0.6s);
+        }
+
+        &:hover, &:active, &:focus {
+            &:after {
+                opacity: 0.8;
+            }
+        }
+    }
+
+    #pub-1 {
+        background: url('../images/accueil/pubs/pub1.jpg') center center/cover no-repeat;
+    }
+
+    #pub-2 {
+        background: url('../images/accueil/pubs/pub2.jpg') center center/cover no-repeat;
+    }
+    
+}
+
+
+
+/*#about-home, #footer-member, #thanks {
+    h2 {
+        margin: 0;
+        margin-bottom: 25px;
+        padding-bottom: 25px;
+        position: relative;
+        text-align: center;
+
+        &:after {
+            background-color: #575757;
+            bottom: 0;
+            content: " ";
+            height: 3px;
+            left: 0;
+            margin: auto;
+            position: absolute;
+            right: 0;
+            text-align: center;
+            width: 40px;
+        }
+    }
+}*/
+
+#about-home {
+
+    .container-fluid {
+        padding: 0 45px;
+    }
+
+    .row {
+
+        [class^="col-"] {
+            padding-left: 0;
+            padding-right: 0;
+        }
+    }
+
+    .bordered {
+        border-right: solid 3px white;
+    }
+
+    .text-container {
+        padding: 75px 0;
+    }
+
+    p {
+        margin: auto;
+        max-width: 595px;
+        text-align: justify;
+        font-size:16px;
+        line-height: 20px;
+    }
+}
+
+
+/* --- DEVENIR MEMBRE ---*/
+
+.badgebox {
+  opacity: 0;
+  + .badge {
+    /* Move the check mark away when unchecked */
+    text-indent: -999999px;
+    /* Makes the badge's width stay the same checked and unchecked */
+    width: 27px;
+  }
+  &:focus + .badge {
+    /* Set something to make the badge looks focused */
+    /* This really depends on the application, in my case it was: */
+    /* Adding a light border */
+    box-shadow: inset 0px 0px 5px;
+    /* Taking the difference out of the padding */
+  }
+  &:checked + .badge {
+    /* Move the check mark back when checked */
+    text-indent: 0;
+  }
+}
+
+/*Radio buttons*/
+
+label {
+  &.btn span {
+    font-size: 1.5em;
+  }
+  input[type="radio"] {
+    ~ i.fa {
+      &.fa-circle-o {
+        color: #c8c8c8;
+        display: inline;
+      }
+      &.fa-dot-circle-o {
+        display: none;
+      }
+    }
+    &:checked ~ i.fa {
+      &.fa-circle-o {
+        display: none;
+      }
+      &.fa-dot-circle-o {
+        color: #7AA3CC;
+        display: inline;
+      }
+    }
+  }
+  &:hover input[type="radio"] ~ i.fa {
+    color: #7AA3CC;
+  }
+  input[type="checkbox"] {
+    ~ i.fa {
+      &.fa-square-o {
+        color: #c8c8c8;
+        display: inline;
+      }
+      &.fa-check-square-o {
+        display: none;
+      }
+    }
+    &:checked ~ i.fa {
+      &.fa-square-o {
+        display: none;
+      }
+      &.fa-check-square-o {
+        color: #7AA3CC;
+        display: inline;
+      }
+    }
+  }
+  &:hover input[type="checkbox"] ~ i.fa {
+    color: #7AA3CC;
+  }
+}
+
+div[data-toggle="buttons"] label {
+  &.active, &:hover {
+    color: #7AA3CC;
+  }
+  display: inline-block;
+  padding: 6px 12px;
+  margin-bottom: 0;
+  font-size: 10px;
+  font-weight: normal;
+  line-height: 2em;
+  text-align: left;
+  white-space: nowrap;
+  vertical-align: top;
+  cursor: pointer;
+  background-color: none;
+  border: 0px solid  #c8c8c8;
+  border-radius: 3px;
+  color: #c8c8c8;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  -o-user-select: none;
+  user-select: none;
+  &:active, &.active {
+    -webkit-box-shadow: none;
+    box-shadow: none;
+  }
+}
+
+.gender {
+  visibility: hidden;
+  display: none;
+}
+
+/*-------- LES PAGES DES MEMBRES --------*/
+table {
+  margin: 0 auto;
+  border: none;
+  width: 75%;
+}
+
+tr {
+  background-color: #974952;
+}
+
+th, td {
+  text-align: center;
+  color: #ffffff;
+  max-width: 80px;
+  height: 40px;
+  overflow: hidden;
+  font-size: 16px;
+}
+
+th:first-child, td:first-child {
+  max-width: 25px;
+}
+
+th:last-child, td:last-child {
+  max-width: 50px;
+}
+
+th {
+  border-radius: 15px 15px 0  0;
+}
+
+td {
+  border: 1px solid gray;
+  background-color: black;
+  color: #dddddd;
+}
+
+th.date, td.date {
+  min-width: 150px;
+}
+
+.btn-liens {
+  position: relative;
+  width: auto;
+  margin: 25px 0px;
+}
+
+.btn {
+  background-color: #974952;
+  border-radius: 25px;
+  color: white;
+  font-weight: bold;
+  text-align: center;
+}
+
+span {
+  padding: 5px;
+  padding-right: 15px;
+}
+
+#B_affichage, #B_affichage_3_menu {
+  margin-top: 30px;
+}
+
+form {
+  label, select, input {
+    font-size: 20px;
+    margin: 15px;
+    line-height: 10px;
+  }
+}
+
+@media screen and (max-width: 680px) {
+  .container, table, .btn-liens {
+    width: 100%;
+    margin: 5px;
+  }
+}
+
+@media screen and (max-width: 540px) {
+  th, td {
+    font-size: 12px;
+  }
+  .btn {
+    width: 100%;
+  }
+}
+
+/*----- ADMIN ---*/
+.titre_editable {
+	background-color: #974952;
+}
+
 
 
 /*************************/
@@ -172,5 +548,5 @@ div[data-toggle="buttons"] label:hover {
 
 div[data-toggle="buttons"] label:active, div[data-toggle="buttons"] label.active {
     -webkit-box-shadow: none;
-    box-shadow: none;
+    box-shadow: none; 
 }

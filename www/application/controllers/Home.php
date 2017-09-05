@@ -23,18 +23,18 @@ class Home extends CI_Controller {
         $data['vehicules'] = $this->vehicule_model->get_vehicules();		
         //print_r($data['vehicules']);
 
-        $this->load->view('templates/header');
+//        $this->load->view('templates/header');
         $this->load->view('home/index', $data);
-        $this->load->view('templates/footer');
+//        $this->load->view('templates/footer');
     }
 	
     public function about() {
         
         $data['title'] = 'À propos de nous';
         
-        $this->load->view('templates/header');
+//        $this->load->view('templates/header');
         $this->load->view('home/about', $data);
-        $this->load->view('templates/footer'); 
+//        $this->load->view('templates/footer'); 
     }
     
     public function vehicule() {
@@ -43,9 +43,9 @@ class Home extends CI_Controller {
         
         $data['vehicules'] = $this->vehicule_model->get_vehicules();
         
-        $this->load->view('templates/header');
+//        $this->load->view('templates/header');
         $this->load->view('home/vehicule', $data);
-        $this->load->view('templates/footer'); 
+//        $this->load->view('templates/footer'); 
     }
     
     public function search (){
