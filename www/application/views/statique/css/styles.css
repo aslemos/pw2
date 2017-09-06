@@ -1,0 +1,125 @@
+/*Version pour mozilla, firefox et Chrome*/
+*   {
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+}
+
+body { 
+	margin: auto 0;
+	font-family: Georgia, serif;
+	font-size: 85%;
+	color: #000000;
+	text-align: center;   	
+	background-color: white;
+	width: 100%;	
+}
+
+img {
+	width: 18px;
+	height: 18px;	
+	margin-top: 4px;
+	margin-bottom: 4px;
+}
+
+table {
+	margin: 0 auto;
+	border: none;
+	width:75%;
+}
+
+button {
+	clear: left;
+	margin-left: 20px;
+	background-color: #974952;
+	border-radius: 25px;
+    border: none;
+	padding-top: 1px;
+	padding-bottom: 1px;
+	padding-left: 35px;
+	padding-right: 35px;
+	color: white;
+}
+
+#B_affichage {
+	margin-top: 30px;	
+}
+
+#B_affichage_3_menu {
+	margin-top: 30px;	
+}
+
+.container {
+	width: 75%;
+	margin: 20px auto;
+}
+
+
+.btn-liens {
+	position: relative;
+	width: auto;
+	margin: 25px 0px;
+}
+
+.btn {
+	background-color: #974952;
+	border-radius: 25px;
+	color: white;
+	font-weight: bold;
+	text-align: center;
+}
+
+.btn-danger {
+	background-color: #974952 !important;
+}
+
+.editable {
+  background-color: black;
+  color: gray;
+  text-align: center;
+  width: 2%;
+  border-right: 1px solid white;
+}
+
+.titre_editable {
+	background-color: #974952;
+}
+
+.B_affichage {
+	margin-top: 100px;
+	margin-bottom: 60px;
+	line-height: 90%;
+}
+
+.B_affichage_3_menu {
+	margin-top: 100px;
+	margin-bottom: 60px;
+	line-height: 90%;
+}
+
+.alignement_Members {
+	margin-top: 10px;
+	margin-left: -200px;
+}
+
+.alignement_Voiture {
+	margin-top: -32px;
+	margin-left: 90px;
+}
+
+.alignement_Admins {
+	margin-top: -32px;
+	margin-left: 360px;
+}
+
+@media screen and (max-width: 680px) {
+	.container, table {width:100%; margin:5px;}
+	.btn-liens {width:100%; margin:5px; margin-top: 50px;}
+	.btn {margin-bottom: 10px;}
+}
+
+@media screen and (max-width: 540px) {
+	.container, table {width:100%; margin:5px;}
+	th, td {font-size:12px;}
+	.btn{width:100%; margin-bottom: 10px;}
+}

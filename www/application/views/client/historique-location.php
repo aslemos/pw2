@@ -1,13 +1,12 @@
 <?php
-
 // Header
-include VIEWPATH . '/common/header.php';
+include 'header.php';
 //========================================================
 ?>
 <main>
-    <section id="membre">
+    <section id="liste-voitures">
         <div class="container">
-            <div class="btn-liens">
+            <div class="btn-liens" >
                 <!-- Boutton pour afficher la liste des voiture en location d'un membres -->
                 <a class="btn btn-danger" href="information.php" >Liste de <br />mes voitures</a>
                 <!-- Boutton pour ajouter une voitures -->
@@ -17,20 +16,28 @@ include VIEWPATH . '/common/header.php';
                 <!-- Boutton pour afficher l'historique des location pour un membre -->
                 <a class="btn btn-danger" href="historique.php">Historique <br>des locations </a>
             </div>
-            <h1>Voitures</h1>
-            <form action="" name="formulaire" id="form-voitures-id">
+            <h1>Historique des locations</h1>
+            <form action="" name="formulaire" id="form-demandes-id">
                 <div class="table-responsive">
-                    <table class="table table-striped">
+                    <label>Choisir une voiture</label>
+                    <select name="voiture">
+                        <option>Séléctionner</option>
+                        <option>Auto n01</option>
+                        <option>Auto n02</option>
+                    </select>
+                    <label>Periode</label>
+                    <input type="text" id="datedebut" placeholder="De">
+                    <input type="text" id="datefin" placeholder="À">
+                    <table class="table">
                         <thead>
                             <tr>
                                 <th class="">Nº</th>
                                 <th class="">Marque</th>
-                                <th class="">Modèle</th>
+                                <th class="">Modele</th>
                                 <th class="">Matricule</th>
                                 <th class="">Année</th>
-                                <th class="">Prix</th>
-                                <th class="">Modifier</th>
-                                <th class="">Supprimer</th>
+                                <th class="">Nombre de <br />jours loué</th>
+                                <th class="">Montant<br />total</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -41,18 +48,20 @@ include VIEWPATH . '/common/header.php';
                                 <td class="">test</td>
                                 <td class="">test</td>
                                 <td class="">test</td>
-                                <td><a href="#"><img class="img-responsive" src="/assets/images/ok.png" ></a></td>
-                                <td><a href="#"><img class="img-responsive" src="/assets/images/no.png" ></a></td>
+                                <td class="">test</td>
                             </tr>
                         </tbody>
                     </table>
                 </div>
             </form>
-
+            <!-- Div pour affichage -->
+            <div id="resultat"></div>
+            <div id="divAuto_voitures"></div>
         </div>
     </section>
 </main>
 <?php
 //========================================================
 //Footer
-include VIEWPATH . '/common/footer.php';
+include 'footer.php';
+?>
