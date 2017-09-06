@@ -20,3 +20,4 @@ class Louer extends CI_Controller {
 //Loading View
         $this->load->view('insert_view', $data);
     }
+}
