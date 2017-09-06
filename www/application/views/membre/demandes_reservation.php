@@ -27,11 +27,11 @@ include VIEWPATH . '/common/header.php';
 	<table class="table">
 		<thead>
 			<tr>
-				<th class="">Nº</th>
+				<th class="">NÂ°</th>
 				<th class="">Marque</th>
 				<th class="">Modele</th>
 				<th class="">Matricule</th>
-				<th class="">Année</th>
+				<th class="">AnnÃ©e</th>
 				<th class="">Nom client</th>
 				<th class="">Prix</th>
 				<th class="date">Location<br />Date DÃ©but</th>
@@ -49,7 +49,7 @@ include VIEWPATH . '/common/header.php';
 				<td class="">test</td>
 				<td class="">Client</td>
 				<td class="">$500</td>
-				<td class="date">Date début</td>
+				<td class="date">Date dï¿½but</td>
 				<td class="date">Date fin</td>
 				<td><a href="#"><img class="img-responsive" src="/assets/images/ok.png" ></a></td>
 				<td><a href="#"><img class="img-responsive" src="/assets/images/no.png" ></a></td>
