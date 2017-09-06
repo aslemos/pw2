@@ -30,7 +30,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.37/js/bootstrap-datetimepicker.min.js"></script>
 
     </head>
-    <body class="">
+    <body class="<?php echo $body_class; ?>">
         <header>
             <div class="container-fluid">
                 <div class="row">
