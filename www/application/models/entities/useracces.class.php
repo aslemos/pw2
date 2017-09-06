@@ -7,10 +7,17 @@
 
 class UserAcces {
 
-    static function getUser() {
+    static function setUserTest() {
         $user = new Usager();
         $user->setUserId(1);
-        return $user;
+        $_SESSION['user_data'] = $user;
+    }
+
+    static function getUser() {
+        if (self::userIsLogged()) {
+            return $_SESSION['user_data'];
+        }
+        return NULL;
     }
 
     static function userIsLogged() {

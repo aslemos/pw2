@@ -15,20 +15,21 @@ require VIEWPATH . 'common/header.php';
         font-weight: bold;
     }
 </style>
+<h2><?=$list_title?></h2>
 <table>
     <tr>
         <th>Date</th>
-        <th>Emetteur</th>
+        <th><?=($list_type == 'E') ? 'Emetteur' : 'Destinataire'?></th>
         <th>Sujet</th>
     </tr>
 <?php foreach($messages as $message) {
-    $class = $message->etat == Message::MSG_ETAT_NON_LU
-            ? ''
-            : 'msg-nonlu';
+    $class = $list_type == 'E' && $message->etat == Message::MSG_ETAT_NON_LU
+            ? 'msg-nonlu'
+            : '';
 ?>
     <tr class="<?=$class?>">
         <td><?=$message->date?></td>
-        <td><?=$message->nom_emetteur?></td>
+        <td><?=($list_type == 'E') ? $message->nom_emetteur : $message->nom_destinataire?></td>
         <td><?=$message->sujet ?></td>
     </tr>
 <?php } ?>

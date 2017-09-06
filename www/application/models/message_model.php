@@ -26,8 +26,12 @@ class Message_Model extends CI_Model {
     }
 
     public function getMessages(Usager $user) {
-        $sql = 'SELECT messages.*, usagers.prenom as nom_emetteur FROM messages'
-                . ' LEFT JOIN usagers ON (messages.emetteur_id = usagers.user_id)'
+        $sql = 'SELECT messages.*,'
+                . ' emet.prenom as nom_emetteur,'
+                . ' dest.prenom as nom_destinataire'
+                . ' FROM messages'
+                . ' LEFT JOIN usagers emet ON (messages.emetteur_id = emet.user_id)'
+                . ' LEFT JOIN usagers dest ON (messages.destinataire_id = dest.user_id)'
                 . ' WHERE destinataire_id = \'' . $this->db->escape($user->getUserId()) . '\''
                 . ' AND messages.type = ' . Message::MSG_TYPE_NORMAL
                 . ' ORDER BY date DESC;';
@@ -36,8 +40,12 @@ class Message_Model extends CI_Model {
     }
 
     public function getMessagesEnvoyes(Usager $user) {
-        $sql = 'SELECT messages.*, usagers.prenom as nom_emetteur FROM messages'
-                . ' LEFT JOIN usagers ON (messages.emetteur_id = usagers.user_id)'
+        $sql = 'SELECT messages.*,'
+                . ' emet.prenom as nom_emetteur,'
+                . ' dest.prenom as nom_destinataire'
+                . ' FROM messages'
+                . ' LEFT JOIN usagers emet ON (messages.emetteur_id = emet.user_id)'
+                . ' LEFT JOIN usagers dest ON (messages.destinataire_id = dest.user_id)'
                 . ' WHERE emetteur_id = \'' . $this->db->escape($user->getUserId()) . '\''
                 . ' AND messages.type = ' . Message::MSG_TYPE_NORMAL
                 . ' ORDER BY date DESC;';

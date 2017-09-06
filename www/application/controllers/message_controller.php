@@ -8,6 +8,10 @@ class Message_Controller extends CI_Controller {
 
     public function __construct() {
         parent::__construct();
+        UserAcces::setUserTest();
+        if (!UserAcces::userIsLogged()) {
+            redirect('accueil');
+        }
     }
 
     public function index() {
@@ -15,10 +19,25 @@ class Message_Controller extends CI_Controller {
         $this->load->model('message_model');
 
         $data['base_url'] = base_url();
-        $data['page_title'] = 'Messagerie';
+        $data['page_title'] = 'Messages reçus';
+        $data['list_title'] = 'Messages reçus';
+        $data['list_type'] = 'E'; // entrée
         $data['body_class'] = '';
         $data['messages'] = $this->message_model->getMessages($user);
 
+        $this->load->view('messenger/liste_messages', $data);
+    }
+
+    public function envoyes() {
+        $user = UserAcces::getUser();
+        $this->load->model('message_model');
+
+        $data['base_url'] = base_url();
+        $data['page_title'] = 'Messages envoyés';
+        $data['list_title'] = 'Messages envoyés';
+        $data['list_type'] = 'S'; // sortie
+        $data['body_class'] = '';
+        $data['messages'] = $this->message_model->getMessagesEnvoyes($user);
         $this->load->view('messenger/liste_messages', $data);
     }
 
@@ -39,8 +58,8 @@ class Message_Controller extends CI_Controller {
         // touve le destinataire
         $this->load->model('user_model');
         $dest = new Usager(
-                    $this->user_model->getUserById($this->input->post('destinataire_id'))
-                );
+                $this->user_model->getUserById($this->input->post('destinataire_id'))
+        );
 
         // crée le message
         $msg = new Message();
