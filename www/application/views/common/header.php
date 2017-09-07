@@ -38,7 +38,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
     </head>
-    <body class="<?php // echo $body_class; ?>">
+    <body class="<?php echo $body_class; ?>">
         <header>
             <div class="container-fluid">
                 <div class="row">
