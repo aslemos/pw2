@@ -13,8 +13,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         <!-- Styles -->
         <link href="<?=$base_url?>assets/css/styles.css" rel="stylesheet" type="text/css">
 
-        <link href="/assets/css/animate.css" rel="stylesheet" type="text/css">
-        
+        <link href="<?=$base_url?>assets/css/animate.css" rel="stylesheet" type="text/css">
+
         <!-- Scripts -->
         <script src="<?=$base_url?>assets/js/jquery.min.js" type="text/javascript"></script>
         <script defer src="<?=$base_url?>assets/js/bootstrap.min.js" type="text/javascript"></script>
@@ -36,7 +36,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
          <!--fichiers jquery -->
         <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
         <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-       
+
     </head>
     <body class="<?php // echo $body_class; ?>">
         <header>
@@ -44,8 +44,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 <div class="row">
                     <div class="col-md-2 col-sm-6 col-xs-6">
                         <div class="logo-container">
-                            <a href="./" title="Logo RenCars"><img src="/assets/images/header/logo1.png" alt="" class="standard-logo"></a>
-                            <a href="/" title="Logo RenCars"><img src="/assets/images/header/logo2.png" alt="" class="subpages-logo"></a>
+                            <a href="./" title="Logo RenCars"><img src="<?=$base_url?>assets/images/header/logo1.png" alt="" class="standard-logo"></a>
+                            <a href="/" title="Logo RenCars"><img src="<?=$base_url?>assets/images/header/logo2.png" alt="" class="subpages-logo"></a>
                         </div>
                     </div>
                     <div class="col-md-10 col-sm-6 col-xs-6">
@@ -57,16 +57,16 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                     </div>
                 </div>
                 <div class="slogan-container">
-                    <img src="/assets/images/accueil/slogan_accueil.png" alt="slogan-acceuil" id="logo-accueil">
+                    <img src="<?=$base_url?>assets/images/accueil/slogan_accueil.png" alt="slogan-acceuil" id="logo-accueil">
                 </div>
             </div>
         </header>
         <section id="subpages-hero">
             <div class="container-fluid">
-                <img src="/assets/images/apropos/slogan_apropos.png" alt="slogan-apropos" id="slogan-apropos">
-                <img src="/assets/images/voitures/slogan_voiture4.png" alt="slogan-voiture" id="slogan-voiture">
-                <img src="/assets/images/devenir-membre/slogan_devenir_membre.png" alt="slogan-devenir-membre" id="slogan-devenir-membre">
-                <img src="/assets/images/membre/slogan_membre.png" alt="slogan-membre" id="slogan-membre">
+                <img src="<?=$base_url?>assets/images/apropos/slogan_apropos.png" alt="slogan-apropos" id="slogan-apropos">
+                <img src="<?=$base_url?>assets/images/voitures/slogan_voiture4.png" alt="slogan-voiture" id="slogan-voiture">
+                <img src="<?=$base_url?>assets/images/devenir-membre/slogan_devenir_membre.png" alt="slogan-devenir-membre" id="slogan-devenir-membre">
+                <img src="<?=$base_url?>assets/images/membre/slogan_membre.png" alt="slogan-membre" id="slogan-membre">
             </div>
         </section>
 
