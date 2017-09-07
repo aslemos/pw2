@@ -89,17 +89,14 @@ include VIEWPATH . '/common/header.php';
 
                 /*Annee de voiture*/
                 $(function () {
-                    $('#datetimepickerDe').datepicker({
-                    dateFormat: "yy-mm-dd"
-                    
+                    $('#datetimepickerDe').datepicker({                  
                   });
                 });
                 
                 $(function () {
                     $('#datetimepickerA').datepicker();
                 });
-
-               
+                          
                 
 </script>
 
