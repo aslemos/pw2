@@ -1,11 +1,6 @@
 <?php
-//$meta_keywords = "";
-//$meta_description = "";
-//$page_title = "Devenir Membre";
-//$body_class = "subpages devenir-membre";
-
 // Header
-include VIEWPATH . '/common/header.php';
+include VIEWPATH . 'common/header.php';
 //========================================================
 ?>
 <main>
@@ -23,7 +18,7 @@ include VIEWPATH . '/common/header.php';
                 <div class="cols7 col-md-12 col-sm-12 col-xs-12">
                     <div class="blocks7">
                         <div>
-                            <form name="monFormulaire" class="form-horizontal" id="needs-validation" novalidate >
+                            <form name="monFormulaire" action="<?=$base_url?>usager/register" class="form-horizontal" id="needs-validation" novalidate >
 
                                 <div class="form-group">
                                     <label class="control-label col-xs-3" for="lastName">Nom de famille:</label>
@@ -288,4 +283,4 @@ include VIEWPATH . '/common/header.php';
 <?php
 //========================================================
 //Footer
-include VIEWPATH . '/common/footer.php';
+include VIEWPATH . 'common/footer.php';
