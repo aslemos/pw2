@@ -200,10 +200,11 @@ class Vehicule extends CI_Controller {
 
         $data['base_url'] = base_url();
         $data['page_title'] = 'Messages reçus';
+
         $this->load->model('vehicule_model');
         $this->load->model('modepaiement_model');
 
-        $data['users'] = UserAcces::getLoggedUser(); //$this->vehicule_model->getUsersInfo();
+        $data['users'] = UserAcces::getLoggedUser();
         $data['payements'] = $this->modepaiement_model->getModesPaiements();
         $data['voitures'] = $this->vehicule_model->getVehicules($id);
 
