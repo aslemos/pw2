@@ -147,12 +147,12 @@
                 <div class="row">
                     <div class="col-md-6">
                         <label>Marque
-                            <input type="text" name="marque" disabled value="<?= $voitures->nom_marque ?> "/>
+                            <input type="text" name="marque" disabled value="<?= $voitures['nom_marque']; ?> "/>
                         </label>
                     </div>
                     <div class="col-md-6">
                         <label>Type
-                            <input type="text" name="type" disabled value="<?= $voitures->nom_type ?> "/>
+                            <input type="text" name="type" disabled value="<?= $voitures['nom_type']; ?> "/>
                         </label>
                     </div>
                 </div>
@@ -160,12 +160,12 @@
                 <div class="row">
                     <div class="col-md-6">
                         <label>Année
-                            <input type="text" name="annee" disabled value="<?= $voitures->annee ?> "/>
+                            <input type="text" name="annee" disabled value="<?=  $voitures['annee']; ?> "/>
                         </label>
                     </div>
                     <div class="col-md-6">
                         <label>Matricule
-                            <input type="text" name="matricule" disabled value="<?= $voitures->matricule ?> "/>
+                            <input type="text" name="matricule" disabled value="<?= $voitures['matricule']; ?> "/>
                         </label>
                     </div>
                 </div>
@@ -181,12 +181,12 @@
                 <div class="row">
                     <div class="col-md-6">
                         <label>Nom
-                            <input type="text" name="nom" disabled value="<?= $voitures->nom ?> "/>
+                            <input type="text" name="nom" disabled value="<?= $voitures['nom']; ?> "/>
                         </label>
                     </div>
                     <div class="col-md-6">
                         <label>Prenom
-                            <input type="text" name="prenom" disabled value="<?= $voitures->prenom ?> " />
+                            <input type="text" name="prenom" disabled value="<?= $voitures['prenom']; ?> " />
                         </label>
                     </div>
                 </div>
@@ -194,12 +194,12 @@
                 <div class="row">
                     <div class="col-md-6">
                         <label>email
-                            <input type="text" name="nom" disabled value="<?= $voitures->courriel ?> "/>
+                            <input type="text" name="nom" disabled value="<?= $voitures['courriel']; ?> "/>
                         </label>
                     </div>
                     <div class="col-md-6">
                         <label>Tel
-                            <input type="text" name="prenom" disabled value="<?= $voitures->telephone ?> " />
+                            <input type="text" name="prenom" disabled value="<?= $voitures['telephone']; ?> " />
                         </label>
                     </div>
                 </div>
@@ -211,12 +211,12 @@
                 <div class="row">
                     <div class="col-md-6">
                         <label>Nom
-                            <input type="text" name="nom" disabled value="<?= $users->nom ?> "/>
+                            <input type="text" name="nom" disabled value="<?= $users->getNom() ?> "/>
                         </label>
                     </div>
                     <div class="col-md-6">
                         <label>Prenom
-                            <input type="text" name="prenom" disabled value="<?= $users->prenom ?> " />
+                            <input type="text" name="prenom" disabled value="<?= $users->getPrenom() ?> " />
                         </label>
                     </div>
                 </div>
@@ -224,7 +224,7 @@
                 <div class="row">
                     <div class="col-md-12">
                         <label>Email
-                            <input type="text" name="nom" disabled value="<?= $users->courriel ?> "/>
+                            <input type="text" name="nom" disabled value="<?= $users->getCourriel() ?> "/>
                         </label>
                     </div>
 
