@@ -155,12 +155,12 @@
                 <div class="row">
                     <div class="col-md-6">
                         <label>Marque
-                            <input type="text" name="marque" disabled value="<?= $voitures->nom_marque ?> "/>
+                            <input type="text" name="marque" disabled value="<?= $voitures['nom_marque']; ?> "/>
                         </label>
                     </div>
                     <div class="col-md-6">
                         <label>Type
-                            <input type="text" name="type" disabled value="<?= $voitures->nom_type ?> "/>
+                            <input type="text" name="type" disabled value="<?= $voitures['nom_type']; ?> "/>
                         </label>
                     </div>
                 </div>
@@ -168,12 +168,12 @@
                 <div class="row">
                     <div class="col-md-6">
                         <label>Année
-                            <input type="text" name="annee" disabled value="<?= $voitures->annee ?> "/>
+                            <input type="text" name="annee" disabled value="<?= $voitures['annee']; ?> "/>
                         </label>
                     </div>
                     <div class="col-md-6">
                         <label>Nombre de places
-                            <input type="text" name="places" disabled value="<?= $voitures->nbre_places ?> "/>
+                            <input type="text" name="places" disabled value="<?= $voitures['nbre_places'] ?> "/>
                         </label>
                     </div>
                 </div>
@@ -181,34 +181,34 @@
                 <div class="row">
                     <div class="col-md-6">
                         <label>Type de carburant
-                            <input type="text" name="carburant" disabled value="<?= $voitures->nom_carburant ?> "/>
+                            <input type="text" name="carburant" disabled value="<?= $voitures['nom_carburant'] ?> "/>
                         </label>
                     </div>
                     <div class="col-md-6">
-                        <label>Boite de vitesse <input type="text" disabled name="transmissions" value="<?= $voitures->nom_transmission ?> "/></label>
+                        <label>Boite de vitesse <input type="text" disabled name="transmissions" value="<?= $voitures['nom_transmission'] ?> "/></label>
                     </div>
                 </div>
 
                 <div class="row">
                     <div class="col-md-6">
                         <label>Type de carburant
-                            <input type="text" name="carburant" disabled value="<?= $voitures->nom_carburant ?> "/>
+                            <input type="text" name="carburant" disabled value="<?= $voitures['nom_carburant'] ?> "/>
                         </label>
                     </div>
                     <div class="col-md-6">
-                        <label>Boite de vitesse <input type="text" disabled name="transmissions" value="<?= $voitures->nom_transmission ?> "/></label>
+                        <label>Boite de vitesse <input type="text" disabled name="transmissions" value="<?= $voitures['nom_transmission'] ?> "/></label>
                     </div>
                 </div>
 
                 <div class="row">
                     <div class="col-md-6">
                         <label>Matricule
-                            <input type="text" name="matricule" disabled value="<?= $voitures->matricule ?> "/>
+                            <input type="text" name="matricule" disabled value="<?= $voitures['matricule'] ?> "/>
                         </label>
                     </div>
                     <div class="col-md-6">
                         <label>Boite de vitesse
-                            <input type="text" name="transmissions" disabled value="<?= $voitures->nom_transmission ?> "/>
+                            <input type="text" name="transmissions" disabled value="<?= $voitures['nom_transmission'] ?> "/>
                         </label>
                     </div>
                 </div>
@@ -216,12 +216,12 @@
                 <div class="row">
                     <div class="col-md-6">
                         <label>Date debut
-                            <input type="text" name="date_debut" disabled value="<?= $voitures->date_debut ?> "/>
+                            <input type="text" name="date_debut" disabled value="<?= $voitures['date_debut'] ?> "/>
                         </label>
                     </div>
                     <div class="col-md-6">
                         <label>Date fin
-                            <input type="text" name="date_fin" disabled value="<?= $voitures->date_fin ?> "/>
+                            <input type="text" name="date_fin" disabled value="<?= $voitures['date_fin'] ?> "/>
                         </label>
                     </div>
                 </div>
@@ -241,12 +241,12 @@
                 <div class="row">
                     <div class="col-md-6">
                         <label>Nom
-                            <input type="text" name="nom" disabled value="<?= $users->nom ?> "/>
+                            <input type="text" name="nom" disabled value="<?= $users->getNom() ?> "/>
                         </label>
                     </div>
                     <div class="col-md-6">
                         <label>Prenom
-                            <input type="text" name="prenom" disabled value="<?= $users->prenom ?> " />
+                            <input type="text" name="prenom" disabled value="<?= $users->getPrenom() ?> " />
                         </label>
                     </div>
                 </div>
@@ -255,12 +255,12 @@
                 <div class="row">
                     <div class="col-md-6">
                         <label>Permi de conduire
-                            <input type="text" name="nom" disabled value="<?= $users->permis_conduire ?> "/>
+                            <input type="text" name="nom" disabled value="<?= $users->getPermisConduire() ?> "/>
                         </label>
                     </div>
                     <div class="col-md-6">
                         <label>Courrier
-                            <input type="text" name="prenom" disabled value="<?= $users->courriel ?> " />
+                            <input type="text" name="prenom" disabled value="<?= $users->getCourriel() ?> " />
                         </label>
                     </div>
                 </div>
