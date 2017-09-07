@@ -4,18 +4,18 @@
  * @author : Alessandro Lemos
  */
 
-class Message_Controller extends CI_Controller {
+class Messagerie extends CI_Controller {
 
     public function __construct() {
         parent::__construct();
-        UserAcces::setUserTest();
+
         if (!UserAcces::userIsLogged()) {
             redirect('accueil');
         }
     }
 
     public function index() {
-        $user = UserAcces::getUser();
+        $user = UserAcces::getLoggedUser();
         $this->load->model('message_model');
 
         $data['base_url'] = base_url();
@@ -29,7 +29,7 @@ class Message_Controller extends CI_Controller {
     }
 
     public function envoyes() {
-        $user = UserAcces::getUser();
+        $user = UserAcces::getLoggedUser();
         $this->load->model('message_model');
 
         $data['base_url'] = base_url();
@@ -57,13 +57,13 @@ class Message_Controller extends CI_Controller {
 
         // touve le destinataire
         $this->load->model('user_model');
-        $dest = new Usager(
+        $dest = new User(
                 $this->user_model->getUserById($this->input->post('destinataire_id'))
         );
 
         // crée le message
         $msg = new Reclamation();
-        $msg->setEmetteur(UserAcces::getUser());
+        $msg->setEmetteur(UserAcces::getLoggedUser());
         $msg->setDestinataire($dest);
         $msg->setSujet($this->input->post('sujet'));
         $msg->setContenu($this->input->post('message'));
