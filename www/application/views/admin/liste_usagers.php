@@ -20,7 +20,7 @@ include VIEWPATH . '/common/header.php';
             <!-- Boutton pour afficher la des adminitrateurs -->
             <a class="btn btn-danger position" href="<?= $base_url; ?>admin/listeAdmins">Liste des admins </a>
         </div>
-        <h1>Members</h1>
+        <h1>Les Members</h1>
         <form action="" name="formulaire" id="form-Members-id">
             <table class="table table-responsive">
                 <tr>
@@ -41,10 +41,10 @@ include VIEWPATH . '/common/header.php';
                     <td class="editable">test</td>
                     <td class="editable">test</td>
                     <td class="editable">
-                        <img src="images/available.png" >
+                        <img src="<?= $base_url; ?>assets/images/ok.png" >
                     </td>
                     <td class="editable">
-                        <img src="images/supprimer.png" >
+                        <img src="<?= $base_url; ?>assets/images/no.png" >
                     </td>
                 </tr>	
                 <tr>
@@ -55,10 +55,10 @@ include VIEWPATH . '/common/header.php';
                     <td class="editable">test</td>
                     <td class="editable">test</td>
                     <td class="editable">
-                        <img src="images/available.png" >
+                        <img src="<?= $base_url; ?>assets/images/ok.png" >
                     </td>
                     <td class="editable">
-                        <img src="images/supprimer.png" >
+                        <img src="<?= $base_url; ?>assets/images/no.png" >
                     </td>
                 </tr>	
                 <tr>
@@ -69,10 +69,10 @@ include VIEWPATH . '/common/header.php';
                     <td class="editable">test</td>
                     <td class="editable">test</td>
                     <td class="editable">
-                        <img src="images/available.png" >
+                        <img src="<?= $base_url; ?>assets/images/ok.png" >
                     </td>
                     <td class="editable">
-                        <img src="images/supprimer.png" >
+                        <img src="<?= $base_url; ?>assets/images/no.png" >
                     </td>
                 </tr>	
                 <tr>
@@ -83,10 +83,10 @@ include VIEWPATH . '/common/header.php';
                     <td class="editable">test</td>
                     <td class="editable">test</td>
                     <td class="editable">
-                        <img src="images/available.png" >
+                        <img src="<?= $base_url; ?>assets/images/ok.png" >
                     </td>
                     <td class="editable">
-                        <img src="images/supprimer.png" >
+                        <img src="<?= $base_url; ?>assets/images/no.png" >
                     </td>
                 </tr>	
                 <tr>
@@ -97,10 +97,10 @@ include VIEWPATH . '/common/header.php';
                     <td class="editable">test</td>
                     <td class="editable">test</td>
                     <td class="editable">
-                        <img src="images/available.png" >
+                        <img src="<?= $base_url; ?>assets/images/ok.png" >
                     </td>
                     <td class="editable">
-                        <img src="images/supprimer.png" >
+                        <img src="<?= $base_url; ?>assets/images/no.png" >
                     </td>
                 </tr>	
                 <tr>
@@ -111,10 +111,10 @@ include VIEWPATH . '/common/header.php';
                     <td class="editable">test</td>
                     <td class="editable">test</td>
                     <td class="editable">
-                        <img src="images/available.png" >
+                        <img src="<?= $base_url; ?>assets/images/ok.png" >
                     </td>
                     <td class="editable">
-                        <img src="images/supprimer.png" >
+                        <img src="<?= $base_url; ?>assets/images/no.png" >
                     </td>
                 </tr>	<tr>
                     <td class="editable">7</td>
@@ -124,10 +124,10 @@ include VIEWPATH . '/common/header.php';
                     <td class="editable">test</td>
                     <td class="editable">test</td>
                     <td class="editable">
-                        <img src="images/available.png" >
+                        <img src="<?= $base_url; ?>assets/images/ok.png" >
                     </td>
                     <td class="editable">
-                        <img src="images/supprimer.png" >
+                        <img src="<?= $base_url; ?>assets/images/no.png" >
                     </td>
                 </tr>	
                 <tr>
@@ -138,10 +138,10 @@ include VIEWPATH . '/common/header.php';
                     <td class="editable">test</td>
                     <td class="editable">test</td>
                     <td class="editable">
-                        <img src="images/available.png" >
+                        <img src="<?= $base_url; ?>assets/images/ok.png" >
                     </td>
                     <td class="editable">
-                        <img src="images/supprimer.png" >
+                        <img src="<?= $base_url; ?>assets/images/no.png" >
                     </td>
                 </tr>	
                 <tr>
@@ -152,10 +152,10 @@ include VIEWPATH . '/common/header.php';
                     <td class="editable">test</td>
                     <td class="editable">test</td>
                     <td class="editable">
-                        <img src="images/available.png" >
+                        <img src="<?= $base_url; ?>assets/images/ok.png" >
                     </td>
                     <td class="editable">
-                        <img src="images/supprimer.png" >
+                        <img src="<?= $base_url; ?>assets/images/no.png" >
                     </td>
                 </tr>	
             </table>
