@@ -33,7 +33,7 @@ class Message_Model extends CI_Model {
                 . ' LEFT JOIN usagers emet ON (messages.emetteur_id = emet.user_id)'
                 . ' LEFT JOIN usagers dest ON (messages.destinataire_id = dest.user_id)'
                 . ' WHERE destinataire_id = \'' . $this->db->escape($user->getUserId()) . '\''
-                . ' AND messages.type = ' . Message::MSG_TYPE_NORMAL
+                . ' AND messages.type = ' . Message::MSG_TYPE_INTERNE
                 . ' ORDER BY date DESC;';
         $st = $this->db->query($sql);
         return $st->result();
@@ -47,7 +47,7 @@ class Message_Model extends CI_Model {
                 . ' LEFT JOIN usagers emet ON (messages.emetteur_id = emet.user_id)'
                 . ' LEFT JOIN usagers dest ON (messages.destinataire_id = dest.user_id)'
                 . ' WHERE emetteur_id = \'' . $this->db->escape($user->getUserId()) . '\''
-                . ' AND messages.type = ' . Message::MSG_TYPE_NORMAL
+                . ' AND messages.type = ' . Message::MSG_TYPE_INTERNE
                 . ' ORDER BY date DESC;';
         $st = $this->db->query($sql);
         return $st->result();

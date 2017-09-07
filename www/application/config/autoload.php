@@ -137,7 +137,7 @@ $autoload['model'] = array(
     'marque_model',
     'modele_model',
     'commentaire_model',
-    'user_model',
+    'usager_model',
     'role_model'
 );
 

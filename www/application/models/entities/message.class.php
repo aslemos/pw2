@@ -9,8 +9,9 @@ class Message {
     const MSG_ETAT_NON_LU = 0;
     const MSG_ETAT_LU = 1;
 
-    const MSG_TYPE_NORMAL = 0;
+    const MSG_TYPE_INTERNE = 0;
     const MSG_TYPE_RECLAMATION = 1;
+    const MSG_TYPE_CONTACT = 2;
 
     private $message_id = 0;
     private $emetteur = NULL;
@@ -18,7 +19,7 @@ class Message {
     private $date = NULL;
     private $sujet = '';
     private $contenu = '';
-    protected $type = self::MSG_TYPE_NORMAL;
+    protected $type = self::MSG_TYPE_INTERNE;
     private $etat = self::MSG_ETAT_NON_LU;
 
     public function __construct(array $data = NULL) {
@@ -28,7 +29,7 @@ class Message {
             $this->setSujet($data['sujet']);
             $this->setContenu($data['contenu']);
             $this->setEtat($data['etat']);
-            $this->type = self::MSG_TYPE_NORMAL;
+            $this->type = self::MSG_TYPE_INTERNE;
 
             $this->emetteur = new Usager();
             $this->emetteur->setUserId($data['emetteur_id']);
