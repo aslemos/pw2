@@ -30,8 +30,31 @@ include VIEWPATH . '/common/header.php';
 		<option>Auto n02</option>
 	</select>
 	<label>Periode</label>
-	<input type="text" id="datedebut" placeholder="De">
-	<input type="text" id="datefin" placeholder="À">
+                <div class="form-group">
+                    <label class="control-label col-xs-3">De :</label>
+                    <div class='input-group date col-xs-6' >
+                        <input type='text' class="form-control" id='datetimepickerDe'/>
+                        <span class="input-group-addon" >
+                            <span class="glyphicon glyphicon-calendar"></span>
+                        </span>          
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-xs-3">à :</label>
+                    <div class='input-group date col-xs-6' >
+                        <input type='text' class="form-control" id='datetimepickerA'/>
+                        <span class="input-group-addon" >
+                            <span class="glyphicon glyphicon-calendar"></span>
+                        </span>          
+                    </div>
+                </div>
+        
+        <div class="row btn-liens" >
+            <!-- Boutton pour afficher l'historique des location pour un membre -->
+            <a class="btn btn-danger position" id="RecherchePeriod">Recherche Periode </a>  
+        </div>
+        
+
 	<table class="table">
 		<thead>
 			<tr>
@@ -61,6 +84,24 @@ include VIEWPATH . '/common/header.php';
 <!-- Div pour affichage -->
 <div id="resultat"></div>
 <div id="divAuto_Members"></div>
+
+<script>
+
+                /*Annee de voiture*/
+                $(function () {
+                    $('#datetimepickerDe').datepicker({
+                    dateFormat: "yy-mm-dd"
+                    
+                  });
+                });
+                
+                $(function () {
+                    $('#datetimepickerA').datepicker();
+                });
+
+               
+                
+</script>
 
 <?php
 //========================================================
