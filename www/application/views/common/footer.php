@@ -1,4 +1,7 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed'); ?>
+        </div>
+    </section>
+</main>
 <section id="footer-member">
     <div class="container">
         <h2>DEVENEZ UN MEMBRE</h2>
@@ -27,25 +30,36 @@
                 <div class="flex-container">
                     <div class="list-container">
                         <ul>
-                            <li><a href="/" title="">ACCUEIL</a></li>
+                            <li><a href="<?php echo base_url(); ?>" title="">ACCUEIL</a></li>
                             <li class="sublist-container">
-                                <a href="/page/view/a-propos" title="">À PROPOS</a>
+                                <a href="<?php echo base_url(); ?>home/about" title="">À PROPOS</a>
                             </li>
                             <li class="sublist-container">
-                                <a href="/page/view/voitures" title=""> VOITURES</a>
+                                <a href="<?php echo base_url(); ?>home/vehicule" title=""> VOITURES</a>
                             </li>
-                            <li class="sublist-container">
-                                <a href="" title=""> CONTACTER</a>
-                            </li>
+                            <?php if (!$this->session->userdata('logged_in')) : ?>
+                                <li class="sublist-container">
+                                    <a href="<?php echo base_url(); ?>home/contact" title=""> CONTACTER-NOUS</a>
+                                </li>
+                                <li class="sublist-container">
+                                    <a href="<?php echo base_url(); ?>usagers/register" title=""> S'INSCRIRE</a>
+                                </li>
+                                <li class="sublist-container">
+                                    <a href="<?php echo base_url(); ?>usagers/login" title=""> SE CONNECTER</a>
+                                </li>
+                            <?php endif; ?>
                         </ul>
                     </div>
                 </div>
             </div>
             <div class="col-md-4 col-sm-6 col-xs-12" id="col-coord">
                 <div class="text-container">
-                    <h4><a href="mailto:kharratiadh82@gmail.com">rentcars@gmail.com</a>   |   <a href="tel:15143184728">(514) 318-4728</a></h4>
+                    <h4><a href="mailto:kharratiadh82@gmail.com">rentcars@gmail.com</a> | <a href="tel:15143184728">(514) 318-4728</a></h4>
                     <p><strong> RENTCARS © 2017</strong><br>
-                        Tous droits réservés. Conçu et propulsé par <a href="http://www.cmaisonneuve.qc.ca/" title="Lien Collège Maisonneuve" target="_blank"><strong> Equipe Collège Maisonneuve - Projet Web 2</strong></a></p>
+                        Tous droits réservés. Conçu et propulsé par <a href="http://www.cmaisonneuve.qc.ca/" title="Lien Collège Maisonneuve" target="_blank">
+                        <strong> Equipe Collège Maisonneuve - Projet Web 2</strong>
+                        </a>
+                    </p>
                 </div>
             </div>
         </div>
