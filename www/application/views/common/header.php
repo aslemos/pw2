@@ -8,24 +8,26 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         <meta charset="UTF-8">
 
         <title><?php echo $page_title; ?> - RENTCARS</title>
-        <link rel="icon" type="image/png" href="/assets/images/ferrari.ico" />
+        <link rel="icon" type="<?=$base_url?>image/png" href="/assets/images/ferrari.ico" />
 
         <!-- Styles -->
-        <link href="/assets/css/styles.css" rel="stylesheet" type="text/css">
+        <link href="<?=$base_url?>assets/css/styles.css" rel="stylesheet" type="text/css">
 
         <!-- Scripts -->
-        <script src="/assets/js/jquery.min.js" type="text/javascript"></script>
-        <script defer src="/assets/js/bootstrap.min.js" type="text/javascript"></script>
+        <script src="<?=$base_url?>assets/js/jquery.min.js" type="text/javascript"></script>
+        <script defer src="<?=$base_url?>assets/js/bootstrap.min.js" type="text/javascript"></script>
 
 <!--<script src='https://www.google.com/recaptcha/api.js' async defer></script>-->
         <script defer src="http://maps.googleapis.com/maps/api/js?key=AIzaSyCa28kbEpTfpVVk2tjWhsZp3VRQh2Z96xI" type="text/javascript"></script>
-        <script defer src="/assets/js/gmap.js"></script>
-        <script defer src="/assets/js/scripts.js" type="text/javascript"></script>
+        <script defer src="<?=$base_url?>assets/js/gmap.js"></script>
+        <script defer src="<?=$base_url?>assets/js/scripts.js" type="text/javascript"></script>
 
         <!--fichiers de Andriy-->
         <link href='https://fonts.googleapis.com/css?family=Passion+One' rel='stylesheet' type='text/css'>
         <link href='https://fonts.googleapis.com/css?family=Oxygen' rel='stylesheet' type='text/css'>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.13.0/moment.min.js"></script>
+
+        <!--calendrier bootstrap-->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
         <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.37/js/bootstrap-datetimepicker.min.js"></script>
 
