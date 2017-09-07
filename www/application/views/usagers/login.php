@@ -12,10 +12,10 @@ include VIEWPATH . 'common/header.php';
                         <div class="panel-heading">
                             <ul class="nav nav-tabs">
                                 <li class="active"><a href="#login" data-toggle="tab"> Login </a></li>
-                                <li><a href="usager/inscription"> S'inscrire </a></li>
+                                <li><a href="<?=$base_url?>usager/inscription"> S'inscrire </a></li>
                             </ul>
                         </div>
-<form action="<?=$base_url?>usager/login" method="post">
+
                         <div class="panel-body">
                             <div class="tab-content">
                                 <div id="login" class="tab-pane fade in active register">
@@ -23,6 +23,7 @@ include VIEWPATH . 'common/header.php';
                                         <div class="row">
                                             <h2 class="text-center" style="color: #5cb85c;"> <strong> Login  </strong></h2><hr />
 
+<form action="<?=$base_url?>usager/login" method="post">
                                             <div class="row">
                                                 <div class="col-xs-12 col-sm-12 col-md-12">
                                                     <div class="form-group">
@@ -69,67 +70,15 @@ include VIEWPATH . 'common/header.php';
                                                     <button type="submit" class="btn btn-success btn-block btn-lg"> Login </button>
                                                 </div>
                                             </div>
+</form>
 
                                         </div>
                                     </div>
                                 </div>
 
-                                <div id="signup" class="tab-pane fade">
-                                    <div class="container-fluid">
-                                        <div class="row">
-                                            <h2 class="text-center" style="color: #f0ad4e;"> <Strong> Register </Strong></h2> <hr />
-                                            <div class="row">
-                                                <div class="col-xs-12 col-sm-12 col-md-12">
-                                                    <div class="form-group">
-                                                        <div class="input-group">
-                                                            <div class="input-group-addon iga1">
-                                                                <span class="glyphicon glyphicon-user"></span>
-                                                            </div>
-                                                            <input type="text" class="form-control" placeholder="Enter User Name" name="name">
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                            <div class="row">
-                                                <div class="col-xs-12 col-sm-12 col-md-12">
-                                                    <div class="form-group">
-                                                        <div class="input-group">
-                                                            <div class="input-group-addon iga1">
-                                                                <span class="glyphicon glyphicon-envelope"></span>
-                                                            </div>
-                                                            <input type="email" class="form-control" placeholder="Enter E-Mail" name="mail">
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                            <div class="row">
-                                                <div class="col-xs-12 col-sm-12 col-md-12">
-                                                    <div class="form-group">
-                                                        <div class="input-group">
-                                                            <div class="input-group-addon iga1">
-                                                                <span class="glyphicon glyphicon-lock"></span>
-                                                            </div>
-                                                            <input type="password" class="form-control" placeholder="Enter Password" name="pass">
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <hr>
-                                            <div class="row">
-                                                <div class="col-xs-12 col-sm-12 col-md-12">
-                                                    <div class="form-group">
-                                                        <button type="submit" class="btn btn-lg btn-block btn-warning"> Register</button>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
                             </div>
                         </div>
-</form>
+
                     </div>
                 </div>
             </div>
@@ -191,5 +140,4 @@ include VIEWPATH . 'common/header.php';
 <?php
 //========================================================
 //Footer
-include VIEWPATH . '/common/footer.php';
-?>
+include VIEWPATH . 'common/footer.php';

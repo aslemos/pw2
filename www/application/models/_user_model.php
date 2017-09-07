@@ -12,24 +12,27 @@ class User_model extends CI_Model {
         $this->load->database();
     }
 
-    public function getUsers() {
+//    public function getUsers() { //get_usagers
+    public function getUsers($user_id = NULL) {
 
         $this->db->order_by('usagers.prenom', 'ASC');
         $this->db->join('roles', 'roles.role_id = usagers.role_id');
+        if ($user_id) {
+            $this->db->where('usagers', array('user_id' => $user_id));
+        }
         $query = $this->db->get('usagers');
         return $query->result();
     }
 
-    public function getUserById($user_id) {
-
-        $this->db->join('roles', 'roles.role_id = usagers.role_id');
-
-        $query = $this->db->get_where('usagers', array('user_id' => $user_id));
-
-        return $query->row_array();
+    public function getUserById($user_id) { //get_user
+        $users = $this->getUsers($user_id);
+        if (count($users) == 1) {
+            return new User($users[0]);
+        }
+        return NULL;
     }
 
-    public function createUser($enc_password, $user_photo) {
+    public function createUser($enc_password, $user_photo) { //register //registerUser
 
         $role_id = '3';
         $data = array(
@@ -51,7 +54,7 @@ class User_model extends CI_Model {
     }
 
     // Log user in
-    public function getUserByLogin($username, $password) {
+    public function getUserByLogin($username, $password) { //login
 
         //echo $username .' '. $password;die();
         // Validate
@@ -62,13 +65,13 @@ class User_model extends CI_Model {
         $result = $this->db->get('usagers');
 
         if ($result->num_rows() == 1) {
-            return new Usager($result->row(0));
+            return new User($result->row(0));
         }
         return NULL;
     }
 
     // Check username exists
-    public function checkUsernameExists($username) {
+    public function checkUsernameExists($username) { //check_username_exists
 
         $query = $this->db->get_where('usagers', array('username' => $username));
 
@@ -82,7 +85,7 @@ class User_model extends CI_Model {
     }
 
     // Check email exists
-    public function checkEmailExists($email) {
+    public function checkEmailExists($email) { //check_email_exists
 
         $query = $this->db->get_where('usagers', array('courriel' => $email));
 
@@ -95,14 +98,14 @@ class User_model extends CI_Model {
         }
     }
 
-    public function deleteUser($user_id) {
+    public function deleteUser($user_id) { //delete_user
 
         $this->db->where('user_id', $user_id);
         $this->db->delete('usagers');
         return true;
     }
 
-    public function updateUser(Usager $user) {
+    public function updateUser(User $user) { //update_user
 
         $data = array(
             'prenom' => $this->input->post('prenom'),
@@ -122,14 +125,14 @@ class User_model extends CI_Model {
         return $this->db->update('usagers', $data);
     }
 
-    public function getRoles() {
+    public function getRoles() { //get_roles
 
         $this->db->order_by('nom_role');
         $query = $this->db->get('roles');
         return $query->result_array();
     }
 
-    public function getUsersByRoleId($role_id) {
+    public function getUsersByRoleId($role_id) { //get_usagers_by_role
 
         $this->db->order_by('usagers.user_id', 'DESC');
 

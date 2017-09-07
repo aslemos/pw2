@@ -1,6 +1,6 @@
 <?php
 
-class Usager implements IUsager {
+class User implements IUsager {
 
     private $user_id;   // ID
     private $role_id;   // FK roles

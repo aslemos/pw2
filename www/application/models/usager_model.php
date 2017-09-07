@@ -81,6 +81,19 @@ class usager_model extends CI_Model {
         }
     }
 
+    public function getUserByLogin($username, $password) { //login
+
+        $this->db->where('username', $username);
+        $this->db->where('motdepasse', $password);
+
+        $result = $this->db->get('usagers');
+
+        if ($result->num_rows() == 1) {
+            return new User($result->row_array(0));
+        }
+        return NULL;
+    }
+
     // Check username exists
     public function checkUsernameExists($username) {
 

@@ -31,10 +31,10 @@ class Message {
             $this->setEtat($data['etat']);
             $this->type = self::MSG_TYPE_INTERNE;
 
-            $this->emetteur = new Usager();
+            $this->emetteur = new User();
             $this->emetteur->setUserId($data['emetteur_id']);
 
-            $this->destinataire = new Usager();
+            $this->destinataire = new User();
             $this->destinataire->setUserId($data['destinataire_id']);
         }
     }
@@ -87,11 +87,11 @@ class Message {
         return $this;
     }
 
-    public function setEmetteur(Usager $user) {
+    public function setEmetteur(User $user) {
         $this->emetteur = $user;
     }
 
-    public function setDestinataire(Usager $user) {
+    public function setDestinataire(User $user) {
         $this->destinaraire = $user;
     }
 
