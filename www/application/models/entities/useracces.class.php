@@ -7,9 +7,10 @@
 
 class UserAcces {
 
-    static function setUserTest() {
+    static function setUserTest($role_id = Role::ROLE_CLIENT) {
         $user = new Usager();
         $user->setUserId(1);
+        $user->setRoleId($role_id);
         $_SESSION['user_data'] = $user;
     }
 

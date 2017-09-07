@@ -62,7 +62,7 @@ class Message_Controller extends CI_Controller {
         );
 
         // crée le message
-        $msg = new Message();
+        $msg = new Reclamation();
         $msg->setEmetteur(UserAcces::getUser());
         $msg->setDestinataire($dest);
         $msg->setSujet($this->input->post('sujet'));
