@@ -198,13 +198,14 @@ class Vehicule extends CI_Controller {
 
     public function form_location($id) {
 
-        $this->load->model('usager2');
-        $this->load->model('payement2');
-        $this->load->model('voiture2');
+        $data['base_url'] = base_url();
+        $data['page_title'] = 'Messages reçus';
+        $this->load->model('vehicule_model');
+        $this->load->model('modepaiement_model');
 
-        $data['users'] = $this->usager2->getUsersInfo();
-        $data['payements'] = $this->payement2->getModesPaiements();
-        $data['voitures'] = $this->voiture2->getVoituresById($id);
+        $data['users'] = UserAcces::getLoggedUser(); //$this->vehicule_model->getUsersInfo();
+        $data['payements'] = $this->modepaiement_model->getModesPaiements();
+        $data['voitures'] = $this->vehicule_model->getVehicules($id);
 
 
         $this->load->view('client/form_location', $data);
