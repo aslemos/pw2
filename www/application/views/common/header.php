@@ -13,6 +13,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         <!-- Styles -->
         <link href="/assets/css/styles.css" rel="stylesheet" type="text/css">
 
+        <link href="/assets/css/animate.css" rel="stylesheet" type="text/css">
+        
         <!-- Scripts -->
         <script src="/assets/js/jquery.min.js" type="text/javascript"></script>
         <script defer src="/assets/js/bootstrap.min.js" type="text/javascript"></script>
@@ -30,7 +32,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.37/js/bootstrap-datetimepicker.min.js"></script>
 
     </head>
-    <body class="<?php echo $body_class; ?>">
+    <body class="<?php // echo $body_class; ?>">
         <header>
             <div class="container-fluid">
                 <div class="row">
