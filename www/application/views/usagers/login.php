@@ -23,7 +23,7 @@ include VIEWPATH . 'common/header.php';
                                         <div class="row">
                                             <h2 class="text-center" style="color: #5cb85c;"> <strong> Login  </strong></h2><hr />
 
-                                            <form action="<?= $base_url ?>usager/login" method="post">
+                                            <form id="formLogin" action="<?= $base_url ?>usager/login" method="post">
                                             <div class="row">
                                                 <div class="col-xs-12 col-sm-12 col-md-12">
                                                     <div class="form-group">
