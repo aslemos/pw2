@@ -289,7 +289,7 @@
 
 
                                 <option value="none" selected="selected">---Select payements---</option>
- 
+
                                 <?php foreach ($payements as $pay): ?>
                                     <option value="<?php echo $pay->mode_id ?>"><?php echo $pay->nom_mode ?></option>
                                 <?php endforeach; ?>
@@ -305,16 +305,21 @@
 
 
                 <div class="row">
-                    <div class="col-md-6">
+                    <div class="col-md-5">
                         <label>Numero
-                            <input type="number" name="nom"  value="<?= $voitures['date_debut'] ?> "/>
+                            <input type="number" name="nom"  value=""/>
                         </label>
                     </div>
-                    <div class="col-md-6">
+
+
+                    <div class="col-md-5">
                         <label>Date
-                            <input type="date" name="prenom"  value="<?= $voitures['date_fin'] ?> " />
+                            <input type="date" name="prenom"  value="" />
                         </label>
                     </div>
+
+
+
                 </div>
 
                 <div class="btn-group" role="group" aria-label="Basic example">
