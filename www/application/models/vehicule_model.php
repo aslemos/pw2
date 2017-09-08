@@ -132,7 +132,7 @@ class Vehicule_model extends CI_Model {
         return $query->result_array();
     }
 
-    public function getVehiculesByUserId($proprietaire_id) { //getVehiculesByUser
+    public function getVehiculesByUser(User $user) {
 
         $this->db->order_by('vehicules.vehicule_id', 'DESC');
 
@@ -142,7 +142,7 @@ class Vehicule_model extends CI_Model {
         $this->db->join('type_vehicules', 'vehicules.type_id = type_vehicules.type_id');
         $this->db->join('arrondissements', 'vehicules.arr_id = arrondissements.arr_id');
 
-        $query = $this->db->get_where('vehicules', array('usagers.user_id' => $proprietaire_id));
+        $query = $this->db->get_where('vehicules', array('usagers.user_id' => $user->getUserId()));
 
         return $query->result_array();
     }

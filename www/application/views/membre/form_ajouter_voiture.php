@@ -10,16 +10,7 @@ include VIEWPATH . '/common/header.php';
 ?>
 <main>
     <section id="ajouter-voitures">
-        <div class="row btn-liens" >
-            <!-- Boutton pour afficher la liste des voiture en location d'un membres -->
-            <a class="btn btn-danger position" href="/membre/view/liste_voitures"> Liste de mes voitures</a> 
-            <!-- Boutton pour ajouter une voitures -->
-            <a class="btn btn-danger position" href="/membre/view/form_ajouter_voiture"> Ajouter une voiture</a>
-            <!-- Boutton pour afficher les demandes de location pour aprobation -->
-            <a class="btn btn-danger position" href="/membre/view/demandes_reservation" >Approuver une demande </a>
-            <!-- Boutton pour afficher l'historique des location pour un membre -->
-            <a class="btn btn-danger position" href="/membre/view/historique_location">Historique des locations </a>  
-        </div>
+        <?php include VIEWPATH .'client/boutons_client.php'; ?>
         <div class="container">
             <h2>Formulaire d'inscription voiture</h2>
 
@@ -42,7 +33,7 @@ include VIEWPATH . '/common/header.php';
                 <div class="form-group">
                     <label class="control-label col-xs-3" for="carrosserie">Type de carrosserie:</label>
                     <div class="col-xs-6">
-                        <input type="text" class="form-control" id="carrosserie" placeholder="Entrez le type de 
+                        <input type="text" class="form-control" id="carrosserie" placeholder="Entrez le type de
                                carrosserie">
                     </div>
                 </div>
@@ -53,7 +44,7 @@ include VIEWPATH . '/common/header.php';
                         <input type='text' class="form-control"/>
                         <span class="input-group-addon">
                             <span class="glyphicon glyphicon-calendar"></span>
-                        </span>          
+                        </span>
                     </div>
                 </div>
 
@@ -84,7 +75,7 @@ include VIEWPATH . '/common/header.php';
                 <div class="form-group">
                     <label class="control-label col-xs-3" for="nombrePlaces">Nombre de places:</label>
                     <div class="col-xs-6">
-                        <input type="text" class="form-control" id="nombrePlaces" placeholder="Entrez le Nombre 
+                        <input type="text" class="form-control" id="nombrePlaces" placeholder="Entrez le Nombre
                                de places">
                     </div>
                 </div>
@@ -92,7 +83,7 @@ include VIEWPATH . '/common/header.php';
                 <div class="form-group">
                     <label class="control-label col-xs-3" for="typeCarburant">Type de carburant:</label>
                     <div class="col-xs-6">
-                        <input type="tel" class="form-control" id="typeCarburant" placeholder="Entrez le Type de 
+                        <input type="tel" class="form-control" id="typeCarburant" placeholder="Entrez le Type de
                                carburant">
                     </div>
                 </div>
@@ -124,7 +115,7 @@ include VIEWPATH . '/common/header.php';
                         <select name="choixArrondissement" class="form-control">
                             <option SELECTED>Arrondissement</option>
                         </select>
-                    </div> 
+                    </div>
                 </div>
 
                 <div class="form-group">
@@ -134,7 +125,7 @@ include VIEWPATH . '/common/header.php';
                         <input type='text' class="form-control"  placeholder="de">
                         <span class="input-group-addon">
                             <span class="glyphicon glyphicon-calendar"></span>
-                        </span>        
+                        </span>
                     </div>
 
                     <label class="control-label col-xs-3"></label>

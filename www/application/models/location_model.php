@@ -94,11 +94,20 @@ class Location_model extends CI_Model {
         return $query->result_array();
     }
 
-    public function get_locations_by_user($user_id) {
+    public function getLocationsByUser(User $user) {
+
+        $this->db->order_by('locations.location_id', 'DESC');
+        $this->db->join('vehicules', 'locations.vehicule_id = vehicules.vehicule_id');
+        $query = $this->db->get_where('locations', array('locations.user_id' => $user->getUserId()));
+
+        return $query->result_array();
+    }
+
+    public function getLocatairesByUser(User $user) {
 
         $this->db->order_by('locations.location_id', 'DESC');
 
-        $query = $this->db->get_where('locations', array('locations.user_id' => $user_id));
+        $query = $this->db->get_where('locations', array('locations.user_id' => $user->getUserId()));
 
         return $query->result_array();
     }
@@ -111,5 +120,5 @@ class Location_model extends CI_Model {
 
         return $query->result_array();
     }
-    
+
 }
