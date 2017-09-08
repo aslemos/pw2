@@ -20,7 +20,7 @@ include VIEWPATH . '/common/header.php';
 	<!-- Boutton pour afficher la des adminitrateurs -->
 	<a class="btn btn-danger position" href="<?= $base_url; ?>admin/listeAdmins">Liste des admins </a>
         </div>
-        <h1>Les admins</h1>
+        <h2>Les admins</h2>
         <form action="" name="formulaire" id="form-voitures-id">
             <div class="table-responsive">
                 <table class="table table-striped">
