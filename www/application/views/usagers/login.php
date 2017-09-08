@@ -5,6 +5,9 @@ include VIEWPATH . 'common/header.php';
 ?>
 <main>
     <section id="login">
+        <div class="row">
+        <h1> FORMULAIRE D'IDENTIFICATION <h1>
+        </div>
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
@@ -21,7 +24,7 @@ include VIEWPATH . 'common/header.php';
                                 <div id="login" class="tab-pane fade in active register">
                                     <div class="container-fluid">
                                         <div class="row">
-                                            <h2 class="text-center" style="color: #5cb85c;"> <strong> Login  </strong></h2><hr />
+                                            <h3 class="text-center" style="color: #5cb85c;"> <strong> Login  </strong></h3><hr />
 
                                             <form id="formLogin" action="<?= $base_url ?>usager/login" method="post">
                                             <div class="row">
