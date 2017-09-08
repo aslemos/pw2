@@ -5,11 +5,13 @@ class Reclamation extends CI_Controller {
 
      public function form_reclamation($id) {
 
-        $this->load->model('usager2');
-        $this->load->model('voiture2');
+        $data['base_url'] = base_url();
+        $data['page_title'] = 'Messages reçus';
 
-        $data['users'] = $this->usager2->getUsersInfo();
-        $data['voitures'] = $this->voiture2->getVoituresById($id);
+        $this->load->model('vehicule_model');
+        
+        $data['users'] = UserAcces::getLoggedUser();
+        $data['voitures'] = $this->vehicule_model->getVehicules($id);
 
         $this->load->view('client/form_reclamation',  $data);
     }
