@@ -1,9 +1,8 @@
 <?php include VIEWPATH . '/common/header.php'; ?>
 
-<link href='http://fonts.googleapis.com/css?family=Bitter' rel='stylesheet' type='text/css'>
 <style type="text/css">
     .form-style-10{
-        width:70%;
+        width:81%;
         padding:30px;
         margin:40px auto;
         background: #FFF;
@@ -228,7 +227,7 @@
 
                 <div class="btn-group" role="group" aria-label="Basic example">
 
-<button type="button" id="flip2" class="btn btn-primary">Next <i class="fa fa-hand-o-right"></i></button>
+                    <button type="button" id="flip2" class="btn btn-primary">Next <i class="fa fa-hand-o-right"></i></button>
                     </span>
                 </div>
             </div>
@@ -267,8 +266,8 @@
 
 
                 <div class="btn-group" role="group" aria-label="Basic example">
-<button type="button" id="flip3" class="btn btn-primary animated bounceInLeft"><i class="fa fa-hand-o-left"></i> Avant</button>
-<button type="button" id="flip4" class="btn btn-primary animated bounceInRight">Next <i class="fa fa-hand-o-right"></i></button>
+                    <button type="button" id="flip3" class="btn btn-primary animated bounceInLeft"><i class="fa fa-hand-o-left"></i> Avant</button>
+                    <button type="button" id="flip4" class="btn btn-primary animated bounceInRight">Next <i class="fa fa-hand-o-right"></i></button>
                     </span>
                 </div>
 
@@ -305,16 +304,16 @@
 
 
                 <div class="row">
-                    <div class="col-md-5">
+                    <div class="col-md-6">
                         <label>Numero
                             <input type="number" name="nom"  value=""/>
                         </label>
                     </div>
 
 
-                    <div class="col-md-5">
+                    <div class="col-md-6">
                         <label>Date
-                            <input type="date" name="prenom"  value="" />
+                            <input type="number" name="prenom"  value="" />
                         </label>
                     </div>
 
@@ -346,7 +345,7 @@
 
 <script>
     $(document).ready(function () {
-        /*Next1*/
+        /*booton Next1*/
         $("#flip2").click(function () {
             $("#part2").slideDown("slow");
             $("#part1").slideUp("slow");
@@ -356,7 +355,7 @@
 
         });
 
-        /*Avant2*/
+        /*booton Avant2*/
         $("#flip3").click(function () {
             $("#part1").slideDown("slow");
             $("#part2").slideUp("slow");
@@ -365,7 +364,7 @@
 
         });
 
-        /*Next2*/
+        /*booton Next2*/
         $("#flip4").click(function () {
             $("#part3").slideDown("slow");
             $("#part2").slideUp("slow");
@@ -375,7 +374,7 @@
 
         });
 
-        /*Avant3*/
+        /*booton Avant3*/
         $("#flip5").click(function () {
             $("#part2").slideDown("slow");
             $("#part3").slideUp("slow");

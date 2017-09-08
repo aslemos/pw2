@@ -44,6 +44,10 @@ class Vehicule extends CI_Controller {
         if (!$this->session->userdata('logged_in')) {
             redirect('usagers/login');
         }
+
+        $data['base_url'] = base_url();
+        $data['page_title'] = 'Messages reçus';
+
         $data['title'] = 'Ajouter un vehicule';
 
         $data['usagers'] = $this->usager_model->getUsers();
@@ -85,8 +89,9 @@ class Vehicule extends CI_Controller {
                 $vehicule_photo = $_FILES['userfile']['name'];
             }
 
-            $this->vehicule_model->addVehicule($vehicule_photo);
-            redirect('vehicules');
+            $this->vehicule_model->createVehicule($vehicule_photo);
+
+            redirect('membre/view/liste_voitures');
         }
     }
 
@@ -198,6 +203,7 @@ class Vehicule extends CI_Controller {
 
     public function form_location($id) {
 
+        $data['body_class'] = "subpages voitures";
         $data['base_url'] = base_url();
         $data['page_title'] = 'Messages reçus';
 
