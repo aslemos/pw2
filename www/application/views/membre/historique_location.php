@@ -10,7 +10,7 @@ include VIEWPATH . '/common/header.php';
 //========================================================
 include VIEWPATH .'client/boutons_client.php';
 ?>
-<h1>Historique des locations</h1>
+<h2>Historique des locations</h2>
 <form action="" name="formulaire" id="form-demandes-id">
 	<div class="table-responsive">
 	<label>Choisir une voiture</label>

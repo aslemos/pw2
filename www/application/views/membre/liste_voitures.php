@@ -10,7 +10,7 @@ include VIEWPATH . 'common/header.php';
 //========================================================
 include VIEWPATH . 'client/boutons_client.php';
 ?>
-<h1>Mes voitures</h1>
+<h2>Mes voitures</h2>
 	<form action="" name="formulaire" id="form-voitures-id">
 		<div class="table-responsive">
 		<table class="table table-striped">

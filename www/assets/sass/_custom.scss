@@ -31,13 +31,13 @@ h2 {
             width: 40px;
         }
     }
-    
+
 // bouton du gestion des membres et des admins
 
 .position {
     display: inline-block;
 }
- 
+
 
 /* --- ACCUEIL --- */
 
@@ -109,7 +109,7 @@ h2 {
     #pub-2 {
         background: url('../images/accueil/pubs/pub2.jpg') center center/cover no-repeat;
     }
-    
+
 }
 
 
@@ -348,8 +348,8 @@ span {
 form {
   label, select, input {
     font-size: 20px;
-    margin: 15px;
-    line-height: 10px;
+    /*margin: 15px;*/
+    /*line-height: 10px;*/
   }
 }
 
@@ -548,5 +548,5 @@ div[data-toggle="buttons"] label:hover {
 
 div[data-toggle="buttons"] label:active, div[data-toggle="buttons"] label.active {
     -webkit-box-shadow: none;
-    box-shadow: none; 
+    box-shadow: none;
 }
