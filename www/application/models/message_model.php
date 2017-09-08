@@ -13,13 +13,14 @@ class Message_Model extends CI_Model {
 
     public function getCountNouveauMessages(User $user) {
         $sql = 'SELECT COUNT(message_id) nbMsg FROM messages'
-                . ' WHERE destinataire_id = ' . $user->getUserId();
+                . ' WHERE destinataire_id = ' . $this->db->escape($user->getUserId())
+                . ' AND etat = ' . Message::MSG_ETAT_NON_LU;
         $st = $this->db->query($sql);
         return $st->row()->nbMsg;
     }
 
     public function getMessagesNonLus(User $user) {
-        $sql = 'SELECT * FROM messages WHERE destinataire_id = \'' . $this->db->escape($user->getUserId()) . '\''
+        $sql = 'SELECT * FROM messages WHERE destinataire_id = ' . $this->db->escape($user->getUserId())
                 . ' AND etat = ' . Message::MSG_ETAT_NON_LU;
         $st = $this->db->query($sql);
         return $st->result_object;
@@ -32,7 +33,7 @@ class Message_Model extends CI_Model {
                 . ' FROM messages'
                 . ' LEFT JOIN usagers emet ON (messages.emetteur_id = emet.user_id)'
                 . ' LEFT JOIN usagers dest ON (messages.destinataire_id = dest.user_id)'
-                . ' WHERE destinataire_id = "' . $this->db->escape($user->getUserId()) . '"'
+                . ' WHERE destinataire_id = ' . $this->db->escape($user->getUserId())
                 . ' AND messages.type = ' . Message::MSG_TYPE_INTERNE
                 . ' ORDER BY date DESC;';
         $st = $this->db->query($sql);
@@ -46,27 +47,51 @@ class Message_Model extends CI_Model {
                 . ' FROM messages'
                 . ' LEFT JOIN usagers emet ON (messages.emetteur_id = emet.user_id)'
                 . ' LEFT JOIN usagers dest ON (messages.destinataire_id = dest.user_id)'
-                . ' WHERE emetteur_id = \'' . $this->db->escape($user->getUserId()) . '\''
+                . ' WHERE emetteur_id = ' . $this->db->escape($user->getUserId())
                 . ' AND messages.type = ' . Message::MSG_TYPE_INTERNE
                 . ' ORDER BY date DESC;';
         $st = $this->db->query($sql);
+//var_dump($st->result());
+//echo $sql;die();
         return $st->result();
     }
 
-    public function getReclamations() {
+    /**
+     * Récupère les réclamations qui correspondent à l'état passé en paramètre
+     * @param int $etat l'état des réclamations : lu/non lu
+     * @return array
+     */
+    public function getReclamations($etat = NULL) {
         $sql = 'SELECT messages.*, usagers.prenom as nom_emetteur FROM messages'
                 . ' LEFT JOIN usagers ON (messages.emetteur_id = usagers.user_id)'
-                . ' WHERE messages.type = ' . Message::MSG_TYPE_RECLAMATION
-                . ' ORDER BY date DESC;';
+                . ' WHERE messages.type = ' . Message::MSG_TYPE_RECLAMATION;
+
+        if ($etat) {
+            $sql.= ' AND messages.etat = ' . $etat;
+        }
+        $sql.= ' ORDER BY date DESC;';
         $st = $this->db->query($sql);
         return $st->result();
     }
 
+    /**
+     * Trouve les réclamations faites par l'usager indiqué en paramètre
+     * @param User $user
+     * @return array
+     */
     public function getReclamationsEnvoyes(User $user) {
         $sql = 'SELECT messages.*, usagers.prenom as nom_emetteur FROM messages'
                 . ' LEFT JOIN usagers ON (messages.emetteur_id = usagers.user_id)'
                 . ' WHERE emetteur_id = \'' . $this->db->escape($user->getUserId()) . '\''
                 . ' AND messages.type = ' . Message::MSG_TYPE_RECLAMATION
+                . ' ORDER BY date DESC;';
+        $st = $this->db->query($sql);
+        return $st->result();
+    }
+
+    public function getContacts() {
+        $sql = 'SELECT messages.*, usagers.prenom as nom_emetteur FROM messages'
+                . ' WHERE messages.type = ' . Message::MSG_TYPE_CONTACT
                 . ' ORDER BY date DESC;';
         $st = $this->db->query($sql);
         return $st->result();

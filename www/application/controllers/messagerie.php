@@ -20,7 +20,7 @@ class Messagerie extends CI_Controller {
 
         $data['base_url'] = base_url();
         $data['page_title'] = 'Messages reçus';
-        $data['list_title'] = 'Messages reçus';
+        $data['title'] = 'Messages reçus';
         $data['list_type'] = 'E'; // entrée
         $data['body_class'] = '';
         $data['messages'] = $this->message_model->getMessages($user);
@@ -34,7 +34,7 @@ class Messagerie extends CI_Controller {
 
         $data['base_url'] = base_url();
         $data['page_title'] = 'Messages envoyés';
-        $data['list_title'] = 'Messages envoyés';
+        $data['title'] = 'Messages envoyés';
         $data['list_type'] = 'S'; // sortie
         $data['body_class'] = '';
         $data['messages'] = $this->message_model->getMessagesEnvoyes($user);
@@ -43,12 +43,13 @@ class Messagerie extends CI_Controller {
 
     public function composer() {
 
-        $this->load->model('user_model');
+//        $this->load->model('user_model');
 
         $data['base_url'] = base_url();
         $data['page_title'] = 'Composer message';
+        $data['title'] = 'Nouveau message';
         $data['body_class'] = '';
-        $data['users'] = $this->user_model->getUsers();
+        $data['users'] = $this->usager_model->getUsers();
 
         $this->load->view('messenger/form_message', $data);
     }
@@ -56,13 +57,13 @@ class Messagerie extends CI_Controller {
     public function enregistrer() {
 
         // touve le destinataire
-        $this->load->model('user_model');
+        $this->load->model('usager_model');
         $dest = new User(
-                $this->user_model->getUserById($this->input->post('destinataire_id'))
+                $this->usager_model->getUsers($this->input->post('destinataire_id'))
         );
 
         // crée le message
-        $msg = new Reclamation();
+        $msg = new Message();
         $msg->setEmetteur(UserAcces::getLoggedUser());
         $msg->setDestinataire($dest);
         $msg->setSujet($this->input->post('sujet'));
