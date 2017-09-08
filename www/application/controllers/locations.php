@@ -132,7 +132,10 @@ class Locations extends CI_Controller {
         $data['base_url'] = base_url();
         $data['page_title'] = 'Historique des location';
         $data['usagers'] = $this->usager_model->getUsers();
-        $data['vehicules'] = $this->vehicule_model->getVehiculesByUser($user);
+        $data['vehicules'] = $this->vehicule_model->getVehicules();
+//        $data['vehicules'] = $this->vehicule_model->getVehiculesByUser($user);
+//echo 
+ //       var_dump($data['vehicules']); die();
 
         $data['title'] = 'Location par membre ';
         $data['locations'] = $this->location_model->getLocationsByUser($user);

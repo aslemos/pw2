@@ -18,7 +18,7 @@ include VIEWPATH .'client/boutons_client.php';
 		<option>Sélectionner</option>
         <!--mettre les données dynamiquement dans la liste de voitures-->
         <?php foreach ($vehicules as $vehicule) { ?>
-		<option value="<?=$vehicule['vehicule_id'];?>"> vcnbvbxcAuto n01</option>
+		<option value="<?=$vehicule['vehicule_id'];?>"><?=$vehicule['nom_modele']; ?></option>
         <?php } ?>
 	</select>
 	<label>Periode</label>
@@ -62,6 +62,7 @@ include VIEWPATH .'client/boutons_client.php';
 		<tbody>
             <!--mettre les données dynamiquement dans la liste de locations-->
             <?php foreach ($locations as $location) {
+                var_dump($locations);
                 var_dump($location);
                 // À FAIRE :
                 // - calculer le nombre de jours (date finale - date initiale)
@@ -73,8 +74,8 @@ include VIEWPATH .'client/boutons_client.php';
 				<td class="">1</td>
 				<td class=""><?=$location['nom_marque'];?></td>
 				<td class=""><?=$location['nom_modele'];?></td>
-				<td class="">test</td>
-				<td class="">test</td>
+				<td class=""><?=$location['matricule'];?></td>
+				<td class=""><?=$location['annee'];?></td>
 				<td class=""><?=$nb_jours;?></td>
 				<td class=""><?=$valeur_total;?></td>
 			</tr>
