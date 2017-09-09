@@ -134,7 +134,7 @@ class Locations extends CI_Controller {
         $data['usagers'] = $this->usager_model->getUsers();
         $data['vehicules'] = $this->vehicule_model->getVehicules();
 //        $data['vehicules'] = $this->vehicule_model->getVehiculesByUser($user);
-//echo 
+//echo
  //       var_dump($data['vehicules']); die();
 
         $data['title'] = 'Location par membre ';
@@ -167,5 +167,41 @@ class Locations extends CI_Controller {
         $this->load->view('common/header');
         $this->load->view('locations/vehicule', $data);
         $this->load->view('common/footer');
+    }
+
+  /*afficher formulaire de reservation */
+    public function form_location($id) {
+        $data['body_class'] = "subpages voitures";
+        $data['base_url'] = base_url();
+        $data['page_title'] = 'Messages reçus';
+
+        $this->load->model('vehicule_model');
+        $this->load->model('modepaiement_model');
+
+        $data['users'] = UserAcces::getLoggedUser();
+        $data['payements'] = $this->modepaiement_model->getModesPaiements();
+        $data['voitures'] = $this->vehicule_model->getVehicules($id);
+
+
+        $this->load->view('client/form_location', $data);
+    }
+
+
+    /*afficher formulaire de payement */
+     public function form_payement($id) {
+
+        $data['body_class'] = "subpages voitures";
+        $data['base_url'] = base_url();
+        $data['page_title'] = 'Messages reçus';
+
+        $this->load->model('vehicule_model');
+        $this->load->model('modepaiement_model');
+
+        $data['users'] = UserAcces::getLoggedUser();
+        $data['payements'] = $this->modepaiement_model->getModesPaiements();
+        $data['voitures'] = $this->vehicule_model->getVehicules($id);
+
+
+        $this->load->view('client/form_payemant', $data);
     }
 }
