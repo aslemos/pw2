@@ -137,6 +137,11 @@
     }
 
 
+ #test5 {
+        padding: 50px;
+        display: none;
+    }
+
 
 
 </style>
@@ -284,16 +289,15 @@
                 <div class="row">
                     <div class="col-md-12">
                         <label>type de paiement <span class="required">*</span>
-                            <select name="field4" class="field-select">
+                            <select name="field4" id="myselect" class="field-select">
 
 
-                                <option value="none" selected="selected">---Select payements---</option>
+                                <option value=""></option>
 
                                 <?php foreach ($payements as $pay): ?>
                                     <option value="<?php echo $pay->mode_id ?>"><?php echo $pay->nom_mode ?></option>
                                 <?php endforeach; ?>
                             </select>
-
                         </label>
                     </div>
 
@@ -303,22 +307,17 @@
 
 
 
-                <div class="row">
+                <div class="row" id="test5">
                     <div class="col-md-6">
-                        <label>Numero
+                        <label>Numero du cart
                             <input type="number" name="nom"  value=""/>
                         </label>
                     </div>
-
-
-                    <div class="col-md-6">
-                        <label>Date
-                            <input type="number" name="prenom"  value="" />
+                    <div class="col-md-6" id="date">
+                        <label>Date expiration du cart
+                            <input id="dateExpiration" type="text" name="prenom"  value="" />
                         </label>
                     </div>
-
-
-
                 </div>
 
                 <div class="btn-group" role="group" aria-label="Basic example">
@@ -345,6 +344,18 @@
 
 <script>
     $(document).ready(function () {
+
+
+        /*Annee de voiture*/
+    $(function () {
+        $("#dateExpiration").datepicker({
+            changeMonth: true,
+            changeYear: true
+        });
+    });
+
+
+
         /*booton Next1*/
         $("#flip2").click(function () {
             $("#part2").slideDown("slow");
@@ -382,6 +393,16 @@
             $(".test2").addClass("animated zoomIn");
             $(".test3").removeClass("animated zoomIn");
         });
+
+
+
+ var conceptName = $('#field4').find(":selected").text();
+    if (conceptName === "PayPal") {
+     $("#test5").removeClass("");
+}
+
+
+
 
     });
 </script>
