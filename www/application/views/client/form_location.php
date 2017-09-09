@@ -1,5 +1,21 @@
 <?php include VIEWPATH . '/common/header.php'; ?>
 
+<style type="text/css">
+    .editPersonInfo{
+        height: 60px;
+        width: 60px;
+        float: right;
+        background-color: orange;
+        border-radius: 25%;
+
+    }
+
+    #test{
+        margin-left: 15px;
+        margin-top: 12px;
+    }
+</style>
+
 <body>
 
 
@@ -98,6 +114,7 @@
 
             <div class="inner-wrap" id="part2">
 
+
                 <div class="row">
                     <div class="col-md-6">
                         <label>Nom
@@ -129,8 +146,23 @@
                 <div class="btn-group" role="group" aria-label="Basic example">
                     <button type="button" id="flip3" class="btn btn-primary animated bounceInLeft"><i class="fa fa-hand-o-left"></i> Précédent</button>
                     <button type="button" id="flip4" class="btn btn-success animated bounceInRight">Réservé <i class="fa fa-check-square-o"></i></button>
-                    </span>
+
+                    <!--                    <div id="edite">
+                                            <a href="#"><span class="fa fa-pencil"></span></a>
+                                        </div>-->
+
+
+
+
+
+
                 </div>
+                 <div class="editPersonInfo" >
+                        <div class="editPersonInfo">
+                            <span id="editPersonIcon" class="fa fa-pencil" style="font-size:25px;color:white;"></span>
+                        </div>
+
+                    </div>
 
             </div>
 
