@@ -261,7 +261,7 @@
             </div>
 
             <div class="button-section">
-                <a href="/index.php/usager/getUsersInfo?>">Envoyer</a>
+                <a href="/index.php/reclamaton/insert_reclamation>">Envoyer</a>
 
             </div>
 
