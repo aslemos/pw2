@@ -1,4 +1,5 @@
 <?php
+
 /*
  *
  *
@@ -135,7 +136,7 @@ class Locations extends CI_Controller {
         $data['vehicules'] = $this->vehicule_model->getVehicules();
 //        $data['vehicules'] = $this->vehicule_model->getVehiculesByUser($user);
 //echo
- //       var_dump($data['vehicules']); die();
+        //       var_dump($data['vehicules']); die();
 
         $data['title'] = 'Location par membre ';
         $data['locations'] = $this->location_model->getLocationsByUser($user);
@@ -144,7 +145,7 @@ class Locations extends CI_Controller {
     }
 
     public function locataires() {
-                if (!UserAcces::userIsLogged()) {
+        if (!UserAcces::userIsLogged()) {
             redirect('usagers/login');
         }
 
@@ -156,7 +157,6 @@ class Locations extends CI_Controller {
         $data['title'] = 'Locataires du membre ';
         $data['locations'] = $this->location_model->getLocatairesByUser($user);
         $this->load->view('membre/historique_locataire', $data); // fichier n'existe pas encore
-
     }
 
     public function locationsByVehicule() {
@@ -176,7 +176,8 @@ class Locations extends CI_Controller {
         $this->load->view('common/footer');
     }
 
-  /*afficher formulaire de reservation */
+    /* afficher formulaire de reservation */
+
     public function form_location($id) {
         $data['body_class'] = "subpages voitures";
         $data['base_url'] = base_url();
@@ -193,9 +194,29 @@ class Locations extends CI_Controller {
         $this->load->view('client/form_location', $data);
     }
 
+    /* inserer Location */
 
-    /*afficher formulaire de payement */
-     public function form_payement($id) {
+    public function insererLocation() {
+        $data['body_class'] = "subpages voitures";
+        $data['base_url'] = base_url();
+        $data['page_title'] = 'Location reçus';
+
+        $data['date_debut'] = $this->input->post('date_debut');
+        $data['date_fin'] = $this->input->post('date_fin');
+        $data['user_id'] = $this->input->post('user_id');
+        $data['vehicule_id'] = $this->input->post('vehicule_id');
+        $data['paiement_id'] = 1; //$this->input->post('paiement_id');
+
+        // enregistre le location
+        $this->load->model('location_model');
+        $this->location_model->create_location($data);
+
+        $this->load->view('accueil');
+    }
+
+    /* afficher formulaire de payement */
+
+    public function form_payement($id) {
 
         $data['body_class'] = "subpages voitures";
         $data['base_url'] = base_url();
@@ -211,4 +232,5 @@ class Locations extends CI_Controller {
 
         $this->load->view('client/form_payemant', $data);
     }
+
 }

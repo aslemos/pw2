@@ -10,7 +10,7 @@
 
     }
 
-    #test{
+    #editPersonIcon{
         margin-left: 15px;
         margin-top: 12px;
     }
@@ -21,7 +21,7 @@
 
     <div class="form-style-10">
         <h1>Reservation!<span>Vérifier et confirmer les informations!</span></h1>
-        <form>
+        <form method="post" action="<?= $base_url ?>locations/insererLocation">
 
             <div class="section test animated zoomIn"><span>1</span>Information location de voiture</div>
 
@@ -30,6 +30,7 @@
                     <div class="col-md-6">
                         <label>Marque
                             <input type="text" name="marque" disabled value="<?= $voitures['nom_marque']; ?> "/>
+                            <input type="hidden" name="userId" value="<?= $voitures['vehicule_id'];  ?> ">
                         </label>
                     </div>
                     <div class="col-md-6">
@@ -119,6 +120,8 @@
                     <div class="col-md-6">
                         <label>Nom
                             <input type="text" name="nom" disabled value="<?= $users->getNom() ?> "/>
+                            <input type="hidden" name="userId" value="<?= $users->getUserId() ?> ">
+
                         </label>
                     </div>
                     <div class="col-md-6">
@@ -145,7 +148,7 @@
 
                 <div class="btn-group" role="group" aria-label="Basic example">
                     <button type="button" id="flip3" class="btn btn-primary animated bounceInLeft"><i class="fa fa-hand-o-left"></i> Précédent</button>
-                    <button type="button" id="flip4" class="btn btn-success animated bounceInRight">Réservé <i class="fa fa-check-square-o"></i></button>
+                    <button type="submit" id="flip4" class="btn btn-success animated bounceInRight">Réservé <i class="fa fa-check-square-o"></i></button>
 
                     <!--                    <div id="edite">
                                             <a href="#"><span class="fa fa-pencil"></span></a>
@@ -170,6 +173,8 @@
 
 
 
+
+<?php //print_r($voitures); ?>
 
 
 
