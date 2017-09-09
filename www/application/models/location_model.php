@@ -98,6 +98,8 @@ class Location_model extends CI_Model {
 
         $this->db->order_by('locations.location_id', 'DESC');
         $this->db->join('vehicules', 'locations.vehicule_id = vehicules.vehicule_id');
+        $this->db->join('modeles', 'vehicules.modele_id = modeles.modele_id');
+        $this->db->join('marques', 'vehicules.marque_id = marques.marque_id');
         $query = $this->db->get_where('locations', array('locations.user_id' => $user->getUserId()));
 
         return $query->result_array();

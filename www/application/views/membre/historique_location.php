@@ -54,6 +54,8 @@ include VIEWPATH .'client/boutons_client.php';
 				<th class="">Marque</th>
 				<th class="">Modèle</th>
 				<th class="">Matricule</th>
+                                <th class="">Date debut</th>
+                                <th class="">Date fin</th>
 				<th class="">Année</th>
 				<th class="">Nombre de <br />jours loué</th>
 				<th class="">Montant<br />total</th>
@@ -62,12 +64,21 @@ include VIEWPATH .'client/boutons_client.php';
 		<tbody>
             <!--mettre les données dynamiquement dans la liste de locations-->
             <?php foreach ($locations as $location) {
-                var_dump($locations);
-                var_dump($location);
+               // var_dump($locations);
+                //var_dump($location);
                 // À FAIRE :
                 // - calculer le nombre de jours (date finale - date initiale)
+                $diff = abs(strtotime($location['date_fin']) - strtotime($location['date_debut']));
+                $nb_jours = (int)floor($diff  / (60*60*24)) + 1;
+                //$years = floor($diff / (365*60*60*24));
+                //$months = floor(($diff - $years * 365*60*60*24) / (30*60*60*24));
+                //$nb_jours = floor(($diff - $years * 365*60*60*24 - $months*30*60*60*24)/ (60*60*24));
+                
+                //var_dump($diff, $months);
 
-                $nb_jours = 1; // ????????????
+                //echo  $nb_jours 
+               // printf("%d years, %d months, %d days\n", $years, $months, $days);
+                
                 $valeur_total = $location['prix'] * $nb_jours;
                 ?>
 			<tr>
@@ -75,6 +86,8 @@ include VIEWPATH .'client/boutons_client.php';
 				<td class=""><?=$location['nom_marque'];?></td>
 				<td class=""><?=$location['nom_modele'];?></td>
 				<td class=""><?=$location['matricule'];?></td>
+                                <td class=""><?=$location['date_debut'];?></td>
+                                <td class=""><?=$location['date_fin'];?></td>                              
 				<td class=""><?=$location['annee'];?></td>
 				<td class=""><?=$nb_jours;?></td>
 				<td class=""><?=$valeur_total;?></td>
@@ -92,7 +105,8 @@ include VIEWPATH .'client/boutons_client.php';
 
                 /*Annee de voiture*/
                 $(function () {
-                    $('#datetimepickerDe').datepicker({                  
+                    $('#datetimepickerDe').datepicker({   
+                        
                   });
                 });
 

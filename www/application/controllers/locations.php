@@ -144,7 +144,14 @@ class Locations extends CI_Controller {
     }
 
     public function locataires() {
-        echo 'TEST TEST TEST';
+                if (!UserAcces::userIsLogged()) {
+            redirect('usagers/login');
+        }
+
+        $user = UserAcces::getLoggedUser();
+        $this->load->model('location_model');
+
+        $data['base_url'] = base_url();
         // ici sont les lignes différentes par rapport à la méthode locatairesByUser(), ci-dessus
         $data['title'] = 'Locataires du membre ';
         $data['locations'] = $this->location_model->getLocatairesByUser($user);
