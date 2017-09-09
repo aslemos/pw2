@@ -1,6 +1,6 @@
 <?php
 // Header
-include 'header.php';
+include VIEWPATH . 'common/header.php';
 //========================================================
 ?>
 <main>
@@ -63,5 +63,4 @@ include 'header.php';
 <?php
 //========================================================
 //Footer
-include 'footer.php';
-?>
+include VIEWPATH . 'common/footer.php';

@@ -7,16 +7,19 @@
 
 require VIEWPATH . 'common/header.php';
 ?>
-<form action="<?=$base_url?>message_controller/composer">
-    <button type="submit">Nouveau message</button>
-</form>
+<b id="s"></b>
+<div class="row btn-liens" >
+    <a class="btn position" href="<?=$base_url?>messagerie#s">Reçus</a>
+    <a class="btn position" href="<?=$base_url?>messagerie/envoyes#s">Envoyés</a>
+    <a class="btn position" href="<?=$base_url?>messagerie/composer#s">Nouveau message</a>
+</div>
 <style>
     .msg-nonlu td {
         font-weight: bold;
     }
 </style>
-<h2><?=$list_title?></h2>
-<table>
+<h2><?=$title?></h2>
+<table class="table">
     <tr>
         <th>Date</th>
         <th><?=($list_type == 'E') ? 'Emetteur' : 'Destinataire'?></th>

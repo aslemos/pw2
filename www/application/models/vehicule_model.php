@@ -132,7 +132,12 @@ class Vehicule_model extends CI_Model {
         return $query->result_array();
     }
 
-    public function getVehiculesByUserId($proprietaire_id) { //getVehiculesByUser
+    /**
+     * Trouve les voitures qui appartiennent à un usager donné
+     * @param User $user
+     * @return type
+     */
+    public function getVehiculesByUser(User $user) {
 
         $this->db->order_by('vehicules.vehicule_id', 'DESC');
 
@@ -142,7 +147,7 @@ class Vehicule_model extends CI_Model {
         $this->db->join('type_vehicules', 'vehicules.type_id = type_vehicules.type_id');
         $this->db->join('arrondissements', 'vehicules.arr_id = arrondissements.arr_id');
 
-        $query = $this->db->get_where('vehicules', array('usagers.user_id' => $proprietaire_id));
+        $query = $this->db->get_where('vehicules', array('usagers.user_id' => $user->getUserId()));
 
         return $query->result_array();
     }
@@ -164,15 +169,6 @@ class Vehicule_model extends CI_Model {
         return $query->result_array();
     }
 
-//    public function getUsers() {
-//
-//        $this->db->order_by('nom');
-//
-//        $query = $this->db->get('usagers');
-//
-//        return $query->result_array();
-//    }
-//
     public function getTypesVehicules() {
 
         $this->db->order_by('nom_type');
@@ -182,24 +178,6 @@ class Vehicule_model extends CI_Model {
         return $query->result_array();
     }
 
-//    public function getMarques() {
-//
-//        $this->db->order_by('nom_marque');
-//
-//        $query = $this->db->get('marques');
-//
-//        return $query->result_array();
-//    }
-//
-//    public function getModeles() {
-//
-//        $this->db->order_by('nom_modele');
-//
-//        $query = $this->db->get('modeles');
-//
-//        return $query->result_array();
-//    }
-//
     public function getCarburants() {
 
         $this->db->order_by('nom_carburant');

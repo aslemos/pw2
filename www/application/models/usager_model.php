@@ -8,7 +8,7 @@
 class usager_model extends CI_Model {
 
     public function __construct() {
-
+        parent::__construct();
         $this->load->database();
     }
 
@@ -17,7 +17,7 @@ class usager_model extends CI_Model {
         $this->db->join('roles', 'roles.role_id = usagers.role_id');
 
         if ($user_id == NULL) {
-            $this->db->order_by('usagers.user_id', 'ASC');
+            $this->db->order_by('usagers.prenom', 'ASC');
 
             $query = $this->db->get('usagers');
 
@@ -82,7 +82,6 @@ class usager_model extends CI_Model {
     }
 
     public function getUserByLogin($username, $password) { //login
-
         $this->db->where('username', $username);
         $this->db->where('motdepasse', $password);
 
