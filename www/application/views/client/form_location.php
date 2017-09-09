@@ -1,148 +1,6 @@
 <?php include VIEWPATH . '/common/header.php'; ?>
 
-<link href='http://fonts.googleapis.com/css?family=Bitter' rel='stylesheet' type='text/css'>
-<style type="text/css">
-    .form-style-10{
-        width:70%;
-        padding:30px;
-        margin:40px auto;
-        background: #FFF;
-        border-radius: 10px;
-        -webkit-border-radius:10px;
-        -moz-border-radius: 10px;
-        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.13);
-        -moz-box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.13);
-        -webkit-box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.13);
-    }
-    .form-style-10 .inner-wrap{
-        width:100%;
-        padding: 30px;
-        background: #F8F8F8;
-        border-radius: 6px;
-        margin-bottom: 15px;
-    }
-    .form-style-10 h1{
-        background: #AF0000;
-        padding: 20px 30px 15px 30px;
-        margin: -30px -30px 30px -30px;
-        border-radius: 10px 10px 0 0;
-        -webkit-border-radius: 10px 10px 0 0;
-        -moz-border-radius: 10px 10px 0 0;
-        color: #fff;
-        text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.12);
-        font: normal 30px 'Bitter', serif;
-        -moz-box-shadow: inset 0px 2px 2px 0px rgba(255, 255, 255, 0.17);
-        -webkit-box-shadow: inset 0px 2px 2px 0px rgba(255, 255, 255, 0.17);
-        box-shadow: inset 0px 2px 2px 0px rgba(255, 255, 255, 0.17);
-        border: 1px solid #257C9E;
-    }
-    .form-style-10 h1 > span{
-        display: block;
-        margin-top: 2px;
-        font: 13px Arial, Helvetica, sans-serif;
-    }
-    .form-style-10 label{
-        display: block;
-        font: 13px Arial, Helvetica, sans-serif;
-        color: #888;
-        margin-bottom: 15px;
-    }
-    .form-style-10 input[type="text"],
-    .form-style-10 input[type="date"],
-    .form-style-10 input[type="datetime"],
-    .form-style-10 input[type="email"],
-    .form-style-10 input[type="number"],
-    .form-style-10 input[type="search"],
-    .form-style-10 input[type="time"],
-    .form-style-10 input[type="url"],
-    .form-style-10 input[type="password"],
-    .form-style-10 textarea,
-    .form-style-10 select {
-        display: block;
-        box-sizing: border-box;
-        -webkit-box-sizing: border-box;
-        -moz-box-sizing: border-box;
-        width: 100%;
-        padding: 8px;
-        border-radius: 6px;
-        -webkit-border-radius:6px;
-        -moz-border-radius:6px;
-        border: 2px solid #fff;
-        box-shadow: inset 0px 1px 1px rgba(0, 0, 0, 0.33);
-        -moz-box-shadow: inset 0px 1px 1px rgba(0, 0, 0, 0.33);
-        -webkit-box-shadow: inset 0px 1px 1px rgba(0, 0, 0, 0.33);
-    }
-
-    .form-style-10 .section{
-        font: normal 20px 'Bitter', serif;
-        color: #AF0000;
-        margin-bottom: 10px;
-    }
-    .form-style-10 .section span {
-        background: #AF0000;
-        padding: 5px 10px 5px 10px;
-        position: absolute;
-        border-radius: 50%;
-        -webkit-border-radius: 50%;
-        -moz-border-radius: 50%;
-        border: 4px solid #fff;
-        font-size: 14px;
-        margin-left: -45px;
-        color: #fff;
-        margin-top: -3px;
-    }
-    .form-style-10 input[type="button"],
-    .form-style-10 input[type="submit"]{
-        background: #2A88AD;
-        padding: 8px 20px 8px 20px;
-        border-radius: 5px;
-        -webkit-border-radius: 5px;
-        -moz-border-radius: 5px;
-        color: #fff;
-        text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.12);
-        font: normal 30px 'Bitter', serif;
-        -moz-box-shadow: inset 0px 2px 2px 0px rgba(255, 255, 255, 0.17);
-        -webkit-box-shadow: inset 0px 2px 2px 0px rgba(255, 255, 255, 0.17);
-        box-shadow: inset 0px 2px 2px 0px rgba(255, 255, 255, 0.17);
-        border: 1px solid #257C9E;
-        font-size: 15px;
-    }
-    .form-style-10 input[type="button"]:hover,
-    .form-style-10 input[type="submit"]:hover{
-        background: #2A6881;
-        -moz-box-shadow: inset 0px 2px 2px 0px rgba(255, 255, 255, 0.28);
-        -webkit-box-shadow: inset 0px 2px 2px 0px rgba(255, 255, 255, 0.28);
-        box-shadow: inset 0px 2px 2px 0px rgba(255, 255, 255, 0.28);
-    }
-    .form-style-10 .privacy-policy{
-        float: right;
-        width: 250px;
-        font: 12px Arial, Helvetica, sans-serif;
-        color: #4D4D4D;
-        margin-top: 10px;
-        text-align: right;
-    }
-
-
-    /*    #part1 {
-        padding: 100px;
-        margin-bottom: 50px;}*/
-
-    #part2 {
-        padding: 50px;
-        display: none;}
-
-    #part3 {
-        padding: 50px;
-        display: none;
-    }
-
-
-
-
-</style>
 <body>
-
 
 
     <div class="form-style-10">
@@ -228,7 +86,9 @@
 
                 <div class="btn-group" role="group" aria-label="Basic example">
 
-<button type="button" id="flip2" class="btn btn-primary">Next <i class="fa fa-hand-o-right"></i></button>
+                    <button type="button" id="flip5" class="btn btn-danger animated bounceInLeft"><i class="fa  fa-window-close" style="font-size:22px;"></i> Annuler</button>
+
+                    <button type="button" id="flip2" class="btn btn-primary">Prochain <i class="fa fa-hand-o-right"></i></button>
                     </span>
                 </div>
             </div>
@@ -267,8 +127,8 @@
 
 
                 <div class="btn-group" role="group" aria-label="Basic example">
-<button type="button" id="flip3" class="btn btn-primary animated bounceInLeft"><i class="fa fa-hand-o-left"></i> Avant</button>
-<button type="button" id="flip4" class="btn btn-primary animated bounceInRight">Next <i class="fa fa-hand-o-right"></i></button>
+                    <button type="button" id="flip3" class="btn btn-primary animated bounceInLeft"><i class="fa fa-hand-o-left"></i> Précédent</button>
+                    <button type="button" id="flip4" class="btn btn-success animated bounceInRight">Réservé <i class="fa fa-check-square-o"></i></button>
                     </span>
                 </div>
 
@@ -276,66 +136,10 @@
 
 
 
-            <div class="section test3"><span>3</span>Modes de paiements</div>
-            <div class="inner-wrap" id="part3">
 
 
 
 
-                <div class="row">
-                    <div class="col-md-12">
-                        <label>type de paiement <span class="required">*</span>
-                            <select name="field4" class="field-select">
-
-
-                                <option value="none" selected="selected">---Select payements---</option>
-
-                                <?php foreach ($payements as $pay): ?>
-                                    <option value="<?php echo $pay->mode_id ?>"><?php echo $pay->nom_mode ?></option>
-                                <?php endforeach; ?>
-                            </select>
-
-                        </label>
-                    </div>
-
-                </div>
-
-
-
-
-
-                <div class="row">
-                    <div class="col-md-5">
-                        <label>Numero
-                            <input type="number" name="nom"  value=""/>
-                        </label>
-                    </div>
-
-
-                    <div class="col-md-5">
-                        <label>Date
-                            <input type="date" name="prenom"  value="" />
-                        </label>
-                    </div>
-
-
-
-                </div>
-
-                <div class="btn-group" role="group" aria-label="Basic example">
-                    <button type="button" id="flip5" class="btn btn-primary animated bounceInLeft"><i class="fa fa-hand-o-left" style="font-size:22px;"></i> Avant</button>
-                    <button type="button" id="flip6" class="btn btn-success animated bounceInRight">Pay <i class="fa fa-dollar" style="font-size:22px;"></i></button>
-                    </span>
-                </div>
-            </div>
-
-
-            <!--            <div class="button-section">
-                            <a href="/index.php/voiture/insert_payement/>">Payer</a>
-                            <span class="privacy-policy">
-                                <input type="checkbox" name="field7">You agree to our Terms and Policy.
-                            </span>
-                        </div>-->
 
 
         </form>
@@ -344,48 +148,6 @@
 </body>
 
 
-<script>
-    $(document).ready(function () {
-        /*Next1*/
-        $("#flip2").click(function () {
-            $("#part2").slideDown("slow");
-            $("#part1").slideUp("slow");
-            $("html, body").animate({scrollTop: 650}, 1000);
-            $(".test").removeClass("zoomIn");
-            $(".test2").addClass("animated zoomIn");
-
-        });
-
-        /*Avant2*/
-        $("#flip3").click(function () {
-            $("#part1").slideDown("slow");
-            $("#part2").slideUp("slow");
-            $("html, body").animate({scrollTop: 650}, 1000);
-            $(".test").addClass("zoomIn");
-
-        });
-
-        /*Next2*/
-        $("#flip4").click(function () {
-            $("#part3").slideDown("slow");
-            $("#part2").slideUp("slow");
-            $("html, body").animate({scrollTop: 650}, 1000);
-            $(".test3").addClass("animated zoomIn");
-            $(".test2").removeClass("animated zoomIn");
-
-        });
-
-        /*Avant3*/
-        $("#flip5").click(function () {
-            $("#part2").slideDown("slow");
-            $("#part3").slideUp("slow");
-            $("html, body").animate({scrollTop: 650}, 1000);
-            $(".test2").addClass("animated zoomIn");
-            $(".test3").removeClass("animated zoomIn");
-        });
-
-    });
-</script>
 
 
 

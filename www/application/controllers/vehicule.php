@@ -44,6 +44,10 @@ class Vehicule extends CI_Controller {
         if (!$this->session->userdata('logged_in')) {
             redirect('usagers/login');
         }
+
+        $data['base_url'] = base_url();
+        $data['page_title'] = 'Messages reçus';
+
         $data['title'] = 'Ajouter un vehicule';
 
         $data['usagers'] = $this->usager_model->getUsers();
@@ -85,8 +89,9 @@ class Vehicule extends CI_Controller {
                 $vehicule_photo = $_FILES['userfile']['name'];
             }
 
-            $this->vehicule_model->addVehicule($vehicule_photo);
-            redirect('vehicules');
+            $this->vehicule_model->createVehicule($vehicule_photo);
+
+            redirect('membre/view/liste_voitures');
         }
     }
 
@@ -194,22 +199,6 @@ class Vehicule extends CI_Controller {
         $data['voitures'] = $this->voiture2->getVoitures();
 
         $this->load->view('client/liste_voitures', $data);
-    }
-
-    public function form_location($id) {
-
-        $data['base_url'] = base_url();
-        $data['page_title'] = 'Messages reçus';
-
-        $this->load->model('vehicule_model');
-        $this->load->model('modepaiement_model');
-
-        $data['users'] = UserAcces::getLoggedUser();
-        $data['payements'] = $this->modepaiement_model->getModesPaiements();
-        $data['voitures'] = $this->vehicule_model->getVehicules($id);
-
-
-        $this->load->view('client/form_location', $data);
     }
 
     public function insert_payement() {
