@@ -37,6 +37,22 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
         <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
+<?php
+        if (isset($styles) && is_array($styles)) { // boucle d'ajout des styles customisés
+            foreach ($styles as $pos => $style) {
+?>
+        <link rel="stylesheet" href="<?=$style?>">
+<?php
+            }
+        }
+        if (isset($scripts) && is_array($scripts)) { // boucle d'ajout des scripts customisés
+            foreach ($scripts as $pos => $script) {
+?>
+        <script src="<?=$script?>"></script>
+<?php
+            }
+        }
+?>
     </head>
     <body class="<?php echo $body_class; ?>">
         <header>
@@ -52,7 +68,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                         <div class="menu-container">
                             <button class="btn-menu hidden-md hidden-lg" id="open-side-menu">MENU <i class="fa fa-bars" aria-hidden="true"></i></button>
                             <?php include (VIEWPATH . "common/menu.php");?>
-                            <?php //include (VIEWPATH . "common/navbar_top.php"); ?>
                         </div>
                     </div>
                 </div>
