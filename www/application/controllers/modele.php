@@ -4,15 +4,18 @@
  *
  */
 
-class Modeles extends CI_Controller {
+class Modele extends CI_Controller {
+
+    public function __construct() {
+        parent::__construct();
+        if (!UserAcces::userIsLogged()) {
+//            redirect('usagers/login');
+        }
+    }
 
     public function index() {
 
         // Check login
-        if (!$this->session->userdata('logged_in')) {
-
-            redirect('usagers/login');
-        }
 
         $data['title'] = 'Liste Des Modeles';
 
@@ -25,16 +28,9 @@ class Modeles extends CI_Controller {
 
     public function createModele() {
 
-        // Check login
-        if (!$this->session->userdata('logged_in')) {
-
-            redirect('usagers/login');
-        }
-
-        // Check login
-        if (!$this->session->userdata('logged_in')) {
-
-            redirect('usagers/login');
+        // Check permission
+        if (!UserAcces::userIsAdmin()) {
+            redirect('noperm');
         }
 
         $data['title'] = 'Ajouter un modele';
@@ -63,22 +59,13 @@ class Modeles extends CI_Controller {
 
         $data['vehicules'] = $this->vehicule_model->getVehiculesByModele($modele_id);
 
-        $this->load->view('common/header');
         $this->load->view('vehicules/index', $data);
-        $this->load->view('common/footer');
     }
 
     public function deleteModele($modele_id) {
 
-        // Check login
-        if (!$this->session->userdata('logged_in')) {
-
-            redirect('usagers/login');
-        }
-
-        // Check login
-        if (!$this->session->userdata('logged_in')) {
-
+        // Check permission
+        if (!UserAcces::userIsAdmin()) {
             redirect('usagers/login');
         }
 
@@ -88,5 +75,11 @@ class Modeles extends CI_Controller {
         $this->session->set_flashdata('modele_deleted', 'Le modele a été supprimer avec succès!');
 
         redirect('modeles');
+    }
+
+    public function ajaxModelesByMarque($marque_id) {
+        echo json_encode(
+                $this->modele_model->getModelesByMarqueId($marque_id)
+                );
     }
 }
