@@ -1,0 +1,4 @@
+
+- vérifier la page de modification d'usager : ne pas permettre modifier role si on est pas superadmin
+
+- éliminer les champs date_debut / date_fin de la table 'voiture'
