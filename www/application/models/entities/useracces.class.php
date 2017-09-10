@@ -26,10 +26,10 @@ class UserAcces {
     }
 
     static function userIsSuperAdmin() {
-        return (self::userIsLogged() && $_SESSION['user_data']->getRoleId() == Role::ROLE_SUPERADMIN);
+        return (self::userIsLogged() && $_SESSION['user_data']->getRoleId() == ERole::ROLE_SUPERADMIN);
     }
 
     static function userIsAdmin() {
-        return (self::userIsLogged() && ($_SESSION['user_data']->getRoleId() == Role::ROLE_SUPERADMIN || $_SESSION['user_data']->getRoleId() == Role::ROLE_ADMIN));
+        return (self::userIsLogged() && ($_SESSION['user_data']->getRoleId() == ERole::ROLE_SUPERADMIN || $_SESSION['user_data']->getRoleId() == ERole::ROLE_ADMIN));
     }
 }

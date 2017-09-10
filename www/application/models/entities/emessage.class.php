@@ -4,7 +4,7 @@
  * @author : Alessandro Lemos
  */
 
-class Message {
+class EMessage {
 
     const MSG_ETAT_NON_LU = 0;
     const MSG_ETAT_LU = 1;
@@ -31,10 +31,10 @@ class Message {
             $this->setEtat($data['etat']);
             $this->type = self::MSG_TYPE_INTERNE;
 
-            $this->emetteur = new User();
+            $this->emetteur = new EUsager();
             $this->emetteur->setUserId($data['emetteur_id']);
 
-            $this->destinataire = new User();
+            $this->destinataire = new EUsager();
             $this->destinataire->setUserId($data['destinataire_id']);
         }
     }
@@ -87,11 +87,11 @@ class Message {
         return $this;
     }
 
-    public function setEmetteur(User $user) {
+    public function setEmetteur(EUsager $user) {
         $this->emetteur = $user;
     }
 
-    public function setDestinataire(User $user) {
+    public function setDestinataire(EUsager $user) {
         $this->destinaraire = $user;
     }
 

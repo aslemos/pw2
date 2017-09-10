@@ -94,21 +94,27 @@ class Location_model extends CI_Model {
         return $query->result_array();
     }
 
-    public function getLocationsByUser(User $user) {
+    public function getLocationsByUser(EUsager $user) {
 
         $this->db->order_by('locations.location_id', 'DESC');
         $this->db->join('vehicules', 'locations.vehicule_id = vehicules.vehicule_id');
-        $query = $this->db->get_where('locations', array('locations.user_id' => $user->getUserId()));
+        $this->db->join('modeles', 'modeles.modele_id = vehicules.modele_id');
+        $this->db->join('marques', 'marques.marque_id = modeles.marque_id');
+        $this->db->join('usagers', 'usagers.user_id = vehicules.proprietaire_id');
 
+        $query = $this->db->get_where('locations', array('locations.user_id' => $user->getUserId()));
         return $query->result_array();
     }
 
-    public function getLocatairesByUser(User $user) {
+    public function getLocatairesByUser(EUsager $user) {
 
         $this->db->order_by('locations.location_id', 'DESC');
+        $this->db->join('vehicules', 'locations.vehicule_id = vehicules.vehicule_id');
+        $this->db->join('modeles', 'modeles.modele_id = vehicules.modele_id');
+        $this->db->join('marques', 'marques.marque_id = modeles.marque_id');
+        $this->db->join('usagers', 'usagers.user_id = locations.user_id');
 
-        $query = $this->db->get_where('locations', array('locations.user_id' => $user->getUserId()));
-
+        $query = $this->db->get_where('locations', array('vehicules.proprietaire_id' => $user->getUserId()));
         return $query->result_array();
     }
 
