@@ -1,9 +1,9 @@
-
-<h3 style="text-align:center;"><?php echo $title; ?></h3>
-<?php echo form_open_multipart('usagers/updateUser'); ?>
+<?php include VIEWPATH . 'common/header.php' ?>
+<h3><?php echo $title; ?></h3>
+<?php echo form_open_multipart($base_url . 'usager/updateUser'); ?>
     <div class="table-responsive">
         <h4 style="color:red"><?php echo $err_message; ?></h4>
-        <input type="hidden" name="id" value="<?php echo $user['user_id']; ?>">
+        <input type="hidden" name="user_id" value="<?php echo $user['user_id']; ?>">
         <table class="table table-striped">
             <tr class="form-group">
                 <td>
@@ -47,7 +47,10 @@
                     <span style="color:red">*</span>
                 </td>
                 <td>
-                    <input type="text" class="form-control" id="ville" name="ville" value="<?php echo $user['ville']; ?>">
+                    <select class="form-control" id="ville_id" name="ville_id" value="<?php echo $user['ville_id']; ?>">
+                    <?php foreach ($villes as $ville) { ?>
+                    <option value="<?=$ville['ville_id']?>"><?=$ville['nom_ville']?></option>
+                    <?php } ?>
                 </td>
             </tr>
             <tr class="form-group">
@@ -65,7 +68,7 @@
                     <span style="color:red">*</span>
                 </td>
                 <td>
-                    <input type="text" class="form-control" id="telephone" name="phone" value="<?php echo $user['telephone']; ?>">
+                    <input type="text" class="form-control" id="telephone" name="telephone" value="<?php echo $user['telephone']; ?>">
                 </td>
             </tr>
             <tr class="form-group">
@@ -74,7 +77,7 @@
                     <span style="color:red">*</span>
                 </td>
                 <td>
-                    <input type="text" class="form-control" id="courriel" name="email" value="<?php echo $user['courriel']; ?>">
+                    <input type="text" class="form-control" id="courriel" name="courriel" value="<?php echo $user['courriel']; ?>">
                 </td>
             </tr>
             <tr class="form-group">
@@ -86,6 +89,7 @@
                     <input type="password" class="form-control" id="motdepasse" name="password" value="<?php echo $user['motdepasse']; ?>">
                 </td>
             </tr>
+<?php if (UserAcces::userIsSuperAdmin()) { ?>
             <tr class="form-group">
                 <td>
                     <label for="role_id">Rôle : </label>
@@ -93,17 +97,16 @@
                 </td>
                 <td>
                     <select class="form-control" id="role_id" name="role_id">
-                        <?php foreach($roles AS $role) : ?>
-                        <option value="<?php echo $role['role_id']; ?>">
-                                <?php echo $role['nom_role']; ?>
-                        </option>
-                        <?php endforeach; ?>
+                        <?php foreach($roles as $role) { ?>
+                        <option value="<?php echo $role['role_id']; ?>"<?=$role['role_id']==$user['role_id']?' selected':''?>><?php echo $role['nom_role']; ?></option>
+                        <?php } ?>
                     </select>
                 </td>
             </tr>
-        </table>	
+<?php } ?>
+        </table>
         <hr>
         <input type="submit" class="btn" value="Modifier">
     </div>
 </form>
-<hr>
+<?php include VIEWPATH . 'common/footer.php';

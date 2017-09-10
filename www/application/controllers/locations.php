@@ -10,7 +10,7 @@ class Locations extends CI_Controller {
     public function index() {
 
         // Check login
-        if (!$this->session->userdata('logged_in')) {
+        if (!UserAcces::userIsLogged()) {
 
             redirect('usagers/login');
         }
@@ -27,7 +27,7 @@ class Locations extends CI_Controller {
     public function view($location_id = NULL) {
 
         // Check login
-        if (!$this->session->userdata('logged_in')) {
+        if (!UserAcces::userIsLogged()) {
 
             redirect('usagers/login');
         }
@@ -45,10 +45,29 @@ class Locations extends CI_Controller {
         $this->load->view('common/footer');
     }
 
+    public function louer_car($id) { // à vérifier
+
+
+        $this->load->model('location');
+
+
+        $data = array(
+            'vehicule_id' => $this->input->post('vehicule_id'),
+            'date_debut ' => $this->input->post('date_debut'),
+            'date_fin' => $this->input->post('date_fin')
+        );
+
+        //Transfering data to Model
+        $this->insert_model->form_insert($data);
+        $data['message'] = 'Data Inserted Successfully';
+//Loading View
+        $this->load->view('insert_view', $data);
+    }
+
     public function createLocation() {
 
         // Check login
-        if (!$this->session->userdata('logged_in')) {
+        if (!UserAcces::userIsLogged()) {
 
             redirect('usagers/login');
         }
@@ -77,7 +96,7 @@ class Locations extends CI_Controller {
     public function deleteLocation($location_id) {
 
         // Check login
-        if (!$this->session->userdata('logged_in')) {
+        if (!UserAcces::userIsLogged()) {
             redirect('usagers/login');
         }
         $this->location_model->deleteLocation($location_id);
@@ -87,7 +106,7 @@ class Locations extends CI_Controller {
     public function editLocation() {
 
         // Check login
-        if (!$this->session->userdata('logged_in')) {
+        if (!UserAcces::userIsLogged()) {
             redirect('usagers/login');
         }
 
@@ -110,7 +129,7 @@ class Locations extends CI_Controller {
     public function updateLocation() {
 
         // Check login
-        if (!$this->session->userdata('logged_in')) {
+        if (!UserAcces::userIsLogged()) {
             redirect('usagers/login');
         }
 

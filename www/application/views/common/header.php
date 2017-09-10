@@ -52,6 +52,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <?php
             }
         }
+
+        // S'assure d'avoir la variable $body_class
+        $body_class = isset($body_class)
+                ? $body_class
+                : '';
 ?>
     </head>
     <body class="<?php echo $body_class; ?>">
