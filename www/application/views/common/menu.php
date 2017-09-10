@@ -15,7 +15,7 @@
         <li class=""><a href="<?=$base_url?>messagerie#s" title="Service de messagerie">MESSAGERIE</a></li>
         <li class=""><a href="<?=$base_url?>usager/logout" title="">LOGOUT</a></li>
         <?php } else { ?>
-        <li class=""><a href="<?=$base_url?>usager/login" title="">CONTACTEZ-NOUS</a></li>
+        <li class=""><a href="<?=$base_url?>messagerie/contacterNous" title="">CONTACTEZ-NOUS</a></li>
         <li class=""><a href="<?=$base_url?>usager/login" title="">SE CONNECTER</a></li>
         <?php } ?>
 

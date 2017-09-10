@@ -5,11 +5,30 @@ img {
     max-height: 100%;
 }
 
-.information{
-            margin-left: 33%;
+.bg-body{
+    background-color: #efeff0;
 }
 
+.information{
+    margin-left: 33%;
+}
 
+.map {
+    height: 400px;
+    width: 100%;
+}
+
+.bg-gray {
+    background-color: #e5e5e5;
+    margin-bottom: 40px;
+}
+
+.bg-white{
+   background-color: #FFFFFF; 
+}
+.bordered {
+        border-right: solid 6px #efeff0;
+    }
 h2 {
         margin: 0;
         margin-top: 65px;
@@ -150,11 +169,10 @@ h2 {
             padding-right: 0;
         }
     }
-
-    .bordered {
-        border-right: solid 3px white;
+    .bordered{
+        border-bottom: solid 12px #efeff0;
+        min-height: 700px;
     }
-
     .text-container {
         padding: 75px 0;
     }
@@ -168,6 +186,27 @@ h2 {
     }
 }
 
+#pub-home{
+    p{
+        margin: auto;
+        max-width: 595px;
+        text-align: justify;
+        font-size:16px;
+        line-height: 20px; 
+    }
+}
+
+/* --- CONATACTER NOUS --- */
+
+#contacterNous{
+    .title-container{
+        margin-bottom: 60px;
+    }
+    
+    button{
+        margin-bottom: 40px;
+    }
+}
 
 /* --- DEVENIR MEMBRE ---*/
 

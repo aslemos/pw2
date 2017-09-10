@@ -36,7 +36,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
     </head>
-    <body class="<?php echo $body_class; ?>">
+    <body class="bg-body <?php echo $body_class; ?>">
         <header>
             <div class="container-fluid">
                 <div class="row">
@@ -57,6 +57,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 <div class="slogan-container">
                     <img src="<?=$base_url?>assets/images/accueil/slogan_accueil.png" alt="slogan-acceuil" id="logo-accueil">
                 </div>
+                <div>
+                    <p id="defile-link" class="pulse infinite"><a href="#pub-home" title="">DÉFILEZ POUR COMMENCER</a></p>
+                </div>
             </div>
         </header>
         <section id="subpages-hero">
@@ -65,6 +68,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 <img src="<?=$base_url?>assets/images/voitures/slogan_voiture4.png" alt="slogan-voiture" id="slogan-voiture">
                 <img src="<?=$base_url?>assets/images/devenir-membre/slogan_devenir_membre.png" alt="slogan-devenir-membre" id="slogan-devenir-membre">
                 <img src="<?=$base_url?>assets/images/membre/slogan_membre.png" alt="slogan-membre" id="slogan-membre">
+                <img src="<?=$base_url?>assets/images/contacter-nous/slogan_contacter_nous.png" alt="slogan-contacter-nous" id="slogan-contacter-nous">
             </div>
         </section>
 
