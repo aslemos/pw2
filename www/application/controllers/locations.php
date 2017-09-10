@@ -1,4 +1,5 @@
 <?php
+
 /*
  *
  *
@@ -149,23 +150,32 @@ class Locations extends CI_Controller {
         $this->load->model('location_model');
 
         $data['base_url'] = base_url();
-        $data['page_title'] = 'Historique des location';
-        $data['usagers'] = $this->usager_model->getUsers();
-        $data['vehicules'] = $this->vehicule_model->getVehiculesByUser($user);
+        $data['page_title'] = 'Historique des locations du membre';
+        $data['title'] = 'Historique des locations';
+        $data['vehicules'] = $this->vehicule_model->getVehicules();
+//        $data['vehicules'] = $this->vehicule_model->getVehiculesByUser($user);
+//echo
+        //       var_dump($data['vehicules']); die();
 
-        $data['title'] = 'Location par membre ';
         $data['locations'] = $this->location_model->getLocationsByUser($user);
 
         $this->load->view('membre/historique_location', $data);
     }
 
     public function locataires() {
-        echo 'TEST TEST TEST';
-        // ici sont les lignes différentes par rapport à la méthode locatairesByUser(), ci-dessus
-        $data['title'] = 'Locataires du membre ';
+        if (!UserAcces::userIsLogged()) {
+            redirect('usagers/login');
+        }
+
+        $user = UserAcces::getLoggedUser();
+        $this->load->model('location_model');
+
+        $data['base_url'] = base_url();
+        $data['page_title'] = 'Locataires du membre';
+        $data['title'] = 'Locataires du membre';
+        $data['usagers'] = $this->usager_model->getUsers();
         $data['locations'] = $this->location_model->getLocatairesByUser($user);
         $this->load->view('membre/historique_locataire', $data); // fichier n'existe pas encore
-
     }
 
     public function locationsByVehicule() {
@@ -184,4 +194,62 @@ class Locations extends CI_Controller {
         $this->load->view('locations/vehicule', $data);
         $this->load->view('common/footer');
     }
+
+    /* afficher formulaire de reservation */
+
+    public function form_location($id) {
+        $data['body_class'] = "subpages voitures";
+        $data['base_url'] = base_url();
+        $data['page_title'] = 'Messages reçus';
+
+        $this->load->model('vehicule_model');
+        $this->load->model('modepaiement_model');
+
+        $data['users'] = UserAcces::getLoggedUser();
+        $data['payements'] = $this->modepaiement_model->getModesPaiements();
+        $data['voitures'] = $this->vehicule_model->getVehicules($id);
+
+
+        $this->load->view('client/form_location', $data);
+    }
+
+    /* inserer Location */
+
+    public function insererLocation() {
+        $data['body_class'] = "subpages voitures";
+        $data['base_url'] = base_url();
+        $data['page_title'] = 'Location reçus';
+
+        $data['date_debut'] = $this->input->post('date_debut');
+        $data['date_fin'] = $this->input->post('date_fin');
+        $data['user_id'] = $this->input->post('user_id');
+        $data['vehicule_id'] = $this->input->post('vehicule_id');
+        $data['paiement_id'] = 1; //$this->input->post('paiement_id');
+
+        // enregistre le location
+        $this->load->model('location_model');
+        $this->location_model->create_location($data);
+
+        $this->load->view('accueil');
+    }
+
+    /* afficher formulaire de payement */
+
+    public function form_payement($id) {
+
+        $data['body_class'] = "subpages voitures";
+        $data['base_url'] = base_url();
+        $data['page_title'] = 'Messages reçus';
+
+        $this->load->model('vehicule_model');
+        $this->load->model('modepaiement_model');
+
+        $data['users'] = UserAcces::getLoggedUser();
+        $data['payements'] = $this->modepaiement_model->getModesPaiements();
+        $data['voitures'] = $this->vehicule_model->getVehicules($id);
+
+
+        $this->load->view('client/form_payemant', $data);
+    }
+
 }

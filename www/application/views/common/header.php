@@ -13,8 +13,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         <!-- Styles -->
         <link href="<?=$base_url?>assets/css/styles.css" rel="stylesheet" type="text/css">
 
-        <link href="<?=$base_url?>assets/css/animate.css" rel="stylesheet" type="text/css">
-
         <!-- Scripts -->
         <script src="<?=$base_url?>assets/js/jquery.min.js" type="text/javascript"></script>
         <script defer src="<?=$base_url?>assets/js/bootstrap.min.js" type="text/javascript"></script>
