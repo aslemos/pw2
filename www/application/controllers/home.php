@@ -25,19 +25,12 @@ class Home extends CI_Controller {
         $this->load->view('home/index', $data);
     }
 
-    public function about() {
-
+    public function apropos() {
         $data['title'] = 'À propos de nous';
-
-        $this->load->view('home/about', $data);
-    }
-
-    public function aboutView() {
-        $data['title'] = 'À propos de nous';
-
-        $this->load->view('common/header');
-        $this->load->view('home/about', $data);
-        $this->load->view('common/footer');
+        $data['page_title'] = 'Accueil';
+        $data['body_class'] = '';
+        $data['base_url'] = base_url();
+        $this->load->view('statique/a-propos', $data);
     }
 
     public function vehicule() {
