@@ -277,11 +277,11 @@ class Vehicule extends CI_Controller {
         $data['meta_keywords'] = '';
         $data['meta_description'] = '';
         $data['base_url'] = base_url();
-        $data['scripts'] = ['formrecherche.js'];
+//        $data['scripts'] = [base_url() . 'assets/js/formrecherche.js'];
 
         $this->load->model('arrondissement_model');
         $data['marques'] = $this->marque_model->getMarques();
-        $data['modeles'] = $this->modele_model->getMarques();
+        $data['modeles'] = $this->modele_model->getModeles();
         $data['types_vehicule'] = $this->vehicule_model->getTypesVehicules();
         $data['carburants'] = $this->vehicule_model->getCarburants();
         $data['transmissions'] = $this->vehicule_model->getTransmissions();
