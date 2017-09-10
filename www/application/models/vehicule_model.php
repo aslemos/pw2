@@ -12,6 +12,54 @@ class Vehicule_model extends CI_Model {
         $this->load->database();
     }
 
+    public function rechercherVehicules(ERecherche $recherche) {
+
+
+        return $this->getVehicules();
+    }
+
+    /**
+     * Trouve un véhicule, y compris ses disponibilités
+     * @param int $vehicule_id L'identifiant du véhicule
+     * @return EVehicule
+     * @author Alessandro Lemos
+     */
+    public function getVehiculeById($vehicule_id) {
+
+        // Véhicule
+        $arr_vehicule = $this->getVehicules($vehicule_id);
+        $vehicule = new EVehicule($arr_vehicule);
+
+        // Proprietaire
+        $vehicule->setProprietaire(new EUsager($arr_vehicule));
+
+        // Modèle
+        $vehicule->setModele(new EModele($arr_vehicule));
+
+        // Marque
+        $vehicule->getModele()->setMarque(new EMarque($arr_vehicule));
+
+        // Type
+        $vehicule->setType(new ETypeVehicule($arr_vehicule));
+
+        // Arrondissement
+        $vehicule->setArrond(new EArrondissement($arr_vehicule));
+
+        // Transmission
+        $vehicule->setTransmission(new ETransmission($arr_vehicule));
+
+        // Carburant
+        $vehicule->setCarburant(new ECarburant($arr_vehicule));
+
+        // Trouve les disponibilités du véchicule
+        $query = $this->db->get_where('disponibilites', 'vehicule_id = ' . $vehicule->getVehiculeId());
+        foreach ($query->result() as $arr_disp) {
+            $vehicule->addDisponibilite(new EDisponibilite($arr_disp));
+        }
+
+        return $vehicule;
+    }
+
     public function getVehicules($vehicule_id = NULL) {
 
         $this->db->order_by('vehicule_id', 'DESC');
@@ -33,25 +81,40 @@ class Vehicule_model extends CI_Model {
         return $query->row_array();
     }
 
-    public function createVehicule($vehicule_photo) { // addVehicule
+    /**
+     * Insère une voiture et la la période de sa première disponibilité
+     * @param EVehicule $vehicule Le véhicule à insérer
+     * @return int L'identifiant de la voiture insérée
+     */
+    public function createVehicule(EVehicule $vehicule) { // addVehicule
+        // insère le véhicule en récuperant les données de l'objet
+        $this->db->insert('vehicules', [
+            'proprietaire_id' => $vehicule->getProprieraireId(),
+            'matricule' => $vehicule->getMatricule(),
+            'annee' => $vehicule->getAnnee(),
+            'nbre_places' => $vehicule->getNbPlaces(),
+            'prix' => $vehicule->getPrix(),
+            'vehicule_photo' => $vehicule->getPhoto(),
+            'type_id' => $vehicule->getTypeId(),
+            'marque_id' => $vehicule->getMarqueId(),
+            'modele_id' => $vehicule->getModeleId(),
+            'carburant_id' => $vehicule->getCarburantId(),
+            'transmission_id' => $vehicule->getTransmissionId(),
+            'arr_id' => $vehicule->getArrondId()
+        ]);
 
-        $data = array(
-            'proprietaire_id' => $this->session->userdata('user_id'),
-            'matricule' => $this->input->post('matricule'),
-            'annee' => $this->input->post('annee'),
-            'nbre_places' => $this->input->post('nbre_places'),
-            'prix' => $this->input->post('prix'),
-            'date_debut' => $this->input->post('date_debut'),
-            'date_fin' => $this->input->post('date_fin'),
-            'type_id' => $this->input->post('type_id'),
-            'modele_id' => $this->input->post('modele_id'),
-            'carburant_id' => $this->input->post('carburant_id'),
-            'transmission_id' => $this->input->post('transmission_id'),
-            'arr_id' => $this->input->post('arr_id'),
-            'vehicule_photo' => $vehicule_photo
-        );
-
-        return $this->db->insert('vehicules', $data);
+        // si la voiture a bien été insérée, on procède à l'insertion de sa disponibilité
+        $vehicule_id = $this->db->insert_id();
+        if ($vehicule_id) {
+            foreach ($vehicule->getDisponibilites() as $disponibilite) {
+                $this->db->insert('disponibilites', [
+                    'vehicule_id' => $vehicule_id,
+                    'date_debut' => $disponibilite->getDateDebut(),
+                    'date_fin' => $disponibilite->getDateFin()
+                ]);
+            }
+        }
+        return $vehicule_id;
     }
 
     public function deleteVehicule($vehicule_id) {
@@ -63,27 +126,22 @@ class Vehicule_model extends CI_Model {
         return true;
     }
 
-    public function updateVehicule(Vehicule $vehicule) {
+    public function updateVehicule(EVehicule $vehicule) {
 
-        $data = array(
-            'matricule' => $this->input->post('matricule'),
-            'annee' => $this->input->post('annee'),
-            'nbre_places' => $this->input->post('nbre_places'),
-            'prix' => $this->input->post('prix'),
-            'date_debut' => $this->input->post('date_debut'),
-            'date_fin' => $this->input->post('date_fin'),
-            'proprietaire_id' => $this->input->post('user_id'),
-            'type_id' => $this->input->post('type_id'),
-            'modele_id' => $this->input->post('modele_id'),
-            'carburant_id' => $this->input->post('carburant_id'),
-            'transmission_id' => $this->input->post('transmission_id'),
-            'arr_id' => $this->input->post('arr_id'),
-//            'vehicule_photo' => $vehicule_photo
-        );
-
-        $this->db->where('vehicule_id', $this->input->post('vehicule_id'));
-
-        return $this->db->update('vehicules', $data);
+        $this->db->where('vehicule_id', $vehicule->getVehiculeId());
+        return $this->db->update('vehicules', [
+            'proprietaire_id' => $vehicule->getProprietaire()->getProprieraireId(),
+            'modele_id' => $vehicule->getModele()->getModeleId(),
+            'carburant_id' => $vehicule->getCarburant()->getCarburantId(),
+            'transmission_id' => $vehicule->getTransmission()->getTransmissionId(),
+            'type_id' => $vehicule->getType()->getTypeId(),
+            'arr_id' => $vehicule->getArrond()->getArrondId(),
+            'matricule' => $vehicule->getMatricule(),
+            'annee' => $vehicule->getAnnee(),
+            'nbre_places' => $vehicule->getNbPlaces(),
+            'prix' => $vehicule->getPrix(),
+            'vehicule_photo' => $vehicule->getPhoto()
+        ]);
     }
 
     public function getVehiculesByMarqueId($marque_id) { //getVehiculesByMrque
@@ -122,10 +180,10 @@ class Vehicule_model extends CI_Model {
 
     /**
      * Trouve les voitures qui appartiennent à un usager donné
-     * @param User $user
+     * @param EUsager $user
      * @return type
      */
-    public function getVehiculesByUser(User $user) {
+    public function getVehiculesByUser(IUsager $user) {
 
         $this->db->order_by('vehicules.vehicule_id', 'DESC');
 
@@ -152,7 +210,7 @@ class Vehicule_model extends CI_Model {
         $this->db->join('carburants', 'vehicules.carburant_id = carburants.carburant_id');
         $this->db->join('transmissions', 'vehicules.transmission_id = transmissions.transmission_id');
 
-        $query = $this->db->get_where('vehicules', array('usagers.user_id' => $user_id));
+        $query = $this->db->get_where('vehicules', array('vehicule.vehicule_id' => $vehicule_id));
 
         return $query->result_array();
     }
@@ -180,15 +238,6 @@ class Vehicule_model extends CI_Model {
         $this->db->order_by('nom_transmission');
 
         $query = $this->db->get('transmissions');
-
-        return $query->result_array();
-    }
-
-    public function getArrondissements() {
-
-        $this->db->order_by('nom_arr');
-
-        $query = $this->db->get('arrondissements');
 
         return $query->result_array();
     }

@@ -7,41 +7,41 @@
 
 class Vehicule extends CI_Controller {
 
+    /**
+     * Affiche la liste complète des véhicules
+     */
     public function index() {
+
+        if (!UserAcces::userIsAdmin()) {
+           redirect('noperm');
+        }
 
         $data['title'] = 'Liste des vehicules';
         $data['meta_keywords'] = '';
         $data['meta_description'] = '';
         $data['page_title'] = 'Voitures';
         $data['body_class'] = 'subpages voitures';
+        $data['base_url'] = base_url();
         $data['vehicules'] = $this->vehicule_model->getVehicules();
 
         $this->load->view('vehicules/index', $data);
-        $this->load->view('client/voitures', $data); // majid
+//        $this->load->view('client/voitures', $data); // majid
     }
-
 
     public function view($vehicule_id = NULL) {
 
-        $data['page_title'] = $data['vehicule']['nom_marque'] . ' ' . $data['vehicule']['nom_modele'];
+        $data['vehicule'] = $this->vehicule_model->getVehiculeById($vehicule_id);
+        $data['page_title'] = 'Détails du ' . $data['vehicule']->getMarque()->getNomMarque() . ' ' . $data['vehicule']->getModele()->getNomModele();
         $data['body_class'] = '';
-        $data['vehicule'] = $this->vehicule_model->getVehicules($vehicule_id);
+        $data['base_url'] = base_url();
 
-        if (empty($data['vehicule'])) {
-            show_404();
-        }
-
-//        $data['vehicule_id'] = $data['vehicule']['vehicule_id'];
-
-        $this->load->view('common/header', $data);
         $this->load->view('vehicules/vehicule', $data);
-        $this->load->view('common/footer');
     }
 
     public function createVehicule() {
 
         // Check login
-        if (!$this->session->userdata('logged_in')) {
+        if (!UserAcces::userIsLogged()) {
             redirect('usagers/login');
         }
         $data['title'] = 'Ajouter un vehicule';
@@ -85,7 +85,44 @@ class Vehicule extends CI_Controller {
                 $vehicule_photo = $_FILES['userfile']['name'];
             }
 
-            $this->vehicule_model->addVehicule($vehicule_photo);
+            $data = '';
+
+            // Instance de véhicule en utilisant les données du POST
+            $vehicule = new EVehicule([
+                'proprietaire' => UserAcces::getLoggedUser(),
+                'type' => $this->typesvehicule_model->getTypeVehiculeById($this->input->post('type_id')),
+                'marque' => $this->marque_model->getMarqueById($this->input->post('marque_id')),
+                'modele' => $this->modele_model->getModeleById($this->input->post('modele_id')),
+                'carburant' => $this->carburant_model->getCarburantById($this->input->post('carburant_id')),
+                'transmission' => $this->transmission_model->getTransmissionById($this->input->post('transmission_id')),
+                'arr' => $this->arrondissement_model->getArrondissementById($this->input->post('arr_id')),
+
+//                'proprietaire_id' => $this->session->userdata('user_id'),
+//                'type_id' => $this->input->post('type_id'),
+//                'marque_id' => $this->input->post('marque_id'),
+//                'modele_id' => $this->input->post('modele_id'),
+//                'carburant_id' => $this->input->post('carburant_id'),
+//                'transmission_id' => $this->input->post('transmission_id'),
+//                'arr_id' => $this->input->post('arr_id'),
+
+                'matricule' => $this->input->post('matricule'),
+                'annee' => $this->input->post('annee'),
+                'nbre_places' => $this->input->post('nbre_places'),
+                'prix' => $this->input->post('prix'),
+                'vehicule_photo' => $vehicule_photo
+            ]);
+
+            // Ajout d'une instance de disponibilité au véhicule
+            //  en utilisant les dates de début/fin du POST
+            $vehicule->addDisponibilite(
+                    new EDisponibilite([
+                        'date_debut' => $this->input->post('date_debut'),
+                        'date_fin' => $this->input->post('date_fin'),
+                    ])
+            );
+
+            // Insertion du véhicule avec sa première date de disponibilisation
+            $this->vehicule_model->createVehicule($vehicule);
             redirect('vehicules');
         }
     }
@@ -93,7 +130,7 @@ class Vehicule extends CI_Controller {
     public function deleteVehicule($vehicule_id) {
 
         // Check login
-        if (!$this->session->userdata('logged_in')) {
+        if (!UserAcces::userIsLogged()) {
             redirect('usagers/login');
         }
         $this->vehicule_model->deleteVehicule($vehicule_id);
@@ -103,7 +140,7 @@ class Vehicule extends CI_Controller {
     public function editVehicule($vehicule_id) {
 
         // Check login
-        if (!$this->session->userdata('logged_in')) {
+        if (!UserAcces::userIsLogged()) {
             redirect('usagers/login');
         }
         $data['vehicule'] = $this->vehicule_model->getVehicules($vehicule_id);
@@ -130,7 +167,7 @@ class Vehicule extends CI_Controller {
     public function updateVehicule() {
 
         // Check login
-        if (!$this->session->userdata('logged_in')) {
+        if (!UserAcces::userIsLogged()) {
             redirect('usagers/login');
         }
 
@@ -158,7 +195,7 @@ class Vehicule extends CI_Controller {
     public function vehiculeByUser() {
 
         // Check login
-        if (!$this->session->userdata('logged_in')) {
+        if (!UserAcces::userIsLogged()) {
 
             redirect('usagers/login');
         }
@@ -184,7 +221,6 @@ class Vehicule extends CI_Controller {
         //$this->load->view('vehicules/index', $data);
         $this->load->view('common/footer');
     }
-
 
     public function get_cars() {
 
@@ -241,11 +277,18 @@ class Vehicule extends CI_Controller {
         $data['meta_keywords'] = '';
         $data['meta_description'] = '';
         $data['base_url'] = base_url();
+        $data['scripts'] = ['formrecherche.js'];
 
-//        $this->load->model('vehicule_model');
-//        $data['resultat'] = $this->vehicule_model->getVehicules(Recherche::getRecherche());
+        $this->load->model('arrondissement_model');
+        $data['marques'] = $this->marque_model->getMarques();
+        $data['modeles'] = $this->modele_model->getMarques();
+        $data['types_vehicule'] = $this->vehicule_model->getTypesVehicules();
+        $data['carburants'] = $this->vehicule_model->getCarburants();
+        $data['transmissions'] = $this->vehicule_model->getTransmissions();
+        $data['arrondissements'] = $this->arrondissement_model->getArrondissements();
+
+
+        $data['resultat'] = $this->vehicule_model->rechercherVehicules(new ERecherche($this->input->post()));
         $this->load->view('vehicules/vehicule', $data);
     }
-
-
 }
