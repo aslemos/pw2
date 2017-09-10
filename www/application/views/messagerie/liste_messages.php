@@ -26,7 +26,7 @@ require VIEWPATH . 'common/header.php';
         <th>Sujet</th>
     </tr>
 <?php foreach($messages as $message) {
-    $class = $list_type == 'E' && $message->etat == Message::MSG_ETAT_NON_LU
+    $class = $list_type == 'E' && $message->etat == EMessage::MSG_ETAT_NON_LU
             ? 'msg-nonlu'
             : '';
 ?>
