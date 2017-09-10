@@ -14,33 +14,22 @@ class Vehicule_model extends CI_Model {
 
     public function getVehicules($vehicule_id = NULL) {
 
-        if ($vehicule_id == NULL) {
-
-            $this->db->order_by('vehicule_id', 'DESC');
-
-            $this->db->join('usagers', 'vehicules.proprietaire_id = usagers.user_id');
-            $this->db->join('type_vehicules', 'vehicules.type_id = type_vehicules.type_id');
-            $this->db->join('marques', 'vehicules.marque_id = marques.marque_id');
-            $this->db->join('modeles', 'vehicules.modele_id = modeles.modele_id');
-            $this->db->join('carburants', 'vehicules.carburant_id = carburants.carburant_id');
-            $this->db->join('transmissions', 'vehicules.transmission_id = transmissions.transmission_id');
-            $this->db->join('arrondissements', 'vehicules.arr_id = arrondissements.arr_id');
-
-            $query = $this->db->get('vehicules');
-
-            return $query->result_array();
-        }
+        $this->db->order_by('vehicule_id', 'DESC');
 
         $this->db->join('usagers', 'vehicules.proprietaire_id = usagers.user_id');
         $this->db->join('type_vehicules', 'vehicules.type_id = type_vehicules.type_id');
-        $this->db->join('marques', 'vehicules.marque_id = marques.marque_id');
         $this->db->join('modeles', 'vehicules.modele_id = modeles.modele_id');
+        $this->db->join('marques', 'modeles.marque_id = marques.marque_id');
         $this->db->join('carburants', 'vehicules.carburant_id = carburants.carburant_id');
         $this->db->join('transmissions', 'vehicules.transmission_id = transmissions.transmission_id');
         $this->db->join('arrondissements', 'vehicules.arr_id = arrondissements.arr_id');
 
-        $query = $this->db->get_where('vehicules', array('vehicule_id' => $vehicule_id));
+        if ($vehicule_id == NULL) {
+            $query = $this->db->get('vehicules');
+            return $query->result_array();
+        }
 
+        $query = $this->db->get_where('vehicules', array('vehicule_id' => $vehicule_id));
         return $query->row_array();
     }
 
@@ -55,7 +44,6 @@ class Vehicule_model extends CI_Model {
             'date_debut' => $this->input->post('date_debut'),
             'date_fin' => $this->input->post('date_fin'),
             'type_id' => $this->input->post('type_id'),
-            'marque_id' => $this->input->post('marque_id'),
             'modele_id' => $this->input->post('modele_id'),
             'carburant_id' => $this->input->post('carburant_id'),
             'transmission_id' => $this->input->post('transmission_id'),
@@ -86,12 +74,11 @@ class Vehicule_model extends CI_Model {
             'date_fin' => $this->input->post('date_fin'),
             'proprietaire_id' => $this->input->post('user_id'),
             'type_id' => $this->input->post('type_id'),
-            'marque_id' => $this->input->post('marque_id'),
             'modele_id' => $this->input->post('modele_id'),
             'carburant_id' => $this->input->post('carburant_id'),
             'transmission_id' => $this->input->post('transmission_id'),
             'arr_id' => $this->input->post('arr_id'),
-            'vehicule_photo' => $vehicule_photo
+//            'vehicule_photo' => $vehicule_photo
         );
 
         $this->db->where('vehicule_id', $this->input->post('vehicule_id'));
@@ -103,9 +90,10 @@ class Vehicule_model extends CI_Model {
 
         $this->db->order_by('vehicules.vehicule_id', 'DESC');
 
-        $this->db->join('marques', 'marques.marque_id = vehicules.marque_id');
+        $this->db->join('modeles', 'vehicules.modele_id = modeles.modele_id');
+        $this->db->join('marques', 'marques.marque_id = modeles.marque_id');
 
-        $query = $this->db->get_where('vehicules', array('marques.marque_id' => $marque_id));
+        $query = $this->db->get_where('vehicules', array('modeles.marque_id' => $marque_id));
 
         return $query->result_array();
     }
@@ -142,8 +130,8 @@ class Vehicule_model extends CI_Model {
         $this->db->order_by('vehicules.vehicule_id', 'DESC');
 
         $this->db->join('usagers', 'usagers.user_id = vehicules.proprietaire_id');
-        $this->db->join('marques', 'marques.marque_id = vehicules.marque_id');
         $this->db->join('modeles', 'vehicules.modele_id = modeles.modele_id');
+        $this->db->join('marques', 'marques.marque_id = modeles.marque_id');
         $this->db->join('type_vehicules', 'vehicules.type_id = type_vehicules.type_id');
         $this->db->join('arrondissements', 'vehicules.arr_id = arrondissements.arr_id');
 
@@ -157,8 +145,8 @@ class Vehicule_model extends CI_Model {
         $this->db->order_by('vehicules.vehicule_id', 'DESC');
 
         $this->db->join('usagers', 'usagers.user_id = vehicules.proprietaire_id');
-        $this->db->join('marques', 'marques.marque_id = vehicules.marque_id');
         $this->db->join('modeles', 'vehicules.modele_id = modeles.modele_id');
+        $this->db->join('marques', 'marques.marque_id = modeles.marque_id');
         $this->db->join('type_vehicules', 'vehicules.type_id = type_vehicules.type_id');
         $this->db->join('arrondissements', 'vehicules.arr_id = arrondissements.arr_id');
         $this->db->join('carburants', 'vehicules.carburant_id = carburants.carburant_id');

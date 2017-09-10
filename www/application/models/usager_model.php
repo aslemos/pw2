@@ -88,7 +88,7 @@ class usager_model extends CI_Model {
         $result = $this->db->get('usagers');
 
         if ($result->num_rows() == 1) {
-            return new User($result->row_array(0));
+            return new EUsager($result->row_array(0));
         }
         return NULL;
     }

@@ -52,4 +52,7 @@ ALTER TABLE usagers ADD CONSTRAINT FK_usagers_ville_id FOREIGN KEY (ville_id) RE
 # Table: vehicules
 #------------------------------------------------------------
 
-ALTER TABLE `vehicules` CHANGE `user_id` `proprietaire_id` INT(11);
+ALTER TABLE vehicules CHANGE user_id proprietaire_id INT(11);
+ALTER TABLE vehicules ADD etat INT(3) NOT NULL DEFAULT -1;
+ALTER TABLE vehicules DROP FOREIGN KEY FK_vehicules_marque_id;
+ALTER TABLE vehicules DROP marque_id;
