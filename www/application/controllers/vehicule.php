@@ -201,23 +201,6 @@ class Vehicule extends CI_Controller {
         $this->load->view('client/liste_voitures', $data);
     }
 
-    public function form_location($id) {
-
-        $data['body_class'] = "subpages voitures";
-        $data['base_url'] = base_url();
-        $data['page_title'] = 'Messages reçus';
-
-        $this->load->model('vehicule_model');
-        $this->load->model('modepaiement_model');
-
-        $data['users'] = UserAcces::getLoggedUser();
-        $data['payements'] = $this->modepaiement_model->getModesPaiements();
-        $data['voitures'] = $this->vehicule_model->getVehicules($id);
-
-
-        $this->load->view('client/form_location', $data);
-    }
-
     public function insert_payement() {
 
         $this->load->model('voiture2');

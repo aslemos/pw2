@@ -36,18 +36,24 @@ class Location_model extends CI_Model {
         return $query->row_array();
     }
 
-    public function create_location() {
 
-        $data = array(
-            'date_debut' => $this->input->post('date_debut'),
-            'date_fin' => $this->input->post('date_fin'),
-            'user_id' => $this->session->userdata('user_id'),
-            'vehicule_id' => $this->input->post('vehicule_id'),
-            'paiement_id' => $this->input->post('paiement_id')
-        );
 
-        return $this->db->insert('locations', $data);
+    public function create_location($data) {
+
+//        $data = array(
+//            'date_debut' => $this->input->post('date_debut'),
+//            'date_fin' => $this->input->post('date_fin'),
+//            'user_id' => $this->session->userdata('user_id'),
+//            'vehicule_id' => $this->input->post('vehicule_id'),
+//            'paiement_id' => $this->input->post('paiement_id')
+//        );
+
+        $this->db->insert('locations', $data);
+
     }
+
+
+
 
     public function delete_location($location_id) {
 
@@ -98,6 +104,8 @@ class Location_model extends CI_Model {
 
         $this->db->order_by('locations.location_id', 'DESC');
         $this->db->join('vehicules', 'locations.vehicule_id = vehicules.vehicule_id');
+        $this->db->join('modeles', 'vehicules.modele_id = modeles.modele_id');
+        $this->db->join('marques', 'vehicules.marque_id = marques.marque_id');
         $query = $this->db->get_where('locations', array('locations.user_id' => $user->getUserId()));
 
         return $query->result_array();
