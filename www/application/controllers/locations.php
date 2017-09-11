@@ -11,7 +11,7 @@ class Locations extends CI_Controller {
     public function index() {
 
         // Check login
-        if (!$this->session->userdata('logged_in')) {
+        if (!UserAcces::userIsLogged()) {
 
             redirect('usagers/login');
         }
@@ -28,7 +28,7 @@ class Locations extends CI_Controller {
     public function view($location_id = NULL) {
 
         // Check login
-        if (!$this->session->userdata('logged_in')) {
+        if (!UserAcces::userIsLogged()) {
 
             redirect('usagers/login');
         }
@@ -46,10 +46,29 @@ class Locations extends CI_Controller {
         $this->load->view('common/footer');
     }
 
+    public function louer_car($id) { // à vérifier
+
+
+        $this->load->model('location');
+
+
+        $data = array(
+            'vehicule_id' => $this->input->post('vehicule_id'),
+            'date_debut ' => $this->input->post('date_debut'),
+            'date_fin' => $this->input->post('date_fin')
+        );
+
+        //Transfering data to Model
+        $this->insert_model->form_insert($data);
+        $data['message'] = 'Data Inserted Successfully';
+//Loading View
+        $this->load->view('insert_view', $data);
+    }
+
     public function createLocation() {
 
         // Check login
-        if (!$this->session->userdata('logged_in')) {
+        if (!UserAcces::userIsLogged()) {
 
             redirect('usagers/login');
         }
@@ -78,7 +97,7 @@ class Locations extends CI_Controller {
     public function deleteLocation($location_id) {
 
         // Check login
-        if (!$this->session->userdata('logged_in')) {
+        if (!UserAcces::userIsLogged()) {
             redirect('usagers/login');
         }
         $this->location_model->deleteLocation($location_id);
@@ -88,7 +107,7 @@ class Locations extends CI_Controller {
     public function editLocation() {
 
         // Check login
-        if (!$this->session->userdata('logged_in')) {
+        if (!UserAcces::userIsLogged()) {
             redirect('usagers/login');
         }
 
@@ -111,7 +130,7 @@ class Locations extends CI_Controller {
     public function updateLocation() {
 
         // Check login
-        if (!$this->session->userdata('logged_in')) {
+        if (!UserAcces::userIsLogged()) {
             redirect('usagers/login');
         }
 
@@ -131,14 +150,13 @@ class Locations extends CI_Controller {
         $this->load->model('location_model');
 
         $data['base_url'] = base_url();
-        $data['page_title'] = 'Historique des location';
-        $data['usagers'] = $this->usager_model->getUsers();
+        $data['page_title'] = 'Historique des locations du membre';
+        $data['title'] = 'Historique des locations';
         $data['vehicules'] = $this->vehicule_model->getVehicules();
 //        $data['vehicules'] = $this->vehicule_model->getVehiculesByUser($user);
 //echo
         //       var_dump($data['vehicules']); die();
 
-        $data['title'] = 'Location par membre ';
         $data['locations'] = $this->location_model->getLocationsByUser($user);
 
         $this->load->view('membre/historique_location', $data);
@@ -154,10 +172,9 @@ class Locations extends CI_Controller {
         $this->load->model('location_model');
 
         $data['base_url'] = base_url();
-        $data['page_title'] = 'Historique des Locataires';
+        $data['page_title'] = 'Locataires du membre';
+        $data['title'] = 'Locataires du membre';
         $data['usagers'] = $this->usager_model->getUsers();
-        $data['vehicules'] = $this->vehicule_model->getVehicules();
-
         $data['locations'] = $this->location_model->getLocatairesByUser($user);
         $this->load->view('membre/historique_locataires', $data); // fichier n'existe pas encore
     }
@@ -179,8 +196,8 @@ class Locations extends CI_Controller {
         $this->load->view('common/footer');
     }
 
-    /* afficher formulaire de reservation */
 
+    /* afficher formulaire de reservation */
     public function form_location($id) {
         $data['body_class'] = "subpages voitures";
         $data['base_url'] = base_url();
@@ -190,35 +207,35 @@ class Locations extends CI_Controller {
         $this->load->model('modepaiement_model');
 
         $data['users'] = UserAcces::getLoggedUser();
-        $data['payements'] = $this->modepaiement_model->getModesPaiements();
         $data['voitures'] = $this->vehicule_model->getVehicules($id);
-
+          $data['payements'] = $this->modepaiement_model->getModesPaiements();
 
         $this->load->view('client/form_location', $data);
     }
 
-    /* inserer Location */
 
+    /* inserer Resarvation */
     public function insererLocation() {
-        $data['body_class'] = "subpages voitures";
+        //$data['body_class'] = "subpages voitures";
         $data['base_url'] = base_url();
-        $data['page_title'] = 'Location reçus';
+        //$data['page_title'] = 'Location reçus';
 
-        $data['date_debut'] = $this->input->post('date_debut');
-        $data['date_fin'] = $this->input->post('date_fin');
-        $data['user_id'] = $this->input->post('user_id');
-        $data['vehicule_id'] = $this->input->post('vehicule_id');
-        $data['paiement_id'] = 1; //$this->input->post('paiement_id');
+        $data1['date_debut'] = $this->input->post('date_debut');
+        $data1['date_fin'] = $this->input->post('date_fin');
+        $data1['user_id'] = $this->input->post('user_id');
+        $data1['vehicule_id'] = $this->input->post('vehicule_id');
 
         // enregistre le location
         $this->load->model('location_model');
-        $this->location_model->create_location($data);
+        $this->location_model->create_location($data1);
 
-        $this->load->view('accueil');
+        //$this->load->view('accueil',$data );
+        redirect('accueil');
     }
 
-    /* afficher formulaire de payement */
 
+
+    /* afficher formulaire de payement */
     public function form_payement($id) {
 
         $data['body_class'] = "subpages voitures";

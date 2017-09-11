@@ -29,8 +29,8 @@
                 <div class="row">
                     <div class="col-md-6">
                         <label>Marque
-                            <input type="text" name="marque" disabled value="<?= $voitures['nom_marque']; ?> "/>
-                            <input type="hidden" name="userId" value="<?= $voitures['vehicule_id'];  ?> ">
+                             <input type="text" name="marque" disabled value="<?= $voitures['nom_marque']; ?> "/>
+                            <input type="hidden" name="vehicule_id" value="<?= $voitures['vehicule_id'];  ?> ">
                         </label>
                     </div>
                     <div class="col-md-6">
@@ -91,12 +91,12 @@
                 <div class="row">
                     <div class="col-md-6">
                         <label>Date debut
-                            <input type="text" name="date_debut" disabled value="<?= $voitures['date_debut'] ?> "/>
+                            <input type="text" name="date_debut"  value="<?= $voitures['date_debut'] ?>"/>
                         </label>
                     </div>
                     <div class="col-md-6">
                         <label>Date fin
-                            <input type="text" name="date_fin" disabled value="<?= $voitures['date_fin'] ?> "/>
+                            <input type="text" name="date_fin" value="<?= $voitures['date_fin'] ?> "/>
                         </label>
                     </div>
                 </div>
@@ -120,7 +120,7 @@
                     <div class="col-md-6">
                         <label>Nom
                             <input type="text" name="nom" disabled value="<?= $users->getNom() ?> "/>
-                            <input type="hidden" name="userId" value="<?= $users->getUserId() ?> ">
+                            <input type="hidden" name="user_id" value="<?= $users->getUserId() ?> ">
 
                         </label>
                     </div>

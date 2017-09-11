@@ -1,6 +1,6 @@
 
-<?php include (APPPATH . "/views/common/navbar_user.php"); ?>
-	
+<?php include (VIEWPATH . "client/boutons_client.php"); ?>
+
 <h3><?php echo $title; ?></h3>
 <form action="" name="frm-vehicule" id="form-vehicules">
     <div class="table-responsive">
@@ -25,7 +25,7 @@
             </thead>
             <tbody>
             <?php foreach ($vehicules AS $vehicule) : ?>
-                <tr>				
+                <tr>
                     <td class=""><?php echo $vehicule['vehicule_id']?></td>
                     <td class=""><?php echo $vehicule['nom_marque']?></td>
                     <td class=""><?php echo $vehicule['nom_modele']?></td>
@@ -49,9 +49,8 @@
                     </td>
                     <?php endif; ?>
                 </tr>
-            <?php endforeach; ?>					
+            <?php endforeach; ?>
             </tbody>
         </table>
     </div>
 </form>
-        

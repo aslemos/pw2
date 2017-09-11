@@ -1,6 +1,6 @@
 <?php
 
-final class Recherche {
+final class ERecherche {
 
     private $dateIni;
     private $dateFin;
@@ -14,6 +14,21 @@ final class Recherche {
     private $lieu;
     private $prixMin;
     private $prixMax;
+
+    public function __construct(array $data) {
+        $this->setAnnee(isset($data['annee']) ? $data['annee'] : '');
+        $this->setCarburant(isset($data['carburant']) ? $data['carburant'] : '');
+        $this->setCarrocerie(isset($data['carrocerie']) ? $data['carrocerie'] : '');
+        $this->setDateFin(isset($data['dateFin']) ? $data['dateFin'] : '');
+        $this->setDateIni(isset($data['dateIni']) ? $data['dateIni'] : '');
+        $this->setLieu(isset($data['lieu']) ? $data['lieu'] : '');
+        $this->setMarque(isset($data['marque']) ? $data['marque'] : '');
+        $this->setModele(isset($data['modele']) ? $data['modele'] : '');
+        $this->setPlaces(isset($data['places']) ? $data['places'] : '');
+        $this->setPrixMax(isset($data['prixMax']) ? $data['prixMax'] : '');
+        $this->setPrixMin(isset($data['prixMin']) ? $data['prixMin'] : '');
+        $this->setTransmission(isset($data['transmission']) ? $data['transmission'] : '');
+    }
 
     public function getDateIni() {
         return $this->dateIni;
@@ -109,22 +124,5 @@ final class Recherche {
 
     public function setPrixMax($prixMax) {
         $this->prixMax = $prixMax;
-    }
-
-    static function getRecherche() {
-        $recherche = new Recherche();
-        $recherche->setAnnee(isset($this->post['annee']) ? $this->post['annee'] : '');
-        $recherche->setCarburant(isset($this->post['carburant']) ? $this->post['carburant'] : '');
-        $recherche->setCarrocerie(isset($this->post['carrocerie']) ? $this->post['carrocerie'] : '');
-        $recherche->setDateFin(isset($this->post['dateFin']) ? $this->post['dateFin'] : '');
-        $recherche->setDateIni(isset($this->post['dateIni']) ? $this->post['dateIni'] : '');
-        $recherche->setLieu(isset($this->post['lieu']) ? $this->post['lieu'] : '');
-        $recherche->setMarque(isset($this->post['marque']) ? $this->post['marque'] : '');
-        $recherche->setModele(isset($this->post['modele']) ? $this->post['modele'] : '');
-        $recherche->setPlaces(isset($this->post['places']) ? $this->post['places'] : '');
-        $recherche->setPrixMax(isset($this->post['prixMax']) ? $this->post['prixMax'] : '');
-        $recherche->setPrixMin(isset($this->post['prixMin']) ? $this->post['prixMin'] : '');
-        $recherche->setTransmission(isset($this->post['transmission']) ? $this->post['transmission'] : '');
-        return $recherche;
     }
 }

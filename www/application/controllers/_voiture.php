@@ -63,7 +63,7 @@ class Voiture extends CI_Controller {
         $data['meta_description'] = '';
         $data['page_title'] = 'Voitures';
         $data['body_class'] = 'subpages voitures';
-        $data['resultat'] = $this->model_voiture->getVoitures(Recherche::getRecherche());
+        $data['resultat'] = $this->model_voiture->getVoitures(ERecherche::getInstance());
         $this->load->view('client/voitures');
     }
 

@@ -1,7 +1,7 @@
-	
+<?php include VIEWPATH . 'common/header.php'; ?>
 <h2><?php echo $title; ?></h2>
 <div class="row">
-    <div class="col-sm-12 col-md-12 col-lg-10">            
+    <div class="col-sm-12 col-md-12 col-lg-10">
         <form action="" name="formulaire" id="form-voitures-id">
         <div class="table-responsive">
             <table class="table table-striped">
@@ -18,8 +18,8 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <?php foreach ($usagers AS $user) : ?>
-                    <tr>				
+                    <?php foreach ($usagers as $user) : ?>
+                    <tr>
                         <td class=""><?php echo $user['user_id']?></td>
                         <td class=""><?php echo $user['prenom']?></td>
                         <td class=""><?php echo $user['nom']?></td>
@@ -28,15 +28,16 @@
                         <td class=""><?php echo $user['courriel']?></td>
                         <td class=""><?php echo $user['nom_role']; ?></td>
                         <td>
-                            <a class="" href="<?php echo site_url('/usagers/'.$user['user_id']); ?>">
-                                <img class="img-responsive" src="<?= site_url(); ?>assets/images/usagers/<?php echo $user['user_photo']?>" >
+                            <a class="" href="<?php echo $base_url . 'usager/view/' . $user['user_id']; ?>">
+                                <img class="img-responsive" src="<?= $base_url; ?>assets/images/usagers/<?php echo $user['user_photo']?>" >
                             </a>
                         </td>
                     </tr>
-                    <?php endforeach; ?>					
+                    <?php endforeach; ?>
                 </tbody>
             </table>
         </div>
         </form>
-    </div>    
+    </div>
 </div>
+<?php include VIEWPATH . 'common/footer.php'; ?>

@@ -1,0 +1,6 @@
+
+* 11/09
+x [asl] vérifier la page de modification d'usager : ne pas permettre modifier rôle si on est pas superadmin
+x [asl] éliminer les champs date_debut / date_fin de la table 'voiture'
+- faire fonctionner le form ajouter voiture
+- formulaire location (réservation)
