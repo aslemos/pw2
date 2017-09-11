@@ -15,6 +15,7 @@ class usager_model extends CI_Model {
     public function getUsers($user_id = NULL) {
 
         $this->db->join('roles', 'roles.role_id = usagers.role_id');
+        $this->db->join('villes', 'villes.ville_id = usagers.ville_id');
 
         if ($user_id == NULL) {
             $this->db->order_by('usagers.prenom', 'ASC');
@@ -88,7 +89,7 @@ class usager_model extends CI_Model {
         $result = $this->db->get('usagers');
 
         if ($result->num_rows() == 1) {
-            return new User($result->row_array(0));
+            return new EUsager($result->row_array(0));
         }
         return NULL;
     }
@@ -130,23 +131,9 @@ class usager_model extends CI_Model {
         return true;
     }
 
-    public function updateUser() {
+    public function updateUser($data) {
 
-        $data = array(
-            'prenom' => $this->input->post('prenom'),
-            'nom' => $this->input->post('nom'),
-            'permis_conduire' => $this->input->post('permis_conduire'),
-            'adresse' => $this->input->post('adresse'),
-            'ville' => $this->input->post('ville'),
-            'code_postal' => $this->input->post('code_postal'),
-            'telephone' => $this->input->post('telephone'),
-            'courriel' => $this->input->post('email'),
-            'motdepasse' => $this->input->post('password'),
-            'role_id' => $this->input->post('role_id')
-        );
-
-        $this->db->where('user_id', $this->input->post('user_id'));
-
+        $this->db->where('user_id', $data['user_id']);
         return $this->db->update('usagers', $data);
     }
 

@@ -5,7 +5,7 @@
  * and open the template in the editor.
  */
 
-class Reclamation extends Message {
+class EReclamation extends EMessage {
 
     protected $type = self::MSG_TYPE_RECLAMATION;
 

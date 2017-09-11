@@ -2,10 +2,6 @@
 
 class Usager extends CI_Controller {
 
-//    public function __construct() {
-//        parent::__construct();
-//    }
-
     public function index() {
 
         // Check login
@@ -13,17 +9,16 @@ class Usager extends CI_Controller {
             redirect('usager/login');
         }
         if (!UserAcces::userIsAdmin()) {
-            redirect('usager/login'); // TODO: utiliser une page d'erreur personnalisée
+            redirect('noperm'); // TODO: utiliser une page d'erreur personnalisée
         }
 
         $data['title'] = 'Liste des usagers';
+        $data['body_class'] = '';
+        $data['base_url'] = base_url();
 
         $data['usagers'] = $this->usager_model->getUsers();
 
-        $this->load->view('common/header');
-//        $this->load->view('user/login');
         $this->load->view('usagers/index', $data);
-        $this->load->view('common/footer');
 
     }
 
@@ -166,9 +161,8 @@ class Usager extends CI_Controller {
     public function view($user_id = NULL) {
 
         // Check login
-        if (!$this->session->userdata('logged_in')) {
-
-            redirect('usagers/login');
+        if (!UserAcces::userIsAdmin()) {
+            redirect('noperm');
         }
 
         $data['user'] = $this->usager_model->getUsers($user_id);
@@ -177,16 +171,16 @@ class Usager extends CI_Controller {
             show_404();
         }
 
+        $data['page_title'] = 'Détails de lusager ' . $data['user']['prenom'] . ' ' . $data['user']['nom'];
+        $data['base_url'] = base_url();
         $data['prenom'] = $data['user']['prenom'];
         $data['nom'] = $data['user']['nom'];
 
-        $this->load->view('common/header');
         $this->load->view('usagers/usager', $data);
-        $this->load->view('common/footer');
     }
 
     // verifier si l'usager existe
-    public function checkUsernameExists($username) {
+    private function checkUsernameExists($username) {
 
         $this->form_validation->set_message('check_username_exists', 'Ce nom utilisateur existe!<br />Choisir un autre ou connectez-vous');
 
@@ -200,7 +194,7 @@ class Usager extends CI_Controller {
     }
 
     // Check if email exists
-    public function checkEmailExists($email) {
+    private function checkEmailExists($email) {
 
         $this->form_validation->set_message('check_email_exists', 'Ce courriel exist déjà!<br />Choisir un autre ou connectez-vous');
 
@@ -217,15 +211,8 @@ class Usager extends CI_Controller {
     public function deleteUser($user_id) {
 
         // Check login
-        if (!$this->session->userdata('logged_in')) {
-
-            redirect('usagers/login');
-        }
-
-        // Check login
-        if (!$this->session->userdata('logged_in')) {
-
-            redirect('usagers/login');
+        if (!UserAcces::userIsAdmin()) {
+            redirect('noperm');
         }
 
         $this->usager_model->delete_user($user_id);
@@ -236,15 +223,8 @@ class Usager extends CI_Controller {
     public function editUser($user_id) {
 
         // Check login
-        if (!$this->session->userdata('logged_in')) {
-
-            redirect('usagers/login');
-        }
-
-        // Check login
-        if (!$this->session->userdata('logged_in')) {
-
-            redirect('usagers/login');
+        if (!UserAcces::userIsAdmin()) {
+            redirect('noperm');
         }
 
         $data['user'] = $this->usager_model->getUsers($user_id);
@@ -258,29 +238,42 @@ class Usager extends CI_Controller {
             show_404();
         }
 
-        $data['title'] = 'Mise à jour user';
+        $this->load->model('arrondissement_model');
+        $data['page_title'] = 'Mise à jour usager';
+        $data['title'] = 'Mise à jour usager';
+        $data['base_url'] = base_url();
+        $data['villes'] = $this->arrondissement_model->getVilles();
 
-        $this->load->view('common/header');
         $this->load->view('usagers/edit', $data);
-        $this->load->view('common/footer');
     }
 
     public function updateUser() {
 
-        // Check login
-        if (!$this->session->userdata('logged_in')) {
-
-            redirect('usagers/login');
+        // Check permission
+        if (!UserAcces::userIsAdmin()) {
+            redirect('noperm');
         }
 
-        // Check login
-        if (!$this->session->userdata('logged_in')) {
+        $data = array(
+            'user_id' => $this->input->post('user_id'),
+            'prenom' => $this->input->post('prenom'),
+            'nom' => $this->input->post('nom'),
+            'permis_conduire' => $this->input->post('permis_conduire'),
+            'adresse' => $this->input->post('adresse'),
+            'ville_id' => $this->input->post('ville_id'),
+            'code_postal' => $this->input->post('code_postal'),
+            'telephone' => $this->input->post('telephone'),
+            'courriel' => $this->input->post('courriel'),
+            'motdepasse' => $this->input->post('password')
+        );
 
-            redirect('usagers/login');
+        // Ne met à jour que si l'usager est superadmin
+        if (UserAcces::userIsSuperAdmin() && $this->input->post('role_id')) {
+            $data['role_id'] = $this->input->post('role_id');
         }
 
-        $this->usager_model->updateUser();
+        $this->usager_model->updateUser($data);
 
-        redirect('usagers');
+        redirect('usager');
     }
 }

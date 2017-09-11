@@ -27,7 +27,7 @@ class User_model extends CI_Model {
     public function getUserById($user_id) { //get_user
         $users = $this->getUsers($user_id);
         if (count($users) == 1) {
-            return new User($users[0]);
+            return new EUsager($users[0]);
         }
         return NULL;
     }
@@ -65,7 +65,7 @@ class User_model extends CI_Model {
         $result = $this->db->get('usagers');
 
         if ($result->num_rows() == 1) {
-            return new User($result->row(0));
+            return new EUsager($result->row(0));
         }
         return NULL;
     }
@@ -105,7 +105,7 @@ class User_model extends CI_Model {
         return true;
     }
 
-    public function updateUser(User $user) { //update_user
+    public function updateUser(EUsager $user) { //update_user
 
         $data = array(
             'prenom' => $this->input->post('prenom'),

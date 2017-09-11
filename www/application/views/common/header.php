@@ -35,6 +35,27 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
         <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
+<?php
+        if (isset($styles) && is_array($styles)) { // boucle d'ajout des styles customisés
+            foreach ($styles as $pos => $style) {
+?>
+        <link rel="stylesheet" href="<?=$style?>">
+<?php
+            }
+        }
+        if (isset($scripts) && is_array($scripts)) { // boucle d'ajout des scripts customisés
+            foreach ($scripts as $pos => $script) {
+?>
+        <script src="<?=$script?>"></script>
+<?php
+            }
+        }
+
+        // S'assure d'avoir la variable $body_class
+        $body_class = isset($body_class)
+                ? $body_class
+                : '';
+?>
     </head>
     <body class="bg-body <?php echo $body_class; ?>">
         <header>
@@ -50,7 +71,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                         <div class="menu-container">
                             <button class="btn-menu hidden-md hidden-lg" id="open-side-menu">MENU <i class="fa fa-bars" aria-hidden="true"></i></button>
                             <?php include (VIEWPATH . "common/menu.php");?>
-                            <?php //include (VIEWPATH . "common/navbar_top.php"); ?>
                         </div>
                     </div>
                 </div>
@@ -74,46 +94,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
         <div class="container">
             <!-- Flash messages -->
-            <?php if ($this->session->flashdata('user_registered')): ?>
-                <?php echo '<p class="alert alert-success text-center"><strong>' . $this->session->flashdata('user_registered') . '</strong></p>'; ?>
+            <?php if ($this->session->flashdata('msg_success')): ?>
+                <p class="alert alert-success text-center"><strong><?=$this->session->flashdata('msg_success') ?></strong></p>
+            <?php endif; ?>
+            <?php if ($this->session->flashdata('msg_error')): ?>
+                <p class="alert alert-danger text-center"><strong><?=$this->session->flashdata('msg_error') ?></strong></p>
             <?php endif; ?>
 
-            <?php if ($this->session->flashdata('vehicule_created')): ?>
-                <?php echo '<p class="alert alert-success text-center"><strong>' . $this->session->flashdata('vehicule_created') . '</strong></p>'; ?>
-            <?php endif; ?>
-
-            <?php if ($this->session->flashdata('vehicule_updated')): ?>
-                <?php echo '<p class="alert alert-success text-center"><strong>' . $this->session->flashdata('vehicule_updated') . '</strong></p>'; ?>
-            <?php endif; ?>
-
-            <?php if ($this->session->flashdata('marque_created')): ?>
-                <?php echo '<p class="alert alert-success text-center"><strong>' . $this->session->flashdata('marque_created') . '</strong></p>'; ?>
-            <?php endif; ?>
-            <?php if ($this->session->flashdata('modele_created')): ?>
-                <?php echo '<p class="alert alert-success text-center"><strong>' . $this->session->flashdata('modele_created') . '</strong></p>'; ?>
-            <?php endif; ?>
-            <?php if ($this->session->flashdata('vehicule_deleted')): ?>
-                <?php echo '<p class="alert alert-success text-center"><strong>' . $this->session->flashdata('vehicule_deleted') . '</strong></p>'; ?>
-            <?php endif; ?>
-
-            <?php if ($this->session->flashdata('login_failed')): ?>
-                <?php echo '<p class="alert alert-danger text-center"><strong>' . $this->session->flashdata('login_failed') . '</strong></p>'; ?>
-            <?php endif; ?>
-
-            <?php if ($this->session->flashdata('user_loggedin')): ?>
-                <?php echo '<p class="alert alert-success text-center"><strong>' . $this->session->flashdata('user_loggedin') . '</strong></p>'; ?>
-            <?php endif; ?>
-
-            <?php if ($this->session->flashdata('user_loggedout')): ?>
-                <?php echo '<p class="alert alert-success text-center"><strong>' . $this->session->flashdata('user_loggedout') . '</strong></p>'; ?>
-            <?php endif; ?>
-
-            <?php if ($this->session->flashdata('marque_deleted')): ?>
-                <?php echo '<p class="alert alert-success text-center"><strong>' . $this->session->flashdata('marque_deleted') . '</strong></p>'; ?>
-            <?php endif; ?>
-            <?php if ($this->session->flashdata('modele_deleted')): ?>
-                <?php echo '<p class="alert alert-success text-center"><strong>' . $this->session->flashdata('modele_deleted') . '</strong></p>'; ?>
-            <?php endif; ?>
         </div>
         <main>
             <section id="user">

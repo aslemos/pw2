@@ -1,6 +1,6 @@
 <?php
 
-class Role {
+class ERole {
 
     const ROLE_CLIENT = 3;
     const ROLE_ADMIN = 2;

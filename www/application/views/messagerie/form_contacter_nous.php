@@ -1,6 +1,6 @@
 <?php
 // Header
-include VIEWPATH . '/common/header.php';
+include VIEWPATH . 'common/header.php';
 //========================================================
 ?>
 <main>
@@ -15,15 +15,15 @@ include VIEWPATH . '/common/header.php';
             </div>
             <div class="row rows3">
                 <div class="clos5 col-sm-offset-2 col-md-offset-2 col-md-12 col-sm-12">
-                    <div class="blocks5"> 
+                    <div class="blocks5">
                         <div class="col-md-offset-3 col-sm-offset-3 title-container">
-                            <h4> SOCIETE RENTCARS </h4>
+                            <h4> SOCIETÉ RENTCARS </h4>
 
                             <h4> RENTCARS@GMAIL.COM </h4>
                             <h4> Telephone (514) 318-4728 </h4>
                         </div>
 
-                        <form action="libs/mail.php" method="post" id="main-form">
+                        <form action="<?=$base_url?>contact/enregistrer" method="post" id="main-form">
                             <div class="row rows1">
                                 <div class="cols1 col-md-6">
                                     <label for="fullname">Nom complet</label>
@@ -47,8 +47,8 @@ include VIEWPATH . '/common/header.php';
 
                                 <label for="subject">Sujet</label>
                                 <select class="form-control" id="subject" name="subject" required="">
-                                    <option value="">Sujet (en choisir un)
-                                    </option><option value="Informations">Informations</option>
+                                    <option value="">-- Sujet (en choisir un) --</option>
+                                    <option value="Informations">Informations</option>
                                     <option value="Soumission">Soumission</option>
                                     <option value="Comptabilite">Comptabilité</option>
                                     <option value="Carrieres">Carrières</option>
@@ -59,14 +59,14 @@ include VIEWPATH . '/common/header.php';
                                 <textarea id="comment" placeholder="" name="message" required=""></textarea>
 
                                 <div class="containerbottom text-right">
-                                    <button class="btn">ENVOYER </button>
+                                    <button class="btn" type="submit">ENVOYER</button>
                                 </div>
-                            </form> 
+                            </form>
                         </div>
-                        
+
 
                     </div>
-                
+
             </div>
         </div>
     </section>
@@ -75,5 +75,5 @@ include VIEWPATH . '/common/header.php';
 <?php
 //========================================================
 //Footer
-include VIEWPATH . '/common/footer.php';
+include VIEWPATH . 'common/footer.php';
 

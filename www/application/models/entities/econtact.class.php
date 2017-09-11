@@ -5,7 +5,7 @@
  * and open the template in the editor.
  */
 
-class Contact extends Message {
+class EContact extends EMessage {
 
     protected $type = self::MSG_TYPE_CONTACT;
 

@@ -4,14 +4,15 @@
  * @author : Alessandro Lemos
  */
 
-class Message {
+class EMessage {
 
     const MSG_ETAT_NON_LU = 0;
     const MSG_ETAT_LU = 1;
 
     const MSG_TYPE_INTERNE = 0;
     const MSG_TYPE_RECLAMATION = 1;
-    const MSG_TYPE_CONTACT = 2;
+    const MSG_TYPE_ADMINISTRATIVE = 2;
+    const MSG_TYPE_CONTACT = 3;
 
     private $message_id = 0;
     private $emetteur = NULL;
@@ -31,10 +32,10 @@ class Message {
             $this->setEtat($data['etat']);
             $this->type = self::MSG_TYPE_INTERNE;
 
-            $this->emetteur = new User();
+            $this->emetteur = new EUsager();
             $this->emetteur->setUserId($data['emetteur_id']);
 
-            $this->destinataire = new User();
+            $this->destinataire = new EUsager();
             $this->destinataire->setUserId($data['destinataire_id']);
         }
     }
@@ -48,7 +49,9 @@ class Message {
     }
 
     public function getEmetteurId() {
-        return $this->emetteur->getUserId();
+        return $this->emetteur
+                ? $this->emetteur->getUserId()
+                : NULL;
     }
 
     public function getDestinataire() {
@@ -56,7 +59,9 @@ class Message {
     }
 
     public function getDestinataireId() {
-        return $this->destinaraire->getUserId();
+        return $this->destinaraire
+                ? $this->destinaraire->getUserId()
+                : NULL;
     }
 
     public function getDate() {
@@ -87,11 +92,11 @@ class Message {
         return $this;
     }
 
-    public function setEmetteur(User $user) {
+    public function setEmetteur(EUsager $user) {
         $this->emetteur = $user;
     }
 
-    public function setDestinataire(User $user) {
+    public function setDestinataire(EUsager $user) {
         $this->destinaraire = $user;
     }
 
