@@ -11,18 +11,18 @@ include VIEWPATH . '/common/header.php';
 include VIEWPATH .'client/boutons_client.php';
 ?>
 <h2>Historique des locations</h2>
-<form action="" name="formulaire" id="form-demandes-id">
+<form action="<?=$base_url?>locations/locationsByUser" method="post" name="formulaire" id="form-demandes-id">
 	<div class="table-responsive">
 	<label>Choisir une voiture</label>
-	<select name="voiture">
+                 <select name="voiture">
 		<option>Sélectionner</option>
-        <!--mettre les données dynamiquement dans la liste de voitures-->
-        <?php foreach ($vehicules as $vehicule) { ?>
-		<option value="<?=$vehicule['vehicule_id'];?>"><?=$vehicule['nom_modele']; ?></option>
-        <?php } ?>
-	</select>
+                <!--mettre les données dynamiquement dans la liste de voitures-->
+                <?php foreach ($vehicules as $vehicule) { ?>
+                        <option value="<?=$vehicule['vehicule_id'];?>"><?=$vehicule['nom_modele']; ?></option>
+                <?php } ?>
+                </select>
 	<label>Periode</label>
-                <div class="form-group">
+                 <div class="form-group">
                     <label class="control-label col-xs-3">De :</label>
                     <div class='input-group date col-xs-6' >
                         <input type='text' class="form-control" id='datetimepickerDe'/>
@@ -40,12 +40,12 @@ include VIEWPATH .'client/boutons_client.php';
                         </span>
                     </div>
                 </div>
-
-        <div class="row btn-liens" >
-            <!-- Boutton pour afficher l'historique des location pour un membre -->
-            <a class="btn btn-danger position" id="RecherchePeriod">Recherche Periode </a>
-        </div>
-
+                 
+                 <div class="row btn-liens" >
+                 <!-- Boutton pour afficher l'historique des location pour un membre -->
+            <button type="submit" class="btn btn-danger position" id="RecherchePeriod">Recherche Periode </button>
+                  </div>
+    
 
 	<table class="table">
 		<thead>
@@ -81,6 +81,7 @@ include VIEWPATH .'client/boutons_client.php';
                 
                 $valeur_total = $location['prix'] * $nb_jours;
                 ?>
+             
 			<tr>
 				<td class="">1</td>
 				<td class=""><?=$location['nom_marque'];?></td>

@@ -145,6 +145,7 @@ class Locations extends CI_Controller {
     }
 
     public function locataires() {
+        // Check login
         if (!UserAcces::userIsLogged()) {
             redirect('usagers/login');
         }
@@ -153,10 +154,12 @@ class Locations extends CI_Controller {
         $this->load->model('location_model');
 
         $data['base_url'] = base_url();
-        // ici sont les lignes différentes par rapport à la méthode locatairesByUser(), ci-dessus
-        $data['title'] = 'Locataires du membre ';
+        $data['page_title'] = 'Historique des Locataires';
+        $data['usagers'] = $this->usager_model->getUsers();
+        $data['vehicules'] = $this->vehicule_model->getVehicules();
+
         $data['locations'] = $this->location_model->getLocatairesByUser($user);
-        $this->load->view('membre/historique_locataire', $data); // fichier n'existe pas encore
+        $this->load->view('membre/historique_locataires', $data); // fichier n'existe pas encore
     }
 
     public function locationsByVehicule() {
