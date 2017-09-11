@@ -195,8 +195,8 @@ class Locations extends CI_Controller {
         $this->load->view('common/footer');
     }
 
-    /* afficher formulaire de reservation */
 
+    /* afficher formulaire de reservation */
     public function form_location($id) {
         $data['body_class'] = "subpages voitures";
         $data['base_url'] = base_url();
@@ -206,35 +206,35 @@ class Locations extends CI_Controller {
         $this->load->model('modepaiement_model');
 
         $data['users'] = UserAcces::getLoggedUser();
-        $data['payements'] = $this->modepaiement_model->getModesPaiements();
         $data['voitures'] = $this->vehicule_model->getVehicules($id);
-
+          $data['payements'] = $this->modepaiement_model->getModesPaiements();
 
         $this->load->view('client/form_location', $data);
     }
 
-    /* inserer Location */
 
+    /* inserer Resarvation */
     public function insererLocation() {
         //$data['body_class'] = "subpages voitures";
-        //$data['base_url'] = base_url();
+        $data['base_url'] = base_url();
         //$data['page_title'] = 'Location reçus';
 
-        $data['date_debut'] = 11;//$this->input->post('date_debut');
-        $data['date_fin'] = 22;//$this->input->post('date_fin');
-        $data['user_id'] = 33;//$this->input->post('user_id');
-        $data['vehicule_id'] = 44;//$this->input->post('vehicule_id');
-        $data['paiement_id'] = 1; //$this->input->post('paiement_id');
+        $data1['date_debut'] = $this->input->post('date_debut');
+        $data1['date_fin'] = $this->input->post('date_fin');
+        $data1['user_id'] = $this->input->post('user_id');
+        $data1['vehicule_id'] = $this->input->post('vehicule_id');
 
         // enregistre le location
         $this->load->model('location_model');
-        $this->location_model->create_location($data);
+        $this->location_model->create_location($data1);
 
-        $this->load->view('accueil');
+        //$this->load->view('accueil',$data );
+        redirect('accueil');
     }
 
-    /* afficher formulaire de payement */
 
+
+    /* afficher formulaire de payement */
     public function form_payement($id) {
 
         $data['body_class'] = "subpages voitures";
