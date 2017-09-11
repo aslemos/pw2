@@ -5,14 +5,14 @@
  * and open the template in the editor.
  */
 
-class EReclamation extends EMessage {
+class EReclamationProprietaire extends EMessage {
 
-    protected $type = self::MSG_TYPE_RECLAMATION;
+    protected $type = self::MSG_TYPE_RECLAMATION_PROPRIETAIRE;
 
     public function __construct(array $data = NULL) {
         parent::__construct($data);
         if ($data !== NULL) {
-            $this->type = self::MSG_TYPE_RECLAMATION;
+            $this->type = self::MSG_TYPE_RECLAMATION_PROPRIETAIRE;
         }
     }
 }

@@ -10,9 +10,11 @@ class EMessage {
     const MSG_ETAT_LU = 1;
 
     const MSG_TYPE_INTERNE = 0;
-    const MSG_TYPE_RECLAMATION = 1;
-    const MSG_TYPE_ADMINISTRATIVE = 2;
-    const MSG_TYPE_CONTACT = 3;
+    const MSG_TYPE_RECLAMATION_PROPRIETAIRE = 10;
+    const MSG_TYPE_RECLAMATION_VEHICULE = 11;
+    const MSG_TYPE_RECLAMATION_LOCATAIRE = 12;
+    const MSG_TYPE_ADMINISTRATIVE = 20;
+    const MSG_TYPE_CONTACT = 30;
 
     private $message_id = 0;
     private $emetteur = NULL;
@@ -20,6 +22,7 @@ class EMessage {
     private $date = NULL;
     private $sujet = '';
     private $contenu = '';
+    private $objet_id = '';
     protected $type = self::MSG_TYPE_INTERNE;
     private $etat = self::MSG_ETAT_NON_LU;
 
@@ -118,5 +121,13 @@ class EMessage {
     public function setEtat($etat) {
         $this->etat = $etat;
         return $this;
+    }
+
+    public function getObjetId() {
+        return $this->objet_id;
+    }
+
+    public function setObjetId($objet_id) {
+        $this->objet_id = $objet_id;
     }
 }

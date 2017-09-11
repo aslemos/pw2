@@ -51,8 +51,6 @@ class Message_Model extends CI_Model {
                 . ' AND messages.type = ' . EMessage::MSG_TYPE_INTERNE
                 . ' ORDER BY date DESC;';
         $st = $this->db->query($sql);
-//var_dump($st->result());
-//echo $sql;die();
         return $st->result();
     }
 
@@ -61,12 +59,21 @@ class Message_Model extends CI_Model {
      * @param int $etat l'état des réclamations : lu/non lu
      * @return array
      */
-    public function getReclamations($etat = NULL) {
+    public function getReclamations($type = NULL, $etat = NULL) {
         $sql = 'SELECT messages.*, usagers.prenom as nom_emetteur FROM messages'
-                . ' LEFT JOIN usagers ON (messages.emetteur_id = usagers.user_id)'
-                . ' WHERE messages.type = ' . EMessage::MSG_TYPE_RECLAMATION;
+                . ' LEFT JOIN usagers ON (messages.emetteur_id = usagers.user_id) WHERE 1=1';
 
-        if ($etat) {
+        if ($type !== NULL) {
+            $sql.= ' AND messages.type = ' . $type;
+        } else {
+            $sql.= ' AND messages.type IN ('
+                    . EMessage::MSG_TYPE_RECLAMATION_VEHICULE . ','
+                    . EMessage::MSG_TYPE_RECLAMATION_PROPRIETAIRE . ','
+                    . EMessage::MSG_TYPE_RECLAMATION_LOCATAIRE
+                    . ')';
+        }
+
+        if ($etat !== NULL) {
             $sql.= ' AND messages.etat = ' . $etat;
         }
         $sql.= ' ORDER BY date DESC;';
@@ -98,10 +105,11 @@ class Message_Model extends CI_Model {
     }
 
     public function createMessage(EMessage $message) {
-        $sql = 'INSERT INTO messages (emetteur_id, destinataire_id, date, sujet, contenu, type, etat)';
+        $sql = 'INSERT INTO messages (emetteur_id, destinataire_id, objet_id, date, sujet, contenu, type, etat)';
         $sql .= ' VALUES (';
         $sql .= ($message->getEmetteurId() ? $message->getEmetteurId() : 'NULL') . ',';
         $sql .= ($message->getDestinataireId() ? $message->getDestinataireId() : 'NULL') . ',';
+        $sql .= ($message->getObjetId() ? $message->getObjetId() : 'NULL') . ',';
         $sql .= $this->db->escape($message->getDate()) . ',';
         $sql .= $this->db->escape($message->getSujet()) . ',';
         $sql .= $this->db->escape($message->getContenu()) . ',';
