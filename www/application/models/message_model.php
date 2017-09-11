@@ -100,11 +100,11 @@ class Message_Model extends CI_Model {
     public function createMessage(EMessage $message) {
         $sql = 'INSERT INTO messages (emetteur_id, destinataire_id, date, sujet, contenu, type, etat)';
         $sql .= ' VALUES (';
-        $sql .= $message->getEmetteurId() . ',';
-        $sql .= $message->getDestinataireId() . ',';
-        $sql .= '\'' . $message->getDate() . '\',';
-        $sql .= '\'' . $message->getSujet() . '\',';
-        $sql .= '\'' . $message->getContenu() . '\',';
+        $sql .= ($message->getEmetteurId() ? $message->getEmetteurId() : 'NULL') . ',';
+        $sql .= ($message->getDestinataireId() ? $message->getDestinataireId() : 'NULL') . ',';
+        $sql .= $this->db->escape($message->getDate()) . ',';
+        $sql .= $this->db->escape($message->getSujet()) . ',';
+        $sql .= $this->db->escape($message->getContenu()) . ',';
         $sql .= $message->getType() . ',';
         $sql .= EMessage::MSG_ETAT_NON_LU;
         $sql .= ');';

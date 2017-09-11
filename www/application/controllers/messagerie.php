@@ -2,6 +2,8 @@
 /*
  * Contrôleur des fonctions de messagerie
  * @author : Alessandro Lemos
+ * Modifié par Iadhy: Ajouter la partie contacter nous
+ * .[asl] déplacé la fonction 'contacterNous' de Iadhy vers le nouveau controller 'contact' et renommé comme 'index'
  */
 
 class Messagerie extends CI_Controller {
@@ -42,9 +44,6 @@ class Messagerie extends CI_Controller {
     }
 
     public function composer() {
-
-//        $this->load->model('user_model');
-
         $data['base_url'] = base_url();
         $data['page_title'] = 'Composer message';
         $data['title'] = 'Nouveau message';
@@ -56,8 +55,7 @@ class Messagerie extends CI_Controller {
 
     public function enregistrer() {
 
-        // touve le destinataire
-        $this->load->model('usager_model');
+        // trouve le destinataire
         $dest = new EUsager(
                 $this->usager_model->getUsers($this->input->post('destinataire_id'))
         );
@@ -80,25 +78,4 @@ class Messagerie extends CI_Controller {
         $data['destinaraire'] = $dest;
         $this->load->view('messagerie/message_enregistre', $data);
     }
-
-    public function contact() {
-        $data['page_title'] = 'Contactez-nous';
-        $data['body_class'] = '';
-
-        if ($this->input->post('contenu')) {
-
-            $contact = new EContact();
-            $contact->setContenu($this->input->post('contenu'));
-            $contact->setSujet($this->input->post('contenu'));
-
-            $this->message_model->createMessage($contact);
-
-            $this->load->view('messagerie/msg_enregistre');
-
-        } else {
-            $this->load->view('messagerie/form_contact');
-        }
-    }
-
-
 }

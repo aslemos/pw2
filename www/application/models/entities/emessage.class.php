@@ -11,7 +11,8 @@ class EMessage {
 
     const MSG_TYPE_INTERNE = 0;
     const MSG_TYPE_RECLAMATION = 1;
-    const MSG_TYPE_CONTACT = 2;
+    const MSG_TYPE_ADMINISTRATIVE = 2;
+    const MSG_TYPE_CONTACT = 3;
 
     private $message_id = 0;
     private $emetteur = NULL;
@@ -48,7 +49,9 @@ class EMessage {
     }
 
     public function getEmetteurId() {
-        return $this->emetteur->getUserId();
+        return $this->emetteur
+                ? $this->emetteur->getUserId()
+                : NULL;
     }
 
     public function getDestinataire() {
@@ -56,7 +59,9 @@ class EMessage {
     }
 
     public function getDestinataireId() {
-        return $this->destinaraire->getUserId();
+        return $this->destinaraire
+                ? $this->destinaraire->getUserId()
+                : NULL;
     }
 
     public function getDate() {
