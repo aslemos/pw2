@@ -45,6 +45,9 @@ class Vehicule_model extends CI_Model {
         // Arrondissement
         $vehicule->setArrond(new EArrondissement($arr_vehicule));
 
+        // Ville
+        $vehicule->getArrond()->setVille(new EVille($arr_vehicule));
+
         // Transmission
         $vehicule->setTransmission(new ETransmission($arr_vehicule));
 
