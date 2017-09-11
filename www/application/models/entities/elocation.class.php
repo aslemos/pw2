@@ -1,7 +1,11 @@
 <?php
+/*
+ * Classe d'une location/reservation
+ * @author Andriy
+ * @author Alessandro
+ */
 
-
-class Location {
+class ELocation implements ILocation {
 
     const LOCATION_NON_ACCEPT = 0;
     const LOCATION_ACCEPT = 1;
@@ -9,12 +13,7 @@ class Location {
     private $nom_marque;
     private $vehicule_id;
     private $destinaraire = NULL;
-    private $date = NULL;
-    private $sujet = '';
-    private $contenu = '';
-    protected $type = self::MSG_TYPE_INTERNE;
-    private $etat = self::MSG_ETAT_NON_LU;
-
+    private $date_tran = NULL;
 
     public function getNomMarque() {
         return $this->nom_marque;
@@ -43,5 +42,32 @@ class Location {
         $this->nom_type = $nom_type;
     }
 
-   
+    // TODO: implémenter les méthodes ci-dessous
+
+    public function getDateDebut() {
+    }
+
+    public function getDateFin() {
+    }
+
+    public function getLocataire() {
+    }
+
+    public function getLocationId() {
+    }
+
+    public function getVehicule() {
+    }
+
+    public function setDateDebut($date_debut) {
+    }
+
+    public function setDateFin($date_fin) {
+    }
+
+    public function setLocataire(IUsager $locataire) {
+    }
+
+    public function setVehicule(IVehicule $vehicule) {
+    }
 }
