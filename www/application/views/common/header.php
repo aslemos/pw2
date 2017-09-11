@@ -1,5 +1,15 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
+
+// S'assure d'avoir la variable $body_class
+$body_class = isset($body_class)
+        ? $body_class
+        : '';
+
+// S'assure d'avoir la variable $base_url
+$base_url = isset($base_url)
+        ? $base_url
+        : './';
 ?>
 <!DOCTYPE HTML>
 <html lang="fr">
@@ -15,26 +25,32 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
         <!-- Scripts -->
         <script src="<?=$base_url?>assets/js/jquery.min.js" type="text/javascript"></script>
-        <script defer src="<?=$base_url?>assets/js/bootstrap.min.js" type="text/javascript"></script>
+        <script src="<?=$base_url?>assets/js/bootstrap.min.js" type="text/javascript"></script>
 
 <!--<script src='https://www.google.com/recaptcha/api.js' async defer></script>-->
-        <script defer src="http://maps.googleapis.com/maps/api/js?key=AIzaSyCa28kbEpTfpVVk2tjWhsZp3VRQh2Z96xI" type="text/javascript"></script>
+        <script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyCa28kbEpTfpVVk2tjWhsZp3VRQh2Z96xI" type="text/javascript"></script>
         <script defer src="<?=$base_url?>assets/js/gmap.js"></script>
         <script defer src="<?=$base_url?>assets/js/scripts.js" type="text/javascript"></script>
 
         <!--fichiers de Andriy-->
-        <link href='https://fonts.googleapis.com/css?family=Passion+One' rel='stylesheet' type='text/css'>
-        <link href='https://fonts.googleapis.com/css?family=Oxygen' rel='stylesheet' type='text/css'>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.13.0/moment.min.js"></script>
+<!--<link href='https://fonts.googleapis.com/css?family=Passion+One' rel='stylesheet' type='text/css'>-->
+<!--<link href='https://fonts.googleapis.com/css?family=Oxygen' rel='stylesheet' type='text/css'>-->
+<!--<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.13.0/moment.min.js"></script>-->
+        <link href='<?=$base_url?>assets/fonts/passion_one/passion_one.css' rel='stylesheet' type='text/css'>
+        <link href='<?=$base_url?>assets/fonts/oxygen/oxygen.css' rel='stylesheet' type='text/css'>
+        <script src="<?=$base_url?>assets/js/moment.min.js"></script>
 
         <!--calendrier bootstrap-->
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.37/js/bootstrap-datetimepicker.min.js"></script>
+<!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">-->
+<!--<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.37/js/bootstrap-datetimepicker.min.js"></script>-->
+        <link rel="stylesheet" href="<?=$base_url?>assets/bootstrap-3.3.7-dist/css/bootstrap-theme.min.css">
+        <script src="<?=$base_url?>assets/js/bootstrap-datetimepicker.min.js"></script>
 
-         <!--fichiers jquery -->
-        <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-
+        <!--fichiers jquery -->
+<!--<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">-->
+<!--<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>-->
+        <link rel="stylesheet" href="<?=$base_url?>assets/js/jquery/ui/jquery-ui-1.12.1.css">
+        <script src="<?=$base_url?>assets/js/jquery/ui/jquery-ui-1.12.1.min.js"></script>
 <?php
         if (isset($styles) && is_array($styles)) { // boucle d'ajout des styles customisés
             foreach ($styles as $pos => $style) {
@@ -51,10 +67,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             }
         }
 
-        // S'assure d'avoir la variable $body_class
-        $body_class = isset($body_class)
-                ? $body_class
-                : '';
 ?>
     </head>
     <body class="bg-body <?php echo $body_class; ?>">
@@ -63,8 +75,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 <div class="row">
                     <div class="col-md-2 col-sm-6 col-xs-6">
                         <div class="logo-container">
-                            <a href="./" title="Logo RenCars"><img src="<?=$base_url?>assets/images/header/logo1.png" alt="" class="standard-logo"></a>
-                            <a href="/" title="Logo RenCars"><img src="<?=$base_url?>assets/images/header/logo2.png" alt="" class="subpages-logo"></a>
+                            <a href="<?=$base_url?>" title="Logo RentCars"><img src="<?=$base_url?>assets/images/header/logo1.png" alt="" class="standard-logo"></a>
+                            <a href="<?=$base_url?>" title="Logo RentCars"><img src="<?=$base_url?>assets/images/header/logo2.png" alt="" class="subpages-logo"></a>
                         </div>
                     </div>
                     <div class="col-md-10 col-sm-6 col-xs-6">
