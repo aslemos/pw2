@@ -13,12 +13,12 @@ include VIEWPATH .'client/boutons_client.php';
 <h2>Historique des locataires</h2>
 <form action="" name="formulaire" id="form-demandes-id">
 	<div class="table-responsive">
-	<label>Choisir une voiture</label>
-	<select name="voiture">
+	<label>Choisir un usager  :</label>
+	<select name="Usagers">
 		<option>Sélectionner</option>
         <!--mettre les données dynamiquement dans la liste de voitures-->
-        <?php foreach ($vehicules as $vehicule) { ?>
-		<option value="<?=$vehicule['vehicule_id'];?>"><?=$vehicule['nom_modele']; ?></option>
+        <?php foreach ($usagers as $usager) { ?>
+		<option value="<?=$usager['user_id'];?>"><?=$usager['prenom']; ?></option>
         <?php } ?>
 	</select>
 	<label>Periode</label>
