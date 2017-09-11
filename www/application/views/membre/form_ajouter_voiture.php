@@ -14,7 +14,7 @@ include VIEWPATH . '/common/header.php';
         <div class="container">
             <h2>Formulaire d'inscription voiture</h2>
 
-            <form name="monFormulaire" class="form-horizontal" id="needs-validation">
+            <form name="monFormulaire" action="<?= $base_url ?>vehicule/createVehicule" class="form-horizontal" id="needs-validation">
 
                 <div class="form-group">
                     <label class="control-label col-xs-3" for="marque">Marque:</label>
