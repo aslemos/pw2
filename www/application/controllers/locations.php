@@ -213,23 +213,23 @@ class Locations extends CI_Controller {
     }
 
 
-    /* inserer Location */
+    /* inserer Resarvation */
     public function insererLocation() {
         //$data['body_class'] = "subpages voitures";
-        //$data['base_url'] = base_url();
+        $data['base_url'] = base_url();
         //$data['page_title'] = 'Location reçus';
 
-        $data['date_debut'] = $this->input->post('date_debut');
-        $data['date_fin'] = $this->input->post('date_fin');
-        $data['user_id'] = $this->input->post('user_id');
-        $data['vehicule_id'] = $this->input->post('vehicule_id');
-        $data['paiement_id'] = 1; //$this->input->post('paiement_id');
+        $data1['date_debut'] = $this->input->post('date_debut');
+        $data1['date_fin'] = $this->input->post('date_fin');
+        $data1['user_id'] = $this->input->post('user_id');
+        $data1['vehicule_id'] = $this->input->post('vehicule_id');
 
         // enregistre le location
         $this->load->model('location_model');
-        $this->location_model->create_location($data);
+        $this->location_model->create_location($data1);
 
-        $this->load->view('accueil');
+        //$this->load->view('accueil',$data );
+        redirect('accueil');
     }
 
 
