@@ -44,6 +44,22 @@ class Reclamation extends CI_Controller {
     }
 
 
+     public function form_reclamation($id) {
+        $data['body_class'] = "subpages voitures";
+        $data['base_url'] = base_url();
+        $data['page_title'] = 'Messages reçus';
+
+        $this->load->model('vehicule_model');
+        $this->load->model('modepaiement_model');
+
+        $data['users'] = UserAcces::getLoggedUser();
+        $data['voitures'] = $this->vehicule_model->getVehicules($id);
+        $data['payements'] = $this->modepaiement_model->getModesPaiements();
+
+        $this->load->view('client/form_reclamation', $data);
+    }
+
+
 
     public function insert_reclamation() {
 

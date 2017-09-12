@@ -13,7 +13,22 @@
             <div class="section test3">Modes de paiements</div>
             <div class="inner-wrap">
 
+                  <div class="row">
+                    <div class="col-md-12">
+                        <label>Votre  <span class="required">*</span>
+                            <select name="field4" id="myselect" class="field-select">
 
+
+                                <option value=""></option>
+
+                                <?php foreach ($payements as $pay): ?>
+                                    <option value="<?php echo $pay->mode_id ?>"><?php echo $pay->nom_mode ?></option>
+                                <?php endforeach; ?>
+                            </select>
+                        </label>
+                    </div>
+
+                </div>
 
 
                 <div class="row">
