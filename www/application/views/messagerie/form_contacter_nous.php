@@ -5,6 +5,9 @@ include VIEWPATH . 'common/header.php';
 ?>
 <main>
     <section id="contacterNous">
+        <div class="row">
+                            <div class="map"></div>
+                        </div>
         <div class="container">
             <div class="rows4 title-container">
                 <div class="cols6">
