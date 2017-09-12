@@ -28,14 +28,11 @@ $base_url = isset($base_url)
         <script src="<?=$base_url?>assets/js/bootstrap.min.js" type="text/javascript"></script>
 
 <!--<script src='https://www.google.com/recaptcha/api.js' async defer></script>-->
-        <script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyCa28kbEpTfpVVk2tjWhsZp3VRQh2Z96xI" type="text/javascript"></script>
-        <script defer src="<?=$base_url?>assets/js/gmap.js"></script>
-        <script defer src="<?=$base_url?>assets/js/scripts.js" type="text/javascript"></script>
+        <!--<script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyCa28kbEpTfpVVk2tjWhsZp3VRQh2Z96xI" type="text/javascript"></script>-->
+       
 
         <!--fichiers de Andriy-->
-<!--<link href='https://fonts.googleapis.com/css?family=Passion+One' rel='stylesheet' type='text/css'>-->
-<!--<link href='https://fonts.googleapis.com/css?family=Oxygen' rel='stylesheet' type='text/css'>-->
-<!--<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.13.0/moment.min.js"></script>-->
+
         <link href='<?=$base_url?>assets/fonts/passion_one/passion_one.css' rel='stylesheet' type='text/css'>
         <link href='<?=$base_url?>assets/fonts/oxygen/oxygen.css' rel='stylesheet' type='text/css'>
         <script src="<?=$base_url?>assets/js/moment.min.js"></script>
@@ -60,14 +57,16 @@ $base_url = isset($base_url)
             }
         }
         if (isset($scripts) && is_array($scripts)) { // boucle d'ajout des scripts customisés
+            //var_dump($scripts);
             foreach ($scripts as $pos => $script) {
 ?>
-        <script src="<?=$script?>"></script>
+        <script src="<?=$script?>" type="text/javascript"></script>
 <?php
             }
         }
 
 ?>
+        <script defer src="<?=$base_url?>assets/js/scripts.js" type="text/javascript"></script>
     </head>
     <body class="bg-body <?php echo $body_class; ?>">
         <header>
@@ -90,7 +89,7 @@ $base_url = isset($base_url)
                     <img src="<?=$base_url?>assets/images/accueil/slogan_accueil.png" alt="slogan-acceuil" id="logo-accueil">
                 </div>
                 <div>
-                    <p id="defile-link" class="pulse infinite"><a href="#pub-home" title="">DÉFILEZ POUR COMMENCER</a></p>
+                    <p id="defile-link" class="pulse infinite animated"><a href="#pub-home" title="">DÉFILEZ POUR COMMENCER</a></p>
                 </div>
             </div>
         </header>

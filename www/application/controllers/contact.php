@@ -21,6 +21,11 @@ class Contact extends CI_Controller {
         $data['page_title'] = 'Contactez-nous';
         $data['title'] = 'Contactez-nous';
         $data['body_class'] = 'subpages contacternous';
+        $data['scripts'] =[
+                            'http://maps.googleapis.com/maps/api/js?key=AIzaSyCa28kbEpTfpVVk2tjWhsZp3VRQh2Z96xI',
+                            base_url().'assets/js/gmap.js',
+                            base_url().'assets/js/maps.js'
+                        ];
 
         $this->load->view('messagerie/form_contacter_nous', $data);
 
