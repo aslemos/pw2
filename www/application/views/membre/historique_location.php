@@ -59,8 +59,8 @@ include VIEWPATH .'client/boutons_client.php';
 				<th class="">Année</th>
 				<th class="">Nombre de <br />jours loué</th>
 				<th class="">Montant<br />total</th>
-                                <th>Reclamation voiture</th>
-                                <th>Reclamation Proprietaire</th>
+                                <th class="">Reclamation voiture</th>
+                                <th class="">Reclamation Proprietaire</th>
 			</tr>
 		</thead>
 		<tbody>
