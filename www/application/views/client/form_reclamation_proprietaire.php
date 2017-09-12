@@ -133,15 +133,15 @@
 <body>
 
     <div class="form-style-10">
-        <h1>Reclamation de vehicule!<span></span></h1>
+        <h1>Reclamation de proprietaire!<span></span></h1>
         <form method="post" action="<?= $base_url ?>reclamation/insert_reclamation">
 
             <input type="hidden" name="type_message" value="<?= $type_message; ?>">
-             <input type="hidden" name="objet_id" value="<?= $objet_id; ?>">
+            <input type="hidden" name="objet_id" value="<?= $objet_id; ?>">
 
             <div class="inner-wrap">
 
-                <div class="section"><span>2</span>Informations du proprieter</div>
+                <div class="section"><span>1</span>Informations du proprietaire</div>
                 <div class="row">
                     <div class="col-md-6">
                         <label>Nom

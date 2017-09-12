@@ -27,17 +27,17 @@ class Reclamation extends CI_Controller {
 
     // reclamation/form_proprietaire/ID_proprietaire
     public function form_proprietaire($proprietaire_id) {
-        $data['type_message'] = EMessage::MSG_TYPE_RECLAMATION_LOCATAIRE;
+        $data['type_message'] = EMessage::MSG_TYPE_RECLAMATION_PROPRIETAIRE;
         $data['objet_id'] = $proprietaire_id;
 
         $data['body_class'] = "subpages membre";
         $data['base_url'] = base_url();
         $data['page_title'] = 'Réclamation de proprietaire';
 
-        $this->load->model('vehicule_model');
+        $this->load->model('usager_model');
 
         $data['users'] = UserAcces::getLoggedUser();
-        $data['voitures'] = $this->vehicule_model->getVehicules($vehicule_id);
+        $data['voitures'] = $this->usager_model->getUsers($proprietaire_id);
 
         // ATTENTION ! renommer le fichier de la view
         $this->load->view('client/form_reclamation_proprietaire',  $data);
