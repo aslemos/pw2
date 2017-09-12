@@ -29,7 +29,6 @@ class Locations extends CI_Controller {
 
         // Check login
         if (!UserAcces::userIsLogged()) {
-
             redirect('usagers/login');
         }
 
@@ -61,7 +60,7 @@ class Locations extends CI_Controller {
         //Transfering data to Model
         $this->insert_model->form_insert($data);
         $data['message'] = 'Data Inserted Successfully';
-//Loading View
+        //Loading View
         $this->load->view('insert_view', $data);
     }
 
@@ -216,9 +215,9 @@ class Locations extends CI_Controller {
 
     /* inserer Resarvation */
     public function insererLocation() {
-        //$data['body_class'] = "subpages voitures";
+        $data['body_class'] = "subpages voitures";
         $data['base_url'] = base_url();
-        //$data['page_title'] = 'Location reçus';
+        $data['page_title'] = 'Location reçus';
 
         $data1['date_debut'] = $this->input->post('date_debut');
         $data1['date_fin'] = $this->input->post('date_fin');
@@ -229,8 +228,8 @@ class Locations extends CI_Controller {
         $this->load->model('location_model');
         $this->location_model->create_location($data1);
 
-        //$this->load->view('accueil',$data );
-        redirect('accueil');
+        $this->load->view('client/page_succes_location',$data );
+        //redirect('accueil');
     }
 
 
