@@ -277,6 +277,6 @@ class Vehicule extends CI_Controller {
 
 
         $data['resultat'] = $this->vehicule_model->rechercherVehicules(new ERecherche($this->input->post()));
-        $this->load->view('vehicules/vehicule', $data);
+        $this->load->view('vehicules/recherche', $data);
     }
 }
