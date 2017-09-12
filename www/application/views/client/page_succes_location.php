@@ -14,8 +14,8 @@
 
 
 <div class="btn-liens" >
-    <!-- Bouton pour afficher la liste des voiture en location d'un membres -->
-    <a class="btn btn-danger" href="<?= $base_url?>vehicule/recherche" >OK</a>
+    <!-- Bouton pour afficher redirect apres succes -->
+    <a class="btn btn-success" href="<?= $base_url?>vehicule/recherche" >OK</a>
 
 </div>
 

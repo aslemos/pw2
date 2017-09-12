@@ -30,6 +30,18 @@ class Reclamation extends CI_Controller {
         $data['type_message'] = EMessage::MSG_TYPE_RECLAMATION_LOCATAIRE;
         $data['objet_id'] = $proprietaire_id;
 
+        $data['body_class'] = "subpages membre";
+        $data['base_url'] = base_url();
+        $data['page_title'] = 'Réclamation de proprietaire';
+
+        $this->load->model('vehicule_model');
+
+        $data['users'] = UserAcces::getLoggedUser();
+        $data['voitures'] = $this->vehicule_model->getVehicules($vehicule_id);
+
+        // ATTENTION ! renommer le fichier de la view
+        $this->load->view('client/form_reclamation_proprietaire',  $data);
+
     }
 
     /*
@@ -41,23 +53,26 @@ class Reclamation extends CI_Controller {
     public function form_locataire($locataire_id) {
         $data['type_message'] = EMessage::MSG_TYPE_RECLAMATION_LOCATAIRE;
         $data['objet_id'] = $locataire_id;
+
+
+
     }
 
-
-     public function form_reclamation($id) {
-        $data['body_class'] = "subpages voitures";
-        $data['base_url'] = base_url();
-        $data['page_title'] = 'Messages reçus';
-
-        $this->load->model('vehicule_model');
-        $this->load->model('modepaiement_model');
-
-        $data['users'] = UserAcces::getLoggedUser();
-        $data['voitures'] = $this->vehicule_model->getVehicules($id);
-        $data['payements'] = $this->modepaiement_model->getModesPaiements();
-
-        $this->load->view('client/form_reclamation', $data);
-    }
+//
+//     public function form_reclamation($id) {
+//        $data['body_class'] = "subpages voitures";
+//        $data['base_url'] = base_url();
+//        $data['page_title'] = 'Messages reçus';
+//
+//        $this->load->model('vehicule_model');
+//        $this->load->model('modepaiement_model');
+//
+//        $data['users'] = UserAcces::getLoggedUser();
+//        $data['voitures'] = $this->vehicule_model->getVehicules($id);
+//        $data['payements'] = $this->modepaiement_model->getModesPaiements();
+//
+//        $this->load->view('client/form_reclamation', $data);
+//    }
 
 
 
