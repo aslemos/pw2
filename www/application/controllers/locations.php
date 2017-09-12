@@ -29,7 +29,6 @@ class Locations extends CI_Controller {
 
         // Check login
         if (!UserAcces::userIsLogged()) {
-
             redirect('usagers/login');
         }
 
@@ -61,7 +60,7 @@ class Locations extends CI_Controller {
         //Transfering data to Model
         $this->insert_model->form_insert($data);
         $data['message'] = 'Data Inserted Successfully';
-//Loading View
+        //Loading View
         $this->load->view('insert_view', $data);
     }
 
