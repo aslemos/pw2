@@ -55,14 +55,14 @@ class Usager extends CI_Controller {
                 $this->session->set_userdata(['user_data' => $user]);
 
                 // Message de confirmation de la connexion
-                $this->session->set_flashdata('user_loggedin', 'Vous Êtes Connecté');
+                $this->session->set_flashdata('msg_success', 'Vous Êtes Connecté');
 
                 redirect('accueil');
 
             } else {
 
                 // Set message
-                $this->session->set_flashdata('login_failed', 'Login invalide');
+                $this->session->set_flashdata('msg_error', 'Login invalide');
 
                 redirect('usager/login');
             }
@@ -137,12 +137,11 @@ class Usager extends CI_Controller {
                 // Encrypter le mot de passe
                 $enc_password = md5($this->input->post('password'));
             }
-            //print_r($_FILES);die();
 
             $this->usager_model->register($enc_password, $user_photo);
 
             // Message de confirmation d'enregistrement
-            $this->session->set_flashdata('user_registered', 'Enregistrement terminé');
+            $this->session->set_flashdata('msg_success', 'Enregistrement terminé');
 
             redirect('usagers');
         }
