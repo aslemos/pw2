@@ -149,17 +149,9 @@
                 <div class="btn-group" role="group" aria-label="Basic example">
                     <button type="button" id="flip3" class="btn btn-primary animated bounceInLeft"><i class="fa fa-hand-o-left"></i> Précédent</button>
                     <button type="submit" id="flip4" class="btn btn-success animated bounceInRight">Réservé <i class="fa fa-check-square-o"></i></button>
-
-                    <!--                    <div id="edite">
-                                            <a href="#"><span class="fa fa-pencil"></span></a>
-                                        </div>-->
-
-
-
-
-
-
                 </div>
+
+
                  <div class="editPersonInfo" >
                         <div class="editPersonInfo">
                             <span id="editPersonIcon" class="fa fa-pencil" style="font-size:25px;color:white;"></span>
