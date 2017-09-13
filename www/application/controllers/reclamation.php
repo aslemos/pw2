@@ -9,7 +9,7 @@ class Reclamation extends CI_Controller {
     // reclamation/form_vehicule/ID_vehicule
     public function form_vehicule($vehicule_id) {
 
-        $data['type_message'] = EMessage::MSG_TYPE_RECLAMATION_LOCATAIRE;
+        $data['type_message'] = EMessage::MSG_TYPE_RECLAMATION_VEHICULE;
         $data['objet_id'] = $vehicule_id;
 
         $data['body_class'] = "subpages membre";
@@ -50,22 +50,32 @@ class Reclamation extends CI_Controller {
      */
 
     // reclamation/form_locataire/ID_locateur
-    public function form_locataire($locataire_id) {
+    public function form_locataire($location_id) {
+          $this->load->model('location_model');
+          $data['locations'] = $this->location_model-> get_locations($location_id);
+
+//          echo "<pre>";
+//         var_dump($data);
+//          echo "</pre>";
+
         $data['type_message'] = EMessage::MSG_TYPE_RECLAMATION_LOCATAIRE;
-        $data['objet_id'] = $locataire_id;
+        $data['objet_id'] = $location_id;
 
         $data['body_class'] = "subpages membre";
         $data['base_url'] = base_url();
-        $data['page_title'] = 'Réclamation de proprietaire';
+        $data['page_title'] = 'Réclamation de locataire';
 
-        $this->load->model('usager_model');
+
 
         $data['users'] = UserAcces::getLoggedUser();
-        $data['voitures'] = $this->usager_model->getUsers($proprietaire_id);
+
+        //$data['locations'] = $this->usager_model->getLocatairesByUser(UserAcces::getLoggedUser());
+
+
+        //$data['voitures'] = $this->usager_model->getUsers($locataire_id);
 
         // ATTENTION ! renommer le fichier de la view
         $this->load->view('client/form_reclamation_locataire',  $data);
-
 
 
     }

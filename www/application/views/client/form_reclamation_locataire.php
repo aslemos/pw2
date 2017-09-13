@@ -145,12 +145,12 @@
                 <div class="row">
                     <div class="col-md-6">
                         <label>Nom
-                            <input type="text" name="nom" disabled value="<?= $voitures['nom']; ?> "/>
+                            <input type="text" name="nom" disabled value="<?= $locations['nom']; ?> "/>
                         </label>
                     </div>
                     <div class="col-md-6">
                         <label>Prenom
-                            <input type="text" name="prenom" disabled value="<?= $voitures['prenom']; ?> " />
+                            <input type="text" name="prenom" disabled value="<?= $locations['prenom']; ?> " />
                         </label>
                     </div>
                 </div>
@@ -158,12 +158,12 @@
                 <div class="row">
                     <div class="col-md-6">
                         <label>email
-                            <input type="text" name="nom" disabled value="<?= $voitures['courriel']; ?> "/>
+                            <input type="text" name="nom" disabled value="<?= $locations['courriel']; ?> "/>
                         </label>
                     </div>
                     <div class="col-md-6">
                         <label>Tel
-                            <input type="text" name="prenom" disabled value="<?= $voitures['telephone']; ?> " />
+                            <input type="text" name="prenom" disabled value="<?= $locations['telephone']; ?> " />
                         </label>
                     </div>
                 </div>
