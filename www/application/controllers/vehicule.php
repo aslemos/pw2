@@ -31,11 +31,11 @@ class Vehicule extends CI_Controller {
     public function view($vehicule_id = NULL) {
 
         $data['vehicule'] = $this->vehicule_model->getVehiculeById($vehicule_id);
-        $data['page_title'] = 'Détails du ' . $data['vehicule']->getMarque()->getNomMarque() . ' ' . $data['vehicule']->getModele()->getNomModele();
+        $data['page_title'] = 'Détails du ' . $data['vehicule']->getMarque()->getNom() . ' ' . $data['vehicule']->getModele()->getNom();
         $data['body_class'] = '';
         $data['base_url'] = base_url();
 
-        $this->load->view('vehicules/vehicule', $data);
+        $this->load->view('vehicules/_vehicule', $data);
     }
 
     public function createVehicule() {
@@ -147,25 +147,26 @@ class Vehicule extends CI_Controller {
         if (!UserAcces::userIsLogged()) {
             redirect('usagers/login');
         }
-        $data['vehicule'] = $this->vehicule_model->getVehicules($vehicule_id);
+        $this->load->model('arrondissement_model');
 
+        $data['vehicule'] = $this->vehicule_model->getVehicules($vehicule_id);
         $data['usagers'] = $this->usager_model->getUsers();
-        $data['type_vehicules'] = $this->vehicule_model->getTypeVehicules();
+        $data['type_vehicules'] = $this->vehicule_model->getTypesVehicules();
         $data['marques'] = $this->marque_model->getMarques();
         $data['modeles'] = $this->modele_model->getModeles();
         $data['carburants'] = $this->vehicule_model->getCarburants();
         $data['transmissions'] = $this->vehicule_model->getTransmissions();
-        $data['arrondissements'] = $this->vehicule_model->getArrondissements();
+        $data['arrondissements'] = $this->arrondissement_model->getArrondissements();
 
         if (empty($data['vehicule'])) {
             show_404();
         }
 
         $data['title'] = 'Mise à jour vehicule';
+        $data['page_title'] = 'Édition';
+        $data['base_url'] = base_url();
 
-        $this->load->view('common/header');
         $this->load->view('vehicules/edit', $data);
-        $this->load->view('common/footer');
     }
 
     public function updateVehicule() {
@@ -184,16 +185,22 @@ class Vehicule extends CI_Controller {
 
         $this->load->library('upload', $config);
 
+        $vehicule = $this->vehicule_model->getVehiculeById($this->input->post('vehicule_id'));
         if (!$this->upload->do_upload()) {
             $errors = array('error' => $this->upload->display_errors());
             $vehicule_photo = 'noimage.png';
         } else {
             $data = array('upload_data' => $this->upload->data());
             $vehicule_photo = $_FILES['userfile']['name'];
+            $vehicule->setPhoto($vehicule_photo);
         }
 
-        $this->vehicule_model->updateVehicule($vehicule_photo);
-        redirect('vehicules');
+
+//        $vehicule->setCarburant($this->vehicule_model->getCarburantById($this->input->post('carburant_id')));
+//        $vehicule->setModele($this->modele_model->getCarburantById($this->input->post('carburant_id')));
+
+        $this->vehicule_model->updateVehicule($vehicule);
+        redirect('vehicule/view/'.$vehicule->getId());
     }
 
     public function vehiculeByUser() {
