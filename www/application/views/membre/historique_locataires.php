@@ -58,7 +58,8 @@ include VIEWPATH . 'client/boutons_client.php';
                     <th class="">Année</th>
                     <th class="">Nombre de <br />jours loué</th>
                     <th class="">Montant<br />total</th>
-                    <th class="">Reclamation voiture</th>
+                     <th class="">Nom Usage</th>
+                    <th class="">Reclamation Locataire</th>
                 </tr>
             </thead>
             <tbody>
@@ -90,6 +91,7 @@ include VIEWPATH . 'client/boutons_client.php';
                         <td class=""><?= $location['annee']; ?></td>
                         <td class=""><?= $nb_jours; ?></td>
                         <td class=""><?= $valeur_total; ?></td>
+                        <td class=""><?= $location['prenom']; ?></td>
                         <td class=""><a class="btn btn-inline" href="<?= $base_url ?>reclamation/form_locataire/<?= $location['user_id'] ?>"></a></td>
                     </tr>
 <?php } ?>

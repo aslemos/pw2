@@ -20,7 +20,7 @@ class Location_model extends CI_Model {
 
             $this->db->join('usagers', 'locations.user_id = usagers.user_id');
             $this->db->join('vehicules', 'locations.vehicule_id = vehicules.vehicule_id');
-            $this->db->join('paiements', 'locations.paiement_id = paiements.paiement_id');
+            //$this->db->join('paiements', 'locations.paiement_id = paiements.paiement_id');
 
             $query = $this->db->get('locations');
 
@@ -29,9 +29,9 @@ class Location_model extends CI_Model {
 
         $this->db->join('usagers', 'locations.user_id = usagers.user_id');
         $this->db->join('vehicules', 'locations.vehicule_id = vehicules.vehicule_id');
-        $this->db->join('paiements', 'locations.paiement_id = paiements.paiement_id');
+        //$this->db->join('paiements', 'locations.paiement_id = paiements.paiement_id');
 
-        $query = $this->db->get_where('locations', array('location_id' => $location_id));
+        $query = $this->db->get_where('locations', array('locations.location_id' => $location_id));
 
         return $query->row_array();
     }
