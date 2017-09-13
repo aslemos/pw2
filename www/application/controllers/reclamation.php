@@ -54,6 +54,18 @@ class Reclamation extends CI_Controller {
         $data['type_message'] = EMessage::MSG_TYPE_RECLAMATION_LOCATAIRE;
         $data['objet_id'] = $locataire_id;
 
+        $data['body_class'] = "subpages membre";
+        $data['base_url'] = base_url();
+        $data['page_title'] = 'Réclamation de proprietaire';
+
+        $this->load->model('usager_model');
+
+        $data['users'] = UserAcces::getLoggedUser();
+        $data['voitures'] = $this->usager_model->getUsers($proprietaire_id);
+
+        // ATTENTION ! renommer le fichier de la view
+        $this->load->view('client/form_reclamation_locataire',  $data);
+
 
 
     }
