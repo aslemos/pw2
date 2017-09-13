@@ -13,57 +13,9 @@ class Vehicule_model extends CI_Model {
     }
 
     public function rechercherVehicules(ERecherche $recherche) {
-        // select temporaire.
-        return $this->getVehicules();
 
-        if ($recherche->getAnnee()) {
-            $this->db->where('vehicule.annee', $recherche->getAnnee());
-        }
-
-        if ($recherche->getCarburant()) {
-            $this->db->where('vehicule.carburant_id', $recherche->getCarburant());
-        }
-
-        if ($recherche->getTypeVehicule()) {
-            $this->db->where('vehicule.type_id', $recherche->getTypeVehicule());
-        }
-
-        if ($recherche->getLieu()) {
-            $this->db->where('vehicule.arr_id', $recherche->getLieu());
-        }
-
-        if ($recherche->getModele()) {
-            $this->db->where('vehicule.modele_id', $recherche->getModele());
-
-        } else if ($recherche->getMarque()) {
-            $this->db->where('modele.marque_id', $recherche->getMarque());
-        }
-
-        if ($recherche->getPlaces()) {
-            $this->db->where('vehicule.nbre_places', $recherche->getPlaces());
-        }
-
-        if ($recherche->getPrixMin()) {
-            $this->db->where('vehicule.prix >=', $recherche->getPrixMin());
-        }
-
-        if ($recherche->getPrixMax()) {
-            $this->db->where('vehicule.prix <=', $recherche->getPrixMax());
-        }
-
-        if ($recherche->getTransmission()) {
-            $this->db->where('voiture.transmission_id', $recherche->getTransmission());
-        }
-
-        if ($recherche->getDateIni()) {
-            $this->db->where('dispobilites.date_ini >=', $recherche->getDateIni());
-        }
-
-        if ($recherche->getDateFin()) {
-            $this->db->where('disponibilites.date_fin >=', $recherche->getDateFin());
-        }
-
-        $this->db->join('vehicules', 'vehicules.vehicule_id = disponibilite.vehicule_id');
+//        $this->db->from('disponibilites');
+        $this->db->join('vehicules', 'vehicules.vehicule_id = disponibilites.vehicule_id');
         $this->db->join('type_vehicules', 'vehicules.type_id = type_vehicules.type_id');
         $this->db->join('modeles', 'vehicules.modele_id = modeles.modele_id');
         $this->db->join('marques', 'modeles.marque_id = marques.marque_id');
@@ -72,7 +24,64 @@ class Vehicule_model extends CI_Model {
         $this->db->join('arrondissements', 'vehicules.arr_id = arrondissements.arr_id');
         $this->db->join('villes', 'villes.ville_id = arrondissements.ville_id');
 
-        $this->db->get('disponibilites');
+        if ($recherche->getAnnee()) {
+            $this->db->where('vehicules.annee', $recherche->getAnnee());
+        }
+
+        if ($recherche->getCarburantId()) {
+            $this->db->where('vehicules.carburant_id', $recherche->getCarburantId());
+        }
+
+        if ($recherche->getTypeId()) {
+            $this->db->where('vehicules.type_id', $recherche->getTypeId());
+        }
+
+        if ($recherche->getArrondId()) {
+            $this->db->where('vehicules.arr_id', $recherche->getArrondId());
+        }
+
+        if ($recherche->getModeleId()) {
+            $this->db->where('vehicules.modele_id', $recherche->getModeleId());
+
+        } else if ($recherche->getMarqueId()) {
+            $this->db->where('modeles.marque_id', $recherche->getMarqueId());
+        }
+
+        if ($recherche->getNbPlaces()) {
+            $this->db->where('vehicules.nbre_places', $recherche->getNbPlaces());
+        }
+
+        if ($recherche->getPrixMin()) {
+            $this->db->where('vehicules.prix >=', $recherche->getPrixMin());
+        }
+
+        if ($recherche->getPrixMax()) {
+            $this->db->where('vehicules.prix <=', $recherche->getPrixMax());
+        }
+
+        if ($recherche->getTransmissionId()) {
+            $this->db->where('vehicules.transmission_id', $recherche->getTransmissionId());
+        }
+
+        if ($recherche->getDateDebut()) {
+            $this->db->where('disponibilites.date_debut <=', $recherche->getDateDebut());
+        }
+
+        if ($recherche->getDateFin()) {
+            $this->db->where('disponibilites.date_fin >=', $recherche->getDateFin());
+        }
+
+
+        echo '<pre>';
+        var_dump($recherche);
+        echo $this->db->get_compiled_select();
+        echo '</pre>';
+
+        $query = $this->db->get('disponibilites');
+        var_dump($query->result_array());
+        
+        return $query->result_array();
+
     }
 
     /**
