@@ -207,7 +207,7 @@ class Locations extends CI_Controller {
 
         $data['users'] = UserAcces::getLoggedUser();
         $data['voitures'] = $this->vehicule_model->getVehicules($id);
-          $data['payements'] = $this->modepaiement_model->getModesPaiements();
+        $data['payements'] = $this->modepaiement_model->getModesPaiements();
 
         $this->load->view('client/form_location', $data);
     }
@@ -234,6 +234,7 @@ class Locations extends CI_Controller {
 
 
 
+
     /* afficher formulaire de payement */
     public function form_payement($id) {
 
@@ -246,10 +247,30 @@ class Locations extends CI_Controller {
 
         $data['users'] = UserAcces::getLoggedUser();
         $data['payements'] = $this->modepaiement_model->getModesPaiements();
-        $data['voitures'] = $this->vehicule_model->getVehicules($id);
+        //$data['voitures'] = $this->vehicule_model->getVehicules($id);
 
 
         $this->load->view('client/form_payemant', $data);
+    }
+
+
+     /* inserer Resarvation */
+    public function insererPayemant() {
+        $data['body_class'] = "subpages voitures";
+        $data['base_url'] = base_url();
+        $data['page_title'] = 'Location reçus';
+
+//        $data1['date_debut'] = $this->input->post('date_debut');
+//        $data1['date_fin'] = $this->input->post('date_fin');
+//        $data1['user_id'] = $this->input->post('user_id');
+//        $data1['vehicule_id'] = $this->input->post('vehicule_id');
+
+        // enregistre le location
+//        $this->load->model('location_model');
+//        $this->location_model->create_location($data1);
+
+        $this->load->view('client/page_succes_payemant',$data );
+        //redirect('accueil');
     }
 
 }
