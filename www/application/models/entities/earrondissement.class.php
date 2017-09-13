@@ -34,4 +34,8 @@ class EArrondissement implements IArrondissement {
         $this->_ville = $ville;
         return $this;
     }
+
+    public function toString() {
+        return $this->getVille()->getNom() . ', ' . $this->getNom();
+    }
 }

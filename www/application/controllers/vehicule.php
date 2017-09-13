@@ -35,7 +35,7 @@ class Vehicule extends CI_Controller {
         $data['body_class'] = '';
         $data['base_url'] = base_url();
 
-        $this->load->view('vehicules/_vehicule', $data);
+        $this->load->view('vehicules/view', $data);
     }
 
     public function createVehicule() {

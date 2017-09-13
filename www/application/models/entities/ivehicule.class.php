@@ -15,6 +15,7 @@ interface IVehicule {
     public function getTransmission();
     public function setTransmission(ITransmission $transmission);
 
+    public function getProprietaireId();
     public function getProprietaire();
     public function setProprietaire(IUsager $proprietaire);
 
@@ -50,5 +51,7 @@ interface IVehicule {
 
     public function getEtat();
     public function setEtat($etat);
+
+    public function toString();
 
 }

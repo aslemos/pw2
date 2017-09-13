@@ -124,6 +124,9 @@ class EVehicule implements IVehicule {
         return $this;
     }
 
+    public function getProprietaireId() {
+        return $this->_proprietaire->getId();
+    }
     public function getProprietaire() {
         return $this->_proprietaire;
     }
@@ -170,5 +173,9 @@ class EVehicule implements IVehicule {
     public function setNbPlaces($nb_places) {
         $this->_nb_places = $nb_places;
         return $this;
+    }
+
+    public function toString() {
+        return $this->getMarque()->getNom() . ' ' . $this->getModele()->getNom();
     }
 }

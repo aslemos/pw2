@@ -13,4 +13,6 @@ interface IArrondissement {
 
     public function getVille();
     public function setVille(IVille $ville);
+
+    public function toString();
 }
