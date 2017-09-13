@@ -1,5 +1,5 @@
 <?php
 
 interface IUsager {
-    public function getUserId();
+    public function getId();
 }

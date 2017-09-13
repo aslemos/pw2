@@ -10,64 +10,61 @@ class ELocation implements ILocation {
     const LOCATION_NON_ACCEPT = 0;
     const LOCATION_ACCEPT = 1;
 
-    private $nom_marque;
-    private $vehicule_id;
-    private $destinaraire = NULL;
-    private $date_tran = NULL;
+    private $_location_id = 0;
+    private $_vehicule = NULL;
+    private $_locataire = NULL;
+    private $_date_debut = '';
+    private $_date_fin = '';
+    private $_etat = 0;
 
-    public function getNomMarque() {
-        return $this->nom_marque;
+    public function __construct(array $data) {
+        $this->_location_id = $data['location_id'];
+        $this->_date_debut = $data['date_debut'];
+        $this->_date_fin = $data['date_fin'];
+        $this->_etat = $data['etat'];
+    }
+
+    public function getId() {
+        return $this->_location_id;
     }
 
     public function getVehiculeId() {
-        return $this->vehicule_id;
+        return $this->_vehicule->getId();
     }
-
-    public function getNomType() {
-        return $this->nom_type;
-    }
-
-
-
-    public function setNomMarque($nom_marque) {
-        $this->nom_marque = $nom_marque;
-        return $this;
-    }
-
-    public function setVehiculeId($vehicule_id) {
-        $this->vehicule_id = $vehicule_id;
-    }
-
-    public function setNomType(User $nom_type) {
-        $this->nom_type = $nom_type;
-    }
-
-    // TODO: implémenter les méthodes ci-dessous
 
     public function getDateDebut() {
+        return $this->_date_debut;
     }
 
     public function getDateFin() {
+        return $this->_date_fin;
     }
 
     public function getLocataire() {
-    }
-
-    public function getLocationId() {
+        return $this->_locataire;
     }
 
     public function getVehicule() {
+        return $this->_vehicule;
     }
 
     public function setDateDebut($date_debut) {
+        $this->_date_debut = $date_debut;
+        return $this;
     }
 
     public function setDateFin($date_fin) {
+        $this->_date_fin = $date_fin;
+        return $this;
     }
 
     public function setLocataire(IUsager $locataire) {
+        $this->_locataire = $locataire;
+        return $this;
     }
 
     public function setVehicule(IVehicule $vehicule) {
+        $this->_vehicule = $vehicule;
+        return $this;
     }
 }

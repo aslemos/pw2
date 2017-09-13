@@ -16,15 +16,15 @@ class EMessage {
     const MSG_TYPE_ADMINISTRATIVE = 20;
     const MSG_TYPE_CONTACT = 30;
 
-    private $message_id = 0;
-    private $emetteur = NULL;
-    private $destinaraire = NULL;
-    private $date = NULL;
-    private $sujet = '';
-    private $contenu = '';
-    private $objet_id = '';
-    protected $type = self::MSG_TYPE_INTERNE;
-    private $etat = self::MSG_ETAT_NON_LU;
+    private $_message_id = 0;
+    private $_emetteur = NULL;
+    private $_destinaraire = NULL;
+    private $_date = NULL;
+    private $_sujet = '';
+    private $_contenu = '';
+    private $_objet_id = '';
+    protected $_type = self::MSG_TYPE_INTERNE;
+    private $_etat = self::MSG_ETAT_NON_LU;
 
     public function __construct(array $data = NULL) {
         if ($data !== NULL) {
@@ -33,101 +33,101 @@ class EMessage {
             $this->setSujet($data['sujet']);
             $this->setContenu($data['contenu']);
             $this->setEtat($data['etat']);
-            $this->type = self::MSG_TYPE_INTERNE;
+            $this->_type = self::MSG_TYPE_INTERNE;
 
-            $this->emetteur = new EUsager();
-            $this->emetteur->setUserId($data['emetteur_id']);
+            $this->_emetteur = new EUsager();
+            $this->_emetteur->setUserId($data['emetteur_id']);
 
             $this->destinataire = new EUsager();
             $this->destinataire->setUserId($data['destinataire_id']);
         }
     }
 
-    public function getMessageId() {
-        return $this->message_id;
+    public function getId() {
+        return $this->_message_id;
     }
 
     public function getEmetteur() {
-        return $this->emetteur;
+        return $this->_emetteur;
     }
 
     public function getEmetteurId() {
-        return $this->emetteur
-                ? $this->emetteur->getUserId()
+        return $this->_emetteur
+                ? $this->_emetteur->getId()
                 : NULL;
     }
 
     public function getDestinataire() {
-        return $this->destinaraire;
+        return $this->_destinaraire;
     }
 
     public function getDestinataireId() {
-        return $this->destinaraire
-                ? $this->destinaraire->getUserId()
+        return $this->_destinaraire
+                ? $this->_destinaraire->getId()
                 : NULL;
     }
 
     public function getDate() {
-        if ($this->date === NULL) {
-            $this->date = Date('Y-m-d H:i:s');
+        if ($this->_date === NULL) {
+            $this->_date = Date('Y-m-d H:i:s');
         }
-        return $this->date;
+        return $this->_date;
     }
 
     public function getSujet() {
-        return $this->sujet;
+        return $this->_sujet;
     }
 
     public function getContenu() {
-        return $this->contenu;
+        return $this->_contenu;
     }
 
     public function getType() {
-        return $this->type;
+        return $this->_type;
     }
 
     public function getEtat() {
-        return $this->etat;
+        return $this->_etat;
     }
 
     public function setMessageId($message_id) {
-        $this->message_id = $message_id;
+        $this->_message_id = $message_id;
         return $this;
     }
 
     public function setEmetteur(EUsager $user) {
-        $this->emetteur = $user;
+        $this->_emetteur = $user;
     }
 
     public function setDestinataire(EUsager $user) {
-        $this->destinaraire = $user;
+        $this->_destinaraire = $user;
     }
 
     public function setDate($date) {
-        $this->date = $date;
+        $this->_date = $date;
         return $this;
     }
 
     public function setSujet($sujet) {
-        $this->sujet = $sujet;
+        $this->_sujet = $sujet;
         return $this;
     }
 
     public function setContenu($contenu) {
-        $this->contenu = $contenu;
+        $this->_contenu = $contenu;
         return $this;
     }
 
     public function setEtat($etat) {
-        $this->etat = $etat;
+        $this->_etat = $etat;
         return $this;
     }
 
     public function getObjetId() {
-        return $this->objet_id;
+        return $this->_objet_id;
     }
 
     public function setObjetId($objet_id) {
-        $this->objet_id = $objet_id;
+        $this->_objet_id = $objet_id;
     }
 }

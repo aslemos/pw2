@@ -2,127 +2,127 @@
 
 final class ERecherche {
 
-    private $dateIni;
-    private $dateFin;
-    private $modele;
-    private $marque;
-    private $carrocerie;
-    private $places;
-    private $annee;
-    private $carburant;
-    private $transmission;
-    private $lieu;
-    private $prixMin;
-    private $prixMax;
+    private $_carburant_id;
+    private $_transmission_id;
+    private $_arr_id;
+    private $_modele_id;
+    private $_marque_id;
+    private $_type_id;
+    private $_dateIni;
+    private $_dateFin;
+    private $_places;
+    private $_annee;
+    private $_prixMin;
+    private $_prixMax;
 
     public function __construct(array $data) {
         $this->setAnnee(isset($data['annee']) ? $data['annee'] : '');
-        $this->setCarburant(isset($data['carburant']) ? $data['carburant'] : '');
-        $this->setCarrocerie(isset($data['carrocerie']) ? $data['carrocerie'] : '');
-        $this->setDateFin(isset($data['dateFin']) ? $data['dateFin'] : '');
-        $this->setDateIni(isset($data['dateIni']) ? $data['dateIni'] : '');
-        $this->setLieu(isset($data['lieu']) ? $data['lieu'] : '');
-        $this->setMarque(isset($data['marque']) ? $data['marque'] : '');
-        $this->setModele(isset($data['modele']) ? $data['modele'] : '');
-        $this->setPlaces(isset($data['places']) ? $data['places'] : '');
-        $this->setPrixMax(isset($data['prixMax']) ? $data['prixMax'] : '');
-        $this->setPrixMin(isset($data['prixMin']) ? $data['prixMin'] : '');
-        $this->setTransmission(isset($data['transmission']) ? $data['transmission'] : '');
+        $this->setCarburant(isset($data['carburant_id']) ? $data['carburant_id'] : '');
+        $this->setTypeVehicule(isset($data['type_id']) ? $data['type_id'] : '');
+        $this->setDateIni(isset($data['date_ini']) ? $data['date_ini'] : '');
+        $this->setDateFin(isset($data['date_fin']) ? $data['date_fin'] : '');
+        $this->setLieu(isset($data['arr_id']) ? $data['arr_id'] : '');
+        $this->setMarque(isset($data['marque_id']) ? $data['marque_id'] : '');
+        $this->setModele(isset($data['modele_id']) ? $data['modele_id'] : '');
+        $this->setPlaces(isset($data['nbre_places']) ? $data['nbre_places'] : '');
+        $this->setPrixMax(isset($data['prix_max']) ? $data['prix_max'] : '');
+        $this->setPrixMin(isset($data['prix_min']) ? $data['prix_min'] : '');
+        $this->setTransmission(isset($data['transmission_id']) ? $data['transmission_id'] : '');
     }
 
     public function getDateIni() {
-        return $this->dateIni;
+        return $this->_dateIni;
     }
 
     public function getDateFin() {
-        return $this->dateFin;
+        return $this->_dateFin;
     }
 
     public function getModele() {
-        return $this->modele;
+        return $this->_modele_id;
     }
 
     public function getMarque() {
-        return $this->marque;
+        return $this->_marque_id;
     }
 
-    public function getCarrocerie() {
-        return $this->carrocerie;
+    public function getTypeVehicule() {
+        return $this->_type_id;
     }
 
     public function getPlaces() {
-        return $this->places;
+        return $this->_places;
     }
 
     public function getAnnee() {
-        return $this->annee;
+        return $this->_annee;
     }
 
     public function getCarburant() {
-        return $this->carburant;
+        return $this->_carburant_id;
     }
 
     public function getTransmission() {
-        return $this->transmission;
+        return $this->_transmission_id;
     }
 
     public function getLieu() {
-        return $this->lieu;
+        return $this->_arr_id;
     }
 
     public function getPrixMin() {
-        return $this->prixMin;
+        return $this->_prixMin;
     }
 
     public function getPrixMax() {
-        return $this->prixMax;
+        return $this->_prixMax;
     }
 
     public function setDateIni($dateIni) {
-        $this->dateIni = $dateIni;
+        $this->_dateIni = $dateIni;
     }
 
     public function setDateFin($dateFin) {
-        $this->dateFin = $dateFin;
+        $this->_dateFin = $dateFin;
     }
 
     public function setModele($modele) {
-        $this->modele = $modele;
+        $this->_modele_id = $modele;
     }
 
     public function setMarque($marque) {
-        $this->marque = $marque;
+        $this->_marque_id = $marque;
     }
 
-    public function setCarrocerie($carrocerie) {
-        $this->carrocerie = $carrocerie;
+    public function setTypeVehicule($carrocerie) {
+        $this->_type_id = $carrocerie;
     }
 
     public function setPlaces($places) {
-        $this->places = $places;
+        $this->_places = $places;
     }
 
     public function setAnnee($annee) {
-        $this->annee = $annee;
+        $this->_annee = $annee;
     }
 
     public function setCarburant($carburant) {
-        $this->carburant = $carburant;
+        $this->_carburant_id = $carburant;
     }
 
     public function setTransmission($transmission) {
-        $this->transmission = $transmission;
+        $this->_transmission_id = $transmission;
     }
 
     public function setLieu($lieu) {
-        $this->lieu = $lieu;
+        $this->_arr_id = $lieu;
     }
 
     public function setPrixMin($prixMin) {
-        $this->prixMin = $prixMin;
+        $this->_prixMin = $prixMin;
     }
 
     public function setPrixMax($prixMax) {
-        $this->prixMax = $prixMax;
+        $this->_prixMax = $prixMax;
     }
 }

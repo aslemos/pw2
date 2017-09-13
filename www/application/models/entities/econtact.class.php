@@ -7,12 +7,8 @@
 
 class EContact extends EMessage {
 
-    protected $type = self::MSG_TYPE_CONTACT;
-
     public function __construct(array $data = NULL) {
         parent::__construct($data);
-        if ($data !== NULL) {
-            $this->type = self::MSG_TYPE_CONTACT;
-        }
+        $this->_type = self::MSG_TYPE_CONTACT;
     }
 }

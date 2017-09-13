@@ -6,11 +6,11 @@
 
 interface IVehicule {
 
-    public function getVehiculeId();
+    public function getId();
 
     public function getDisponibilites();
-    public function getDisponibilite($index = 0);
-    public function addDisponibilite(EDisponibilite $disp);
+    public function getDisponibilite($index = -1);
+    public function addDisponibilite(IDisponibilite $disp);
 
     public function getTransmission();
     public function setTransmission(ITransmission $transmission);

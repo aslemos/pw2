@@ -6,10 +6,10 @@
 
 interface IVille {
 
-    public function getVilleId();
+    public function getId();
 
-    public function getNomVille();
-    public function setNomVille($nom_ville);
+    public function getNom();
+    public function setNom($nom_ville);
 
     public function getProvince();
     public function setProvince($province);

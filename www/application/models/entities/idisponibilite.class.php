@@ -6,7 +6,7 @@
 
 interface IDisponibilite {
 
-    public function getDispoId();
+    public function getId();
 
     public function setVehicule(IVehicule $vehicule);
     public function getVehicule();

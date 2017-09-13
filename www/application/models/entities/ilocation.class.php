@@ -5,7 +5,8 @@
  */
 
 interface ILocation {
-    public function getLocationId();
+
+    public function getId();
 
     public function getDateDebut();
     public function setDateDebut($date_debut);

@@ -5,13 +5,13 @@
  * @author Alessandro Lemos
  */
 
-class EDisponibilite extends IDisponibilite {
+class EDisponibilite implements IDisponibilite {
 
-    private $dispo_id;
-    private $vehicule_id;
-    private $date_debut;
-    private $date_fin;
-    private $vehicule = NULL; // Objet EVehicule
+    private $_dispo_id;
+    private $_vehicule_id;
+    private $_date_debut;
+    private $_date_fin;
+    private $_vehicule = NULL; // Objet EVehicule
 
     public function __construct(array $data = NULL) {
         if ($data !== NULL) {
@@ -19,47 +19,56 @@ class EDisponibilite extends IDisponibilite {
             $this->setVehiculeId(isset($data['vehicule_id']) ? $data['vehicule_id'] : 0);
             $this->setDateDebut($data['date_debut']);
             $this->setDateFin($data['date_fin']);
-            
+
             if (isset($data['vehicule']) && $data['vehicule'] instanceof EVehicule) {
-                $this->vehicule = $data['vehicule'];
+                $this->_vehicule = $data['vehicule'];
+                $this->_vehicule_id = $data['vehicule']->getId();
             }
 
         }
     }
 
-    public function getDispoId() {
-        return $this->dispo_id;
+    public function getId() {
+        return $this->_dispo_id;
     }
 
     public function getVehiculeId() {
-        return $this->vehicule_id;
+        return $this->_vehicule->getId();
+    }
+
+    public function getVehicule() {
+        return $this->_vehicule;
+    }
+
+    public function setVehicule(IVehicule $vehicule) {
+        $this->_vehicule = $vehicule;
     }
 
     public function getDateDebut() {
-        return $this->date_debut;
+        return $this->_date_debut;
     }
 
     public function getDateFin() {
-        return $this->date_fin;
+        return $this->_date_fin;
     }
 
     public function setDispoId($dispo_id) {
-        $this->dispo_id = $dispo_id;
+        $this->_dispo_id = $dispo_id;
         return $this;
     }
 
     public function setVehiculeId($vehicule_id) {
-        $this->vehicule_id = $vehicule_id;
+        $this->_vehicule_id = $vehicule_id;
         return $this;
     }
 
     public function setDateDebut($date_debut) {
-        $this->date_debut = $date_debut;
+        $this->_date_debut = $date_debut;
         return $this;
     }
 
     public function setDateFin($date_fin) {
-        $this->date_fin = $date_fin;
+        $this->_date_fin = $date_fin;
         return $this;
     }
 }

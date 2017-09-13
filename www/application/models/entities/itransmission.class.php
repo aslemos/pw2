@@ -7,9 +7,9 @@
 
 interface ITransmission {
 
-    public function getTransmissionId();
+    public function getId();
 
-    public function setNomTransmission($nom_transmission);
+    public function setNom($nom_transmission);
 
-    public function getNomtransmission();
+    public function getNom();
 }
