@@ -18,7 +18,7 @@ $base_url = isset($base_url)
         <meta charset="UTF-8">
 
         <title><?php echo $page_title; ?> - RENTCARS</title>
-        <link rel="icon" type="<?=$base_url?>image/png" href="/assets/images/ferrari.ico" />
+        <link rel="icon" type="image/png" href="<?=$base_url?>assets/images/ferrari.ico" />
 
         <!-- Styles -->
         <link href="<?=$base_url?>assets/css/styles.css" rel="stylesheet" type="text/css">
@@ -29,7 +29,7 @@ $base_url = isset($base_url)
 
 <!--<script src='https://www.google.com/recaptcha/api.js' async defer></script>-->
         <!--<script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyCa28kbEpTfpVVk2tjWhsZp3VRQh2Z96xI" type="text/javascript"></script>-->
-       
+
 
         <!--fichiers de Andriy-->
 

@@ -1,10 +1,9 @@
-
-<?php echo form_open_multipart('vehicules/updateVehicule'); ?>	
+<?php include VIEWPATH . 'common/header.php'; ?>
+<?php echo form_open_multipart($base_url.'vehicule/updateVehicule'); ?>
     <h3 style="text-align:center;"><?php echo $title; ?></h3>
-    <?php echo validation_errors(); ?>	
-    <div class="table-responsive">	
-        <input type="hidden" name="vehicule_id" value="<?php echo $vehicule['vehicule_id']; ?>">	
-        <h4 style="color:red"><?php //echo $err_message; ?></h4>
+    <?php echo validation_errors(); ?>
+    <div class="table-responsive">
+        <input type="hidden" name="vehicule_id" value="<?php echo $vehicule['vehicule_id']; ?>">
         <table class="table table-striped">
             <tr class="form-group">
                 <td>
@@ -60,6 +59,7 @@
                     <input type="text" class="form-control" id="prix" name="prix" value="<?php echo $vehicule['prix']; ?>">
                 </td>
             </tr>
+<?php /*
             <tr class="form-group">
                 <td>
                     <label for="date_debut">Date début : </label>
@@ -78,6 +78,8 @@
                     <input type="text" class="form-control" id="date_fin" name="date_fin" value="<?php echo $vehicule['date_fin']; ?>">
                 </td>
             </tr>
+ */?>
+<?php if (UserAcces::userIsAdmin()) { ?>
             <tr class="form-group">
                 <td>
                     <label for="user_id">Propriétaire : </label>
@@ -87,6 +89,9 @@
                     <input type="text" class="form-control" id="user_id" name="user_id" value="<?php echo $vehicule['nom'].', '.$vehicule['nom']; ?>">
                 </td>
             </tr>
+<?php } else { ?>
+            <input type="hidden" name="user_id" value="<?=$vehicule['proprietaire_id']?>">
+<?php } ?>
             <tr class="form-group">
                 <td>
                     <label for="carburant_id">Carburant : </label></td>
@@ -116,3 +121,4 @@
     </div>
 </form>
 <hr />
+<?php include VIEWPATH . 'common/footer.php'; ?>
