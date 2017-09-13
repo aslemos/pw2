@@ -6,29 +6,29 @@ class ERole {
     const ROLE_ADMIN = 2;
     const ROLE_SUPERADMIN = 1;
 
-    private $role_id = 0;  // ID
-    private $nom_role;
+    private $_role_id = 0;  // ID
+    private $_nom_role;
 
     public function __construct(array $data = NULL) {
         if ($data !== NULL) {
-            $this->setRoleId($data['role_id']);
-            $this->setNomRole($data['nom_role']);
+            $this->setId($data['role_id']);
+            $this->setNom($data['nom_role']);
         }
     }
 
-    public function getRoleId() {
-        return $this->role_id;
+    public function getId() {
+        return $this->_role_id;
     }
 
-    public function getNomRole() {
-        return $this->nom_role;
+    public function getNom() {
+        return $this->_nom_role;
     }
 
-    public function setRoleId($role_id) {
-        $this->role_id = $role_id;
+    public function setId($role_id) {
+        $this->_role_id = $role_id;
     }
 
-    public function setNomRole($nom_role) {
-        $this->nom_role = $nom_role;
+    public function setNom($nom_role) {
+        $this->_nom_role = $nom_role;
     }
 }

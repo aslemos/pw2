@@ -6,24 +6,24 @@
 
 class ETypeVehicule implements ITypeVehicule {
 
-    private $type_id;
-    private $nom_type;
+    private $_type_id;
+    private $_nom_type;
 
     public function __construct(array $data) {
-        $this->type_id = $data['type_id'];
-        $this->nom_type = $data['nom_type'];
+        $this->_type_id = $data['type_id'];
+        $this->_nom_type = $data['nom_type'];
     }
 
-    public function getTypeId() {
-        return $this->type_id;
+    public function getId() {
+        return $this->_type_id;
     }
 
-    public function getNomType() {
-        return $this->nom_type;
+    public function getNom() {
+        return $this->_nom_type;
     }
 
-    public function setNomType($nom_type) {
-        $this->nom_type = $nom_type;
+    public function setNom($nom_type) {
+        $this->_nom_type = $nom_type;
         return $this;
     }
 }

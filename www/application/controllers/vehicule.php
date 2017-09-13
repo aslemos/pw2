@@ -31,11 +31,11 @@ class Vehicule extends CI_Controller {
     public function view($vehicule_id = NULL) {
 
         $data['vehicule'] = $this->vehicule_model->getVehiculeById($vehicule_id);
-        $data['page_title'] = 'Détails du ' . $data['vehicule']->getMarque()->getNomMarque() . ' ' . $data['vehicule']->getModele()->getNomModele();
+        $data['page_title'] = 'Détails du ' . $data['vehicule']->getMarque()->getNom() . ' ' . $data['vehicule']->getModele()->getNom();
         $data['body_class'] = '';
         $data['base_url'] = base_url();
 
-        $this->load->view('vehicules/vehicule', $data);
+        $this->load->view('vehicules/view', $data);
     }
 
     public function createVehicule() {
@@ -147,25 +147,26 @@ class Vehicule extends CI_Controller {
         if (!UserAcces::userIsLogged()) {
             redirect('usagers/login');
         }
-        $data['vehicule'] = $this->vehicule_model->getVehicules($vehicule_id);
+        $this->load->model('arrondissement_model');
 
+        $data['vehicule'] = $this->vehicule_model->getVehicules($vehicule_id);
         $data['usagers'] = $this->usager_model->getUsers();
-        $data['type_vehicules'] = $this->vehicule_model->getTypeVehicules();
+        $data['type_vehicules'] = $this->vehicule_model->getTypesVehicules();
         $data['marques'] = $this->marque_model->getMarques();
         $data['modeles'] = $this->modele_model->getModeles();
         $data['carburants'] = $this->vehicule_model->getCarburants();
         $data['transmissions'] = $this->vehicule_model->getTransmissions();
-        $data['arrondissements'] = $this->vehicule_model->getArrondissements();
+        $data['arrondissements'] = $this->arrondissement_model->getArrondissements();
 
         if (empty($data['vehicule'])) {
             show_404();
         }
 
         $data['title'] = 'Mise à jour vehicule';
+        $data['page_title'] = 'Édition';
+        $data['base_url'] = base_url();
 
-        $this->load->view('common/header');
         $this->load->view('vehicules/edit', $data);
-        $this->load->view('common/footer');
     }
 
     public function updateVehicule() {
@@ -184,16 +185,22 @@ class Vehicule extends CI_Controller {
 
         $this->load->library('upload', $config);
 
+        $vehicule = $this->vehicule_model->getVehiculeById($this->input->post('vehicule_id'));
         if (!$this->upload->do_upload()) {
             $errors = array('error' => $this->upload->display_errors());
             $vehicule_photo = 'noimage.png';
         } else {
             $data = array('upload_data' => $this->upload->data());
             $vehicule_photo = $_FILES['userfile']['name'];
+            $vehicule->setPhoto($vehicule_photo);
         }
 
-        $this->vehicule_model->updateVehicule($vehicule_photo);
-        redirect('vehicules');
+
+//        $vehicule->setCarburant($this->vehicule_model->getCarburantById($this->input->post('carburant_id')));
+//        $vehicule->setModele($this->modele_model->getCarburantById($this->input->post('carburant_id')));
+
+        $this->vehicule_model->updateVehicule($vehicule);
+        redirect('vehicule/view/'.$vehicule->getId());
     }
 
     public function vehiculeByUser() {
@@ -267,16 +274,47 @@ class Vehicule extends CI_Controller {
         $data['base_url'] = base_url();
 //        $data['scripts'] = [base_url() . 'assets/js/formrecherche.js'];
 
+
+        // Récupère les données de recherche de la page et les réinsère dans le formulaire
+        //  lors de la prochaine sousmission
+
+        $recherche = new ERecherche($this->input->post());
+        $data['carburant_id'] = $recherche->getCarburantId();
+        $data['marque_id'] = $recherche->getMarqueId();
+        $data['modele_id'] = $recherche->getModeleId();
+        $data['type_id'] = $recherche->getTypeId();
+        $data['transmission_id'] = $recherche->getTransmissionId();
+        $data['arr_id'] = $recherche->getArrondId();
+        $data['annee'] = $recherche->getAnnee();
+        $data['date_debut'] = $recherche->getDateDebut();
+        $data['date_fin'] = $recherche->getDateFin();
+        $data['nbre_places'] = $recherche->getNbPlaces();
+        $data['tranche_id'] = $this->input->post('tranche_id');
+
+        // Extrait la tranche de prix
+        $tranche_prix = explode('-', $data['tranche_id']);
+        if (isset($tranche_prix[1])) {
+            $recherche->setPrixMin($tranche_prix[0]);
+            $recherche->setPrixMax($tranche_prix[1]);
+        }
+
         $this->load->model('arrondissement_model');
         $data['marques'] = $this->marque_model->getMarques();
-        $data['modeles'] = $this->modele_model->getModeles();
-        $data['types_vehicule'] = $this->vehicule_model->getTypesVehicules();
+        $data['modeles'] = $this->modele_model->getModelesByMarqueId($data['marque_id']);
+        $data['types'] = $this->vehicule_model->getTypesVehicules();
         $data['carburants'] = $this->vehicule_model->getCarburants();
         $data['transmissions'] = $this->vehicule_model->getTransmissions();
         $data['arrondissements'] = $this->arrondissement_model->getArrondissements();
 
+        // TODO: créer table de tranches de prix et récupérer ce tableau par l'intermède de son modèle
+        $data['tranches'] = [
+            ['tranche_id' => '0-50'   , 'nom_tranche' => 'Jusqu\'à 50$'],
+            ['tranche_id' => '50-100' , 'nom_tranche' => 'De 50$ à 100$'],
+            ['tranche_id' => '100-150', 'nom_tranche' => 'De 100$ à 150$'],
+            ['tranche_id' => '150-999', 'nom_tranche' => 'Plus de 150$']
+        ];
 
-        $data['resultat'] = $this->vehicule_model->rechercherVehicules(new ERecherche($this->input->post()));
+        $data['resultat'] = $this->vehicule_model->rechercherVehicules($recherche);
         $this->load->view('vehicules/recherche', $data);
     }
 }

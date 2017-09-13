@@ -7,28 +7,32 @@
 
 class EModele implements IModele {
 
-    private $modele_id;
-    private $nom_modele;
-    private $marque = NULL; // Objet EMarque
+    private $_modele_id;
+    private $_nom_modele;
+    private $_marque = NULL; // Objet EMarque
 
     public function __construct(array $data) {
-        $this->modele_id = $data['modele_id'];
-        $this->nom_modele = $data['nom_modele'];
+        $this->_modele_id = $data['modele_id'];
+        $this->_nom_modele = $data['nom_modele'];
+    }
+
+    public function getId() {
+        return $this->_modele_id;
     }
 
     public function setMarque(IMarque $marque) {
-        $this->marque = $marque;
+        $this->_marque = $marque;
     }
 
     public function getMarque() {
-        return $this->marque;
+        return $this->_marque;
     }
 
-    public function setNomModele($nom_modele) {
-        $this->nom_modele = $nom_modele;
+    public function setNom($nom_modele) {
+        $this->_nom_modele = $nom_modele;
     }
 
-    public function getNomModele() {
-        return $this->nom_modele;
+    public function getNom() {
+        return $this->_nom_modele;
     }
 }

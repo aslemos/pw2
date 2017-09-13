@@ -2,14 +2,15 @@
         </div>
     </section>
 </main>
+<?php if (!UserAcces::userIsLogged()) { ?>
 <section id="footer-member">
     <div class="container">
         <h2>DEVENEZ UN MEMBRE</h2>
         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur metus nisi, pellentesque a mi sit amet, convallis interdum erat. Ut condimentum magna et consectetur faucibus. Quisque semper viverra tellus, vitae egestas est posuere eu.  Donec ac lorem sed est suscipit venenatis. Phasellus nibh ex, molestie ac pellentesque ut, efficitur vel enim.</p>
-        <a class="btn" href="/usager/inscription" title="">PLUS DE DÉTAILS</a>
+        <a class="btn" href="<?=$base_url?>usager/inscription" title="">PLUS DE DÉTAILS</a>
     </div>
 </section>
-
+<?php } ?>
 <footer>
     <div class="container-fluid">
         <div class="row">
@@ -30,24 +31,24 @@
                 <div class="flex-container">
                     <div class="list-container">
                         <ul>
-                            <li><a href="<?php echo base_url(); ?>" title="">ACCUEIL</a></li>
+                            <li><a href="<?=$base_url?>" title="">ACCUEIL</a></li>
                             <li class="sublist-container">
-                                <a href="<?php echo base_url(); ?>home/about" title="">À PROPOS</a>
+                                <a href="<?=$base_url?>home/apropos" title="">À PROPOS</a>
                             </li>
                             <li class="sublist-container">
-                                <a href="<?php echo base_url(); ?>home/vehicule" title=""> VOITURES</a>
+                                <a href="<?=$base_url?>home/vehicule" title="">VOITURES</a>
                             </li>
-                            <?php if (!$this->session->userdata('logged_in')) : ?>
+                            <?php if (!UserAcces::userIsLogged()) { ?>
                                 <li class="sublist-container">
-                                    <a href="<?php echo base_url(); ?>home/contact" title=""> CONTACTER-NOUS</a>
+                                    <a href="<?=$base_url?>contact" title="">CONTACTEZ-NOUS</a>
                                 </li>
                                 <li class="sublist-container">
-                                    <a href="<?php echo base_url(); ?>usagers/register" title=""> S'INSCRIRE</a>
+                                    <a href="<?=$base_url?>usager/register" title="">S'INSCRIRE</a>
                                 </li>
                                 <li class="sublist-container">
-                                    <a href="<?php echo base_url(); ?>usagers/login" title=""> SE CONNECTER</a>
+                                    <a href="<?=$base_url?>usager/login" title="">SE CONNECTER</a>
                                 </li>
-                            <?php endif; ?>
+                            <?php } ?>
                         </ul>
                     </div>
                 </div>

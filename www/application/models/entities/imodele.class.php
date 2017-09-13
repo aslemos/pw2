@@ -6,9 +6,11 @@
 
 interface IModele {
 
-    public function setNomModele($nom_modele);
+    public function getId();
 
-    public function getNomModele();
+    public function setNom($nom_modele);
+
+    public function getNom();
 
     public function setMarque(IMarque $marque);
 

@@ -6,7 +6,9 @@
 
 interface IMarque {
 
-    public function setNomMarque($nom_marque);
+    public function getId();
 
-    public function getNomMarque();
+    public function setNom($nom_marque);
+
+    public function getNom();
 }

@@ -120,7 +120,7 @@
                     <div class="col-md-6">
                         <label>Nom
                             <input type="text" name="nom" disabled value="<?= $users->getNom() ?> "/>
-                            <input type="hidden" name="user_id" value="<?= $users->getUserId() ?> ">
+                            <input type="hidden" name="user_id" value="<?= $users->getId() ?> ">
 
                         </label>
                     </div>

@@ -7,19 +7,23 @@
 
 class EMarque implements IMarque {
 
-    private $marque_id;
-    private $nom_marque;
+    private $_marque_id;
+    private $_nom_marque;
 
     public function __construct(array $data) {
-        $this->marque_id = $data['marque_id'];
-        $this->setNomMarque($data['nom_marque']);
+        $this->_marque_id = $data['marque_id'];
+        $this->setNom($data['nom_marque']);
     }
 
-    public function setNomMarque($nom_marque) {
-        $this->nom_marque = $nom_marque;
+    public function getId() {
+        return $this->_marque_id;
     }
 
-    public function getNomMarque() {
-        return $this->nom_marque;
+    public function setNom($nom_marque) {
+        $this->_nom_marque = $nom_marque;
+    }
+
+    public function getNom() {
+        return $this->_nom_marque;
     }
 }

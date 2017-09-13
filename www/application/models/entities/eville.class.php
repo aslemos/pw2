@@ -6,33 +6,33 @@
 
 class EVille implements IVille {
 
-    private $ville_id = 0;
-    private $nom_ville = '';
-    private $province = '';
+    private $_ville_id = 0;
+    private $_nom_ville = '';
+    private $_province = '';
 
     public function __construct(array $data) {
-        $this->ville_id = $data['ville_id'];
-        $this->nom_ville = $data['nom_ville'];
-        $this->province = $data['province'];
+        $this->_ville_id = $data['ville_id'];
+        $this->_nom_ville = $data['nom_ville'];
+        $this->_province = $data['province'];
     }
 
-    public function getVilleId() {
-        return $this->ville_id;
+    public function getId() {
+        return $this->_ville_id;
     }
 
-    public function getNomVille() {
-        return $this->nom_ville;
+    public function getNom() {
+        return $this->_nom_ville;
     }
-    public function setNomVille($nom_ville) {
-        $this->nom_ville = $nom_ville;
+    public function setNom($nom_ville) {
+        $this->_nom_ville = $nom_ville;
         return $this;
     }
 
     public function getProvince() {
-        return $this->province;
+        return $this->_province;
     }
     public function setProvince($province) {
-        $this->province = $province;
+        $this->_province = $province;
         return $this;
     }
 }

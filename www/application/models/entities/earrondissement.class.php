@@ -6,32 +6,36 @@
 
 class EArrondissement implements IArrondissement {
 
-    private $arr_id;
-    private $nom_arr;
-    private $ville = NULL;
+    private $_arr_id;
+    private $_nom_arr;
+    private $_ville = NULL;
 
     public function __construct(array $data) {
-        $this->arr_id = $data['arr_id'];
-        $this->nom_arr = $data['nom_arr'];
+        $this->_arr_id = $data['arr_id'];
+        $this->_nom_arr = $data['nom_arr'];
     }
 
-    public function getArrondId() {
-        return $this->arr_id;
+    public function getId() {
+        return $this->_arr_id;
     }
 
-    public function getNomArrond() {
-        return $this->nom_arr;
+    public function getNom() {
+        return $this->_nom_arr;
     }
-    public function setNomArrond($nom_arr) {
-        $this->nom_arr = $nom_arr;
+    public function setNom($nom_arr) {
+        $this->_nom_arr = $nom_arr;
         return $this;
     }
 
     public function getVille() {
-        return $this->ville;
+        return $this->_ville;
     }
     public function setVille(IVille $ville) {
-        $this->ville = $ville;
+        $this->_ville = $ville;
         return $this;
+    }
+
+    public function toString() {
+        return $this->getVille()->getNom() . ', ' . $this->getNom();
     }
 }

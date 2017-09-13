@@ -2,20 +2,20 @@
 
 class EUsager implements IUsager {
 
-    private $user_id;   // ID
-    private $role_id;   // FK roles
-    private $prenom;
-    private $nom;
-    private $permis_conduire;
-    private $adresse;
-    private $ville_id;
-    private $code_postal;
-    private $telephone;
-    private $courriel;
-    private $date_adhesion;
-    private $user_photo;
-    private $username;
-    private $mdp;
+    private $_user_id;   // ID
+    private $_role_id;   // FK roles
+    private $_prenom;
+    private $_nom;
+    private $_permis_conduire;
+    private $_adresse;
+    private $_ville_id;
+    private $_code_postal;
+    private $_telephone;
+    private $_courriel;
+    private $_date_adhesion;
+    private $_user_photo;
+    private $_username;
+    private $_mdp;
 
     public function __construct(array $user = NULL) {
         if ($user !== NULL) {
@@ -36,118 +36,118 @@ class EUsager implements IUsager {
         }
     }
 
-    public function getUserId() {
-        return $this->user_id;
+    public function getId() {
+        return $this->_user_id;
     }
 
     public function getRoleId() {
-        return $this->role_id;
+        return $this->_role_id;
     }
 
     public function getPrenom() {
-        return $this->prenom;
+        return $this->_prenom;
     }
 
     public function getNom() {
-        return $this->nom;
+        return $this->_nom;
     }
 
     public function getPermisConduire() {
-        return $this->permis_conduire;
+        return $this->_permis_conduire;
     }
 
     public function getAdresse() {
-        return $this->adresse;
+        return $this->_adresse;
     }
 
     public function getVilleId() {
-        return $this->ville_id;
+        return $this->_ville_id;
     }
 
     public function getCodePostal() {
-        return $this->code_postal;
+        return $this->_code_postal;
     }
 
     public function getTelephone() {
-        return $this->telephone;
+        return $this->_telephone;
     }
 
     public function getCourriel() {
-        return $this->courriel;
+        return $this->_courriel;
     }
 
     public function getMdp() {
-        return $this->mdp;
+        return $this->_mdp;
     }
 
     public function getDateAdhesion() {
-        return $this->date_adhesion;
+        return $this->_date_adhesion;
     }
 
     public function getUserPhoto() {
-        return $this->user_photo;
+        return $this->_user_photo;
     }
 
     public function getUsername() {
-        return $this->username;
+        return $this->_username;
     }
 
     public function setUserId($membre_id) {
-        $this->user_id = $membre_id;
+        $this->_user_id = $membre_id;
     }
 
     public function setRoleId($role_id) {
-        $this->role_id = $role_id;
+        $this->_role_id = $role_id;
     }
 
     public function setPrenom($prenom) {
-        $this->prenom = $prenom;
+        $this->_prenom = $prenom;
     }
 
     public function setNom($nom) {
-        $this->nom = $nom;
+        $this->_nom = $nom;
     }
 
     public function setPermisConduire($permis_conduire) {
-        $this->permis_conduire = $permis_conduire;
+        $this->_permis_conduire = $permis_conduire;
     }
 
     public function setAdresse($adresse) {
-        $this->adresse = $adresse;
+        $this->_adresse = $adresse;
     }
 
     public function setVilleId($ville_id) {
-        $this->ville_id = $ville_id;
+        $this->_ville_id = $ville_id;
     }
 
     public function setCodePostal($code_postal) {
-        $this->code_postal = $code_postal;
+        $this->_code_postal = $code_postal;
     }
 
     public function setTelephone($telephone) {
-        $this->telephone = $telephone;
+        $this->_telephone = $telephone;
     }
 
     public function setCourriel($courriel) {
-        $this->courriel = $courriel;
+        $this->_courriel = $courriel;
     }
 
     public function setMdp($mdp) {
-        $this->mdp = $mdp;
+        $this->_mdp = $mdp;
     }
 
     public function setDateAdhesion($date_adhesion) {
-        $this->date_adhesion = $date_adhesion;
+        $this->_date_adhesion = $date_adhesion;
         return $this;
     }
 
     public function setUserPhoto($user_photo) {
-        $this->user_photo = $user_photo;
+        $this->_user_photo = $user_photo;
         return $this;
     }
 
     public function setUsername($username) {
-        $this->username = $username;
+        $this->_username = $username;
         return $this;
     }
 }

@@ -19,7 +19,7 @@
         <li class=""><a href="<?=$base_url?>usager/login" title="">SE CONNECTER</a></li>
         <?php } ?>
 
-        <button class="btn-menu hidden-md hidden-lg" id="close-side-menu">FERMER</button>
+        <li class="hidden-md hidden-lg"><button class="btn-menu" id="close-side-menu">FERMER</button></li>
     </ul>
 </nav>
 

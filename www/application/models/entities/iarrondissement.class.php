@@ -6,11 +6,13 @@
 
 interface IArrondissement {
 
-    public function getArrondId();
+    public function getId();
 
-    public function getNomArrond();
-    public function setNomArrond($nom_arr);
+    public function getNom();
+    public function setNom($nom_arr);
 
     public function getVille();
     public function setVille(IVille $ville);
+
+    public function toString();
 }

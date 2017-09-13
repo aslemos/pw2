@@ -133,7 +133,7 @@
 <body>
 
     <div class="form-style-10">
-        <h1>Reclamation de proprietaire!<span></span></h1>
+        <h1>Reclamation de locataire!<span></span></h1>
         <form method="post" action="<?= $base_url ?>reclamation/insert_reclamation">
 
             <input type="hidden" name="type_message" value="<?= $type_message; ?>">
@@ -141,16 +141,16 @@
 
             <div class="inner-wrap">
 
-                <div class="section"><span>1</span>Informations du proprietaire</div>
+                <div class="section"><span>1</span>Informations du locataire</div>
                 <div class="row">
                     <div class="col-md-6">
                         <label>Nom
-                            <input type="text" name="nom" disabled value="<?= $voitures['nom']; ?> "/>
+                            <input type="text" name="nom" disabled value="<?= $locations['nom']; ?> "/>
                         </label>
                     </div>
                     <div class="col-md-6">
                         <label>Prenom
-                            <input type="text" name="prenom" disabled value="<?= $voitures['prenom']; ?> " />
+                            <input type="text" name="prenom" disabled value="<?= $locations['prenom']; ?> " />
                         </label>
                     </div>
                 </div>
@@ -158,12 +158,12 @@
                 <div class="row">
                     <div class="col-md-6">
                         <label>email
-                            <input type="text" name="nom" disabled value="<?= $voitures['courriel']; ?> "/>
+                            <input type="text" name="nom" disabled value="<?= $locations['courriel']; ?> "/>
                         </label>
                     </div>
                     <div class="col-md-6">
                         <label>Tel
-                            <input type="text" name="prenom" disabled value="<?= $voitures['telephone']; ?> " />
+                            <input type="text" name="prenom" disabled value="<?= $locations['telephone']; ?> " />
                         </label>
                     </div>
                 </div>
@@ -173,7 +173,7 @@
 
 
             <div class="inner-wrap">
-                <div class="section"><span>2</span>Informations du locataire</div>
+                <div class="section"><span>2</span>Informations du proprietaire</div>
                 <div class="row">
                     <div class="col-md-6">
                         <label>Nom

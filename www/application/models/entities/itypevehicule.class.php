@@ -5,8 +5,8 @@
  */
 
 interface ITypeVehicule {
-    public function getTypeId();
+    public function getId();
 
-    public function getNomType();
-    public function setNomType($nom_type);
+    public function getNom();
+    public function setNom($nom_type);
 }
