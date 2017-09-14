@@ -5,10 +5,10 @@ include VIEWPATH . 'common/header.php';
 include VIEWPATH . 'client/boutons_client.php';
 ?>
 <h2>Historique des locataires</h2>
-<form action="" name="formulaire" id="form-demandes-id">
+<form action="<?= $base_url ?>locations/locataires" name="formulaire" id="form-demandes-id">
     <div class="table-responsive">
-        <label>Choisir un usager  :</label>
-        <select name="Usagers">
+        <label>Choisir un usager :</label>
+        <select name="user_id">
             <option>Sélectionner</option>
             <!--mettre les données dynamiquement dans la liste de voitures-->
             <?php foreach ($usagers as $usager) { ?>
