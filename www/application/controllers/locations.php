@@ -211,9 +211,9 @@ class Locations extends CI_Controller {
         $data['payements'] = $this->modepaiement_model->getModesPaiements();
 
         $this->load->view('client/form_location', $data);
-        echo '<pre>';
-        var_dump($data);
-        echo '</pre>';
+//        echo '<pre>';
+//        var_dump($data);
+//        echo '</pre>';
     }
 
 
