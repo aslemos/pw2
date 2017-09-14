@@ -14,7 +14,7 @@ class Vehicule_model extends CI_Model {
 
     public function rechercherVehicules(ERecherche $recherche) {
 
-//        $this->db->from('disponibilites');
+        //$this->db->from('disponibilites');
         $this->db->join('vehicules', 'vehicules.vehicule_id = disponibilites.vehicule_id');
         $this->db->join('type_vehicules', 'vehicules.type_id = type_vehicules.type_id');
         $this->db->join('modeles', 'vehicules.modele_id = modeles.modele_id');
@@ -73,11 +73,13 @@ class Vehicule_model extends CI_Model {
 
 
         echo '<pre>';
-        var_dump($recherche);
-        echo $this->db->get_compiled_select();
+        //var_dump($recherche);
+        //echo $this->db->get_compiled_select('disponibilites');
+        var_dump($this->db->get('disponibilites'));
         echo '</pre>';
-
+        
         $query = $this->db->get('disponibilites');
+        //$query = $this->db->get_compiled_select('disponibilites');
         var_dump($query->result_array());
         
         return $query->result_array();
