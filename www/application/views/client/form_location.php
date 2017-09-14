@@ -91,12 +91,12 @@
                 <div class="row">
                     <div class="col-md-6">
                         <label>Date debut
-                            <input type="text" name="date_debut"  value="<?= $voitures['date_debut'] ?>"/>
+                            <input type="text" name="date_debut"  value="<?= $date_debut ?>"/>
                         </label>
                     </div>
                     <div class="col-md-6">
                         <label>Date fin
-                            <input type="text" name="date_fin" value="<?= $voitures['date_fin'] ?> "/>
+                            <input type="text" name="date_fin" value="<?= $date_fin ?> "/>
                         </label>
                     </div>
                 </div>

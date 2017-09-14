@@ -184,10 +184,50 @@ include VIEWPATH . '/common/header.php';
             </tbody></table>
     </form>
 
-    <!-- Div pour affichage -->
-    <div id="resultat"></div>
-    <div id="divAuto_voitures"></div>
-</section>
+        <form action="" name="formulaire" id="form-voitures-id">
+            <table class="table table-responsive">
+                <tbody><tr>
+                        <td class="titre_editable">Nº</td>
+                        <td class="titre_editable">Marque</td>
+                        <td class="titre_editable">Modele</td>
+                        <td class="titre_editable">Année</td>
+                        <td class="titre_editable">Type de carrosserie</td>
+                        <td class="titre_editable">Evaluation</td>
+                        <td class="titre_editable">Prix</td>
+                        <td class="titre_editable">Propriétaire</td>
+                        <td class="titre_editable">Matricule</td>
+                        <td class="titre_editable">Approuver</td>
+                        <td class="titre_editable">Refuser</td>
+                    </tr>
+                    
+                    <?php   foreach ($vehicules as $vehicule) { ?>
+                    <tr>
+                        <td class="editable">1</td>
+                        <td class="editable">test</td>
+                        <td class="editable">test</td>
+                        <td class="editable">test</td>
+                        <td class="editable">test</td>
+                        <td class="editable">test</td>
+                        <td class="editable">test</td>
+                        <td class="editable">test</td>
+                        <td class="editable">test</td>
+                        
+                   
+                        <td class=""><a class="btn btn-inline" href="<?= $base_url ?>vehicule_model/debloquerVehicule/<?= $vehicule['vehicule_id'] ?>"></a></td>
+                        <td class=""><a class="btn btn-inline"href="<?= $base_url ?>vehicule_model/bloquerVehicule/<?= $vehicule['vehicule_id'] ?>"></a></td>
+
+                    </tr>
+                    <?php } ?>
+                    
+                    
+                </tbody></table>
+        </form>
+
+        <!-- Div pour affichage -->
+        <div id="resultat"></div>
+        <div id="divAuto_voitures"></div>
+    </section>
+</main>
 
 <?php
 // footer
