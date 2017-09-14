@@ -1,13 +1,39 @@
 <?php include VIEWPATH . '/common/header.php'; ?>
 
+<style type="text/css">
+    .editPersonInfo{
+        height: 40px;
+        width: 300px;
+        float: left;
+        margin-top: -5px;
+
+
+    }
+
+    #editPersonIcon{
+        margin-left: 5px;
+
+    }
+
+    #myForm2{
+        display: none;
+    }
+
+
+
+
+</style>
+
+
+
+
 <body>
 
 
-    <div class="form-style-10">
+    <div id="myForm1" class="form-style-10">
         <h1>Une récente modes de paiement</h1>
 
-        <form method="post" action="<?= $base_url ?>locations/insererPayemant">
-
+        <form  method="post" action="<?= $base_url ?>locations/insererPayemant">
             <div class="inner-wrap">
                 <div class="row">
                     <div class="col-md-6">
@@ -21,8 +47,6 @@
                         </label>
                     </div>
                 </div>
-
-
                 <div class="row">
                     <div class="col-md-6">
                         <label>Type de paiement <span class="required">*</span>
@@ -30,40 +54,35 @@
                         </label>
                     </div>
 
-                     <div class="col-md-6">
+                    <div class="col-md-6">
                         <label>Numéro de carte
                             <input type="number" name="nom"  value="123456"/>
                         </label>
                     </div>
-
                 </div>
-
                 <div class="btn-group" role="group" aria-label="Basic example">
-                    <button type="button" id="flip5" class="btn btn-danger animated bounceInLeft"><i class="fa  fa-window-close" style="font-size:22px;"></i> Annuler</button>
+                    <button type="button" id="flip5" class="btn btn-danger animated bounceInLeft"><a href="<?= $base_url ?>" > <i class="fa  fa-window-close" style="font-size:22px;"></i> Annuler</a></button>
                     <button type="submit" id="flip6" class="btn btn-success animated bounceInRight">Payer <i class="fa fa-dollar" style="font-size:22px;"></i></button>
-                    </span>
                 </div>
             </div>
-
-
-
         </form>
+
+        <!--
+                <div class="editPersonInfo1" >
+                    <div id="btn1" class="editPersonInfo1">
+                        <a href="" ></a>
+                    </div>
+                </div>-->
+        <button class="btn1"><span class="fa fa-pencil" style="font-size:25px;color:orange;"> </span>d'autres modes de paiements</button>
+
     </div>
 
 
 
-
-    <div class="form-style-10">
-       <h1>Payement</h1>
-        <form>
-
-            <div class="section test3">Modes de paiements</div>
-
-
+    <div id="myForm2" class="form-style-10">
+        <h1>Payement</h1>
+        <form  method="post" action="<?= $base_url ?>locations/insererPayemant" >
             <div class="inner-wrap">
-
-
-
                 <div class="row">
                     <div class="col-md-6">
                         <label>Nom
@@ -76,8 +95,6 @@
                         </label>
                     </div>
                 </div>
-
-
                 <div class="row">
                     <div class="col-md-12">
                         <label>Type de paiement <span class="required">*</span>
@@ -91,10 +108,7 @@
                             </select>
                         </label>
                     </div>
-
                 </div>
-
-
                 <div class="row">
                     <div class="col-md-4">
                         <label>Numéro de carte
@@ -115,20 +129,35 @@
                 </div>
 
                 <div class="btn-group" role="group" aria-label="Basic example">
-                    <button type="button" id="flip5" class="btn btn-danger animated bounceInLeft"><i class="fa  fa-window-close" style="font-size:22px;"></i> Annuler</button>
-                    <button type="button" id="flip6" class="btn btn-success animated bounceInRight">Payer <i class="fa fa-dollar" style="font-size:22px;"></i></button>
-                    </span>
+                    <button type="button" id="flip5" class="btn btn-danger animated bounceInLeft"><a href="<?= $base_url ?>" > <i class="fa  fa-window-close" style="font-size:22px;"></i> Annuler</a></button>
+                    <button type="submit" id="flip6" class="btn btn-success animated bounceInRight">Payer <i class="fa fa-dollar" style="font-size:22px;"></i></button>
                 </div>
+
             </div>
-
-
-
         </form>
+
+
+        <button class="btn2"><span class="fa fa-pencil" style="font-size:25px;color:orange;"> </span>Précédent modes de paiements</button>
+
     </div>
 
 </body>
 
 
+
+<script>
+    $(document).ready(function () {
+        $(".btn1").click(function () {
+            $("#myForm2").slideDown("slow");
+            $("#myForm1").slideUp("slow");
+        });
+
+        $(".btn2").click(function () {
+            $("#myForm1").slideDown("slow");
+            $("#myForm2").slideUp("slow");
+        });
+    });
+</script>
 
 
 
