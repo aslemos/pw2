@@ -18,7 +18,7 @@ include VIEWPATH . 'client/boutons_client.php';
 			<tr>
 				<th class="">Nº</th>
 				<th class="">Marque</th>
-				<th class="">Modele</th>
+				<th class="">Modèle</th>
 				<th class="">Matricule</th>
 				<th class="">Année</th>
 				<th class="">Prix</th>
@@ -27,9 +27,10 @@ include VIEWPATH . 'client/boutons_client.php';
 			</tr>
 			</thead>
 			<tbody>
+<?php foreach($vehicules as $vehicule) { ?>
 			<tr>
-				<td class="">1</td>
-				<td class="">test</td>
+				<td class=""><?=$vehicule['nom_marque']?></td>
+				<td class=""><?=$vehicule['nom_marque']?></td>
 				<td class="">test</td>
 				<td class="">test</td>
 				<td class="">test</td>
@@ -37,6 +38,7 @@ include VIEWPATH . 'client/boutons_client.php';
 				<td><a href="#"><img class="img-responsive" src="/assets/images/ok.png" ></a></td>
 				<td><a href="#"><img class="img-responsive" src="/assets/images/no.png" ></a></td>
 			</tr>
+<?php } ?>
 			</tbody>
 		</table>
 		</div>
