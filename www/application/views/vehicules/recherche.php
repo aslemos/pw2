@@ -3,27 +3,6 @@
 include VIEWPATH . 'common/header.php';
 //========================================================
 ?>
-<script>
-    /**
-     * Remplit le listbox des modèles selon la marque choisie
-     * @author Alessandro Lemos
-     */
-    $(function(){
-        $('#marque_id').on('change', function(){
-            var lstModele = document.getElementById('modele_id');
-            lstModele.innerHTML = lstModele.options[0].outerHTML;
-            $.ajax({
-                url: '<?=$base_url?>modele/ajaxModelesByMarque/' + this.value,
-                success: function(data) {
-                    var json = JSON.parse(data);
-                    for (var i=0; i < json.length; i++) {
-                        lstModele.innerHTML += '<option value="' + json[i].modele_id + '">' + json[i].nom_modele + '</option>';
-                    }
-                }
-            });
-        });
-    });
-</script>
 <main>
     <section id="voitures">
         <div class="container">
@@ -48,9 +27,9 @@ include VIEWPATH . 'common/header.php';
                                         </td>
                                         <td class="col-sm-6">
                                             <select class="form-control" id="marque_id" name="marque_id">
-                                                <option value="0">-- Choisir une marque --</option>
+                                                <option value="0">-- Toutes --</option>
                                                 <?php foreach ($marques as $marque) { ?>
-                                                    <option value="<?php echo $marque['marque_id']; ?>"<?=$marque['marque_id']==$marque_id?' selected':''?><?=$marque['marque_id']==$marque_id?' selected':''?>>
+                                                    <option value="<?php echo $marque['marque_id']; ?>"<?=$marque['marque_id']==$recherche->getMarqueId()?' selected':''?>>
                                                         <?php echo $marque['nom_marque']; ?>
                                                     </option>
                                                 <?php } ?>
@@ -63,9 +42,9 @@ include VIEWPATH . 'common/header.php';
                                         </td>
                                         <td class="col-sm-6">
                                             <select class="form-control" id="modele_id" name="modele_id">
-                                                <option value="0">-- Choisir un modèle --</option>
+                                                <option value="0">-- Tous --</option>
                                                 <?php foreach ($modeles as $modele) { ?>
-                                                    <option value="<?php echo $modele['modele_id']; ?>"<?=$modele['modele_id']==$modele_id?' selected':''?>>
+                                                    <option value="<?php echo $modele['modele_id']; ?>"<?=$modele['modele_id']==$recherche->getModeleId()?' selected':''?>>
                                                         <?php echo $modele['nom_modele']; ?>
                                                     </option>
                                                 <?php } ?>
@@ -78,9 +57,9 @@ include VIEWPATH . 'common/header.php';
                                         </td>
                                         <td class="col-sm-6">
                                             <select class="form-control" id="type_id" name="type_id">
-                                                <option value="0">-- Choisir une type --</option>
+                                                <option value="0">-- Tous --</option>
                                                 <?php foreach ($types as $type) : ?>
-                                                    <option value="<?php echo $type['type_id']; ?>"<?=$type['type_id']==$type_id?' selected':''?>>
+                                                    <option value="<?php echo $type['type_id']; ?>"<?=$type['type_id']==$recherche->getTypeId()?' selected':''?>>
                                                         <?php echo $type['nom_type']; ?>
                                                     </option>
                                                 <?php endforeach; ?>
@@ -89,15 +68,15 @@ include VIEWPATH . 'common/header.php';
                                     </tr>
                                     <tr class="form-group row">
                                         <td class="col-sm-6">
-                                            <label for="nbre_places">Nombre de sièges : </label>
+                                            <label for="nbre_places">Nombre de places : </label>
                                         </td>
                                         <td class="col-sm-6">
                                             <select class="form-control" id="nbre_places" name="nbre_places">
-                                                <option value="0">-- Choisir --</option>
-                                                <option value="1"<?=$nbre_places==1?' selected':''?>>1</option>
-                                                <option value="2"<?=$nbre_places==2?' selected':''?>>2</option>
-                                                <option value="5"<?=$nbre_places==5?' selected':''?>>5</option>
-                                                <option value="7"<?=$nbre_places==7?' selected':''?>>7</option>
+                                                <option value="0">-- Tous --</option>
+                                                <option value="1"<?=$recherche->getNbPlaces()==1?' selected':''?>>1</option>
+                                                <option value="2"<?=$recherche->getNbPlaces()==2?' selected':''?>>2</option>
+                                                <option value="5"<?=$recherche->getNbPlaces()==5?' selected':''?>>5</option>
+                                                <option value="7"<?=$recherche->getNbPlaces()==7?' selected':''?>>7</option>
                                             </select>
                                         </td>
                                     </tr>
@@ -107,9 +86,9 @@ include VIEWPATH . 'common/header.php';
                                         </td>
                                         <td class="col-sm-6">
                                             <select class="form-control" id="annee" name="annee">
-                                                <option value="0">-- Choisir l'année --</option>
+                                                <option value="0">-- Toutes --</option>
                                                 <?php for ($i=Date('Y'), $fin=$i-20; $i>=$fin; $i--) { ?>
-                                                    <option value="<?php echo $i ?>"<?=$i==$annee?' selected':''?>><?php echo $i; ?></option>
+                                                    <option value="<?php echo $i ?>"<?=$i==$recherche->getAnnee()?' selected':''?>><?php echo $i; ?></option>
                                                 <?php } ?>
                                             </select>
                                         </td>
@@ -120,9 +99,9 @@ include VIEWPATH . 'common/header.php';
                                         </td>
                                         <td class="col-sm-6">
                                             <select class="form-control" id="carburant_id" name="carburant_id">
-                                                <option value="0">-- Choisir le type carburant --</option>
+                                                <option value="0">-- Tous --</option>
                                                 <?php foreach ($carburants as $carburant) { ?>
-                                                    <option value="<?php echo $carburant['carburant_id']; ?>"<?=$carburant['carburant_id']==$carburant_id?' selected':''?>>
+                                                    <option value="<?php echo $carburant['carburant_id']; ?>"<?=$carburant['carburant_id']==$recherche->getCarburantId()?' selected':''?>>
                                                         <?php echo $carburant['nom_carburant']; ?>
                                                     </option>
                                                 <?php } ?>
@@ -135,9 +114,9 @@ include VIEWPATH . 'common/header.php';
                                         </td>
                                         <td class="col-sm-6">
                                             <select class="form-control" id="transmission_id" name="transmission_id">
-                                                <option value="0">-- Choisir le type transmission --</option>
+                                                <option value="0">-- Toutes --</option>
                                                 <?php foreach ($transmissions as $transmission) { ?>
-                                                    <option value="<?php echo $transmission['transmission_id']; ?>"<?=$transmission['transmission_id']==$transmission_id?' selected':''?>>
+                                                    <option value="<?php echo $transmission['transmission_id']; ?>"<?=$transmission['transmission_id']==$recherche->getTransmissionId()?' selected':''?>>
                                                         <?php echo $transmission['nom_transmission']; ?>
                                                     </option>
                                                 <?php } ?>
@@ -150,9 +129,9 @@ include VIEWPATH . 'common/header.php';
                                         </td>
                                         <td class="col-sm-6">
                                             <select class="form-control" id="arr_id" name="arr_id">
-                                                <option value="0">-- Choisir l'emplacement --</option>
+                                                <option value="0">-- Tous --</option>
                                                 <?php foreach ($arrondissements as $arrondissement) { ?>
-                                                    <option value="<?php echo $arrondissement['arr_id']; ?>"<?=$arrondissement['arr_id']==$arr_id?' selected':''?>>
+                                                    <option value="<?php echo $arrondissement['arr_id']; ?>"<?=$arrondissement['arr_id']==$recherche->getArrondId()?' selected':''?>>
                                                         <?php echo $arrondissement['nom_arr']; ?>
                                                     </option>
                                                 <?php } ?>
@@ -164,7 +143,7 @@ include VIEWPATH . 'common/header.php';
                                             <label for="date_debut">De : </label>
                                         </td>
                                         <td class="col-sm-6">
-                                            <input type="text" class="form-control" id="date_debut" name="date_debut" value="<?=$date_debut?>">
+                                            <input type="text" class="form-control" id="date_debut" name="date_debut" value="<?=$recherche->getDateDebut()?>" required>
                                         </td>
                                     </tr>
                                     <tr class="form-group row">
@@ -172,7 +151,7 @@ include VIEWPATH . 'common/header.php';
                                             <label for="date_fin">à : </label>
                                         </td>
                                         <td class="col-sm-6">
-                                            <input type="text" class="form-control" id="date_fin" name="date_fin" value="<?=$date_fin?>">
+                                            <input type="text" class="form-control" id="date_fin" name="date_fin" value="<?=$recherche->getDateFin()?>" required>
                                         </td>
                                     </tr>
                                     <tr class="form-group row">
@@ -180,10 +159,10 @@ include VIEWPATH . 'common/header.php';
                                             <label for="prix">Prix : </label>
                                         </td>
                                         <td class="col-sm-6">
-                                            <select class="form-control" id="tranche_id" name="tranche_id">
-                                                <option value="">-- Choisir un tarif --</option>
+                                            <select class="form-control" id="tranche" name="tranche">
+                                                <option value="">-- Tous --</option>
                                                 <?php foreach ($tranches as $tranche) { ?>
-                                                <option value="<?=$tranche['tranche_id']?>"<?=$tranche['tranche_id']==$tranche_id?' selected':''?>><?=$tranche['nom_tranche']?></option>
+                                                <option value="<?=$tranche['tranche']?>"<?=$tranche['tranche']==$recherche->getTranche()?' selected':''?>><?=$tranche['nom_tranche']?></option>
                                                 <?php } ?>
                                             </select>
                                         </td>
@@ -206,13 +185,22 @@ include VIEWPATH . 'common/header.php';
                 <div class="cols8 col-md-12 col-sm-12 col-xs-12">
                     <div class="blocks">
                         <div class="img-container">
-                            <img src="<?=$base_url?>assets/images/header/bg_header.jpg" alt="">
+                            <img src="<?=$base_url?>assets/images/vehicules/<?=$vehicule->getPhoto()?>" alt="<?=$vehicule->toString()?>" title="<?=$vehicule->toString()?>">
                         </div>
+                        <form method="post" action="<?=$base_url?>locations/form_location/<?=$vehicule->getId()?>">
+                            <input type="hidden" name="date_debut" value="<?=$recherche->getDateDebut()?>">
+                            <input type="hidden" name="date_fin" value="<?=$recherche->getDateFin()?>">
                         <div class="desc-container">
-                            <p>Mauris pellentesque vestibulum suscipit. Suspendisse potenti. Nunc eget maximus ipsum. Quisque sed sagittis nisi. Donec rutrum commodo tortor, sit amet condimentum quam rutrum quis. Proin et posuere enim. Nullam sodales diam at tincidunt placerat. Phasellus ornare velit nunc, non tristique magna auctor sit amet. Duis ut justo eget eros hendrerit semper. Nunc fringilla nunc eget est interdum, non tempus massa sodales. Suspendisse eget libero leo. Vivamus nec pretium nibh, ac facilisis metus. Aliquam dui metus, vehicula id malesuada non, sollicitudin sit amet orci. Vestibulum efficitur ullamcorper pulvinar.</p>
-                            <p>Pellentesque rhoncus fringilla libero, a blandit mauris rhoncus non. Pellentesque arcu dolor, rutrum sit amet nunc a, rutrum aliquet nulla. Ut pharetra dui ipsum, non dapibus velit sagittis nec. Mauris mollis posuere sapien, eu accumsan urna rhoncus vel. Vestibulum at suscipit libero. In efficitur risus nec nisi dignissim, nec feugiat massa dignissim. Integer nec urna id est varius eleifend ac et augue. Curabitur efficitur purus nec luctus posuere. Morbi ultricies tellus quis dolor pulvinar pharetra. Cras ultricies leo lectus, eget faucibus lectus vehicula maximus. Maecenas porta leo sem, quis facilisis lectus varius ac.</p>
-                            <p>Aliquam mollis sit amet velit eleifend cursus. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Pellentesque maximus sem ut ipsum placerat, a elementum tortor iaculis. Etiam pretium sodales libero eget varius. Nulla ut lorem metus. Sed sodales ullamcorper egestas. Ut euismod fermentum aliquam. Donec volutpat pharetra vehicula. Mauris dignissim, ex a accumsan euismod, nisl quam placerat diam, eget luctus leo nisl eget orci. Maecenas et vulputate ex, egestas lacinia nisl. Suspendisse potenti. Donec risus turpis, tincidunt sit amet fringilla in, sollicitudin id enim.</p>
+                            <p><b><?=$vehicule->toString()?></b></p>
+                            <p>Type : <?=$vehicule->getType()->getNom()?></p>
+                            <p>Carburant : <?=$vehicule->getCarburant()->getNom()?></p>
+                            <p>Transmission : <?=$vehicule->getTransmission()->getNom()?></p>
+                            <p>Prix : <?=$vehicule->getPrix()?>$</p>
+                            <p>Nombre de places : <?=$vehicule->getNbPlaces()?></p>
+                            <p>Disponible à <?=$vehicule->getArrond()->toString()?>, <?=$vehicule->getDisponibilite()->toString()?></p>
+                            <button class="btn-danger">Réserver</button>
                         </div>
+                        </form>
                     </div>
                 </div>
                 <?php } ?>
