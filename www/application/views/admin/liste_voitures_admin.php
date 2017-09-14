@@ -37,6 +37,8 @@ include VIEWPATH . '/common/header.php';
                         <td class="titre_editable">Approuver</td>
                         <td class="titre_editable">Refuser</td>
                     </tr>
+                    
+                    <?php   foreach ($vehicules as $vehicule) { ?>
                     <tr>
                         <td class="editable">1</td>
                         <td class="editable">test</td>
@@ -47,149 +49,15 @@ include VIEWPATH . '/common/header.php';
                         <td class="editable">test</td>
                         <td class="editable">test</td>
                         <td class="editable">test</td>
-                        <td class="editable">
-                            <img src="<?= $base_url; ?>assets/images/ok.png">
-                        </td>
-                        <td class="editable">
-                            <img src="<?= $base_url; ?>assets/images/no.png">
-                        </td>
-                    </tr>	
-                    <tr>
-                        <td class="editable">2</td>
-                        <td class="editable">test</td>
-                        <td class="editable">test</td>
-                        <td class="editable">test</td>
-                        <td class="editable">test</td>
-                        <td class="editable">test</td>
-                        <td class="editable">test</td>
-                        <td class="editable">test</td>
-                        <td class="editable">test</td>
-                        <td class="editable">
-                            <img src="<?= $base_url; ?>assets/images/ok.png">
-                        </td>
-                        <td class="editable">
-                            <img src="<?= $base_url; ?>assets/images/no.png">
-                        </td>
-                    </tr>	
-                    <tr>
-                        <td class="editable">3</td>
-                        <td class="editable">test</td>
-                        <td class="editable">test</td>
-                        <td class="editable">test</td>
-                        <td class="editable">test</td>
-                        <td class="editable">test</td>
-                        <td class="editable">test</td>
-                        <td class="editable">test</td>
-                        <td class="editable">test</td>
-                        <td class="editable">
-                            <img src="<?= $base_url; ?>assets/images/ok.png">
-                        </td>
-                        <td class="editable">
-                            <img src="<?= $base_url; ?>assets/images/no.png">
-                        </td>
-                    </tr>	
-                    <tr>
-                        <td class="editable">4</td>
-                        <td class="editable">test</td>
-                        <td class="editable">test</td>
-                        <td class="editable">test</td>
-                        <td class="editable">test</td>
-                        <td class="editable">test</td>
-                        <td class="editable">test</td>
-                        <td class="editable">test</td>
-                        <td class="editable">test</td>
-                        <td class="editable">
-                            <img src="<?= $base_url; ?>assets/images/ok.png">
-                        </td>
-                        <td class="editable">
-                            <img src="<?= $base_url; ?>assets/images/no.png">
-                        </td>
-                    </tr>	
-                    <tr>
-                        <td class="editable">5</td>
-                        <td class="editable">test</td>
-                        <td class="editable">test</td>
-                        <td class="editable">test</td>
-                        <td class="editable">test</td>
-                        <td class="editable">test</td>
-                        <td class="editable">test</td>
-                        <td class="editable">test</td>
-                        <td class="editable">test</td>
-                        <td class="editable">
-                            <img src="<?= $base_url; ?>assets/images/ok.png">
-                        </td>
-                        <td class="editable">
-                            <img src="<?= $base_url; ?>assets/images/no.png">
-                        </td>
-                    </tr>	
-                    <tr>
-                        <td class="editable">6</td>
-                        <td class="editable">test</td>
-                        <td class="editable">test</td>
-                        <td class="editable">test</td>
-                        <td class="editable">test</td>
-                        <td class="editable">test</td>
-                        <td class="editable">test</td>
-                        <td class="editable">test</td>
-                        <td class="editable">test</td>
-                        <td class="editable">
-                            <img src="<?= $base_url; ?>assets/images/ok.png">
-                        </td>
-                        <td class="editable">
-                            <img src="<?= $base_url; ?>assets/images/no.png">
-                        </td>
-                    </tr>	
-                    <tr>
-                        <td class="editable">7</td>
-                        <td class="editable">test</td>
-                        <td class="editable">test</td>
-                        <td class="editable">test</td>
-                        <td class="editable">test</td>
-                        <td class="editable">test</td>
-                        <td class="editable">test</td>
-                        <td class="editable">test</td>
-                        <td class="editable">test</td>
-                        <td class="editable">
-                            <img src="<?= $base_url; ?>assets/images/ok.png">
-                        </td>
-                        <td class="editable">
-                            <img src="<?= $base_url; ?>assets/images/no.png">
-                        </td>
-                    </tr>	
-                    <tr>
-                        <td class="editable">8</td>
-                        <td class="editable">test</td>
-                        <td class="editable">test</td>
-                        <td class="editable">test</td>
-                        <td class="editable">test</td>
-                        <td class="editable">test</td>
-                        <td class="editable">test</td>
-                        <td class="editable">test</td>
-                        <td class="editable">test</td>
-                        <td class="editable">
-                            <img src="<?= $base_url; ?>assets/images/ok.png">
-                        </td>
-                        <td class="editable">
-                            <img src="<?= $base_url; ?>assets/images/no.png">
-                        </td>
-                    </tr>	
-                    <tr>
-                        <td class="editable">9</td>
-                        <td class="editable">test</td>
-                        <td class="editable">test</td>
-                        <td class="editable">test</td>
-                        <td class="editable">test</td>
-                        <td class="editable">test</td>
-                        <td class="editable">test</td>
-                        <td class="editable">test</td>
-                        <td class="editable">test</td>
-                        <td class="editable">
-                            <img src="<?= $base_url; ?>assets/images/ok.png">
-                        </td>
-                        <td class="editable">
-                            <img src="<?= $base_url; ?>assets/images/no.png">
-                        </td>
-                    </tr>	
+                        
+                   
+                        <td class=""><a class="btn btn-inline" href="<?= $base_url ?>vehicule_model/debloquerVehicule/<?= $vehicule['vehicule_id'] ?>"></a></td>
+                        <td class=""><a class="btn btn-inline"href="<?= $base_url ?>vehicule_model/bloquerVehicule/<?= $vehicule['vehicule_id'] ?>"></a></td>
+
+                    </tr>
+                    <?php } ?>
+                    
+                    
                 </tbody></table>
         </form>
 

@@ -336,6 +336,10 @@ class Vehicule_model extends CI_Model {
      * @param int $vehicule_id
      */
     public function debloquerVehicule($vehicule_id) {
+        $this->db->where('vehicule_id', $vehicule_id);
+        return $this->db->update('vehicules', [
+                    'etat' => EVehicule::ETAT_ACTIF
+        ]);
     }
 
     /**
@@ -343,5 +347,10 @@ class Vehicule_model extends CI_Model {
      * @param int $vehicule_id
      */
     public function bloquerVehicule($vehicule_id) {
+         $this->db->where('vehicule_id', $vehicule_id);
+          return $this->db->update('vehicules', [
+                    'etat' => EVehicule::ETAT_INACTIF
+        ]);
+         
     }
 }
