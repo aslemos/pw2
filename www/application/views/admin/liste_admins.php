@@ -11,19 +11,11 @@ include VIEWPATH . '/common/header.php';
 
 <main>
     <section id="listeAdmin">
-        
-        <div class="btn-liens" >
-	<!-- Boutton pour afficher la liste des voiture en location d'un membres -->
-	<a class="btn btn-danger position" href="<?= $base_url; ?>admin/listeUsagers" >Liste des membres</a>
-	<!-- Boutton pour afficher la liste des voitures -->
-	<a class="btn btn-danger position" href="<?= $base_url; ?>admin/listeVoitures" >Liste des voitures</a>
-	<!-- Boutton pour afficher la des adminitrateurs -->
-	<a class="btn btn-danger position" href="<?= $base_url; ?>admin/listeAdmins">Liste des admins </a>
-        </div>
+<?php include VIEWPATH . 'admin/boutons_admin.php'; ?>
         <h2>Les admins</h2>
         <form action="" name="formulaire" id="form-voitures-id">
-            <div class="table-responsive">
-                <table class="table table-striped">
+            <!--<div class="table-responsive">-->
+                <table class="table table-striped table-responsive">
                     <thead>
                         <tr>
                             <th class="">Nº</th>
@@ -42,10 +34,11 @@ include VIEWPATH . '/common/header.php';
                             <td class="">test</td>
                             <td class="">test</td>
                             <td><a href="#"><img class="img-responsive" src="<?= base_url(); ?>assets/images/view.png" ></a></td>
-                        </tr>						
+                        </tr>
                     </tbody>
                 </table>
-            </div>
+            <!--</div>-->
+
         </form>
         <!-- Div pour affichage -->
         <div id="resultat"></div>

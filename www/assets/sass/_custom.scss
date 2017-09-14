@@ -38,7 +38,7 @@ img {
 }
 
 .bg-white{
-   background-color: #FFFFFF; 
+   background-color: #FFFFFF;
 }
 .bordered {
         border-right: solid 6px #efeff0;
@@ -206,7 +206,7 @@ h2 {
         max-width: 595px;
         text-align: justify;
         font-size:16px;
-        line-height: 20px; 
+        line-height: 20px;
     }
 }
 
@@ -215,8 +215,11 @@ h2 {
 #contacterNous{
     .title-container{
         margin-bottom: 60px;
+        h4 {
+            text-align: center;
+        }
     }
-    
+
     button{
         margin-bottom: 40px;
     }

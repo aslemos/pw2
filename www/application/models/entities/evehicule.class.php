@@ -7,6 +7,7 @@ class EVehicule implements IVehicule {
     const ETAT_ACTIF = 1;
 
     private $_vehicule_id;     // ID
+    private $_description;
     private $_vehicule_photo;
     private $_matricule;
     private $_annee;
@@ -26,6 +27,7 @@ class EVehicule implements IVehicule {
     public function __construct(array $data = NULL) {
         if ($data) {
             $this->_vehicule_id = $data['vehicule_id'] ? $data['vehicule_id'] : 0;
+            $this->setDescription($data['description']);
             $this->setAnnee($data['annee']);
             $this->setNbPlaces($data['nbre_places']);
             $this->setMatricule($data['matricule']);
@@ -37,6 +39,13 @@ class EVehicule implements IVehicule {
 
     public function getId() {
         return $this->_vehicule_id;
+    }
+
+    public function getDescription() {
+        return $this->_description;
+    }
+    public function setDescription($description) {
+        $this->_description = $description;
     }
 
     public function getMarqueId() {

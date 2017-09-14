@@ -17,9 +17,9 @@ include VIEWPATH . 'common/header.php';
                 </div>
             </div>
             <div class="row rows3">
-                <div class="clos5 col-sm-offset-2 col-md-offset-2 col-md-12 col-sm-12">
+                <div class="col-md-8 col-md-offset-2 col-sm-10 col-sm-offset-1 col-xs-12">
                     <div class="blocks5">
-                        <div class="col-md-offset-3 col-sm-offset-3 title-container">
+                        <div class="col-md-8 col-md-offset-2 title-container">
                             <h4> SOCIETÉ RENTCARS </h4>
 
                             <h4> RENTCARS@GMAIL.COM </h4>

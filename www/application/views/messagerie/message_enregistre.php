@@ -7,8 +7,7 @@
 
 require VIEWPATH . 'common/header.php';
 ?>
-<b id="s"></b>
-<h3>Message envoyé au destinaraire</h3>
+<h3>Message envoyé au destinataire</h3>
 <form action="<?=$base_url?>messagerie/envoyes#s">
     <button type="submit">Ok</button>
 </form>
