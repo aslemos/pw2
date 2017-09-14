@@ -114,6 +114,4 @@ $base_url = isset($base_url)
             <?php endif; ?>
 
         </div>
-        <main>
-            <section id="user">
-                <div class="container">
+        <main id="s" class="container">

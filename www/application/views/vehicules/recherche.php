@@ -19,7 +19,7 @@ include VIEWPATH . 'common/header.php';
                     <div class="desc-container">
                         <h3>Formulaire de recherche</h3>
                         <div class="table-responsive">
-                            <form action="<?=$base_url;?>vehicule/recherche" method="post" class="frm-inline">
+                            <form action="<?= $base_url; ?>vehicule/recherche" method="post" class="frm-inline">
                                 <table class="table table-striped">
                                     <tr class="form-group row">
                                         <td class="col-sm-6">
@@ -180,33 +180,43 @@ include VIEWPATH . 'common/header.php';
 
 
             <div class="cols7 col-md-8 col-sm-12 col-xs-12">
-<?php if (count($resultat) > 0) { ?>
-                <?php foreach ($resultat as $vehicule) { ?>
-                <div class="cols8 col-md-12 col-sm-12 col-xs-12">
-                    <div class="blocks">
-                        <div class="img-container">
-                            <img src="<?=$base_url?>assets/images/vehicules/<?=$vehicule->getPhoto()?>" alt="<?=$vehicule->toString()?>" title="<?=$vehicule->toString()?>">
-                        </div>
+                <?php
+                //echo '<pre>';
+                //var_dump($resultat);
+                //echo '</pre>';
+                ?>
+                <?php if (count($resultat) > 0) { ?>
+                    <?php foreach ($resultat as $vehicule) { ?>
                         <form method="post" action="<?=$base_url?>locations/form_location/<?=$vehicule->getId()?>">
                             <input type="hidden" name="date_debut" value="<?=$recherche->getDateDebut()?>">
                             <input type="hidden" name="date_fin" value="<?=$recherche->getDateFin()?>">
-                        <div class="desc-container">
-                            <p><b><?=$vehicule->toString()?></b></p>
-                            <p>Type : <?=$vehicule->getType()->getNom()?></p>
-                            <p>Carburant : <?=$vehicule->getCarburant()->getNom()?></p>
-                            <p>Transmission : <?=$vehicule->getTransmission()->getNom()?></p>
-                            <p>Prix : <?=$vehicule->getPrix()?>$</p>
-                            <p>Nombre de places : <?=$vehicule->getNbPlaces()?></p>
-                            <p>Disponible à <?=$vehicule->getArrond()->toString()?>, <?=$vehicule->getDisponibilite()->toString()?></p>
-                            <button class="btn-danger">Réserver</button>
-                        </div>
+                            <div class="cols8 col-md-12 col-sm-12 col-xs-12">
+                                <div class="blocks">
+                                    <div class="img-container">
+                                        <img src="<?= $base_url ?>assets/images/vehicules/<?=$vehicule->getPhoto()?>" alt="<?=$vehicule->toString()?>">
+                                    </div>
+                                    <div>
+                                        <h3> <?=$vehicule->toString()?> <span class="prix"> Prix : <?=$vehicule->getPrix()?>$/JOUR </span></h3>
+                                    </div>
+                                    <div class="desc-container">
+                                        <p><b>NOMBRE SIEGE:</b> <?= $vehicule->getNbPlaces() ?></p>
+                                        <p><b>CARBURANT:</b> <?=$vehicule->getCarburant()->getNom()?></p>
+                                        <p><b>TRANSMISSION:</b> <?=$vehicule->getTransmission()->getNom()?></p>
+                                        <p><b>TYPE VEHICULE:</b>  <?=$vehicule->getType()->getNom()?></p>
+                                        <p><b>Disponible à </b><?=$vehicule->getArrond()->toString()?><b>,</b> <?=$vehicule->getDisponibilite()->toString()?></p>
+                                        <p><?php echo $vehicule->getDescription() ?> </p>
+                                    </div>
+                                </div>
+                                <div>
+                                    <button type="submit" class="btn btn-primary">RESERVER</button>
+                                </div>
+                            </div>
                         </form>
-                    </div>
-                </div>
+                    
+                    <?php }
+                    } else { ?>
+                    <h4>Aucun résultat pour cette recherche</h4>
                 <?php } ?>
-<?php } else { ?>
-                <h4>Aucun résultat pour cette recherche</h4>
-<?php } ?>
             </div>
     </section>
 

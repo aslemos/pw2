@@ -7,7 +7,6 @@
 
 require VIEWPATH . 'common/header.php';
 ?>
-<b id="s"></b>
 <div class="row btn-liens" >
     <a class="btn position" href="<?=$base_url?>messagerie#s">Reçus</a>
     <a class="btn position" href="<?=$base_url?>messagerie/envoyes#s">Envoyés</a>

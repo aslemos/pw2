@@ -203,11 +203,17 @@ class Locations extends CI_Controller {
         $this->load->model('vehicule_model');
         $this->load->model('modepaiement_model');
 
+        $data['date_debut'] = $this->input->post('date_debut');
+        $data['date_fin'] = $this->input->post('date_fin');
+
         $data['users'] = UserAcces::getLoggedUser();
         $data['voitures'] = $this->vehicule_model->getVehicules($id);
         $data['payements'] = $this->modepaiement_model->getModesPaiements();
 
         $this->load->view('client/form_location', $data);
+//        echo '<pre>';
+//        var_dump($data);
+//        echo '</pre>';
     }
 
 

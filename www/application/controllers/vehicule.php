@@ -299,6 +299,7 @@ class Vehicule extends CI_Controller {
         ];
 
         $data['resultat'] = $this->vehicule_model->rechercherVehicules($recherche);
+        //$data['resultat'] = $this->vehicule_model->getVehicules();
         $this->load->view('vehicules/recherche', $data);
     }
 
