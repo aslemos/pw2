@@ -104,7 +104,7 @@ class Usager extends CI_Controller {
         $this->form_validation->set_rules('ville', 'Ville', 'required');
         $this->form_validation->set_rules('code_postal', 'Code Postal', 'required');
         $this->form_validation->set_rules('phone', 'Telephone', 'required');
-        $this->form_validation->set_rules('email', 'Email', 'required|callback_check_email_exists');
+        $this->form_validation->set_rules('email', 'Email', 'required|callback_checkEmailExists');
         $this->form_validation->set_rules('password', 'Password', 'required');
         $this->form_validation->set_rules('password2', 'Confirm Password', 'matches[password]');
 
