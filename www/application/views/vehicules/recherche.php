@@ -193,7 +193,7 @@ include VIEWPATH . 'common/header.php';
                             <div class="cols8 col-md-12 col-sm-12 col-xs-12">
                                 <div class="blocks">
                                     <div class="img-container">
-                                        <img src="<?= $base_url ?>assets/images/vehicules/<?=$vehicule->getId()?>" alt="<?=$vehicule->toString()?>">
+                                        <img src="<?= $base_url ?>assets/images/vehicules/<?=$vehicule->getPhoto()?>" alt="<?=$vehicule->toString()?>">
                                     </div>
                                     <div>
                                         <h3> <?=$vehicule->toString()?> <span class="prix"> Prix : <?=$vehicule->getPrix()?>$/JOUR </span></h3>
@@ -204,7 +204,7 @@ include VIEWPATH . 'common/header.php';
                                         <p><b>TRANSMISSION:</b> <?=$vehicule->getTransmission()->getNom()?></p>
                                         <p><b>TYPE VEHICULE:</b>  <?=$vehicule->getType()->getNom()?></p>
                                         <p><b>Disponible à </b><?=$vehicule->getArrond()->toString()?><b>,</b> <?=$vehicule->getDisponibilite()->toString()?></p>
-                                        <p><?php // $vehicule->getDescription() ?> </p>
+                                        <p><?php echo $vehicule->getDescription() ?> </p>
                                     </div>
                                 </div>
                                 <div>
