@@ -6,5 +6,5 @@
     <?php if (UserAcces::userIsSuperAdmin()) { ?>
     <!-- Boutton pour afficher la des adminitrateurs -->
     <a class="btn btn-danger position" href="<?= $base_url; ?>admin/listeAdmins#s">Liste des admins </a>
-    <? } ?>
+    <?php } ?>
 </div>
