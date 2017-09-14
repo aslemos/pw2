@@ -38,21 +38,24 @@ include VIEWPATH . '/common/header.php';
                         <td class="titre_editable">Refuser</td>
                     </tr>
                     
-                    <?php   foreach ($vehicules as $vehicule) { ?>
-                    <tr>
-                        <td class="editable">1</td>
-                        <td class="editable">test</td>
-                        <td class="editable">test</td>
-                        <td class="editable">test</td>
-                        <td class="editable">test</td>
-                        <td class="editable">test</td>
-                        <td class="editable">test</td>
-                        <td class="editable">test</td>
-                        <td class="editable">test</td>
+                    <?php   foreach ($vehicules as $vehicule) { 
                         
+                       //var_dump($vehicules);
+                        ?>
+                    <tr>
+                        <td class="editable"><?= $vehicule['vehicule_id'] ?></td>
+                        <td class="editable"><?= $vehicule['nom_marque'] ?></td>
+                        <td class="editable"><?= $vehicule['nom_modele'] ?></td>
+                        <td class="editable"><?= $vehicule['annee'] ?></td>
+                        <td class="editable"><?= $vehicule['nom_type'] ?></td>
+                        <td class="editable"></td>
+                        <td class="editable"><?= $vehicule['prix'] ?></td>
+                        <td class="editable"><?= $vehicule['prenom'].' '.$vehicule['nom'] ?></td>
+                        <td class="editable"><?= $vehicule['matricule'] ?></td>
+
                    
-                        <td class=""><a class="btn btn-inline" href="<?= $base_url ?>vehicule_model/debloquerVehicule/<?= $vehicule['vehicule_id'] ?>"></a></td>
-                        <td class=""><a class="btn btn-inline"href="<?= $base_url ?>vehicule_model/bloquerVehicule/<?= $vehicule['vehicule_id'] ?>"></a></td>
+                        <td class=""><a class="btn btn-inline" href="<?= $base_url ?>vehicule/debloquer/<?= $vehicule['vehicule_id'] ?>"></a></td>
+                        <td class=""><a class="btn btn-inline"href="<?= $base_url ?>vehicule/bloquer/<?= $vehicule['vehicule_id'] ?>"></a></td>
 
                     </tr>
                     <?php } ?>
