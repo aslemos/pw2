@@ -79,7 +79,7 @@ class Vehicule_model extends CI_Model {
 
         $query = $this->db->get('disponibilites');
         var_dump($query->result_array());
-        
+
         return $query->result_array();
 
     }
@@ -324,5 +324,19 @@ class Vehicule_model extends CI_Model {
         }
 
         return $query->result_array();
+    }
+
+    /**
+     * Débloque/autorise un véhicule à être utilisé dans le système
+     * @param int $vehicule_id
+     */
+    public function debloquerVehicule($vehicule_id) {
+    }
+
+    /**
+     * Bloque un véhicule dans le système
+     * @param int $vehicule_id
+     */
+    public function bloquerVehicule($vehicule_id) {
     }
 }
