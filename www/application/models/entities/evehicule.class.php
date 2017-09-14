@@ -176,6 +176,6 @@ class EVehicule implements IVehicule {
     }
 
     public function toString() {
-        return $this->getMarque()->getNom() . ' ' . $this->getModele()->getNom();
+        return $this->getMarque()->getNom() . ' ' . $this->getModele()->getNom() . ' ' . $this->getAnnee();
     }
 }

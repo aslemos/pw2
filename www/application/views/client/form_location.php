@@ -29,8 +29,8 @@
                 <div class="row">
                     <div class="col-md-6">
                         <label>Marque
-                             <input type="text" name="marque" disabled value="<?= $voitures['nom_marque']; ?> "/>
-                            <input type="hidden" name="vehicule_id" value="<?= $voitures['vehicule_id'];  ?> ">
+                            <input type="text" name="marque" disabled value="<?= $voitures['nom_marque']; ?> "/>
+                            <input type="hidden" name="vehicule_id" value="<?= $voitures['vehicule_id']; ?> ">
                         </label>
                     </div>
                     <div class="col-md-6">
@@ -152,28 +152,15 @@
                 </div>
 
 
-                 <div class="editPersonInfo" >
-                        <div class="editPersonInfo">
-                            <span id="editPersonIcon" class="fa fa-pencil" style="font-size:25px;color:white;"></span>
-                        </div>
-
+                <div class="editPersonInfo" >
+                    <div class="editPersonInfo">
+                        <a href="<?=$base_url?>usager/editUser/<?=$users->getId()?>" ><span id="editPersonIcon" class="fa fa-pencil" style="font-size:25px;color:white;"> </span></a>
                     </div>
 
+                </div>
             </div>
-
-
-
-
-
-
-<?php //print_r($voitures); ?>
-
-
-
-
         </form>
     </div>
-
 </body>
 
 

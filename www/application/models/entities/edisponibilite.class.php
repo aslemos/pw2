@@ -71,4 +71,8 @@ class EDisponibilite implements IDisponibilite {
         $this->_date_fin = $date_fin;
         return $this;
     }
+
+    public function toString() {
+        return 'de ' . $this->_date_debut . ' à ' . $this->_date_fin;
+    }
 }

@@ -16,4 +16,6 @@ interface IDisponibilite {
 
     public function setDateFin($date_fin);
     public function getDateFin();
+
+    public function toString();
 }

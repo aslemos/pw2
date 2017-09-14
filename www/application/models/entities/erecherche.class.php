@@ -14,6 +14,7 @@ final class ERecherche {
     private $_annee;
     private $_prixMin;
     private $_prixMax;
+    private $_tranche;
 
     public function __construct(array $data) {
         $this->setCarburantId(isset($data['carburant_id']) ? $data['carburant_id'] : '0');
@@ -23,11 +24,28 @@ final class ERecherche {
         $this->setMarqueId(isset($data['marque_id']) ? $data['marque_id'] : '0');
         $this->setModeleId(isset($data['modele_id']) ? $data['modele_id'] : '0');
         $this->setAnnee(isset($data['annee']) ? $data['annee'] : '');
-        $this->setDateDebut(isset($data['date_debut']) ? $data['date_debut'] : '');
-        $this->setDateFin(isset($data['date_fin']) ? $data['date_fin'] : '');
+        $this->setDateDebut(isset($data['date_debut']) ? $data['date_debut'] : Date('Y-m-d'));
+        $this->setDateFin(isset($data['date_fin']) ? $data['date_fin'] : Date('Y-m-d'));
         $this->setNbPlaces(isset($data['nbre_places']) ? $data['nbre_places'] : '');
+
         $this->setPrixMax(isset($data['prix_max']) ? $data['prix_max'] : '');
         $this->setPrixMin(isset($data['prix_min']) ? $data['prix_min'] : '');
+        $this->setTranche(isset($data['tranche']) ? $data['tranche'] : '');
+    }
+
+    public function getTranche() {
+        return $this->_tranche;
+    }
+    public function setTranche($tranche) {
+        $this->_tranche = $tranche;
+
+        // Extrait la tranche de prix
+        $min_max = explode('-', $tranche);
+        if (isset($min_max[1])) {
+            $this->setPrixMin($min_max[0]);
+            $this->setPrixMax($min_max[1]);
+        }
+        return $this;
     }
 
     public function getDateDebut() {
@@ -35,10 +53,15 @@ final class ERecherche {
     }
     public function setDateDebut($date_debut) {
         $this->_date_debut = $date_debut;
+        return $this;
     }
 
     public function getDateFin() {
         return $this->_date_fin;
+    }
+    public function setDateFin($date_fin) {
+        $this->_date_fin = $date_fin;
+        return $this;
     }
 
     public function getModeleId() {
@@ -72,12 +95,17 @@ final class ERecherche {
     public function getAnnee() {
         return $this->_annee;
     }
+    public function setAnnee($annee) {
+        $this->_annee = $annee;
+        return $this;
+    }
 
     public function getCarburantId() {
         return $this->_carburant_id;
     }
     public function setCarburantId($carburant_id) {
         $this->_carburant_id = $carburant_id;
+        return $this;
     }
 
     public function getTransmissionId() {
@@ -85,6 +113,7 @@ final class ERecherche {
     }
     public function setTransmissionId($transmission_id) {
         $this->_transmission_id = $transmission_id;
+        return $this;
     }
 
     public function getArrondId() {
@@ -92,29 +121,22 @@ final class ERecherche {
     }
     public function setArrondId($arr_id) {
         $this->_arr_id = $arr_id;
+        return $this;
     }
 
     public function getPrixMin() {
         return $this->_prixMin;
     }
+    public function setPrixMin($prixMin) {
+        $this->_prixMin = $prixMin;
+        return $this;
+    }
 
     public function getPrixMax() {
         return $this->_prixMax;
     }
-
-    public function setDateFin($date_fin) {
-        $this->_date_fin = $date_fin;
-    }
-
-    public function setAnnee($annee) {
-        $this->_annee = $annee;
-    }
-
-    public function setPrixMin($prixMin) {
-        $this->_prixMin = $prixMin;
-    }
-
     public function setPrixMax($prixMax) {
         $this->_prixMax = $prixMax;
+        return $this;
     }
 }
