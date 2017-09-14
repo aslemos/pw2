@@ -1,11 +1,6 @@
 <?php
-$meta_keywords = "";
-$meta_description = "";
-$page_title = "historique des locations";
-$body_class = "subpages membre";
-
 // Header
-include VIEWPATH . '/common/header.php';
+include VIEWPATH . 'common/header.php';
 //========================================================
 include VIEWPATH . 'client/boutons_client.php';
 ?>
@@ -20,11 +15,11 @@ include VIEWPATH . 'client/boutons_client.php';
                 <option value="<?= $usager['user_id']; ?>"><?= $usager['prenom']; ?></option>
             <?php } ?>
         </select>
-        <label>Periode</label>
+        <label>Période</label>
         <div class="form-group">
             <label class="control-label col-xs-3">De :</label>
             <div class='input-group date col-xs-6' >
-                <input type='text' class="form-control" id='datetimepickerDe'/>
+                <input type='text' class="form-control" id="date_debut" name="date_debut"/>
                 <span class="input-group-addon" >
                     <span class="glyphicon glyphicon-calendar"></span>
                 </span>
@@ -33,7 +28,7 @@ include VIEWPATH . 'client/boutons_client.php';
         <div class="form-group">
             <label class="control-label col-xs-3">à :</label>
             <div class='input-group date col-xs-6' >
-                <input type='text' class="form-control" id='datetimepickerA'/>
+                <input type='text' class="form-control" id="date_fin" name="date_fin"/>
                 <span class="input-group-addon" >
                     <span class="glyphicon glyphicon-calendar"></span>
                 </span>
@@ -53,32 +48,21 @@ include VIEWPATH . 'client/boutons_client.php';
                     <th class="">Marque</th>
                     <th class="">Modèle</th>
                     <th class="">Matricule</th>
-                    <th class="">Date debut</th>
+                    <th class="">Date début</th>
                     <th class="">Date fin</th>
                     <th class="">Année</th>
                     <th class="">Nombre de <br />jours loué</th>
                     <th class="">Montant<br />total</th>
                      <th class="">Nom Usage</th>
-                    <th class="">Reclamation Locataire</th>
+                    <th class="">Réclamer Locataire</th>
                 </tr>
             </thead>
             <tbody>
                 <!--mettre les données dynamiquement dans la liste de locations-->
                 <?php
                 foreach ($locations as $location) {
-                    // var_dump($locations);
-                    //var_dump($location);
-                    // À FAIRE :
-                    // - calculer le nombre de jours (date finale - date initiale)
                     $diff = abs(strtotime($location['date_fin']) - strtotime($location['date_debut']));
                     $nb_jours = (int) floor($diff / (60 * 60 * 24)) + 1;
-                    //$years = floor($diff / (365*60*60*24));
-                    //$months = floor(($diff - $years * 365*60*60*24) / (30*60*60*24));
-                    //$nb_jours = floor(($diff - $years * 365*60*60*24 - $months*30*60*60*24)/ (60*60*24));
-                    //var_dump($diff, $months);
-                    //echo  $nb_jours
-                    // printf("%d years, %d months, %d days\n", $years, $months, $days);
-
                     $valeur_total = $location['prix'] * $nb_jours;
                     ?>
                     <tr>
@@ -102,24 +86,7 @@ include VIEWPATH . 'client/boutons_client.php';
 <!-- Div pour affichage -->
 <div id="resultat"></div>
 <div id="divAuto_Members"></div>
-
-<script>
-
-    /*Annee de voiture*/
-    $(function () {
-        $('#datetimepickerDe').datepicker({
-
-        });
-    });
-
-    $(function () {
-        $('#datetimepickerA').datepicker();
-    });
-
-
-</script>
-
 <?php
 //========================================================
 //Footer
-include VIEWPATH . '/common/footer.php';
+include VIEWPATH . 'common/footer.php';

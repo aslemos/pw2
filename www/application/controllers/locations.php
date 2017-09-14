@@ -151,11 +151,8 @@ class Locations extends CI_Controller {
         $data['base_url'] = base_url();
         $data['page_title'] = 'Historique des locations du membre';
         $data['title'] = 'Historique des locations';
+        $data['scripts'] = [base_url() . 'assets/js/calendrier_date_debut_et_fin.js'];
         $data['vehicules'] = $this->vehicule_model->getVehicules();
-//        $data['vehicules'] = $this->vehicule_model->getVehiculesByUser($user);
-//echo
-        //       var_dump($data['vehicules']); die();
-
         $data['locations'] = $this->location_model->getLocationsByUser($user);
 
         $this->load->view('membre/historique_location', $data);
@@ -173,6 +170,7 @@ class Locations extends CI_Controller {
         $data['base_url'] = base_url();
         $data['page_title'] = 'Locataires du membre';
         $data['title'] = 'Locataires du membre';
+        $data['scripts'] = [base_url() . 'assets/js/calendrier_date_debut_et_fin.js'];
         $data['usagers'] = $this->usager_model->getUsers();
         $data['locations'] = $this->location_model->getLocatairesByUser($user);
         $this->load->view('membre/historique_locataires', $data); // fichier n'existe pas encore

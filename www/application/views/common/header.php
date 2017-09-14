@@ -48,6 +48,7 @@ $base_url = isset($base_url)
 <!--<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>-->
         <link rel="stylesheet" href="<?=$base_url?>assets/js/jquery/ui/jquery-ui-1.12.1.css">
         <script src="<?=$base_url?>assets/js/jquery/ui/jquery-ui-1.12.1.min.js"></script>
+        <script>var base_url='<?=$base_url?>';</script>
 <?php
         if (isset($styles) && is_array($styles)) { // boucle d'ajout des styles customisés
             foreach ($styles as $pos => $style) {
