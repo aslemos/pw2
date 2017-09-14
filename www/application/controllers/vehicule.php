@@ -280,39 +280,22 @@ class Vehicule extends CI_Controller {
         //  lors de la prochaine sousmission
 
         $recherche = new ERecherche($this->input->post());
-        $data['carburant_id'] = $recherche->getCarburantId();
-        $data['marque_id'] = $recherche->getMarqueId();
-        $data['modele_id'] = $recherche->getModeleId();
-        $data['type_id'] = $recherche->getTypeId();
-        $data['transmission_id'] = $recherche->getTransmissionId();
-        $data['arr_id'] = $recherche->getArrondId();
-        $data['annee'] = $recherche->getAnnee();
-        $data['date_debut'] = $recherche->getDateDebut();
-        $data['date_fin'] = $recherche->getDateFin();
-        $data['nbre_places'] = $recherche->getNbPlaces();
-        $data['tranche_id'] = $this->input->post('tranche_id');
-
-        // Extrait la tranche de prix
-        $tranche_prix = explode('-', $data['tranche_id']);
-        if (isset($tranche_prix[1])) {
-            $recherche->setPrixMin($tranche_prix[0]);
-            $recherche->setPrixMax($tranche_prix[1]);
-        }
-
         $this->load->model('arrondissement_model');
+
         $data['marques'] = $this->marque_model->getMarques();
-        $data['modeles'] = $this->modele_model->getModelesByMarqueId($data['marque_id']);
+        $data['modeles'] = $this->modele_model->getModelesByMarqueId($recherche->getMarqueId());
         $data['types'] = $this->vehicule_model->getTypesVehicules();
         $data['carburants'] = $this->vehicule_model->getCarburants();
         $data['transmissions'] = $this->vehicule_model->getTransmissions();
         $data['arrondissements'] = $this->arrondissement_model->getArrondissements();
+        $data['recherche'] = $recherche;
 
         // TODO: créer table de tranches de prix et récupérer ce tableau par l'intermède de son modèle
         $data['tranches'] = [
-            ['tranche_id' => '0-50'   , 'nom_tranche' => 'Jusqu\'à 50$'],
-            ['tranche_id' => '50-100' , 'nom_tranche' => 'De 50$ à 100$'],
-            ['tranche_id' => '100-150', 'nom_tranche' => 'De 100$ à 150$'],
-            ['tranche_id' => '150-999', 'nom_tranche' => 'Plus de 150$']
+            ['tranche' => '0-50'   , 'nom_tranche' => 'Jusqu\'à 50$'],
+            ['tranche' => '50-100' , 'nom_tranche' => 'De 50$ à 100$'],
+            ['tranche' => '100-150', 'nom_tranche' => 'De 100$ à 150$'],
+            ['tranche' => '150-999', 'nom_tranche' => 'Plus de 150$']
         ];
 
         $data['resultat'] = $this->vehicule_model->rechercherVehicules($recherche);
