@@ -107,8 +107,11 @@
                 </div>
 
                 <div class="btn-group" role="group" aria-label="Basic example">
+<a href="<?= $base_url?>" 
+                    <button href="<?= $base_url?>" type="button" id="flip5" class="btn btn-danger animated bounceInLeft"><i class="fa  fa-window-close" style="font-size:22px;"></i> Annuler</button>
 
-                    <button type="button" id="flip5" class="btn btn-danger animated bounceInLeft"><i class="fa  fa-window-close" style="font-size:22px;"></i> Annuler</button>
+</a>
+
 
                     <button type="button" id="flip2" class="btn btn-primary">Prochain <i class="fa fa-hand-o-right"></i></button>
                     </span>
