@@ -1,22 +1,24 @@
 <?php
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Classe statique de contrôle d'accès
+ * Elle se charge de récuperer l'usager logué et de tester les permissions
+ *   qui lui concernent.
+ * @author Alessandro Souza Lemos
  */
 
 class UserAcces {
 
-//    static function setUserTest($role_id = Role::ROLE_CLIENT) {
-//        $user = new User();
-//        $user->setUserId(1);
-//        $user->setRoleId($role_id);
-//        $_SESSION['user_data'] = $user;
-//    }
-
     static function getLoggedUser() {
         if (self::userIsLogged()) {
             return $_SESSION['user_data'];
+        }
+        return NULL;
+    }
+
+    static function getUserId() {
+        $user = self::getLoggedUser();
+        if ($user instanceof EUsager) {
+            return $user->getId();
         }
         return NULL;
     }

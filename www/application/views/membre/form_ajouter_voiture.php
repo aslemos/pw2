@@ -188,18 +188,6 @@ include VIEWPATH . '/common/header.php';
                         }
                     });
                 });
-
-
-                /*ramlir Arrondissement*/
-                var generArrondissement = new Array("Ahuntsic-Cartierville", "Anjou", "Côte-des-Neiges–Notre-Dame-de-Grâce", "Lachine", "LaSalle", "Le Plateau-Mont-Royal");
-                var dA = document.monFormulaire.choixArrondissement;
-                for (var i = 0; i < generArrondissement.length; i++)
-                {
-                    dA.length++;
-                    dA.options[dA.length - 1].text = generArrondissement[i];
-                }
-
-
             </script>
 
         </div>

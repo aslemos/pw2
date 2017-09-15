@@ -11,6 +11,7 @@ require VIEWPATH . 'common/header.php';
     <a class="btn position" href="<?=$base_url?>messagerie#s">Reçus</a>
     <a class="btn position" href="<?=$base_url?>messagerie/envoyes#s">Envoyés</a>
     <a class="btn position" href="<?=$base_url?>messagerie/composer#s">Nouveau message</a>
+    <a class="btn position" href="<?=$base_url?>messagerie/composer#s">Contacter admin</a>
 </div>
 <style>
     .msg-nonlu td {

@@ -17,4 +17,18 @@ class Accueil extends CI_Controller {
 
         $this->load->view('accueil', $data);
     }
+
+    public function apropos() {
+
+        $data['title'] = 'À propos de nous';
+
+        $data['page_title'] = 'Accueil';
+
+        $data['body_class'] = '';
+
+        $data['base_url'] = base_url();
+
+        $this->load->view('statique/a-propos', $data);
+
+    }
 }

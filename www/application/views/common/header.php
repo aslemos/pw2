@@ -9,7 +9,7 @@ $body_class = isset($body_class)
 // S'assure d'avoir la variable $base_url
 $base_url = isset($base_url)
         ? $base_url
-        : './';
+        : base_url();
 ?>
 <!DOCTYPE HTML>
 <html lang="fr">

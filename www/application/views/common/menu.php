@@ -1,10 +1,10 @@
 <nav>
     <ul class="menu">
         <li class=""><a href="<?=$base_url?>" title="">ACCUEIL</a></li>
-        <li class=""><a href="<?=$base_url?>home/apropos#s" title="">À PROPOS</a></li>
+        <li class=""><a href="<?=$base_url?>accueil/apropos#s" title="">À PROPOS</a></li>
         <li class=""><a href="<?=$base_url?>vehicule/recherche#s" title="">LOUER UNE VOITURE</a></li>
         <?php if (UserAcces::userIsLogged()) { ?>
-        <li class=""><a href="<?=$base_url?>membre/view/liste_usagers#s" title="">GESTION DES VOITURES</a></li>
+        <li class=""><a href="<?=$base_url?>membre/vehicules#s" title="">GESTION DES VOITURES</a></li>
         <?php if (UserAcces::userIsAdmin()) { ?>
         <li class=""><a href="<?=$base_url?>admin/view/liste_admins#s" title="">ADMINISTRATION</a></li>
         <?php } ?>

@@ -1,16 +1,11 @@
 <?php
 
-$meta_keywords = "";
-$meta_description = "";
-$page_title = "Liste des voitures";
-$body_class = "subpages membre";
-
 // Header
 include VIEWPATH . '/common/header.php';
 //========================================================
 include VIEWPATH .'client/boutons_client.php';
 ?>
-<h2>Demandes à approuver</h2>
+<h2><?=$title?></h2>
 <form action="" name="formulaire" id="form-demandes-id">
 	<div class="table-responsive">
 	<table class="table">
@@ -18,9 +13,9 @@ include VIEWPATH .'client/boutons_client.php';
 			<tr>
 				<th class="">N°</th>
 				<th class="">Marque</th>
-				<th class="">Modele</th>
-				<th class="">Matricule</th>
+				<th class="">Modèle</th>
 				<th class="">Année</th>
+				<th class="">Matricule</th>
 				<th class="">Nom client</th>
 				<th class="">Prix</th>
 				<th class="date">Location<br />Date Début</th>

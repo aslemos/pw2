@@ -7,8 +7,9 @@
 
 class ELocation implements ILocation {
 
-    const LOCATION_NON_ACCEPT = 0;
-    const LOCATION_ACCEPT = 1;
+    const LOCATION_EN_ATTENTE = -1;
+    const LOCATION_NON_ACCEPTE = 0;
+    const LOCATION_ACCEPTE = 1;
 
     private $_location_id = 0;
     private $_vehicule = NULL;
@@ -66,5 +67,9 @@ class ELocation implements ILocation {
     public function setVehicule(IVehicule $vehicule) {
         $this->_vehicule = $vehicule;
         return $this;
+    }
+
+    public function toString() {
+        return $this->_date_debut . ' à ' . $this->_date_fin;
     }
 }

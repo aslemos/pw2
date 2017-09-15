@@ -45,18 +45,19 @@ class Vehicule extends CI_Controller {
             redirect('usagers/login');
         }
 
+        $this->load->model('arrondissement_model');
         $data['base_url'] = base_url();
         $data['page_title'] = 'Messages reçus';
 
         $data['title'] = 'Ajouter un vehicule';
 
         $data['usagers'] = $this->usager_model->getUsers();
-        $data['type_vehicules'] = $this->vehicule_model->getTypeVehicules();
+        $data['type_vehicules'] = $this->vehicule_model->getTypesVehicules();
         $data['marques'] = $this->marque_model->getMarques();
         $data['modeles'] = $this->modele_model->getModeles();
         $data['carburants'] = $this->vehicule_model->getCarburants();
         $data['transmissions'] = $this->vehicule_model->getTransmissions();
-        $data['arrondissements'] = $this->vehicule_model->getArrondissements();
+        $data['arrondissements'] = $this->arrondissement_model->getArrondissements();
 
         $data['err_message'] = '* Tous Les Champs Sont Requis!';
 
@@ -68,9 +69,7 @@ class Vehicule extends CI_Controller {
         $this->form_validation->set_rules('date_fin', 'Date fin', 'required');
 
         if ($this->form_validation->run() === FALSE) {
-            $this->load->view('common/header');
-            $this->load->view('vehicules/create', $data);
-            $this->load->view('common/footer');
+            $this->load->view('membre/form_ajouter_voiture', $data);
         } else {
             // Ajouter une photo de profile
             $config['upload_path'] = './assets/images/vehicules';
@@ -116,7 +115,7 @@ class Vehicule extends CI_Controller {
                 'vehicule_photo' => $vehicule_photo
             ]);
 
-            // Ajout d'une instance de disponibilité au véhicule
+            // Ajout d'une instance de disponibilité du véhicule
             //  en utilisant les dates de début/fin du POST
             $vehicule->addDisponibilite(
                     new EDisponibilite([
@@ -150,6 +149,9 @@ class Vehicule extends CI_Controller {
         $this->load->model('arrondissement_model');
 
         $data['vehicule'] = $this->vehicule_model->getVehicules($vehicule_id);
+
+//        $data['vehicule']['proprietaire_id']
+
         $data['usagers'] = $this->usager_model->getUsers();
         $data['type_vehicules'] = $this->vehicule_model->getTypesVehicules();
         $data['marques'] = $this->marque_model->getMarques();
@@ -188,16 +190,15 @@ class Vehicule extends CI_Controller {
         $vehicule = $this->vehicule_model->getVehiculeById($this->input->post('vehicule_id'));
         if (!$this->upload->do_upload()) {
             $errors = array('error' => $this->upload->display_errors());
-            $vehicule_photo = 'noimage.png';
+
         } else {
-            $data = array('upload_data' => $this->upload->data());
-            $vehicule_photo = $_FILES['userfile']['name'];
-            $vehicule->setPhoto($vehicule_photo);
+//            $data = array('upload_data' => $this->upload->data());
+            $vehicule->setPhoto($_FILES['userfile']['name']);
         }
 
 
 //        $vehicule->setCarburant($this->vehicule_model->getCarburantById($this->input->post('carburant_id')));
-//        $vehicule->setModele($this->modele_model->getCarburantById($this->input->post('carburant_id')));
+//        $vehicule->setModele($this->modele_model->getCarburantById($this->input->post('model_id')));
 
         $this->vehicule_model->updateVehicule($vehicule);
         redirect('vehicule/view/'.$vehicule->getId());
@@ -207,30 +208,27 @@ class Vehicule extends CI_Controller {
 
         // Check login
         if (!UserAcces::userIsLogged()) {
-
             redirect('usagers/login');
         }
+        $this->load->model('arrondissement_model');
 
         $user_id = $this->session->userdata('user_id');
         $username = $this->session->userdata('username');
 
         $data['usagers'] = $this->usager_model->getUsers();
-        $data['type_vehicules'] = $this->vehicule_model->getTypeVehicules();
+        $data['type_vehicules'] = $this->vehicule_model->getTypesVehicules();
         $data['marques'] = $this->marque_model->getMarques();
         $data['modeles'] = $this->modele_model->getModeles();
         $data['carburants'] = $this->vehicule_model->getCarburants();
         $data['transmissions'] = $this->vehicule_model->getTransmissions();
-        $data['arrondissements'] = $this->vehicule_model->getArrondissements();
+        $data['arrondissements'] = $this->arrondissement_model->getArrondissements();
 
         $data['title'] = $username . ' :  Ajouter une location';
 
-        $data['vehicules'] = $this->vehicule_model->getVehiculesByUser($user_id);
-        //$data['vehicules'] = $this->vehicule_model->get_vehicules();
+        $data['vehicules'] = $this->vehicule_model->getVehiculesByUser(UserAcces::getLoggedUser());
+//        $data['vehicules'] = $this->vehicule_model->getVehicules();
 
-        $this->load->view('common/header');
-        $this->load->view('vehicules/user', $data);
-        //$this->load->view('vehicules/index', $data);
-        $this->load->view('common/footer');
+        $this->load->view('membre/liste_voitures', $data);
     }
 
     public function get_cars() {

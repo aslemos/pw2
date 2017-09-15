@@ -19,4 +19,6 @@ interface ILocation {
 
     public function getVehicule();
     public function setVehicule(IVehicule $vehicule);
+
+    public function toString();
 }

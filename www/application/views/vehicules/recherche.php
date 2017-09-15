@@ -38,7 +38,7 @@ include VIEWPATH . 'common/header.php';
                                     </tr>
                                     <tr class="form-group row">
                                         <td class="col-sm-6">
-                                            <label for="modele_id">Modele : </label>
+                                            <label for="modele_id">Modèle : </label>
                                         </td>
                                         <td class="col-sm-6">
                                             <select class="form-control" id="modele_id" name="modele_id">
@@ -180,14 +180,9 @@ include VIEWPATH . 'common/header.php';
 
 
             <div class="cols7 col-md-8 col-sm-12 col-xs-12">
-                <?php
-                //echo '<pre>';
-                //var_dump($resultat);
-                //echo '</pre>';
-                ?>
                 <?php if (count($resultat) > 0) { ?>
                     <?php foreach ($resultat as $vehicule) { ?>
-                        <form method="post" action="<?=$base_url?>locations/form_location/<?=$vehicule->getId()?>">
+                        <form method="post" action="<?=$base_url?>locations/form_location/<?=$vehicule->getId()?>#s">
                             <input type="hidden" name="date_debut" value="<?=$recherche->getDateDebut()?>">
                             <input type="hidden" name="date_fin" value="<?=$recherche->getDateFin()?>">
                             <div class="cols8 col-md-12 col-sm-12 col-xs-12">
@@ -199,20 +194,20 @@ include VIEWPATH . 'common/header.php';
                                         <h3> <?=$vehicule->toString()?> <span class="prix"> Prix : <?=$vehicule->getPrix()?>$/JOUR </span></h3>
                                     </div>
                                     <div class="desc-container">
-                                        <p><b>NOMBRE SIEGE:</b> <?= $vehicule->getNbPlaces() ?></p>
+                                        <p><b>NOMBRE SIÈGES:</b> <?= $vehicule->getNbPlaces() ?></p>
                                         <p><b>CARBURANT:</b> <?=$vehicule->getCarburant()->getNom()?></p>
                                         <p><b>TRANSMISSION:</b> <?=$vehicule->getTransmission()->getNom()?></p>
-                                        <p><b>TYPE VEHICULE:</b>  <?=$vehicule->getType()->getNom()?></p>
+                                        <p><b>TYPE VÉHICULE:</b>  <?=$vehicule->getType()->getNom()?></p>
                                         <p><b>Disponible à </b><?=$vehicule->getArrond()->toString()?><b>,</b> <?=$vehicule->getDisponibilite()->toString()?></p>
                                         <p><?php echo $vehicule->getDescription() ?> </p>
                                     </div>
                                 </div>
                                 <div>
-                                    <button type="submit" class="btn btn-primary">RESERVER</button>
+                                    <button type="submit" class="btn btn-primary">RÉSERVER</button>
                                 </div>
                             </div>
                         </form>
-                    
+
                     <?php }
                     } else { ?>
                     <h4>Aucun résultat pour cette recherche</h4>

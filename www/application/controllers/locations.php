@@ -128,14 +128,25 @@ class Locations extends CI_Controller {
 
     public function updateLocation() {
 
-        // Check login
+        // Check privilèges
         if (!UserAcces::userIsLogged()) {
             redirect('usagers/login');
         }
+        if (!UserAcces::userIsAdmin()) {
+            redirect('noperm');
+        }
 
-        $this->location_model->updateLocation();
+        $location = $this->location_model->getLocationById($this->input->post('location_id'));
+        $location->setDateDebut($this->input->post('date_debut'));
+        $location->setDateFin($this->input->post('date_fin'));
 
-        redirect('locations');
+        $locataire = $this->usager_model->getUserById($this->session->userdata('user_id'));
+        $location->setLocataire($locataire);
+
+        $vehicule = $this->vehicule_model->getVehiculeById($this->input->post('vehicule_id'));
+        $location->setVehicule($vehicule);
+
+        $this->location_model->updateLocation($location);
     }
 
     public function locationsByUser() {
@@ -173,6 +184,9 @@ class Locations extends CI_Controller {
         $data['scripts'] = [base_url() . 'assets/js/calendrier_date_debut_et_fin.js'];
         $data['usagers'] = $this->usager_model->getUsers();
         $data['locations'] = $this->location_model->getLocatairesByUser($user);
+        $data['date_debut'] = $this->input->post('date_debut');
+        $data['date_fin'] = $this->input->post('date_fin');
+        $data['locataire_id'] = $this->input->post('locataire_id');
         $this->load->view('membre/historique_locataires', $data); // fichier n'existe pas encore
     }
 
@@ -199,6 +213,7 @@ class Locations extends CI_Controller {
         $data['body_class'] = "subpages voitures";
         $data['base_url'] = base_url();
         $data['page_title'] = 'Messages reçus';
+        $data['scripts'] = [base_url() . 'assets/js/calendrier_date_debut_et_fin.js'];
 
         $this->load->model('vehicule_model');
         $this->load->model('modepaiement_model');
