@@ -302,10 +302,12 @@ class Vehicule extends CI_Controller {
     }
 
     public function debloquer($vehicule_id) {
-         $this->vehicule_model->getVehicules();
+         $this->vehicule_model->debloquerVehicule($vehicule_id);
+         redirect('admin/listeVoitures');
     }
 
     public function bloquer($vehicule_id) {
-         $this->vehicule_model->getVehicules();
+         $this->vehicule_model->bloquerVehicule($vehicule_id);
+         redirect('admin/listeVoitures');
     }
 }
