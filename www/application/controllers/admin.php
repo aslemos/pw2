@@ -18,7 +18,8 @@ class Admin extends CI_Controller {
     }
 
     public function listeVoitures() {
-        $this->load->view('admin/liste_voitures_admin', $this->data);
+        $this->data['vehicules'] = $this->vehicule_model->getVehicules();
+        $this->load->view('admin/liste_voitures_admin', $this->data);      
     }
     
 
