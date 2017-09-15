@@ -1,6 +1,4 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed'); ?>
-        </div>
-    </section>
 </main>
 <?php if (!UserAcces::userIsLogged()) { ?>
 <section id="footer-member">

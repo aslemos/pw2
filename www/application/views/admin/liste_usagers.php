@@ -11,15 +11,7 @@ include VIEWPATH . '/common/header.php';
 
 <main>
     <section id="listeAdmin">
-
-        <div class="btn-liens" >
-            <!-- Boutton pour afficher la liste des voiture en location d'un membres -->
-            <a class="btn btn-danger position" href="<?= $base_url; ?>admin/listeUsagers" >Liste des membres</a>
-            <!-- Boutton pour afficher la liste des voitures -->
-            <a class="btn btn-danger position" href="<?= $base_url; ?>admin/listeVoitures" >Liste des voitures</a>
-            <!-- Boutton pour afficher la des adminitrateurs -->
-            <a class="btn btn-danger position" href="<?= $base_url; ?>admin/listeAdmins">Liste des admins </a>
-        </div>
+<?php include VIEWPATH . 'admin/boutons_admin.php'; ?>
         <h2>Les Members</h2>
         <form action="" name="formulaire" id="form-Members-id">
             <table class="table table-responsive">
@@ -46,7 +38,7 @@ include VIEWPATH . '/common/header.php';
                     <td class="editable">
                         <img src="<?= $base_url; ?>assets/images/no.png" >
                     </td>
-                </tr>	
+                </tr>
                 <tr>
                     <td class="editable">2</td>
                     <td class="editable">test</td>
@@ -60,7 +52,7 @@ include VIEWPATH . '/common/header.php';
                     <td class="editable">
                         <img src="<?= $base_url; ?>assets/images/no.png" >
                     </td>
-                </tr>	
+                </tr>
                 <tr>
                     <td class="editable">3</td>
                     <td class="editable">test</td>
@@ -74,7 +66,7 @@ include VIEWPATH . '/common/header.php';
                     <td class="editable">
                         <img src="<?= $base_url; ?>assets/images/no.png" >
                     </td>
-                </tr>	
+                </tr>
                 <tr>
                     <td class="editable">4</td>
                     <td class="editable">test</td>
@@ -88,7 +80,7 @@ include VIEWPATH . '/common/header.php';
                     <td class="editable">
                         <img src="<?= $base_url; ?>assets/images/no.png" >
                     </td>
-                </tr>	
+                </tr>
                 <tr>
                     <td class="editable">5</td>
                     <td class="editable">test</td>
@@ -102,7 +94,7 @@ include VIEWPATH . '/common/header.php';
                     <td class="editable">
                         <img src="<?= $base_url; ?>assets/images/no.png" >
                     </td>
-                </tr>	
+                </tr>
                 <tr>
                     <td class="editable">6</td>
                     <td class="editable">test</td>
@@ -129,7 +121,7 @@ include VIEWPATH . '/common/header.php';
                     <td class="editable">
                         <img src="<?= $base_url; ?>assets/images/no.png" >
                     </td>
-                </tr>	
+                </tr>
                 <tr>
                     <td class="editable">8</td>
                     <td class="editable">test</td>
@@ -143,7 +135,7 @@ include VIEWPATH . '/common/header.php';
                     <td class="editable">
                         <img src="<?= $base_url; ?>assets/images/no.png" >
                     </td>
-                </tr>	
+                </tr>
                 <tr>
                     <td class="editable">9</td>
                     <td class="editable">test</td>
@@ -157,7 +149,7 @@ include VIEWPATH . '/common/header.php';
                     <td class="editable">
                         <img src="<?= $base_url; ?>assets/images/no.png" >
                     </td>
-                </tr>	
+                </tr>
             </table>
         </form>
     </section>
