@@ -21,12 +21,12 @@ class Accueil extends CI_Controller {
     public function apropos() {
 
         $data['title'] = 'À propos de nous';
-
-        $data['page_title'] = 'Accueil';
-
-        $data['body_class'] = '';
+        $data['page_title'] = 'A Propos de nous';
+        $data['body_class'] = 'subpages apropos';
 
         $data['base_url'] = base_url();
+        $data['meta_keywords'] = '';
+        $data['meta_description'] = '';
 
         $this->load->view('statique/a-propos', $data);
 

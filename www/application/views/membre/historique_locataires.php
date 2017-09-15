@@ -82,7 +82,7 @@ include VIEWPATH . 'client/boutons_client.php';
                         <td class=""><?= $nb_jours; ?></td>
                         <td class=""><?= $valeur_total; ?></td>
                         <td class=""><?= $location['prenom']; ?></td>
-                        <td class=""><a class="btn btn-inline" href="<?= $base_url ?>reclamation/form_locataire/<?= $location['user_id'] ?>#s"></a></td>
+                        <td class=""><a class="btn btn-inline" href="<?= $base_url ?>reclamation/form_locataire/<?= $location['location_id'] ?>#s"></a></td>
                     </tr>
 <?php } ?>
             </tbody>

@@ -1,4 +1,3 @@
-
 <?php
 
 class Admin extends CI_Controller {
@@ -17,9 +16,9 @@ class Admin extends CI_Controller {
         }
     }
 
-    public function index() {
-        $this->listeUsagers();
-    }
+//    public function index() {
+//        $this->listeMembres();
+//    }
 
 
     /**
@@ -29,14 +28,27 @@ class Admin extends CI_Controller {
         if (!UserAcces::userIsSuperAdmin()) {
             redirect('noperm');
         }
-        $this->load->view('admin/liste_admins', $this->data);
+
+        $data['title'] = 'Liste des administrateurs';
+        $data['body_class'] = '';
+        $data['base_url'] = base_url();
+        $data['usagers'] = $this->usager_model->getAdmins();
+
+        $this->load->view('admin/liste_admins', $data);
     }
 
     /**
      * Liste générale des usagers du site
      */
-    public function listeUsagers() {
-        $this->load->view('admin/liste_usagers', $this->data);
+    public function listeMembres() {
+
+        $data['title'] = 'Liste des membres';
+        $data['body_class'] = '';
+        $data['base_url'] = base_url();
+
+        $data['usagers'] = $this->usager_model->getUsagersByRoleId(ERole::ROLE_CLIENT);
+
+        $this->load->view('admin/liste_usagers', $data);
     }
 
     /**
@@ -44,6 +56,13 @@ class Admin extends CI_Controller {
      */
     public function listeVoitures() {
         $this->load->view('admin/liste_voitures_admin', $this->data);
+    }
+
+    /**
+     * Approbation d'une demande d'abonnement au site
+     */
+    public function approuverMembre() {
+        echo 'Aprouver un nouveau abonné du système';
     }
 
     /**

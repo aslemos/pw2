@@ -17,6 +17,10 @@ class Membre extends CI_Controller {
 //
 //    }
 
+    public function index() {
+        $this->vehicules();
+    }
+
     /**
      * Affiche la liste des véhicules appartenant à l'usager logué
      */

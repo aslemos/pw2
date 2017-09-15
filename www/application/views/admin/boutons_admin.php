@@ -1,6 +1,6 @@
 <div class="btn-liens" >
     <!-- Bouton pour afficher la liste des voiture en location d'un membres -->
-    <a class="btn btn-danger position" href="<?= $base_url; ?>admin/listeUsagers#s" >Liste des membres</a>
+    <a class="btn btn-danger position" href="<?= $base_url; ?>admin/listeMembres#s" >Liste des membres</a>
 
     <!-- Bouton pour afficher la liste des voitures -->
     <a class="btn btn-danger position" href="<?= $base_url; ?>admin/listeVoitures#s" >Liste des voitures</a>
@@ -9,6 +9,9 @@
     <!-- Bouton pour afficher la des administrateurs -->
     <a class="btn btn-danger position" href="<?= $base_url; ?>admin/listeAdmins#s">Liste des admins </a>
     <?php } ?>
+
+    <!-- Afficher les réclamations -->
+    <a class="btn btn-danger position" href="<?= $base_url; ?>admin/approuverMembre#s" >Approuver membre</a>
 
     <!-- Afficher les réclamations -->
     <a class="btn btn-danger position" href="<?= $base_url; ?>admin/reclamations#s" >Réclamations</a>

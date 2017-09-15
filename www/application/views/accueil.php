@@ -44,7 +44,6 @@ include VIEWPATH . 'common/header.php';
                         </div>
                         <div class="row secon-row">
                             <div class="col-md-6 col-sm-6 col-xs-12">
-                                <!--<a href="/membre/view/devenir-membre" class="single-pub" id="pub-1">-->
                                 <a href="<?= $base_url ?>usager/inscription" class="single-pub" id="pub-1">
 
                                     <h2 class="pub-title"> Devenir membre </h2>
@@ -52,7 +51,7 @@ include VIEWPATH . 'common/header.php';
                             </div>
 
                             <div class="col-md-6 col-sm-6 col-xs-12">
-                                <a href="<?= $base_url ?>page/view/voitures" class="single-pub" id="pub-2">
+                                <a href="<?= $base_url ?>voiture/recherche" class="single-pub" id="pub-2">
                                     <h2 class="pub-title"> Voitures </h2>
                                 </a>
                             </div>
@@ -67,14 +66,14 @@ include VIEWPATH . 'common/header.php';
         <section id="about-home">
             <div class="container-fluid">
                 <div>
-                    <h2> LES VOITURES LES PLUS DEMANDEES  </h2>
+                    <h2> LES VOITURES LES PLUS DEMANDÉES </h2>
                 </div>
                 <div class="row rows2 bg-white">
                     <?php foreach ($vehicules as $vehicule) : ?>
                         <div class="cols3 col-md-4 col-sm-12  bordered">
                             <div class="blocks3">
                                 <div class="text-container">
-                                    <a href="<?= $base_url ?>vehicules/view/<?= $vehicule['vehicule_id']; ?>">
+                                    <a href="<?= $base_url ?>vehicule/view/<?= $vehicule['vehicule_id']; ?>#s">
                                         <img src="<?= $base_url ?>assets/images/vehicules/<?php echo $vehicule['vehicule_photo']; ?>" alt="images voitures">
                                         <h2 class="text-center">
                                             <?php echo $vehicule['nom_marque']; ?>

@@ -270,9 +270,10 @@ class Vehicule extends CI_Controller {
         $data['meta_keywords'] = '';
         $data['meta_description'] = '';
         $data['base_url'] = base_url();
-        $data['scripts'] = [base_url() . 'assets/js/ajax_modeles_by_marque.js'];
-        $data['scripts'] = [base_url() . 'assets/js/calendrier_date_debut_et_fin.js'];
-
+        $data['scripts'] = [
+            base_url() . 'assets/js/ajax_modeles_by_marque.js',
+            base_url() . 'assets/js/calendrier_date_debut_et_fin.js'
+        ];
 
         // Récupère les données de recherche de la page et les réinsère dans le formulaire
         //  lors de la prochaine sousmission
@@ -297,7 +298,6 @@ class Vehicule extends CI_Controller {
         ];
 
         $data['resultat'] = $this->vehicule_model->rechercherVehicules($recherche);
-        //$data['resultat'] = $this->vehicule_model->getVehicules();
         $this->load->view('vehicules/recherche', $data);
     }
 

@@ -144,14 +144,22 @@ class usager_model extends CI_Model {
         return $query->result_array();
     }
 
-    public function getUsagersByRole($role_id) {
+    public function getUsagersByRoleId($role_id) {
 
-        $this->db->order_by('usagers.user_id', 'DESC');
+        $this->db->order_by('usagers.nom', 'DESC');
 
-        $this->db->join('roles', 'roles.role_id = vehicules.role_id');
+        $this->db->join('roles', 'roles.role_id = usagers.role_id');
 
         $query = $this->db->get_where('usagers', array('roles.role_id' => $role_id));
 
+        return $query->result_array();
+    }
+
+    public function getAdmins() {
+        $sql = 'SELECT * FROM usagers';
+        $sql.= ' INNER JOIN roles ON (roles.role_id = usagers.role_id)';
+        $sql.= ' WHERE usagers.role_id IN (' . ERole::ROLE_ADMIN . ',' . ERole::ROLE_SUPERADMIN . ')';
+        $query = $this->db->query($sql);
         return $query->result_array();
     }
 }

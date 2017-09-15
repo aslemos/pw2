@@ -2,25 +2,25 @@
 
 class Usager extends CI_Controller {
 
-    public function index() {
-
-        // Check login
-        if (!UserAcces::userIsLogged()) {
-            redirect('usager/login');
-        }
-        if (!UserAcces::userIsAdmin()) {
-            redirect('noperm'); // TODO: utiliser une page d'erreur personnalisée
-        }
-
-        $data['title'] = 'Liste des usagers';
-        $data['body_class'] = '';
-        $data['base_url'] = base_url();
-
-        $data['usagers'] = $this->usager_model->getUsers();
-
-        $this->load->view('usagers/index', $data);
-
-    }
+//    public function index() {
+//
+//        // Check login
+//        if (!UserAcces::userIsLogged()) {
+//            redirect('usager/login');
+//        }
+//        if (!UserAcces::userIsAdmin()) {
+//            redirect('noperm'); // TODO: utiliser une page d'erreur personnalisée
+//        }
+//
+//        $data['title'] = 'Liste des usagers';
+//        $data['body_class'] = '';
+//        $data['base_url'] = base_url();
+//
+//        $data['usagers'] = $this->usager_model->getUsers();
+//
+//        $this->load->view('usagers/index', $data);
+//
+//    }
 
     // Connexion
     public function login() {
@@ -81,19 +81,24 @@ class Usager extends CI_Controller {
         redirect('accueil');
     }
 
-    public function inscription() {
-        $data['meta_keywords'] = "";
-        $data['meta_description'] = "";
-        $data['page_title'] = "Devenir Membre";
-        $data['body_class'] = "subpages devenir-membre";
-        $data['base_url'] = base_url();
-        $this->load->view('membre/devenir-membre.php', $data);
-    }
+//    public function register() {
+//        $data['meta_keywords'] = '';
+//        $data['meta_description'] = '';
+//        $data['page_title'] = 'Devenir Membre';
+//        $data['body_class'] = 'subpages devenir-membre';
+//        $data['base_url'] = base_url();
+//        $this->load->view('membre/devenir-membre.php', $data);
+//    }
 
     // Enregister un usager
-    public function register() {
+    public function inscription() {
 
-        $data['page_title'] = "S'ENREGISTRER";
+        $data['meta_keywords'] = '';
+        $data['meta_description'] = '';
+        $data['page_title'] = 'Devenir Membre';
+        $data['body_class'] = 'subpages devenir-membre';
+        $data['base_url'] = base_url();
+
         $data['roles'] = $this->usager_model->getRoles();
         $data['err_message'] = '* Tous Les Champs Sont Requis!';
 
@@ -109,11 +114,8 @@ class Usager extends CI_Controller {
         $this->form_validation->set_rules('password2', 'Confirm Password', 'matches[password]');
 
         if ($this->form_validation->run() === FALSE) {
+            $this->load->view('membre/devenir-membre', $data);
 
-//            $this->load->view('membre/devenir-membre.php', $data);
-            $this->load->view('common/header');
-            $this->load->view('usagers/register', $data);
-            $this->load->view('common/footer');
         } else {
 
             // Ajouter une photo de profile
@@ -143,18 +145,8 @@ class Usager extends CI_Controller {
             // Message de confirmation d'enregistrement
             $this->session->set_flashdata('msg_success', 'Enregistrement terminé');
 
-            redirect('usagers');
+            redirect('usager');
         }
-    }
-
-    function getUsersInfo() {
-
-        $this->load->model('usager2');
-
-        $data['users'] = $this->usager2->getUsersInfo();
-
-        $this->load->view('client/form_location_1',  $data);
-        print_r($data);
     }
 
     public function view($user_id = NULL) {
@@ -193,7 +185,7 @@ class Usager extends CI_Controller {
     }
 
     // Check if email exists
-    private function checkEmailExists($email) {
+    public function checkEmailExists($email) {
 
         $this->form_validation->set_message('check_email_exists', 'Ce courriel exist déjà!<br />Choisir un autre ou connectez-vous');
 

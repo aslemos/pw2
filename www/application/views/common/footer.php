@@ -31,20 +31,20 @@
                         <ul>
                             <li><a href="<?=$base_url?>" title="">ACCUEIL</a></li>
                             <li class="sublist-container">
-                                <a href="<?=$base_url?>home/apropos" title="">À PROPOS</a>
+                                <a href="<?=$base_url?>accueil/apropos#s" title="">À PROPOS</a>
                             </li>
                             <li class="sublist-container">
-                                <a href="<?=$base_url?>home/vehicule" title="">VOITURES</a>
+                                <a href="<?=$base_url?>vehicule/recherche#s" title="">VOITURES</a>
                             </li>
                             <?php if (!UserAcces::userIsLogged()) { ?>
                                 <li class="sublist-container">
-                                    <a href="<?=$base_url?>contact" title="">CONTACTEZ-NOUS</a>
+                                    <a href="<?=$base_url?>contact#s" title="">CONTACTEZ-NOUS</a>
                                 </li>
                                 <li class="sublist-container">
-                                    <a href="<?=$base_url?>usager/register" title="">S'INSCRIRE</a>
+                                    <a href="<?=$base_url?>usager/inscription#s" title="">S'INSCRIRE</a>
                                 </li>
                                 <li class="sublist-container">
-                                    <a href="<?=$base_url?>usager/login" title="">SE CONNECTER</a>
+                                    <a href="<?=$base_url?>usager/login#s" title="">SE CONNECTER</a>
                                 </li>
                             <?php } ?>
                         </ul>
