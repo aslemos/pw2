@@ -1,11 +1,13 @@
+/* BACKGOUND COLORS DEFINITION */
+/* Pour body */
+$bgColor:#efeff0;
+
+
 /* --- General --- */
 header{
     overflow: hidden;
 }
-.prix{
-    margin-left: 40px;
-    color: greenyellow;
-}
+
 
 img {
     vertical-align: inherit;
@@ -14,7 +16,7 @@ img {
 }
 
 .bg-body{
-    background-color: #efeff0;
+    background-color: $bgColor;
 }
 
 .information{
@@ -41,7 +43,7 @@ img {
    background-color: #FFFFFF;
 }
 .bordered {
-        border-right: solid 6px #efeff0;
+        border-right: solid 6px $bgColor;
     }
 h2 {
         margin: 0;
@@ -184,7 +186,7 @@ h2 {
         }
     }
     .bordered{
-        border-bottom: solid 12px #efeff0;
+        border-bottom: solid 12px $bgColor;
         min-height: 700px;
     }
     .text-container {
@@ -225,28 +227,62 @@ h2 {
     }
 }
 
+/*---- LOCATION VOITURE PARTIE CLIENT ----*/
+
+#voitures{
+    .blocksDisplayVeh{
+        background-color: white;
+        border-bottom: solid 20px $bgColor;
+        img{
+            max-width: 365px;
+            max-height: 225px;
+            float: left;
+            padding: 15px;
+        }
+        .desc-container{
+            padding: 10px;
+            
+            p{
+                text-align: justify;
+                font-size: 10pt;
+                line-height: 140%;
+                 
+            }
+        }
+        .btn-reserver{
+            margin-bottom: 20px;
+            width: 100px;
+            height: 70px;
+        }
+        .prix{
+                margin-left: 210px;
+                color: greenyellow;
+                }  
+    }
+}
+
 /* --- DEVENIR MEMBRE ---*/
 
-.badgebox {
+/*.badgebox {
   opacity: 0;
   + .badge {
-    /* Move the check mark away when unchecked */
+     Move the check mark away when unchecked 
     text-indent: -999999px;
-    /* Makes the badge's width stay the same checked and unchecked */
+     Makes the badge's width stay the same checked and unchecked 
     width: 27px;
   }
   &:focus + .badge {
-    /* Set something to make the badge looks focused */
-    /* This really depends on the application, in my case it was: */
-    /* Adding a light border */
+     Set something to make the badge looks focused 
+     This really depends on the application, in my case it was: 
+     Adding a light border 
     box-shadow: inset 0px 0px 5px;
-    /* Taking the difference out of the padding */
+     Taking the difference out of the padding 
   }
   &:checked + .badge {
-    /* Move the check mark back when checked */
+     Move the check mark back when checked 
     text-indent: 0;
   }
-}
+}*/
 
 /*Radio buttons*/
 

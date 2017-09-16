@@ -186,25 +186,28 @@ include VIEWPATH . 'common/header.php';
                             <input type="hidden" name="date_debut" value="<?=$recherche->getDateDebut()?>">
                             <input type="hidden" name="date_fin" value="<?=$recherche->getDateFin()?>">
                             <div class="cols8 col-md-12 col-sm-12 col-xs-12">
-                                <div class="blocks">
+                                <div class="blocksDisplayVeh container-fuild">
                                     <div class="img-container">
                                         <img src="<?= $base_url ?>assets/images/vehicules/<?=$vehicule->getPhoto()?>" alt="<?=$vehicule->toString()?>">
                                     </div>
                                     <div>
-                                        <h3> <?=$vehicule->toString()?> <span class="prix"> Prix : <?=$vehicule->getPrix()?>$/JOUR </span></h3>
+                                        <h3> <?=$vehicule->toString()?> <span class="prix"> <?=$vehicule->getPrix()?>$/JOUR </span></h3>
                                     </div>
                                     <div class="desc-container">
-                                        <p><b>NOMBRE SIÈGES:</b> <?= $vehicule->getNbPlaces() ?></p>
-                                        <p><b>CARBURANT:</b> <?=$vehicule->getCarburant()->getNom()?></p>
-                                        <p><b>TRANSMISSION:</b> <?=$vehicule->getTransmission()->getNom()?></p>
-                                        <p><b>TYPE VÉHICULE:</b>  <?=$vehicule->getType()->getNom()?></p>
-                                        <p><b>Disponible à </b><?=$vehicule->getArrond()->toString()?><b>,</b> <?=$vehicule->getDisponibilite()->toString()?></p>
+                                        <p><b>NOMBRE SIÈGES: </b> <?= $vehicule->getNbPlaces() ?></p>
+                                        <p><b>CARBURANT: </b> <?=$vehicule->getCarburant()->getNom()?></p>
+                                        <p><b>TRANSMISSION: </b> <?=$vehicule->getTransmission()->getNom()?></p>
+                                        <p><b>TYPE VÉHICULE: </b>  <?=$vehicule->getType()->getNom()?></p>
+                                        <p><b>DISPONIBLE:</b> à <?=$vehicule->getArrond()->toString()?>
+                                            <br> 
+                                            <?=$vehicule->getDisponibilite()->toString()?></p>
                                         <p><?php echo $vehicule->getDescription() ?> </p>
                                     </div>
+                                    <div>
+                                        <button type="submit" class="btn btn-primary btn-reserver">RÉSERVER</button>
+                                    </div>
                                 </div>
-                                <div>
-                                    <button type="submit" class="btn btn-primary">RÉSERVER</button>
-                                </div>
+                                
                             </div>
                         </form>
 
