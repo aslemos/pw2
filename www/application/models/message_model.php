@@ -78,7 +78,7 @@ class Message_Model extends CI_Model {
         }
         $sql.= ' ORDER BY date DESC;';
         $st = $this->db->query($sql);
-        return $st->result();
+        return $st->result_array();
     }
 
     /**
@@ -93,15 +93,31 @@ class Message_Model extends CI_Model {
                 . ' AND messages.type = ' . EMessage::MSG_TYPE_RECLAMATION
                 . ' ORDER BY date DESC;';
         $st = $this->db->query($sql);
-        return $st->result();
+        return $st->result_array();
     }
 
+    /**
+     * Récupère les messages envoyés par un membre à l'administrateur du site
+     * @return array
+     */
+    public function getMessagesAdmin() {
+        $sql = 'SELECT messages.* FROM messages'
+                . ' WHERE messages.type = ' . EMessage::MSG_TYPE_ADMINISTRATIVE
+                . ' ORDER BY date DESC;';
+        $st = $this->db->query($sql);
+        return $st->result_array();
+    }
+
+    /**
+     * Récupère les messages envoyés par le formulaire de contact à usagers non-logués
+     * @return array
+     */
     public function getContacts() {
-        $sql = 'SELECT messages.*, usagers.prenom as nom_emetteur FROM messages'
+        $sql = 'SELECT messages.* FROM messages'
                 . ' WHERE messages.type = ' . EMessage::MSG_TYPE_CONTACT
                 . ' ORDER BY date DESC;';
         $st = $this->db->query($sql);
-        return $st->result();
+        return $st->result_array();
     }
 
     public function createMessage(EMessage $message) {
@@ -119,5 +135,33 @@ class Message_Model extends CI_Model {
 
         $this->db->query($sql);
         return $this->db->affected_rows();
+    }
+
+    /**
+     * Récupère une message spécifique
+     * @param type $message_id
+     */
+    public function getMessageById($message_id) {
+        $sql = 'SELECT messages.*,'
+                . ' emet.prenom as nom_emetteur,'
+                . ' dest.prenom as nom_destinataire'
+                . ' FROM messages'
+                . ' LEFT JOIN usagers emet ON (messages.emetteur_id = emet.user_id)'
+                . ' LEFT JOIN usagers dest ON (messages.destinataire_id = dest.user_id)'
+                . ' WHERE message_id = ' . $this->db->escape($message_id)
+                . ';';
+
+        $st = $this->db->query($sql);
+        return $st->result();
+    }
+
+    /**
+     * Supprime un message
+     * @param int $message_id L'identifiant du message à supprimer
+     * @return bool
+     */
+    public function deleteMessage($message_id) {
+        $this->db->where('message_id', $message_id);
+        return $this->db->delete('messages');
     }
 }
