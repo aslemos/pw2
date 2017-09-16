@@ -90,7 +90,7 @@ $base_url = isset($base_url)
                     <img src="<?=$base_url?>assets/images/accueil/slogan_accueil.png" alt="slogan-acceuil" id="logo-accueil">
                 </div>
                 <div>
-                    <p id="defile-link" class="pulse infinite animated"><a href="#pub-home" title="">DÉFILEZ POUR COMMENCER</a></p>
+                    <p id="defile-link" class="pulse infinite animated"><a href="#pub-home" title="">DÉFILEZ POUR COMMENCER OU CLIQUER ICI</a></p>
                 </div>
             </div>
         </header>
