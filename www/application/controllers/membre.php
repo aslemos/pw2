@@ -41,12 +41,16 @@ class Membre extends CI_Controller {
      */
     public function demandesReservation() {
 
+        $this->load->model('location_model');
         $data['meta_keywords'] = '';
         $data['meta_description'] = '';
         $data['page_title'] = 'Demandes de réservation';
         $data['title'] = 'Demandes de réservation';
         $data['body_class'] = 'subpages membre';
-
+        $data['reservations'] = $this->location_model->getDemandesByUser(UserAcces::getLoggedUser());
+echo '<pre>';
+var_dump($data['reservations']);
+echo '</pre>';
         $this->load->view('membre/demandes_reservation', $data);
     }
 

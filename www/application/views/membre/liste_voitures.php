@@ -16,6 +16,7 @@ include VIEWPATH . 'client/boutons_client.php';
 				<th class="">Année</th>
 				<th class="">Matricule</th>
 				<th class="">Prix</th>
+				<th class="">État</th>
 				<th class="">Modifier</th>
 				<th class="">Supprimer</th>
 			</tr>
@@ -29,6 +30,7 @@ include VIEWPATH . 'client/boutons_client.php';
 				<td class=""><?=$vehicule['annee']?></td>
 				<td class=""><?=$vehicule['matricule']?></td>
 				<td class=""><?=$vehicule['prix']?></td>
+				<td class=""><?=EVehicule::getDescriptionEtat($vehicule['etat_vehicule'])?></td>
 				<td><a href="<?=$base_url?>vehicule/editVehicule/<?=$vehicule['vehicule_id']?>#s"><img class="img-responsive" src="/assets/images/ok.png" ></a></td>
 				<td><a href="#"><img class="img-responsive" src="/assets/images/no.png" ></a></td>
 			</tr>

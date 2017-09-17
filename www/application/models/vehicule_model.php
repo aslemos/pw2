@@ -12,8 +12,39 @@ class Vehicule_model extends CI_Model {
         $this->load->database();
     }
 
+    /**
+     * Cherche les véhicules ACTIFS disponibles dans la période demandé par la recherche
+     * @param ERecherche $recherche
+     * @return array<EVehicule>
+     */
     public function rechercherVehicules(ERecherche $recherche) {
 
+        /*
+         * Crée la sub-requête utilisée dans le NOT IN()
+         *  qui trouve les locations existantes dans la période de location demandé
+         */
+        $this->db->select('locations.vehicule_id');
+        $this->db->from('locations');
+
+        // Trouve la date de DÉBUT dans une réservation existante
+        $this->db->where('locations.vehicule_id = disponibilites.vehicule_id');
+        $this->db->where('locations.date_debut <=', $recherche->getDateDebut());
+        $this->db->where('locations.date_fin >=', $recherche->getDateDebut());
+
+        // Trouve la date de FIN dans une réservation existante
+        $this->db->or_where('locations.vehicule_id = disponibilites.vehicule_id');
+        $this->db->where('locations.date_debut <=', $recherche->getDateFin());
+        $this->db->where('locations.date_fin >=', $recherche->getDateFin());
+
+        // Trouve une réservation entre une date de DÉBUT et FIN
+        $this->db->or_where('locations.vehicule_id = disponibilites.vehicule_id');
+        $this->db->where('locations.date_debut >=', $recherche->getDateDebut());
+        $this->db->where('locations.date_fin <=', $recherche->getDateFin());
+        $query_reservations_existantes = $this->db->get_compiled_select();
+
+        /*
+         * Jointure
+         */
         $this->db->from('disponibilites');
         $this->db->join('vehicules', 'vehicules.vehicule_id = disponibilites.vehicule_id');
         $this->db->join('usagers', 'usagers.user_id = vehicules.proprietaire_id');
@@ -25,7 +56,23 @@ class Vehicule_model extends CI_Model {
         $this->db->join('arrondissements', 'vehicules.arr_id = arrondissements.arr_id');
         $this->db->join('villes', 'villes.ville_id = arrondissements.ville_id');
 
-//        $this->db->where('vehicules.etat', EVehicule::ETAT_ACTIF);
+        /*
+         * Règles de la location :
+         */
+
+        // - on ne considère que les véhicules actifs
+        $this->db->where('vehicules.etat_vehicule', EVehicule::ETAT_ACTIF);
+
+        // - la demande doit être dans une période disponibilisé par le proprietaire
+        $this->db->where('disponibilites.date_debut <=', $recherche->getDateDebut());
+        $this->db->where('disponibilites.date_fin >=', $recherche->getDateFin());
+
+        // - on ne doit pas avoir de collisions de réservation
+        $this->db->where_not_in('disponibilites.vehicule_id ', $query_reservations_existantes, FALSE);
+
+        /*
+         * Caractéristiques des véhicules cherchés, optionneles
+         */
 
         if ($recherche->getAnnee()) {
             $this->db->where('vehicules.annee', $recherche->getAnnee());
@@ -66,14 +113,6 @@ class Vehicule_model extends CI_Model {
             $this->db->where('vehicules.transmission_id', $recherche->getTransmissionId());
         }
 
-        if ($recherche->getDateDebut()) {
-            $this->db->where('disponibilites.date_debut <=', $recherche->getDateDebut());
-        }
-
-        if ($recherche->getDateFin()) {
-            $this->db->where('disponibilites.date_fin >=', $recherche->getDateFin());
-        }
-
         // Instantiation des objets EVehicule dans le résultat
         $query = $this->db->get();
         $result = $query->result_array();
@@ -81,6 +120,69 @@ class Vehicule_model extends CI_Model {
             $result[$pos] = $this->getVehiculeByArray($arr_vehicule);
         }
         return $result;
+    }
+
+    /**
+     * Vérifie si un véhicule est disponible dans une période donnée
+     * @param int $vehicule_id L'identifiant du véhicule
+     * @param string $date_debut La date de début de la réservation
+     * @param string $date_fin La date de fin de la réservation
+     * @return bool Si le véhicule est disponible.
+     */
+    public function vehiculeEstDisponibleParDate($vehicule_id, $date_debut, $date_fin) {
+        /*
+         * Crée la sub-requête utilisée dans le NOT IN()
+         *  qui trouve les locations existantes dans la période de location demandé
+         */
+
+        $this->db->select('locations.vehicule_id');
+        $this->db->from('locations');
+        $this->db->where('locations', ['vehicule_id', $vehicule_id]);
+
+        $this->db->join('vehicules', 'vehicules.vehicule_id = locations.vehicule_id');
+        $this->db->where('vehicules.etat_vehicule', EVehicule::ETAT_ACTIF);
+
+        $this->db->join('disponibilites', 'disponibilites.vehicule_id = locations.vehicule_id');
+
+        // Trouve la date de DÉBUT dans une réservation existante
+        $this->db->where('locations.vehicule_id = disponibilites.vehicule_id');
+        $this->db->where('locations.date_debut <=', $recherche->getDateDebut());
+        $this->db->where('locations.date_fin >=', $recherche->getDateDebut());
+
+        // Trouve la date de FIN dans une réservation existante
+        $this->db->or_where('locations.vehicule_id = disponibilites.vehicule_id');
+        $this->db->where('locations.date_debut <=', $recherche->getDateFin());
+        $this->db->where('locations.date_fin >=', $recherche->getDateFin());
+
+        // Trouve une réservation entre une date de DÉBUT et FIN
+        $this->db->or_where('locations.vehicule_id = disponibilites.vehicule_id');
+        $this->db->where('locations.date_debut >=', $recherche->getDateDebut());
+        $this->db->where('locations.date_fin <=', $recherche->getDateFin());
+        $query_reservations_existantes = $this->db->get_compiled_select();
+
+        /*
+         * Jointure
+         */
+
+
+        /*
+         * Règles de la location :
+         */
+
+        // - on ne considère que les véhicules actifs
+        $this->db->where('vehicules.etat_vehicule', EVehicule::ETAT_ACTIF);
+
+        // - la demande doit être dans une période disponibilisé par le proprietaire
+        $this->db->where('disponibilites.date_debut <=', $recherche->getDateDebut());
+        $this->db->where('disponibilites.date_fin >=', $recherche->getDateFin());
+
+        // - on ne doit pas avoir de collisions de réservation
+        $this->db->where_not_in('disponibilites.vehicule_id ', $query_reservations_existantes, FALSE);
+
+        // Instantiation des objets EVehicule dans le résultat
+        $query = $this->db->get();
+        $result = $query->result_array();
+        return FALSE;
     }
 
     /**
@@ -273,6 +375,23 @@ class Vehicule_model extends CI_Model {
         return $query->result_array();
     }
 
+    /**
+     * Trouve les véhicules qui sont en attente d'une autorisation
+     */
+    public function getVehiculesEnAttente() {
+        $this->db->order_by('vehicules.vehicule_id', 'DESC');
+
+        $this->db->join('usagers', 'usagers.user_id = vehicules.proprietaire_id');
+        $this->db->join('modeles', 'vehicules.modele_id = modeles.modele_id');
+        $this->db->join('marques', 'marques.marque_id = modeles.marque_id');
+        $this->db->join('type_vehicules', 'vehicules.type_id = type_vehicules.type_id');
+        $this->db->join('arrondissements', 'vehicules.arr_id = arrondissements.arr_id');
+
+        $query = $this->db->get_where('vehicules', array('vehicules.etat_vehicule' => EVehicule::ETAT_EN_ATTENTE));
+
+        return $query->result_array();
+    }
+
     public function getHistoriqueByVehicule($vehicule_id) {
 
         $this->db->order_by('vehicules.vehicule_id', 'DESC');
@@ -338,7 +457,7 @@ class Vehicule_model extends CI_Model {
     public function debloquerVehicule($vehicule_id) {
         $this->db->where('vehicule_id', $vehicule_id);
         return $this->db->update('vehicules', [
-                    'etat' => EVehicule::ETAT_ACTIF
+                    'etat_vehicule' => EVehicule::ETAT_ACTIF
         ]);
     }
 
@@ -349,8 +468,8 @@ class Vehicule_model extends CI_Model {
     public function bloquerVehicule($vehicule_id) {
          $this->db->where('vehicule_id', $vehicule_id);
           return $this->db->update('vehicules', [
-                    'etat' => EVehicule::ETAT_INACTIF
+                    'etat_vehicule' => EVehicule::ETAT_INACTIF
         ]);
-         
+
     }
 }

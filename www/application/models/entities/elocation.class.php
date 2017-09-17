@@ -22,7 +22,7 @@ class ELocation implements ILocation {
         $this->_location_id = $data['location_id'];
         $this->_date_debut = $data['date_debut'];
         $this->_date_fin = $data['date_fin'];
-        $this->_etat = $data['etat'];
+        $this->_etat = $data['etat_reservation'];
     }
 
     public function getId() {

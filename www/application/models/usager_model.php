@@ -30,16 +30,36 @@ class usager_model extends CI_Model {
             return $query->row_array();
         }
     }
-    /*
-      public function getUser($user_id){
 
-      $this->db->join('roles','roles.role_id = usagers.role_id');
-
-      $query = $this->db->get_where('usagers',array('user_id' => $user_id));
-
-      return $query->row_array();
-      }
+    /**
+     * Récupère les usagers qui n'ont pas été approuvés ou refusés par l'administrateur<br>
+     * (son état est en attente)
+     * @return array
      */
+    public function getUsagersEnAttente() {
+        $this->db->where('etat_usager', EUsager::ETAT_EN_ATTENTE);
+        $this->db->join('roles', 'roles.role_id = usagers.role_id');
+        $this->db->join('villes', 'villes.ville_id = usagers.ville_id');
+        $this->db->order_by('usagers.prenom', 'ASC');
+
+        $query = $this->db->get('usagers');
+        return $query->result_array();
+    }
+
+    /**
+     * Récupère les usagers qui ont été traités par l'administrateur et ne sont plus en attente<br>
+     * (son état est différent d'attente)
+     * @return array
+     */
+    public function getMembres() {
+        $this->db->where('etat_usager !=', EUsager::ETAT_EN_ATTENTE);
+        $this->db->join('roles', 'roles.role_id = usagers.role_id');
+        $this->db->join('villes', 'villes.ville_id = usagers.ville_id');
+        $this->db->order_by('usagers.prenom', 'ASC');
+
+        $query = $this->db->get('usagers');
+        return $query->result_array();
+    }
 
     public function registerUser($enc_password, $user_photo) {
 

@@ -2,10 +2,9 @@
 
 class Admin extends CI_Controller {
 
-    private $data = [];
+    private $func = [];
     public function __construct() {
         parent::__construct();
-        $this->data['base_url'] = base_url();
 
         // Test de permission
         if (!UserAcces::userIsLogged()) {
@@ -16,9 +15,9 @@ class Admin extends CI_Controller {
         }
     }
 
-//    public function index() {
-//        $this->listeMembres();
-//    }
+    public function index() {
+        $this->listeMembres();
+    }
 
 
     /**
@@ -41,29 +40,49 @@ class Admin extends CI_Controller {
      * Liste générale des usagers du site
      */
     public function listeMembres() {
-
+        $data['page_title'] = 'Liste des membres';
         $data['title'] = 'Liste des membres';
-        $data['body_class'] = '';
+        $data['body_class'] = 'subpages listeAdmin';
         $data['base_url'] = base_url();
 
-        $data['usagers'] = $this->usager_model->getUsagersByRoleId(ERole::ROLE_CLIENT);
+        $data['usagers'] = $this->usager_model->getMembres();
 
         $this->load->view('admin/liste_usagers', $data);
     }
 
     /**
-     * Liste générale des voitures du site
+     * Liste générale des voitures du site, visible pour l'administrateur
      */
-    public function listeVoitures() {
-        $this->data['vehicules'] = $this->vehicule_model->getVehicules();
-        $this->load->view('admin/liste_voitures_admin', $this->data);      
+    public function listeVehicules() {
+        $data['meta_keywords'] = '';
+        $data['meta_description'] = '';
+        $data['page_title'] = 'Liste des véhicules';
+        $data['title'] = 'Les véhicules';
+        $data['body_class'] = 'subpages listeAdmin';
+
+        $data['vehicules'] = $this->vehicule_model->getVehicules();
+        $this->load->view('admin/liste_voitures_admin', $data);
     }
 
     /**
-     * Approbation d'une demande d'abonnement au site
+     * Affiche les véhicules en attente d'approbation
+     */
+    public function approuverVehicule() {
+        $data['page_title'] = 'Approuver véhicule';
+        $data['title'] = 'Véhicules en attente d\'approbation';
+        $data['body_class'] = 'subpages listeAdmin';
+        $data['vehicules'] = $this->vehicule_model->getVehiculesEnAttente();
+        $this->load->view('admin/liste_voitures_admin', $data);
+    }
+
+    /**
+     * Approbation d'une demande d'abonnement au système
      */
     public function approuverMembre() {
-        echo 'Aprouver un nouveau abonné du système';
+        $data['page_title'] = 'Approbation de membre';
+        $data['title'] = 'Approbation de membre';
+        $data['usagers'] = $this->usager_model->getUsagersEnAttente();
+        $this->load->view('admin/liste_usagers_approuver', $data);
     }
 
     /**
@@ -71,6 +90,10 @@ class Admin extends CI_Controller {
      */
     public function reclamations() {
         echo 'liste et visualisation des messages de réclamation';
+        $data['reclamations'] = $this->message_model->getReclamations();
+        echo '<pre>';
+        var_dump($data);
+        echo '</pre>';
     }
 
     /**
@@ -78,7 +101,11 @@ class Admin extends CI_Controller {
      * par intermède de la fonction 'Contacter admin'
      */
     public function messages() {
-        echo 'liste et visualisation des messages internes';
+        echo 'liste et visualisation des messages internes à l\'administrateur';
+        $messages = $this->message_model->getMessagesAdmin();
+        echo '<pre>';
+        var_dump($messages);
+        echo '</pre>';
     }
 
     /**
@@ -86,7 +113,11 @@ class Admin extends CI_Controller {
      * Ce sont les messages laissés par les visiteurs du site.
      */
     public function contacts() {
-        echo 'liste et visualisation des messages de contact';
+        echo 'liste et visualisation des messages de contact des visiteurs du site';
+        $contacts = $this->message_model->getContacts();
+        echo '<pre>';
+        var_dump($contacts);
+        echo '</pre>';
     }
 }
 
