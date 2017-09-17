@@ -70,7 +70,13 @@ class Admin extends CI_Controller {
      * Affichage des réclamations
      */
     public function reclamations() {
-        echo 'liste et visualisation des messages de réclamation';
+       echo 'liste et visualisation des messages de réclamation';
+       $this->load->model('message_model');
+       $data['reclamation'] = $this->message_model->getReclamations();
+       //this-load-view()
+       $this->load->view('admin/liste_reclamations', $data); 
+       //var_dump($this->data);
+       // message_model function  getreclamayion
     }
 
     /**

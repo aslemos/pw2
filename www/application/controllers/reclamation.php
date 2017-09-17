@@ -130,4 +130,9 @@ class Reclamation extends CI_Controller {
 
         redirect($url_redirect);
     }
+    
+     public function view($id_message) {
+         
+         $this->load->view('admin/liste_reclamations', $data);
+     }
 }
