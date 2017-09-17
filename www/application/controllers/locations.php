@@ -240,7 +240,7 @@ class Locations extends CI_Controller {
 
         $data1['date_debut'] = $this->input->post('date_debut');
         $data1['date_fin'] = $this->input->post('date_fin');
-        $data1['user_id'] = $this->input->post('user_id');
+        $data1['locataire_id'] = $this->input->post('user_id');
         $data1['vehicule_id'] = $this->input->post('vehicule_id');
 
         // enregistre le location

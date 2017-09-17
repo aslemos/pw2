@@ -51,7 +51,7 @@ include VIEWPATH . 'common/header.php';
                             </div>
 
                             <div class="col-md-6 col-sm-6 col-xs-12">
-                                <a href="<?= $base_url ?>voiture/recherche" class="single-pub" id="pub-2">
+                                <a href="<?= $base_url ?>vehicule/recherche" class="single-pub" id="pub-2">
                                     <h2 class="pub-title"> Voitures </h2>
                                 </a>
                             </div>

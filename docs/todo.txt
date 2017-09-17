@@ -4,3 +4,5 @@ x [asl] vérifier la page de modification d'usager : ne pas permettre modifier r
 x [asl] éliminer les champs date_debut / date_fin de la table 'voiture'
 - faire fonctionner le form ajouter voiture
 - formulaire location (réservation)
+
+- Dans la recherche, considérer les réservations en attente d'approbation ??

@@ -2,16 +2,19 @@
     <!-- Bouton pour afficher la liste des voiture en location d'un membres -->
     <a class="btn btn-danger position" href="<?= $base_url; ?>admin/listeMembres#s" >Liste des membres</a>
 
+    <!-- Approbation de nouveau membre, avant qu'il puisse utiliser le système -->
+    <a class="btn btn-danger position" href="<?= $base_url; ?>admin/approuverMembre#s" >Approuver membre</a>
+
     <!-- Bouton pour afficher la liste des voitures -->
-    <a class="btn btn-danger position" href="<?= $base_url; ?>admin/listeVoitures#s" >Liste des voitures</a>
+    <a class="btn btn-danger position" href="<?= $base_url; ?>admin/listeVehicules#s" >Liste des véhicules</a>
+
+    <!-- Approbation de nouveau véhicule, avant qu'il soit disponible -->
+    <a class="btn btn-danger position" href="<?= $base_url; ?>admin/approuverVehicule#s" >Approuver véhicule</a>
 
     <?php if (UserAcces::userIsSuperAdmin()) { ?>
     <!-- Bouton pour afficher la des administrateurs -->
     <a class="btn btn-danger position" href="<?= $base_url; ?>admin/listeAdmins#s">Liste des admins </a>
     <?php } ?>
-
-    <!-- Afficher les réclamations -->
-    <a class="btn btn-danger position" href="<?= $base_url; ?>admin/approuverMembre#s" >Approuver membre</a>
 
     <!-- Afficher les réclamations -->
     <a class="btn btn-danger position" href="<?= $base_url; ?>admin/reclamations#s" >Réclamations</a>

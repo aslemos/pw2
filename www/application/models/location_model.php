@@ -111,12 +111,24 @@ class Location_model extends CI_Model {
     }
 
     /**
-     * Récupère les demandes de réservation adressées à l'usager logué<br>
+     * Récupère les demandes de réservation adressées à l'usager<br>
      * passé en paramètre
      * @param IUsager $user
      */
-    public function getDemandesByUser(IUsager $user) {
+    public function getDemandesByUser(IUsager $user, $etat = NULL) {
 
+        $this->db->where('vehicules.proprietaire_id', $user->getId());
+        if ($etat) {
+            $query->db->where('locations.etat_reservation = ', $etat);
+        }
+        $this->db->order_by('locations.location_id', 'DESC');
+        $this->db->join('vehicules', 'vehicules.vehicule_id = locations.vehicule_id');
+        $this->db->join('modeles', 'modeles.modele_id = vehicules.modele_id');
+        $this->db->join('marques', 'marques.marque_id = modeles.marque_id');
+        $this->db->join('usagers', 'usagers.user_id = locations.locataire_id');
+
+        $query = $this->db->get('locations');
+        return $query->result_array();
     }
 
     /**
@@ -127,12 +139,12 @@ class Location_model extends CI_Model {
     public function getLocationsByUser(IUsager $user) {
 
         $this->db->order_by('locations.location_id', 'DESC');
-        $this->db->join('vehicules', 'locations.vehicule_id = vehicules.vehicule_id');
+        $this->db->join('vehicules', 'vehicules.vehicule_id = locations.vehicule_id');
         $this->db->join('modeles', 'modeles.modele_id = vehicules.modele_id');
         $this->db->join('marques', 'marques.marque_id = modeles.marque_id');
         $this->db->join('usagers', 'usagers.user_id = vehicules.proprietaire_id');
 
-        $query = $this->db->get_where('locations', array('locations.locataire_id' => $user->getId()));
+        $query = $this->db->get_where('locations', ['locations.locataire_id' => $user->getId()]);
         return $query->result_array();
     }
 
