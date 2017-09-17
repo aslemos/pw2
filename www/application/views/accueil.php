@@ -44,14 +44,14 @@ include VIEWPATH . 'common/header.php';
                         </div>
                         <div class="row secon-row">
                             <div class="col-md-6 col-sm-6 col-xs-12">
-                                <a href="<?= $base_url ?>usager/inscription" class="single-pub" id="pub-1">
+                                <a href="<?= $base_url ?>usager/inscription#s" class="single-pub" id="pub-1">
 
                                     <h2 class="pub-title"> Devenir membre </h2>
                                 </a>
                             </div>
 
                             <div class="col-md-6 col-sm-6 col-xs-12">
-                                <a href="<?= $base_url ?>voiture/recherche" class="single-pub" id="pub-2">
+                                <a href="<?= $base_url ?>vehicule/recherche#s" class="single-pub" id="pub-2">
                                     <h2 class="pub-title"> Voitures </h2>
                                 </a>
                             </div>

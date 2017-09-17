@@ -9,7 +9,6 @@ include VIEWPATH . 'common/header.php';
             <div class="cols6">
                 <div class="blocks6">
                     <h2>Formulaire d'inscription membre</h2>
-                    <h4>Nunc non lectus lobortis, sodales magna sit amet</h4>
                 </div>
             </div>
         </div>
