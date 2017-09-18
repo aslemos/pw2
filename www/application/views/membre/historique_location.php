@@ -63,6 +63,7 @@ include VIEWPATH . 'client/boutons_client.php';
                     <th class="">Nombre de <br />jours loué</th>
                     <th class="">Montant<br />total</th>
                     <th class="">Propriétaire</th>
+                    <th class="">État<br>réservation</th>
                     <th class="">Réclamer voiture</th>
                     <th class="">Réclamer Propriétaire</th>
                 </tr>
@@ -85,6 +86,7 @@ include VIEWPATH . 'client/boutons_client.php';
                         <td class=""><?= $nb_jours; ?></td>
                         <td class=""><?= $valeur_total; ?></td>
                         <td class=""><?= $location['prenom'] . ' ' . $location['nom']?></td>
+                        <td class=""><?= ELocation::getDescriptionEtat($location['etat_reservation']) ?></td>
                         <td class=""><a class="btn btn-inline" href="<?= $base_url ?>reclamation/form_vehicule/<?= $location['vehicule_id'] ?>#s"></a></td>
                         <td class=""><a class="btn btn-inline"href="<?= $base_url ?>reclamation/form_proprietaire/<?= $location['proprietaire_id'] ?>#s"></a></td>
                     </tr>

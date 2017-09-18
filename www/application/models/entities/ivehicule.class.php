@@ -57,4 +57,5 @@ interface IVehicule {
 
     public function toString();
 
+    public static function getDescriptionEtat($etat_vehicule);
 }

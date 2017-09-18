@@ -72,4 +72,17 @@ class ELocation implements ILocation {
     public function toString() {
         return $this->_date_debut . ' à ' . $this->_date_fin;
     }
+
+    public static function getDescriptionEtat($etat_reservation) {
+        switch ($etat_reservation) {
+            case self::LOCATION_EN_ATTENTE:
+                return 'En attente';
+            case self::LOCATION_NON_ACCEPTE:
+                return 'Refusé';
+            case self::LOCATION_ACCEPTE:
+                return 'Accepé';
+            default:
+                return 'Inconnu';
+        }
+    }
 }

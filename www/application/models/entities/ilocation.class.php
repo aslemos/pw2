@@ -21,4 +21,6 @@ interface ILocation {
     public function setVehicule(IVehicule $vehicule);
 
     public function toString();
+
+    public static function getDescriptionEtat($etat_reservation);
 }
