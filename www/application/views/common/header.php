@@ -27,27 +27,15 @@ $base_url = isset($base_url)
         <script src="<?=$base_url?>assets/js/jquery.min.js" type="text/javascript"></script>
         <script src="<?=$base_url?>assets/js/bootstrap.min.js" type="text/javascript"></script>
 
-<!--<script src='https://www.google.com/recaptcha/api.js' async defer></script>-->
-        <!--<script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyCa28kbEpTfpVVk2tjWhsZp3VRQh2Z96xI" type="text/javascript"></script>-->
-
-
-        <!--fichiers de Andriy-->
-
-        <link href='<?=$base_url?>assets/fonts/passion_one/passion_one.css' rel='stylesheet' type='text/css'>
-        <link href='<?=$base_url?>assets/fonts/oxygen/oxygen.css' rel='stylesheet' type='text/css'>
-        <script src="<?=$base_url?>assets/js/moment.min.js"></script>
-
-        <!--calendrier bootstrap-->
-<!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">-->
-<!--<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.37/js/bootstrap-datetimepicker.min.js"></script>-->
-        <link rel="stylesheet" href="<?=$base_url?>assets/bootstrap-3.3.7-dist/css/bootstrap-theme.min.css">
-        <script src="<?=$base_url?>assets/js/bootstrap-datetimepicker.min.js"></script>
-
-        <!--fichiers jquery -->
-<!--<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">-->
-<!--<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>-->
+        <!-- jQuery UI -->
         <link rel="stylesheet" href="<?=$base_url?>assets/js/jquery/ui/jquery-ui-1.12.1.css">
         <script src="<?=$base_url?>assets/js/jquery/ui/jquery-ui-1.12.1.min.js"></script>
+
+        <!-- Datetimepicker Bootstrap -->
+        <script src="<?=$base_url?>assets/js/moment.min.js"></script>
+        <!--<link rel="stylesheet" href="<?=$base_url?>assets/bootstrap-3.3.7-dist/css/bootstrap-theme.min.css">-->
+        <script src="<?=$base_url?>assets/js/bootstrap-datetimepicker.min.js"></script>
+
         <script>var base_url='<?=$base_url?>';</script>
 <?php
         if (isset($styles) && is_array($styles)) { // boucle d'ajout des styles customisés
