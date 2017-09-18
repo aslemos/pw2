@@ -165,6 +165,9 @@ class Locations extends CI_Controller {
         $data['scripts'] = [base_url() . 'assets/js/calendrier_date_debut_et_fin.js'];
         $data['vehicules'] = $this->vehicule_model->getVehicules();
         $data['locations'] = $this->location_model->getLocationsByUser($user);
+        $data['date_debut'] = $this->input->post('date_debut');
+        $data['date_fin'] = $this->input->post('date_fin');
+        $data['vehicule_id'] = $this->input->post('vehicule_id');
 
         $this->load->view('membre/historique_location', $data);
     }

@@ -7,37 +7,46 @@ include VIEWPATH . 'client/boutons_client.php';
 <h2>Historique des locations</h2>
 <form action="<?= $base_url ?>locations/locationsByUser#s" method="post" name="formulaire" id="form-demandes-id">
     <div class="table-responsive">
-        <label>Choisir une voiture</label>
-        <select name="voiture">
-            <option>Sélectionner</option>
-            <!--mettre les données dynamiquement dans la liste de voitures-->
-            <?php foreach ($vehicules as $vehicule) { ?>
-                <option value="<?= $vehicule['vehicule_id']; ?>"><?= $vehicule['nom_modele']; ?></option>
-            <?php } ?>
-        </select>
-        <label>Période</label>
-        <div class="form-group">
-            <label class="control-label col-xs-3">De :</label>
-            <div class='input-group date col-xs-6' >
-                <input type='text' class="form-control" id="date_debut" name="date_debut"/>
-                <span class="input-group-addon" >
-                    <span class="glyphicon glyphicon-calendar"></span>
-                </span>
-            </div>
-        </div>
-        <div class="form-group">
-            <label class="control-label col-xs-3">à :</label>
-            <div class='input-group date col-xs-6' >
-                <input type='text' class="form-control" id="date_fin" name="date_fin"/>
-                <span class="input-group-addon" >
-                    <span class="glyphicon glyphicon-calendar"></span>
-                </span>
+
+
+        <div class="row form-group">
+            <label class="control-label col-md-2 col-xs-12">Véhicule :</label>
+            <div class="col-md-6 col-xs-12">
+                <select class="form-control" name="vehicule_id">
+                    <option>-- Tous --</option>
+<?php foreach ($vehicules as $vehicule) { ?>
+                    <option value="<?= $vehicule['vehicule_id']; ?>"<?=$vehicule['vehicule_id']==$vehicule_id?' selected':''?>><?= $vehicule['nom_modele']; ?></option>
+<?php } ?>
+                </select>
             </div>
         </div>
 
-        <div class="row btn-liens" >
-            <!-- Boutton pour afficher l'historique des location pour un membre -->
-            <button type="submit" class="btn btn-danger position" id="RecherchePeriod">Recherche Periode </button>
+        <div class="row form-group">
+            <label class="control-label col-md-2 col-xs-12">Période :</label>
+            <div class="col-md-3 col-xs-6">
+                <div class="input-group date">
+                    <input type="text" class="form-control" id="date_debut" name="date_debut" value="<?=$date_debut?>"/>
+                    <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-calendar"></span>
+                    </span>
+
+                </div>
+            </div>
+            <div class="col-md-3 col-xs-6">
+                <div class="input-group date">
+                    <input type="text" class="form-control" id="date_fin" name="date_fin" value="<?=$date_fin?>"/>
+                    <span class="input-group-addon" >
+                        <span class="glyphicon glyphicon-calendar"></span>
+                    </span>
+                </div>
+            </div>
+            <div class="col-md-3 hidden-xs">
+                <button type="submit" class="btn btn-danger position" id="RecherchePeriod">Rechercher</button>
+            </div>
+        </div>
+
+        <div class="row hidden-lg hidden-md hidden-sm">
+            <button type="submit" class="btn btn-danger position" id="RecherchePeriod">Rechercher</button>
         </div>
 
 
@@ -53,6 +62,7 @@ include VIEWPATH . 'client/boutons_client.php';
                     <th class="">Date fin</th>
                     <th class="">Nombre de <br />jours loué</th>
                     <th class="">Montant<br />total</th>
+                    <th class="">Propriétaire</th>
                     <th class="">Réclamer voiture</th>
                     <th class="">Réclamer Propriétaire</th>
                 </tr>
@@ -74,6 +84,7 @@ include VIEWPATH . 'client/boutons_client.php';
                         <td class=""><?= $location['date_fin']; ?></td>
                         <td class=""><?= $nb_jours; ?></td>
                         <td class=""><?= $valeur_total; ?></td>
+                        <td class=""><?= $location['prenom'] . ' ' . $location['nom']?></td>
                         <td class=""><a class="btn btn-inline" href="<?= $base_url ?>reclamation/form_vehicule/<?= $location['vehicule_id'] ?>#s"></a></td>
                         <td class=""><a class="btn btn-inline"href="<?= $base_url ?>reclamation/form_proprietaire/<?= $location['proprietaire_id'] ?>#s"></a></td>
                     </tr>

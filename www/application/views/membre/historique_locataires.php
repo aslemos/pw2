@@ -12,7 +12,7 @@ include VIEWPATH . 'client/boutons_client.php';
             <label class="control-label col-md-2 col-xs-12">Locataire :</label>
             <div class="col-md-6 col-xs-12">
                 <select class="form-control" name="locataire_id">
-                    <option>-- Sélectionner --</option>
+                    <option>-- Tous --</option>
                     <?php foreach ($usagers as $usager) { ?>
                         <option value="<?= $usager['user_id']; ?>"<?=$usager['user_id']==$locataire_id?' selected':''?>><?= $usager['prenom']; ?></option>
                     <?php } ?>
@@ -81,7 +81,7 @@ include VIEWPATH . 'client/boutons_client.php';
                         <td class=""><?= $location['date_fin']; ?></td>
                         <td class=""><?= $nb_jours; ?></td>
                         <td class=""><?= $valeur_total; ?></td>
-                        <td class=""><?= $location['prenom']; ?></td>
+                        <td class=""><?= $location['prenom'] . ' ' . $location['nom']; ?></td>
                         <td class=""><a class="btn btn-inline" href="<?= $base_url ?>reclamation/form_locataire/<?= $location['location_id'] ?>#s"></a></td>
                     </tr>
 <?php } ?>
