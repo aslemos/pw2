@@ -31,7 +31,7 @@
 
 
     <div id="myForm1" class="form-style-10">
-        <h1>Une récente modes de paiement</h1>
+        <h3>Une récente modes de paiement</h3>
 
         <form  method="post" action="<?= $base_url ?>locations/insererPayemant">
             <div class="inner-wrap">
@@ -80,7 +80,7 @@
 
 
     <div id="myForm2" class="form-style-10">
-        <h1>Payement</h1>
+        <h3>Payement</h3>
         <form  method="post" action="<?= $base_url ?>locations/insererPayemant" >
             <div class="inner-wrap">
                 <div class="row">

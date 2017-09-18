@@ -8,7 +8,7 @@
 
 
     <div class="form-style-10">
-        <h1>Félicitations!<span>Vous avez réservé une voiture!</span></h1>
+        <h3>Félicitations!<span>Vous avez réservé une voiture!</span></h3>
         <h3>Veuillez attendre approbation du propriétaire</h3>
 
 

@@ -17,7 +17,7 @@
 </style>
 
 <div class="form-style-10">
-    <h1>Réservation<span>Vérifier et confirmer les informations</span></h1>
+    <h3>Réservation<span>Vérifier et confirmer les informations</span></h3>
     <form method="post" action="<?= $base_url ?>locations/insererLocation">
 
         <div class="section test animated zoomIn"><span>1</span>Information location de voiture</div>

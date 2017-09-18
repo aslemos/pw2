@@ -20,7 +20,7 @@
         border-radius: 6px;
         margin-bottom: 15px;
     }
-    .form-style-10 h1{
+    .form-style-10 h3{
         background: #AF0000;
         padding: 20px 30px 15px 30px;
         margin: -30px -30px 30px -30px;
@@ -35,7 +35,7 @@
         box-shadow: inset 0px 2px 2px 0px rgba(255, 255, 255, 0.17);
         border: 1px solid #257C9E;
     }
-    .form-style-10 h1 > span{
+    .form-style-10 h3 > span{
         display: block;
         margin-top: 2px;
         font: 13px Arial, Helvetica, sans-serif;
@@ -133,7 +133,7 @@
 <body>
 
     <div class="form-style-10">
-        <h1>Reclamation de vehicule!<span></span></h1>
+        <h3>Reclamation de vehicule!<span></span></h3>
         <form method="post" action="<?= $base_url ?>reclamation/insert_reclamation">
 
             <input type="hidden" name="type_message" value="<?= $type_message; ?>">
