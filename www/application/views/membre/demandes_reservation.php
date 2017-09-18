@@ -1,9 +1,8 @@
 <?php
-
 // Header
-include VIEWPATH . '/common/header.php';
+include VIEWPATH . 'common/header.php';
 //========================================================
-include VIEWPATH .'client/boutons_client.php';
+include VIEWPATH . 'client/boutons_client.php';
 ?>
 <h2><?=$title?></h2>
 <form action="" name="formulaire" id="form-demandes-id">
@@ -16,30 +15,35 @@ include VIEWPATH .'client/boutons_client.php';
 				<th class="">Modèle</th>
 				<th class="">Année</th>
 				<th class="">Matricule</th>
-				<th class="">Nom client</th>
+				<th class="">Client</th>
 				<th class="">Prix</th>
-				<th class="date">Location<br />Date Début</th>
-				<th class="date">Location<br />Date Fin</th>
+				<th class="date">Date Début</th>
+				<th class="date">Date Fin</th>
+				<th class="date">Jours</th>
 				<th class="titre_editable">Approuver</th>
 				<th class="titre_editable">Refuser</th>
 			</tr>
 		</thead>
 		<tbody>
-<!--À FAIRE : AFFICHAGE DYNAMIQUE DES VOITURES ICI-->
+<?php foreach($reservations as $reservation) {
+            $nb_jours = 0;
+            $montant = ELocation::calculerPrixTotal($reservation['prix'], $reservation['date_debut'], $reservation['date_fin'], $nb_jours);
+?>
 			<tr>
-				<td class="">1</td>
-				<td class="">test</td>
-				<td class="">test</td>
-				<td class="">test</td>
-				<td class="">test</td>
-				<td class="">Client</td>
-				<td class="">$500</td>
-				<td class="date">Date début</td>
-				<td class="date">Date fin</td>
+				<td class=""><?=$reservation['location_id']?></td>
+				<td class=""><?=$reservation['nom_marque']?></td>
+				<td class=""><?=$reservation['nom_modele']?></td>
+				<td class=""><?=$reservation['annee']?></td>
+				<td class=""><?=$reservation['matricule']?></td>
+				<td class=""><?=$reservation['prenom'] . ' ' . $reservation['nom']?></td>
+				<td class=""><?=$reservation['prix']?></td>
+				<td class=""><?=$reservation['date_debut']?></td>
+				<td class=""><?=$reservation['date_fin']?></td>
+				<td class=""><?=$nb_jours?></td>
 				<td><a href="#"><img class="img-responsive" src="/assets/images/ok.png" ></a></td>
 				<td><a href="#"><img class="img-responsive" src="/assets/images/no.png" ></a></td>
 			</tr>
-<!--------------------------------------------------->
+<?php } ?>
 
 		</tbody>
 	</table>
@@ -52,4 +56,4 @@ include VIEWPATH .'client/boutons_client.php';
 <?php
 //========================================================
 //Footer
-include VIEWPATH . '/common/footer.php';
+include VIEWPATH . 'common/footer.php';
