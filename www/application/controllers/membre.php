@@ -47,7 +47,16 @@ class Membre extends CI_Controller {
         $data['page_title'] = 'Demandes de réservation';
         $data['title'] = 'Demandes de réservation';
         $data['body_class'] = 'subpages membre';
-        $data['reservations'] = $this->location_model->getDemandesByUser(UserAcces::getLoggedUser());
+        $data['scripts'] = [
+            base_url() . 'assets/js/ajax_approbation_location.js'
+        ];
+
+        // trouve les réservations en attende d'autorisation
+        $data['reservations'] = $this->location_model->getDemandesByUser(
+                    UserAcces::getLoggedUser(),
+                    ELocation::LOCATION_EN_ATTENTE
+                );
+
         $this->load->view('membre/demandes_reservation', $data);
     }
 }

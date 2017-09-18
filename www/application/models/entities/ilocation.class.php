@@ -20,9 +20,15 @@ interface ILocation {
     public function getVehicule();
     public function setVehicule(IVehicule $vehicule);
 
+    public function getEtat();
+
     public function getPrixTotal();
 
+    public function getNbJours();
+
     public function toString();
+
+    public function estApprouvee();
 
     public static function getDescriptionEtat($etat_reservation);
 

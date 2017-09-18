@@ -6,5 +6,7 @@ interface IUsager {
 
     public function getEtat();
 
+    public function toString();
+
     public static function getDescriptionEtat($etat_usager);
 }

@@ -16,32 +16,31 @@ include VIEWPATH . 'client/boutons_client.php';
 				<th class="">Année</th>
 				<th class="">Matricule</th>
 				<th class="">Client</th>
-				<th class="">Prix</th>
-				<th class="date">Date Début</th>
-				<th class="date">Date Fin</th>
-				<th class="date">Jours</th>
+				<th class="">Prix/jour</th>
+				<th class="">Date Début</th>
+				<th class="">Date Fin</th>
+				<th class="">Jours</th>
+				<th class="">Prix Total</th>
 				<th class="titre_editable">Approuver</th>
 				<th class="titre_editable">Refuser</th>
 			</tr>
 		</thead>
 		<tbody>
-<?php foreach($reservations as $reservation) {
-            $nb_jours = 0;
-            $montant = ELocation::calculerPrixTotal($reservation['prix'], $reservation['date_debut'], $reservation['date_fin'], $nb_jours);
-?>
-			<tr>
-				<td class=""><?=$reservation['location_id']?></td>
-				<td class=""><?=$reservation['nom_marque']?></td>
-				<td class=""><?=$reservation['nom_modele']?></td>
-				<td class=""><?=$reservation['annee']?></td>
-				<td class=""><?=$reservation['matricule']?></td>
-				<td class=""><?=$reservation['prenom'] . ' ' . $reservation['nom']?></td>
-				<td class=""><?=$reservation['prix']?></td>
-				<td class=""><?=$reservation['date_debut']?></td>
-				<td class=""><?=$reservation['date_fin']?></td>
-				<td class=""><?=$nb_jours?></td>
-				<td><a href="#"><img class="img-responsive" src="/assets/images/ok.png" ></a></td>
-				<td><a href="#"><img class="img-responsive" src="/assets/images/no.png" ></a></td>
+<?php foreach($reservations as $reservation) { ?>
+			<tr id="tr<?=$reservation->getId()?>">
+				<td class=""><?=$reservation->getId()?></td>
+				<td class=""><?=$reservation->getVehicule()->getMarque()->getNom()?></td>
+				<td class=""><?=$reservation->getVehicule()->getModele()->getNom()?></td>
+				<td class=""><?=$reservation->getVehicule()->getAnnee()?></td>
+				<td class=""><?=$reservation->getVehicule()->getMatricule()?></td>
+				<td class=""><?=$reservation->getLocataire()->toString()?></td>
+				<td class=""><?=$reservation->getVehicule()->getPrix()?></td>
+				<td class=""><?=$reservation->getDateDebut()?></td>
+				<td class=""><?=$reservation->getDateFin()?></td>
+				<td class=""><?=$reservation->getNbJours()?></td>
+				<td class=""><?=$reservation->getPrixTotal()?></td>
+				<td><span onclick="approuverReservation(<?=$reservation->getId()?>)" class="glyphicon glyphicon-ok-circle btn-accepter"></span></td>
+				<td><span onclick="refuserReservation(<?=$reservation->getId()?>)" class="glyphicon glyphicon-ban-circle btn-refuser"></span></td>
 			</tr>
 <?php } ?>
 

@@ -63,4 +63,31 @@ class Ajax extends CI_Controller {
                 $this->arrondissement_model->getArrondissementsByVilleId($ville_id)
                 );
     }
+
+    /**
+     * Approuve une réservation
+     * @param int $location_id
+     * @return json indique le succès de l'opération
+     * @author Alessandro Souza Lemos
+     */
+    public function approuverReservation($location_id) {
+        $this->load->model('location_model');
+        echo json_encode([
+                'success' => $this->location_model->approuverReservation($location_id)
+                ]);
+    }
+
+    /**
+     * Refuse une réservation
+     * @param int $location_id
+     * @return json indique le succès de l'opération
+     * @author Alessandro Souza Lemos
+     */
+    public function refuserReservation($location_id) {
+        $this->load->model('location_model');
+        echo json_encode([
+                'success' => $this->location_model->refuserReservation($location_id)
+                ]);
+    }
+
 }
