@@ -76,10 +76,4 @@ class Modele extends CI_Controller {
 
         redirect('modeles');
     }
-
-    public function ajaxModelesByMarque($marque_id) {
-        echo json_encode(
-                $this->modele_model->getModelesByMarqueId($marque_id)
-                );
-    }
 }
