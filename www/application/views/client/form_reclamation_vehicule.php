@@ -1,8 +1,7 @@
 <?php include VIEWPATH . '/common/header.php'; ?>
 
-<link href='http://fonts.googleapis.com/css?family=Bitter' rel='stylesheet' type='text/css'>
 <style type="text/css">
-    .form-style-10{
+/*    .form-style-10{
         width:80%;
         padding:30px;
         margin:40px auto;
@@ -128,7 +127,7 @@
 
     .form-style-10 .field-textarea{
         height: 150px;
-    }
+    }*/
 </style>
 <body>
 
@@ -168,8 +167,6 @@
                     </div>
                 </div>
             </div>
-
-
 
             <div class="inner-wrap">
                 <div class="section"><span>2</span>Informations du locataire</div>
@@ -215,6 +212,5 @@
         </form>
     </div>
 </body>
-
 
 <?php include VIEWPATH . '/common/footer.php'; ?>

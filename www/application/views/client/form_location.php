@@ -1,19 +1,19 @@
 <?php include VIEWPATH . 'common/header.php'; ?>
 
 <style type="text/css">
-    .editPersonInfo{
-        height: 60px;
-        width: 60px;
-        float: right;
-        background-color: orange;
-        border-radius: 25%;
+    /*    .editPersonInfo{
+            height: 60px;
+            width: 60px;
+            float: right;
+            background-color: orange;
+            border-radius: 25%;
 
-    }
+        }
 
-    #editPersonIcon{
-        margin-left: 15px;
-        margin-top: 12px;
-    }
+        #editPersonIcon{
+            margin-left: 15px;
+            margin-top: 12px;
+        }*/
 </style>
 
 <div class="form-style-10">
@@ -65,7 +65,7 @@
 
             <div class="row">
 
-                 <div class="col-md-4">
+                <div class="col-md-4">
                     <label>Emplacement
                         <input type="text" disabled name="arr" value="<?= $voitures['nom_arr'] ?> "/>
                     </label>
@@ -77,18 +77,12 @@
                     </label>
                 </div>
 
-               <div class="col-md-4">
+                <div class="col-md-4">
                     <label>Prix total
                         <input type="text" name="prixTotal" disabled value="<?= $voitures['prix'] ?> "/>
                     </label>
                 </div>
-
-
             </div>
-
-
-
-
 
             <div class="row">
                 <div class="col-md-6">
@@ -103,14 +97,11 @@
                 </div>
             </div>
 
-                <div class="btn-group" role="group" aria-label="Basic example">
-<!--<a href="<?= $base_url?>"-->
-
-<!-- Andriy, regarde si utiliser une balise <a href> va résoudre le problème d'annulation de la location-->
-                    <a href="<?= $base_url?>" type="button" id="flip5" class="btn btn-danger animated bounceInLeft"><i class="fa  fa-window-close" style="font-size:22px;"></i> Annuler</a>
-<!--</a>-->
-
-
+            <div class="btn-group" role="group" aria-label="Basic example">
+                <!-- Andriy, regarde si utiliser une balise <a href> va résoudre le problème d'annulation de la location-->
+                <a href="<?= $base_url ?>" type="button" id="flip5" class="btn btn-danger animated bounceInLeft">
+                    <i class="fa  fa-window-close" style="font-size:22px;"></i> Annuler
+                </a>
                 <button type="button" id="flip2" class="btn btn-primary">Prochain <i class="fa fa-hand-o-right"></i></button>
                 </span>
             </div>
@@ -118,10 +109,7 @@
 
 
         <div class="section test2"><span>2</span>Informations personnelles</div>
-
         <div class="inner-wrap" id="part2">
-
-
             <div class="row">
                 <div class="col-md-6">
                     <label>Nom
@@ -137,7 +125,6 @@
                 </div>
             </div>
 
-
             <div class="row">
                 <div class="col-md-6">
                     <label>Permis de conduire
@@ -151,16 +138,14 @@
                 </div>
             </div>
 
-
             <div class="btn-group" role="group" aria-label="Basic example">
                 <button type="button" id="flip3" class="btn btn-primary animated bounceInLeft"><i class="fa fa-hand-o-left"></i> Précédent</button>
                 <button type="submit" id="flip4" class="btn btn-success animated bounceInRight">Réserver <i class="fa fa-check-square-o"></i></button>
             </div>
 
-
             <div class="editPersonInfo" >
                 <div class="editPersonInfo">
-                    <a href="<?=$base_url?>usager/editUser/<?=$users->getId()?>#s" ><span id="editPersonIcon" class="fa fa-pencil" style="font-size:25px;color:white;"> </span></a>
+                    <a href="<?= $base_url ?>usager/editUser/<?= $users->getId() ?>#s" ><span id="editPersonIcon" class="fa fa-pencil" style="font-size:25px;color:white;"> </span></a>
                 </div>
 
             </div>
@@ -168,4 +153,5 @@
     </form>
 </div>
 
-<?php include VIEWPATH . 'common/footer.php';
+<?php
+include VIEWPATH . 'common/footer.php';
