@@ -26,13 +26,26 @@ class Ajax extends CI_Controller {
 
     /**
      * Trouve les modèles par la marque
-     * @param type $marque_id
+     * @param int $marque_id
      * @return json
      * @author Alessandro Souza Lemos
      */
     public function modelesByMarque($marque_id) {
         echo json_encode(
                 $this->modele_model->getModelesByMarqueId($marque_id)
+                );
+    }
+
+    /**
+     * Récupère la liste d'arrondissements par la ville
+     * @param int $ville_id
+     * @return json
+     * #author Alessandro Souza Lemos
+     */
+    public function arrondByVille($ville_id) {
+        $this->load->model('arrondissement_model');
+        echo json_encode(
+                $this->arrondissement_model->getArrondissementsByVilleId($ville_id)
                 );
     }
 }

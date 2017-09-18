@@ -20,11 +20,11 @@ class Arrondissement_model extends CI_Model {
         return $query->result_array();
     }
 
-    public function getArrondissementeByVilleId($ville_id) {
+    public function getArrondissementsByVilleId($ville_id) {
 
         $this->db->order_by('nom_arr');
         $this->db->join('villes', 'villes.ville_id = arrondissements.ville_id');
-        $query = $this->db->get_where('arrondissements', ['ville_id' => $ville_id]);
+        $query = $this->db->get_where('arrondissements', ['arrondissements.ville_id' => $ville_id]);
 
         return $query->result_array();
     }
