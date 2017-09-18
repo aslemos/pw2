@@ -227,6 +227,25 @@ h2 {
     }
 }
 
+/* --- A propos --- */
+
+#apropos{
+    h4{ 
+        text-align: center;
+        margin-bottom: 20px;
+    }
+    p{
+       text-align: justify;
+       margin: auto;
+       font-size:16px;
+       line-height: 20px;
+    }
+    .cols{
+        height: 510px;
+        margin-bottom: 40px;
+    }
+}
+
 /*---- LOCATION VOITURE PARTIE CLIENT ----*/
 
 #voitures{
@@ -241,12 +260,12 @@ h2 {
         }
         .desc-container{
             padding: 10px;
-            
+
             p{
                 text-align: justify;
                 font-size: 10pt;
                 line-height: 140%;
-                 
+
             }
         }
         .btn-reserver{
@@ -257,7 +276,7 @@ h2 {
         .prix{
                 margin-left: 210px;
                 color: greenyellow;
-                }  
+                }
     }
 }
 
@@ -266,20 +285,20 @@ h2 {
 /*.badgebox {
   opacity: 0;
   + .badge {
-     Move the check mark away when unchecked 
+     Move the check mark away when unchecked
     text-indent: -999999px;
-     Makes the badge's width stay the same checked and unchecked 
+     Makes the badge's width stay the same checked and unchecked
     width: 27px;
   }
   &:focus + .badge {
-     Set something to make the badge looks focused 
-     This really depends on the application, in my case it was: 
-     Adding a light border 
+     Set something to make the badge looks focused
+     This really depends on the application, in my case it was:
+     Adding a light border
     box-shadow: inset 0px 0px 5px;
-     Taking the difference out of the padding 
+     Taking the difference out of the padding
   }
   &:checked + .badge {
-     Move the check mark back when checked 
+     Move the check mark back when checked
     text-indent: 0;
   }
 }*/
@@ -663,7 +682,7 @@ div[data-toggle="buttons"] label:active, div[data-toggle="buttons"] label.active
     border-radius: 6px;
     margin-bottom: 15px;
   }
-  h1 {
+  h3 {
     background: #AF0000;
     padding: 20px 30px 15px 30px;
     margin: -30px -30px 30px -30px;
@@ -774,5 +793,27 @@ div[data-toggle="buttons"] label:active, div[data-toggle="buttons"] label.active
 
 #part2, #part3 {
   padding: 50px;
+  display: none;
+}
+
+/*button edite User in form location*/
+
+  .editPersonInfo{
+        height: 60px;
+        width: 60px;
+        float: right;
+        background-color: orange;
+        border-radius: 25%;
+
+    }
+
+    #editPersonIcon{
+        margin-left: 15px;
+        margin-top: 12px;
+    }
+
+/*2-em part de form payement*/
+
+#myForm2 {
   display: none;
 }

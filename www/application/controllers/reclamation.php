@@ -120,6 +120,10 @@ class Reclamation extends CI_Controller {
                 break;
         }
 
+        $data['body_class'] = "subpages voitures";
+        $data['base_url'] = base_url();
+        $data['page_title'] = 'Location reçus';
+
         $msg->setEmetteur(UserAcces::getLoggedUser());
         $msg->setSujet($this->input->post('sujet'));
         $msg->setContenu($this->input->post('contenu'));
@@ -127,7 +131,7 @@ class Reclamation extends CI_Controller {
 
         $this->load->model('message_model');
         $this->message_model->createMessage($msg);
-
-        redirect($url_redirect);
+   $this->load->view('client/page_succes_reclamation',$data );
+//        redirect($url_redirect);
     }
 }

@@ -1,37 +1,17 @@
 <?php include VIEWPATH . '/common/header.php'; ?>
 
 <style type="text/css">
-    .editPersonInfo{
-        height: 40px;
-        width: 300px;
-        float: left;
-        margin-top: -5px;
 
-
-    }
-
-    #editPersonIcon{
-        margin-left: 5px;
-
-    }
-
-    #myForm2{
-        display: none;
-    }
-
-
-
+    /*    #myForm2{
+            display: none;
+        }*/
 
 </style>
 
 
-
-
 <body>
-
-
     <div id="myForm1" class="form-style-10">
-        <h1>Une récente modes de paiement</h1>
+        <h3>Une récente modes de paiement</h3>
 
         <form  method="post" action="<?= $base_url ?>locations/insererPayemant">
             <div class="inner-wrap">
@@ -66,21 +46,11 @@
                 </div>
             </div>
         </form>
-
-        <!--
-                <div class="editPersonInfo1" >
-                    <div id="btn1" class="editPersonInfo1">
-                        <a href="" ></a>
-                    </div>
-                </div>-->
         <button class="btn1"><span class="fa fa-pencil" style="font-size:25px;color:orange;"> </span>d'autres modes de paiements</button>
-
     </div>
 
-
-
     <div id="myForm2" class="form-style-10">
-        <h1>Payement</h1>
+        <h3>Payement</h3>
         <form  method="post" action="<?= $base_url ?>locations/insererPayemant" >
             <div class="inner-wrap">
                 <div class="row">
@@ -144,19 +114,8 @@
 </body>
 
 
-
 <script>
-    $(document).ready(function () {
-        $(".btn1").click(function () {
-            $("#myForm2").slideDown("slow");
-            $("#myForm1").slideUp("slow");
-        });
-
-        $(".btn2").click(function () {
-            $("#myForm1").slideDown("slow");
-            $("#myForm2").slideUp("slow");
-        });
-    });
+    
 </script>
 
 

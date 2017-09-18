@@ -1,8 +1,7 @@
 <?php include VIEWPATH . '/common/header.php'; ?>
 
-<link href='http://fonts.googleapis.com/css?family=Bitter' rel='stylesheet' type='text/css'>
 <style type="text/css">
-    .form-style-10{
+/*    .form-style-10{
         width:80%;
         padding:30px;
         margin:40px auto;
@@ -20,7 +19,7 @@
         border-radius: 6px;
         margin-bottom: 15px;
     }
-    .form-style-10 h1{
+    .form-style-10 h3{
         background: #AF0000;
         padding: 20px 30px 15px 30px;
         margin: -30px -30px 30px -30px;
@@ -35,7 +34,7 @@
         box-shadow: inset 0px 2px 2px 0px rgba(255, 255, 255, 0.17);
         border: 1px solid #257C9E;
     }
-    .form-style-10 h1 > span{
+    .form-style-10 h3 > span{
         display: block;
         margin-top: 2px;
         font: 13px Arial, Helvetica, sans-serif;
@@ -128,12 +127,12 @@
 
     .form-style-10 .field-textarea{
         height: 150px;
-    }
+    }*/
 </style>
 <body>
 
     <div class="form-style-10">
-        <h1>Reclamation de vehicule!<span></span></h1>
+        <h3>Reclamation de vehicule!<span></span></h3>
         <form method="post" action="<?= $base_url ?>reclamation/insert_reclamation">
 
             <input type="hidden" name="type_message" value="<?= $type_message; ?>">
@@ -168,8 +167,6 @@
                     </div>
                 </div>
             </div>
-
-
 
             <div class="inner-wrap">
                 <div class="section"><span>2</span>Informations du locataire</div>
@@ -215,6 +212,5 @@
         </form>
     </div>
 </body>
-
 
 <?php include VIEWPATH . '/common/footer.php'; ?>
