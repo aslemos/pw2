@@ -14,13 +14,13 @@
         <div class="row">
             <div class="col-md-4 col-sm-6 col-xs-12" id="col-social">
                 <div class="icon-container">
-                    <a href="#" class="single-icon" id="fb">
+                    <a href="https://fr-ca.facebook.com/login/" target="blanc" class="single-icon" id="fb">
                         <i class="fa fa-facebook" aria-hidden="true"></i>
                     </a>
-                    <a href="#" class="single-icon" id="instagram">
+                    <a href="https://www.instagram.com/accounts/login/?hl=fr" target="blanc" class="single-icon" id="instagram">
                         <i class="fa fa-instagram" aria-hidden="true"></i>
                     </a>
-                    <a href="#" class="single-icon" id="twitter">
+                    <a href="https://twitter.com/login" target="blanc" class="single-icon" id="twitter">
                         <i class="fa fa-twitter" aria-hidden="true"></i>
                     </a>
                 </div>
