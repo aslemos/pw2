@@ -227,6 +227,25 @@ h2 {
     }
 }
 
+/* --- A propos --- */
+
+#apropos{
+    h4{ 
+        text-align: center;
+        margin-bottom: 20px;
+    }
+    p{
+       text-align: justify;
+       margin: auto;
+       font-size:16px;
+       line-height: 20px;
+    }
+    .cols{
+        height: 510px;
+        margin-bottom: 40px;
+    }
+}
+
 /*---- LOCATION VOITURE PARTIE CLIENT ----*/
 
 #voitures{

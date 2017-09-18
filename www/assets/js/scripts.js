@@ -1,6 +1,25 @@
 
-//
+//Bouton Menu
 
+$(function () {
+    $(".btn-menu").click(function () {
+        $("body").toggleClass("menu-open");
+    });
+});
+
+
+// Scroll low
+
+//var ascroll = false;
+//
+//$(document).scroll(function () {
+//    if (($(document).scrollTop() > 0) && ($(document).scrollTop() < 956) && !ascroll) {
+//        $('html,body').animate({scrollTop: $('#pub-home').offset().top}, 'slow');
+//        ascroll = true;
+//    }
+//});
+
+// Datepicker
 $(function () {
 
 
