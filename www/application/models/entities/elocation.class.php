@@ -49,6 +49,23 @@ class ELocation implements ILocation {
         return $this->_vehicule;
     }
 
+    /**
+     * Calcule le montant de la location
+     * @return float
+     */
+    public function getPrixTotal() {
+        if ($this->_vehicule) {
+            $nb_jours = 0;
+            return $this->calculerPrixTotal(
+                    $this->_vehicule->getPrix(),
+                    $this->_date_debut,
+                    $this->_date_fin,
+                    $nb_jours
+                    );
+        }
+        return 0;
+    }
+
     public function setDateDebut($date_debut) {
         $this->_date_debut = $date_debut;
         return $this;
@@ -84,5 +101,11 @@ class ELocation implements ILocation {
             default:
                 return 'Inconnu';
         }
+    }
+
+    public static function calculerPrixTotal($prix, $date_debut, $date_fin, &$nb_jours) {
+        $diff = abs(strtotime($date_fin) - strtotime($date_debut));
+        $nb_jours = (int) floor($diff / (60 * 60 * 24)) + 1;
+        return $prix * $nb_jours;
     }
 }

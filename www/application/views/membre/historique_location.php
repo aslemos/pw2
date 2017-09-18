@@ -71,9 +71,7 @@ include VIEWPATH . 'client/boutons_client.php';
             <tbody>
                 <?php
                 foreach ($locations as $location) {
-                    $diff = abs(strtotime($location['date_fin']) - strtotime($location['date_debut']));
-                    $nb_jours = (int) floor($diff / (60 * 60 * 24)) + 1;
-                    $valeur_total = $location['prix'] * $nb_jours;
+                    $valeur_total = ELocation::calculerPrixTotal($location['prix'], $location['date_debut'], $location['date_fin'], $nb_jours);
                     ?>
                     <tr>
                         <td class=""><?= $location['location_id']; ?></td>
