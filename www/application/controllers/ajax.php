@@ -1,6 +1,7 @@
 <?php
 /*
  * Fonctions appélées par ajax.
+ * Les résultats sont en format JSON.
  * @author Alessandro Souza Lemos
  */
 
@@ -8,7 +9,8 @@ class Ajax extends CI_Controller {
 
     public function __construct() {
         parent::__construct();
-        // TODO : vérifier si la requête est venue d'un client logué. Utiliser TOKEN ???
+        // TODO : vérifier si la requête est venue d'un client logué.
+        // Utiliser TOKEN ???
     }
 
     /**
@@ -37,10 +39,23 @@ class Ajax extends CI_Controller {
     }
 
     /**
+     * Récupère la liste de villes d'une province
+     * @param int $province_id
+     * @return json
+     * @author Alessandro Souza Lemos
+     */
+    public function villesByProvince($province_id) {
+        $this->load->model('arrondissement_model');
+        echo json_encode(
+                $this->arrondissement_model->getVillesByProvinceId($province_id)
+                );
+    }
+
+    /**
      * Récupère la liste d'arrondissements par la ville
      * @param int $ville_id
      * @return json
-     * #author Alessandro Souza Lemos
+     * @author Alessandro Souza Lemos
      */
     public function arrondByVille($ville_id) {
         $this->load->model('arrondissement_model');
