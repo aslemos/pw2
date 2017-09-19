@@ -15,9 +15,11 @@ interface ILocation {
     public function setDateFin($date_fin);
 
     public function getLocataire();
+    public function getLocataireId();
     public function setLocataire(IUsager $locataire);
 
     public function getVehicule();
+    public function getVehiculeId();
     public function setVehicule(IVehicule $vehicule);
 
     public function getEtat();
@@ -29,6 +31,8 @@ interface ILocation {
     public function toString();
 
     public function estApprouvee();
+
+    public function estPayee();
 
     public static function getDescriptionEtat($etat_reservation);
 

@@ -58,11 +58,11 @@ include VIEWPATH . 'client/boutons_client.php';
                     <th class="">Matricule</th>
                     <th class="">Date début</th>
                     <th class="">Date fin</th>
-                    <th class="">Nombre de <br />jours loué</th>
+                    <th class="">Jours<br />location</th>
                     <th class="">Montant<br />total</th>
                     <th class="">Locataire</th>
-                    <th class="">État</th>
-                    <th class="">Réclamer Locataire</th>
+                    <th class="">État<br>réservation</th>
+                    <th class="">Réclamer<br>Locataire</th>
                 </tr>
             </thead>
             <tbody>
@@ -80,7 +80,7 @@ include VIEWPATH . 'client/boutons_client.php';
                         <td class=""><?=$location->getLocataire()->toString()?></td>
                         <td class=""><?=ELocation::getDescriptionEtat($location->getEtat())?></td>
                         <td class="">
-<?php if ($location->estApprouvee()) { ?>
+<?php if ($location->estPayee()) { ?>
                             <a class="btn btn-inline" href="<?= $base_url ?>reclamation/form_locataire/<?= $location->getId() ?>#s"></a>
 <?php } ?>
                         </td>

@@ -48,6 +48,9 @@ class ELocation implements ILocation {
         return $this->_date_fin;
     }
 
+    public function getLocataireId() {
+        return $this->_locataire->getId();
+    }
     public function getLocataire() {
         return $this->_locataire;
     }
@@ -116,6 +119,15 @@ class ELocation implements ILocation {
      */
     public function estApprouvee() {
        return $this->_etat == self::LOCATION_ACCEPTE;
+    }
+
+    /**
+     * Indique si la location a été payée
+     * TODO: vérifier les paiements pour retourner l'information exacte.
+     * @return bool
+     */
+    public function estPayee() {
+        return $this->estApprouvee();
     }
 
     public static function getDescriptionEtat($etat_reservation) {

@@ -9,7 +9,7 @@ class Modele extends CI_Controller {
     public function __construct() {
         parent::__construct();
         if (!UserAcces::userIsLogged()) {
-//            redirect('usagers/login');
+//            redirect('usager/login');
         }
     }
 
@@ -66,7 +66,7 @@ class Modele extends CI_Controller {
 
         // Check permission
         if (!UserAcces::userIsAdmin()) {
-            redirect('usagers/login');
+            redirect('usager/login');
         }
 
         $this->modele_model->deleteModele($modele_id);

@@ -31,6 +31,7 @@ class Vehicule_model extends CI_Model {
         $this->db->select('locations.vehicule_id');
         $this->db->from('locations');
         $this->db->where('locations.vehicule_id = disponibilites.vehicule_id');
+        $this->db->where('locations.etat_reservation !=', ELocation::LOCATION_NON_ACCEPTE);
 
         // Trouve la date de DÉBUT dans une réservation existante
         $this->db->group_start();
@@ -151,6 +152,7 @@ class Vehicule_model extends CI_Model {
         $this->db->select('locations.vehicule_id');
         $this->db->from('locations');
         $this->db->where('locations.vehicule_id = disponibilites.vehicule_id');
+        $this->db->where('locations.etat_reservation !=', ELocation::LOCATION_NON_ACCEPTE);
 
         // Trouve la date de DÉBUT dans une réservation existante
         $this->db->group_start();
@@ -176,7 +178,7 @@ class Vehicule_model extends CI_Model {
         $this->db->from('vehicules');
 
         // le véhicule doit être actif
-        $query = $this->db->where(
+        $this->db->where(
             [
                 'disponibilites.vehicule_id' => $vehicule_id,
                 'vehicules.etat_vehicule' => EVehicule::ETAT_ACTIF

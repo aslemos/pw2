@@ -28,8 +28,8 @@ class Membre extends CI_Controller {
 
         $data['meta_keywords'] = '';
         $data['meta_description'] = '';
-        $data['page_title'] = 'Mes voitures';
-        $data['title'] = 'Mes voitures';
+        $data['page_title'] = 'Mes véhicules';
+        $data['title'] = 'Mes véhicules';
         $data['body_class'] = 'subpages membre';
         $data['vehicules'] = $this->vehicule_model->getVehiculesByUser(UserAcces::getLoggedUser());
         $this->load->view('membre/liste_voitures', $data);

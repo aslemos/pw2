@@ -13,7 +13,7 @@ class Locations extends CI_Controller {
         // Check login
         if (!UserAcces::userIsLogged()) {
 
-            redirect('usagers/login');
+            redirect('usager/login');
         }
 
         $data['title'] = 'Historique des locations';
@@ -29,7 +29,7 @@ class Locations extends CI_Controller {
 
         // Check login
         if (!UserAcces::userIsLogged()) {
-            redirect('usagers/login');
+            redirect('usager/login');
         }
 
         $data['location'] = $this->location_model->getLocations($location_id);
@@ -69,7 +69,7 @@ class Locations extends CI_Controller {
         // Check login
         if (!UserAcces::userIsLogged()) {
 
-            redirect('usagers/login');
+            redirect('usager/login');
         }
         $data['title'] = 'Ajouter une location';
 
@@ -97,7 +97,7 @@ class Locations extends CI_Controller {
 
         // Check login
         if (!UserAcces::userIsLogged()) {
-            redirect('usagers/login');
+            redirect('usager/login');
         }
         $this->location_model->deleteLocation($location_id);
         redirect('locations');
@@ -107,7 +107,7 @@ class Locations extends CI_Controller {
 
         // Check login
         if (!UserAcces::userIsLogged()) {
-            redirect('usagers/login');
+            redirect('usager/login');
         }
 
         //$data['location'] = $this->location_model->getLocations($location_id);
@@ -130,7 +130,7 @@ class Locations extends CI_Controller {
 
         // Check privilèges
         if (!UserAcces::userIsLogged()) {
-            redirect('usagers/login');
+            redirect('usager/login');
         }
         if (!UserAcces::userIsAdmin()) {
             redirect('noperm');
@@ -153,7 +153,7 @@ class Locations extends CI_Controller {
 
         // Check login
         if (!UserAcces::userIsLogged()) {
-            redirect('usagers/login');
+            redirect('usager/login');
         }
 
         $user = UserAcces::getLoggedUser();
@@ -175,7 +175,7 @@ class Locations extends CI_Controller {
     public function locataires() {
         // Check login
         if (!UserAcces::userIsLogged()) {
-            redirect('usagers/login');
+            redirect('usager/login');
         }
 
         $user = UserAcces::getLoggedUser();

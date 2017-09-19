@@ -37,7 +37,7 @@ class Usager extends CI_Controller {
 
         if ($this->form_validation->run() === FALSE) {
             //echo 'Connexion échouée';die();
-            $this->load->view('usagers/login', $data);
+            $this->load->view('usager/login', $data);
 
         } else {
 
