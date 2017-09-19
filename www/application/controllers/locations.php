@@ -276,23 +276,23 @@ class Locations extends CI_Controller {
     }
 
 
-     /* inserer Resarvation */
+     /* inserer Payemant */
     public function insererPayemant() {
         $data['body_class'] = "subpages voitures";
         $data['base_url'] = base_url();
         $data['page_title'] = 'Location reçus';
 
-//        $data1['date_debut'] = $this->input->post('date_debut');
-//        $data1['date_fin'] = $this->input->post('date_fin');
-//        $data1['user_id'] = $this->input->post('user_id');
-//        $data1['vehicule_id'] = $this->input->post('vehicule_id');
+        $data2['user_id'] = $this->input->post('user_id');
+        //$data2['location_id'] = $this->input->post('location_id');
 
-        // enregistre le location
-//        $this->load->model('location_model');
-//        $this->location_model->create_location($data1);
+
+
+        // enregistre le payement
+        $this->load->model('location_model');
+        $this->location_model->create_payement($data2);
 
         $this->load->view('client/page_succes_payemant',$data );
-        //redirect('accueil');
+
     }
 
 }
