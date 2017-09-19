@@ -152,7 +152,7 @@ class Message_Model extends CI_Model {
                 . ';';
 
         $st = $this->db->query($sql);
-        return $st->result();
+        return $st->row_array();
     }
 
     /**
