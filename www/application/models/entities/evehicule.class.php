@@ -3,6 +3,7 @@
 class EVehicule implements IVehicule {
 
     const ETAT_EN_ATTENTE = -1;
+    const ETAT_REFUSE = -2;
     const ETAT_INACTIF = 0;
     const ETAT_ACTIF = 1;
 
@@ -14,6 +15,7 @@ class EVehicule implements IVehicule {
     private $_nb_places;
     private $_prix;
     private $_etat;
+    private $_disponibilite_id = -1;
     //
     private $_proprietaire = NULL;  // Objet EUser
     private $_modele = NULL;        // Objet EModele
@@ -33,7 +35,10 @@ class EVehicule implements IVehicule {
             $this->setMatricule($data['matricule']);
             $this->setPrix($data['prix']);
             $this->setPhoto($data['vehicule_photo']);
-            $this->setEtat($data['etat']);
+            $this->setEtat($data['etat_vehicule']);
+            if (isset($data['dispo_id'])) {
+                $this->_disponibilite_id = $data['dispo_id'];
+            }
         }
     }
 
@@ -102,6 +107,12 @@ class EVehicule implements IVehicule {
     }
 
     public function getDisponibilite($index = -1) {
+        foreach($this->_disponibilites as $pos => $disponibilite) {
+            if ($disponibilite->getId() == $this->_disponibilite_id) {
+                $index = $pos;
+                break;
+            }
+        }
         if ($index < 0) {
             $index = count($this->_disponibilites) - 1;
         }
@@ -186,5 +197,20 @@ class EVehicule implements IVehicule {
 
     public function toString() {
         return $this->getMarque()->getNom() . ' ' . $this->getModele()->getNom() . ' ' . $this->getAnnee();
+    }
+
+    public static function getDescriptionEtat($etat_vehicule) {
+        switch ($etat_vehicule) {
+            case self::ETAT_EN_ATTENTE:
+                return 'En attente';
+            case self::ETAT_REFUSE:
+                return 'Refusé';
+            case self::ETAT_ACTIF:
+                return 'Actif';
+            case self::ETAT_INACTIF:
+                return 'Inactif';
+            default:
+                return 'Inconnu';
+        }
     }
 }

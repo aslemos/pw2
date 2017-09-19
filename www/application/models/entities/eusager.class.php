@@ -2,6 +2,11 @@
 
 class EUsager implements IUsager {
 
+    const ETAT_EN_ATTENTE = -1;
+    const ETAT_REFUSE = -2;
+    const ETAT_INACTIF = 0;
+    const ETAT_ACTIF = 1;
+
     private $_user_id;   // ID
     private $_role_id;   // FK roles
     private $_prenom;
@@ -16,6 +21,7 @@ class EUsager implements IUsager {
     private $_user_photo;
     private $_username;
     private $_mdp;
+    private $_etat = -99;
 
     public function __construct(array $user = NULL) {
         if ($user !== NULL) {
@@ -33,6 +39,7 @@ class EUsager implements IUsager {
             $this->setDateAdhesion($user['date_adhesion']);
             $this->setUserPhoto($user['user_photo']);
             $this->setRoleId($user['role_id']);
+            $this->setEtat($user['etat_usager']);
         }
     }
 
@@ -149,5 +156,27 @@ class EUsager implements IUsager {
     public function setUsername($username) {
         $this->_username = $username;
         return $this;
+    }
+
+    public function getEtat() {
+        return $this->_etat;
+    }
+    public function setEtat($etat) {
+        $this->_etat = $etat;
+    }
+
+    public static function getDescriptionEtat($etat_usager) {
+        switch ($etat_usager) {
+            case self::ETAT_EN_ATTENTE:
+                return 'En attente';
+            case self::ETAT_REFUSE:
+                return 'Refusé';
+            case self::ETAT_ACTIF:
+                return 'Actif';
+            case self::ETAT_INACTIF:
+                return 'Inactif';
+            default:
+                return 'Inconnu';
+        }
     }
 }
