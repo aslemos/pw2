@@ -18,7 +18,7 @@ require VIEWPATH . 'common/header.php';
                         <td class="titre_editable">Emetteur</td>
                         <td class="titre_editable">Date</td>
                         <td class="titre_editable">Sujet</td>
-                        <td class="titre_editable">Sujet</td>
+                        <td class="titre_editable">Message</td>
                         <td class="titre_editable">Supprimer</td>
                     </tr>
 
@@ -35,8 +35,8 @@ require VIEWPATH . 'common/header.php';
                         <td class="editable"><?= $reclama['sujet'] ?></td>
                    
 
-                        <td class=""><a class="btn btn-inline" href="<?= $base_url ?>admin/getModeleById/<?= $reclama['message_id'] ?>"></a></td>
-                        <td class=""><a class="btn btn-inline"href="<?= $base_url ?>admin/deleteMessage/<?= $reclama['message_id'] ?>"></a></td>
+                        <td class=""><a class="btn btn-inline" href="<?= $base_url ?>reclamation/view/<?= $reclama['message_id'] ?>"></a></td>
+                        <td class=""><a class="btn btn-inline"href="<?= $base_url ?>reclamation/delete/<?= $reclama['message_id'] ?>"></a></td>
 
                     </tr>
                 </tbody>
