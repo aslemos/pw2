@@ -163,6 +163,7 @@ class Locations extends CI_Controller {
         $data['page_title'] = 'Historique des locations du membre';
         $data['title'] = 'Historique des locations';
         $data['scripts'] = [base_url() . 'assets/js/calendrier_date_debut_et_fin.js'];
+
         $data['vehicules'] = $this->vehicule_model->getVehicules();
         $data['locations'] = $this->location_model->getLocationsByUser($user);
         $data['date_debut'] = $this->input->post('date_debut');
@@ -258,11 +259,21 @@ class Locations extends CI_Controller {
 
 
     /* afficher formulaire de payement */
-    public function form_payement($id) {
+    public function form_payement() {
 
         $data['body_class'] = "subpages voitures";
         $data['base_url'] = base_url();
         $data['page_title'] = 'Messages reçus';
+
+         // Check login
+        if (!UserAcces::userIsLogged()) {
+            redirect('usager/login');
+        }
+
+        $user = UserAcces::getLoggedUser();
+
+        $this->load->model('location_model');
+        $data['locations'] = $this->location_model->getLocationsByUser($user);
 
         $this->load->model('vehicule_model');
         $this->load->model('modepaiement_model');
@@ -282,10 +293,19 @@ class Locations extends CI_Controller {
         $data['base_url'] = base_url();
         $data['page_title'] = 'Location reçus';
 
+  // Check login
+        if (!UserAcces::userIsLogged()) {
+            redirect('usager/login');
+        }
+
+        $user = UserAcces::getLoggedUser();
+        $this->load->model('location_model');
+        $data['locations'] = $this->location_model->getLocationsByUser($user);
+
+
         $data2['user_id'] = $this->input->post('user_id');
-        //$data2['location_id'] = $this->input->post('location_id');
-
-
+        $data2['location_id'] = $this->input->post('location_id');
+        $data2['montant'] = $this->input->post('montant');
 
         // enregistre le payement
         $this->load->model('location_model');
