@@ -79,7 +79,9 @@ include VIEWPATH . 'client/boutons_client.php';
                         <td class=""><?=$location->getDateDebut()?></td>
                         <td class=""><?=$location->getDateFin()?></td>
                         <td class=""><?=$location->getNbJours()?></td>
+
                         <td class=""><?=$location->getPrixTotal()?></td>
+
                         <td class=""><?=$location->getLocataire()->toString()?></td>
                         <td class=""><?=ELocation::getDescriptionEtat($location->getEtat())?></td>
 <?php if ($location->estPayee()) { ?>
