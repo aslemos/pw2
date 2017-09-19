@@ -13,7 +13,7 @@
 
 <body>
     <div id="myForm1" class="form-style-10">
-        <h3>Une récente modes de paiement</h3>
+        <h3>Modes de paiement</h3>
 
         <form  method="post" action="<?= $base_url ?>locations/insererPayemant/">
             <div class="inner-wrap">
@@ -26,10 +26,10 @@
 
                     <div class="row">
 
-                        <div class="col-md-12">
+                      <!--  <div class="col-md-12">
                             <h4>Montant total: <?= $location->getPrixTotal() ?>$</h4>
                             <hr>
-                        </div>
+                        </div>-->
 
                         <div class="col-md-6">
                             <label><h4>Nom</h4>

@@ -5,9 +5,6 @@
     <!-- Approbation de nouveau membre, avant qu'il puisse utiliser le système -->
     <a class="btn position" href="<?= $base_url; ?>admin/approuverMembre#s" >Approuver membre</a>
 
-    <!-- Approbation de nouveau membre, avant qu'il puisse utiliser le système -->
-    <a class="btn btn-danger position" href="<?= $base_url; ?>admin/approuverMembre#s" >Approuver membre</a>
-
     <!-- Bouton pour afficher la liste des voitures -->
     <a class="btn position" href="<?= $base_url; ?>admin/listeVehicules#s" >Liste des véhicules</a>
 
