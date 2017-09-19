@@ -18,6 +18,7 @@ class ELocation implements ILocation {
     private $_date_fin = '';
     private $_etat = 0;
     private $_nb_jours = 0;
+    private $_paiements = [];
 
     public function __construct(array $data) {
         $this->_location_id = $data['location_id'];
@@ -48,6 +49,9 @@ class ELocation implements ILocation {
         return $this->_date_fin;
     }
 
+    public function getLocataireId() {
+        return $this->_locataire->getId();
+    }
     public function getLocataire() {
         return $this->_locataire;
     }
@@ -116,6 +120,15 @@ class ELocation implements ILocation {
      */
     public function estApprouvee() {
        return $this->_etat == self::LOCATION_ACCEPTE;
+    }
+
+    /**
+     * Indique si la location a été payée
+     * TODO: vérifier les paiements pour retourner l'information exacte.
+     * @return bool
+     */
+    public function estPayee() {
+        return count($this->_paiements) > 0;
     }
 
     public static function getDescriptionEtat($etat_reservation) {

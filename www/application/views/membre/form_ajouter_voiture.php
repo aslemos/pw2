@@ -12,63 +12,95 @@ include VIEWPATH . '/common/header.php';
     <section id="ajouter-voitures">
         <?php include VIEWPATH .'client/boutons_client.php'; ?>
         <div class="container">
-            <h2>Formulaire d'inscription voiture</h2>
+<?php if (true) { ?>
+            <h2>Inscription de véhicule</h2>
+<?php } else { ?>
+            <h2>Modification de véhicule</h2>
+<?php } ?>
 
-            <form name="monFormulaire" action="<?= $base_url ?>vehicule/createVehicule" class="form-horizontal" id="needs-validation">
+            <form method="post" name="monFormulaire" action="<?= $base_url ?>vehicule/createVehicule" class="form-horizontal" id="needs-validation">
 
                 <div class="form-group">
                     <label class="control-label col-xs-3" for="marque">Marque:</label>
                     <div class="col-xs-6">
-                        <input type="text" class="form-control" id="marque" placeholder="Entrez le marque">
+                        <select name="marque_id" id="marque_id">
+                            <option value="-1">-- Choisissez --</option>
+<?php foreach($marques as $marque) { ?>
+                            <option value="<?=$marque['marque_id']?>"><?=$marque['nom_marque']?></option>
+<?php } ?>
+                        </select>
                     </div>
                 </div>
 
                 <div class="form-group">
-                    <label class="control-label col-xs-3" for="model">Model:</label>
+                    <label class="control-label col-xs-3" for="model">Modèle:</label>
                     <div class="col-xs-6">
-                        <input type="text" class="form-control" id="model" placeholder="Entrez le Model">
+                        <select name="modele_id" id="modele_id">
+                            <option value="0">-- Choisissez --</option>
+<?php foreach($modeles as $modele) { ?>
+                            <option value="<?=$modele['modele_id']?>"><?=$modele['nom_modele']?></option>
+<?php } ?>
+                        </select>
                     </div>
                 </div>
 
                 <div class="form-group">
-                    <label class="control-label col-xs-3" for="carrosserie">Type de carrosserie:</label>
+                    <label class="control-label col-xs-3" for="carrosserie">Type de véhicule:</label>
                     <div class="col-xs-6">
-                        <input type="text" class="form-control" id="carrosserie" placeholder="Entrez le type de
-                               carrosserie">
+                        <select name="type_id" id="type_id" required>
+                            <option value="">-- Choisissez --</option>
+<?php foreach($types_vehicules as $type) { ?>
+                            <option value="<?=$type['type_id']?>"><?=$type['nom_type']?></option>
+<?php } ?>
+                        </select>
                     </div>
                 </div>
 
                 <div class="form-group">
                     <label class="control-label col-xs-3">Année:</label>
-                    <div class='input-group date col-xs-6' id='datetimepickerAnnee'>
-                        <input type='text' class="form-control"/>
+                    <div class="input-group date col-xs-6" id="xdatetimepickerAnnee">
+                        <!--<input type="text" class="form-control" name="annee" id="annee"/>-->
+                        <select class="form-control" name="annee" id="annee" required></select>
                         <span class="input-group-addon">
                             <span class="glyphicon glyphicon-calendar"></span>
                         </span>
                     </div>
                 </div>
+<style>
+    input[name="transmission_id"] {
+        display: none;
+        outline: 5px solid blue;
+    }
+    input[name="transmission_id"]:checked {
 
-                <div class="form-group">
-                    <label class="control-label col-xs-3">Boite de vitesse:</label>
-
+    }
+</style>
+            <div class="form-group">
+                    <label class="control-label col-xs-3">Transmission:</label>
                     <div class="btn-group" data-toggle="buttons">
-                        <div class="col-xs-6">
-                            <label class="btn active" >
-                                <input type="radio" name='gender2' checked style="visibility:hidden;display:none">
+                        <xdiv class="col-xs-6">
+                            <label class="btn radio-inline" >
+                                <input type="radio" name="transmission_id" xchecked xstyle="visibility:hidden;display:none">
                                 <i class="fa fa-circle-o fa-2x"></i>
                                 <i class="fa fa-check-circle-o fa-2x"></i>
                                 <span class="test"> manuelle</span>
                             </label>
-                        </div>
-
-                        <div class="col-xs-6">
-                            <label class="btn">
-                                <input type="radio" name='gender2' style="visibility:hidden;display:none">
+                            <label class="btn radio-inline">
+                                <input type="radio" name="transmission_id" xstyle="visibility:hidden;display:none">
                                 <i class="fa fa-circle-o fa-2x"></i>
                                 <i class="fa fa-check-circle-o fa-2x"></i>
                                 <span class="test"> automatique </span>
                             </label>
-                        </div>
+                        </xdiv>
+
+<!--                        <div class="col-xs-6">
+                            <label class="btn">
+                                <input type="radio" name='gender2' xstyle="visibility:hidden;display:none">
+                                <i class="fa fa-circle-o fa-2x"></i>
+                                <i class="fa fa-check-circle-o fa-2x"></i>
+                                <span class="test"> automatique </span>
+                            </label>
+                        </div>-->
                     </div>
                 </div>
 
@@ -83,8 +115,12 @@ include VIEWPATH . '/common/header.php';
                 <div class="form-group">
                     <label class="control-label col-xs-3" for="typeCarburant">Type de carburant:</label>
                     <div class="col-xs-6">
-                        <input type="tel" class="form-control" id="typeCarburant" placeholder="Entrez le Type de
-                               carburant">
+                        <select name="carburant_id" id="carburant_id">
+                            <option value="">-- Choisissez --</option>
+<?php foreach($carburants as $carburant) { ?>
+                            <option value="<?=$carburant['carburant_id']?>"><?=$carburant['nom_carburant']?></option>
+<?php } ?>
+                        </select>
                     </div>
                 </div>
 
@@ -103,26 +139,46 @@ include VIEWPATH . '/common/header.php';
                 </div>
 
                 <div class="form-group">
+                    <label class="control-label col-xs-3"  for="province_id">Province</label>
+                    <div class="col-xs-6">
+                        <select name="province_id" id="province_id">
+                            <option value="0">-- Choisissez --</option>
+<?php foreach($provinces as $province) { ?>
+                            <option value="<?=$province['province_id']?>"><?=$province['province']?></option>
+<?php } ?>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
                     <label class="control-label col-xs-3"  for="ville">Ville</label>
                     <div class="col-xs-6">
-                        <input type="text" class="form-control" id="ville" placeholder="Montreal" disabled>
+                        <select name="ville_id" id="ville_id">
+                            <option value="0">-- Choisissez --</option>
+<?php foreach($villes as $ville) { ?>
+                            <option value="<?=$ville['ville_id']?>"><?=$ville['nom_ville']?></option>
+<?php } ?>
+                        </select>
                     </div>
                 </div>
 
                 <div class="form-group">
                     <label class="control-label col-xs-3">Arrondissement</label>
                     <div class="col-xs-6">
-                        <select name="choixArrondissement" class="form-control">
-                            <option SELECTED>Arrondissement</option>
+                        <select name="arr_id" id="arr_id">
+                            <option value="0">-- Choisissez --</option>
+<?php foreach($arrondissement as $ville) { ?>
+                            <option value="<?=$ville['ville_id']?>"><?=$ville['nom_ville']?></option>
+<?php } ?>
                         </select>
                     </div>
                 </div>
 
                 <div class="form-group">
-                    <label class="control-label col-xs-3">Disponible:</label>
+                    <label class="control-label col-xs-3">Disponibilité:</label>
 
-                    <div class='input-group date col-xs-6' id='datetimepickerDe'>
-                        <input type='text' class="form-control"  placeholder="de">
+                    <div class="input-group date col-xs-6" id="xdatetimepickerDe">
+                        <input type="text" class="form-control" name="date_debut" id="date_debut" placeholder="date début">
                         <span class="input-group-addon">
                             <span class="glyphicon glyphicon-calendar"></span>
                         </span>
@@ -130,8 +186,8 @@ include VIEWPATH . '/common/header.php';
 
                     <label class="control-label col-xs-3"></label>
 
-                    <div class='input-group date col-xs-6' id='datetimepickerA'>
-                        <input type='text' class="form-control" placeholder="a">
+                    <div class="input-group date col-xs-6" id="xdatetimepickerA">
+                        <input type="text" class="form-control" name="date_fin" id="date_fin" placeholder="date fin">
                         <span class="input-group-addon">
                             <span class="glyphicon glyphicon-calendar"></span>
                         </span>
@@ -160,6 +216,7 @@ include VIEWPATH . '/common/header.php';
             <script>
 
                 /*Annee de voiture*/
+/*
                 $(function () {
                     $('#datetimepickerAnnee').datetimepicker({
                         viewMode: 'years',
@@ -188,6 +245,7 @@ include VIEWPATH . '/common/header.php';
                         }
                     });
                 });
+*/
             </script>
 
         </div>

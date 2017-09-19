@@ -164,7 +164,12 @@ class Location_model extends CI_Model {
         $this->db->join('usagers', 'usagers.user_id = vehicules.proprietaire_id');
 
         $query = $this->db->get_where('locations', ['locations.locataire_id' => $user->getId()]);
-        return $query->result_array();
+        $result = $query->result_array();
+        foreach($result as $pos => $data) {
+            $result[$pos] = $this->getInstanceLocationByData($data);
+        }
+        return $result;
+//        return $query->result_array();
     }
 
     /**

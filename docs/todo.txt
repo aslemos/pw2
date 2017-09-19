@@ -6,3 +6,5 @@ x [asl] éliminer les champs date_debut / date_fin de la table 'voiture'
 - formulaire location (réservation)
 
 - Dans la recherche, considérer les réservations en attente d'approbation ??
+- Lorsqu'on clique sur 'réserver', faire apparaître le form de login modal avant de passer à la confirmation
+

@@ -28,11 +28,6 @@ img {
     width: 100%;
     margin-top: 20px;
 }
-// Le bouton de chaque ligne
-.btn-inline{
-    max-width: 40px;
-    max-height: 40px
-}
 
 .bg-gray {
     background-color: #e5e5e5;
@@ -358,9 +353,6 @@ label {
 }
 
 div[data-toggle="buttons"] label {
-  &.active, &:hover {
-    color: #7AA3CC;
-  }
   display: inline-block;
   padding: 6px 12px;
   margin-bottom: 0;
@@ -372,7 +364,7 @@ div[data-toggle="buttons"] label {
   vertical-align: top;
   cursor: pointer;
   background-color: none;
-  border: 0px solid  #c8c8c8;
+  border: 0px solid #c8c8c8;
   border-radius: 3px;
   color: #c8c8c8;
   -webkit-user-select: none;
@@ -380,6 +372,9 @@ div[data-toggle="buttons"] label {
   -ms-user-select: none;
   -o-user-select: none;
   user-select: none;
+  &.active, &:hover {
+    color: #7AA3CC;
+  }
   &:active, &.active {
     -webkit-box-shadow: none;
     box-shadow: none;
@@ -420,7 +415,13 @@ th:last-child, td:last-child {
 }
 
 th {
-  border-radius: 15px 15px 0  0;
+  /*border-radius: 15px 15px 0  0;*/
+  &:first-child {
+    border-radius: 15px 0 0 0;
+  }
+  &:last-child {
+    border-radius: 0 15px 0 0;
+  }
 }
 
 td {
@@ -433,18 +434,42 @@ th.date, td.date {
   min-width: 150px;
 }
 
-.btn-liens {
-  position: relative;
-  width: auto;
-  margin: 25px 0px;
-}
-
 .btn {
   background-color: #974952;
   border-radius: 25px;
   color: white;
   font-weight: bold;
   text-align: center;
+}
+
+.btn-liens {
+  position: relative;
+  width: auto;
+  margin: 25px 0px;
+}
+
+// Le bouton de chaque ligne
+.btn-inline {
+    max-width: 40px;
+    max-height: 40px
+}
+
+/* Boutons d'accepter et refuser */
+.btn-accepter {
+    color: green;
+    font-size: 26px;
+}
+.btn-refuser {
+    color: red;
+    font-size: 26px;
+}
+.btn-accepter, .btn-refuser:hover {
+    cursor: pointer;
+}
+
+.fa {
+    color: white;
+    font-size: 26px;
 }
 
 span {
@@ -559,42 +584,6 @@ label:hover input[type="checkbox"] ~ i.fa {
     color: #7AA3CC;
 }
 
-div[data-toggle="buttons"] label.active{
-    color: #7AA3CC;
-}
-
-div[data-toggle="buttons"] label {
-    display: inline-block;
-    padding: 6px 12px;
-    margin-bottom: 0;
-    font-size: 10px;
-    font-weight: normal;
-    line-height: 2em;
-    text-align: left;
-    white-space: nowrap;
-    vertical-align: top;
-    cursor: pointer;
-    background-color: none;
-    border: 0px solid
-        #c8c8c8;
-    border-radius: 3px;
-    color: #c8c8c8;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    -o-user-select: none;
-    user-select: none;
-}
-
-div[data-toggle="buttons"] label:hover {
-    color: #7AA3CC;
-}
-
-div[data-toggle="buttons"] label:active, div[data-toggle="buttons"] label.active {
-    -webkit-box-shadow: none;
-    box-shadow: none;
-}
-
 .gender{
     visibility:hidden;
     display:none;
@@ -624,42 +613,6 @@ label input[type="radio"]:checked ~ i.fa.fa-dot-circle-o{
 }
 label:hover input[type="radio"] ~ i.fa {
     color: #7AA3CC;
-}
-
-div[data-toggle="buttons"] label.active{
-    color: #7AA3CC;
-}
-
-div[data-toggle="buttons"] label {
-    display: inline-block;
-    padding: 6px 12px;
-    margin-bottom: 0;
-    font-size: 10px;
-    font-weight: normal;
-    line-height: 2em;
-    text-align: left;
-    white-space: nowrap;
-    vertical-align: top;
-    cursor: pointer;
-    background-color: none;
-    border: 0px solid
-        #c8c8c8;
-    border-radius: 3px;
-    color: #c8c8c8;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    -o-user-select: none;
-    user-select: none;
-}
-
-div[data-toggle="buttons"] label:hover {
-    color: #7AA3CC;
-}
-
-div[data-toggle="buttons"] label:active, div[data-toggle="buttons"] label.active {
-    -webkit-box-shadow: none;
-    box-shadow: none;
 }
 
 /*formulaire location*/
@@ -816,17 +769,4 @@ div[data-toggle="buttons"] label:active, div[data-toggle="buttons"] label.active
 
 #myForm2 {
   display: none;
-}
-
-/* Affichage des boutons de accepter et refuser */
-.btn-accepter  {
-    color: green;
-    font-size: 26px;
-}
-.btn-refuser {
-    color: red;
-    font-size: 26px;
-}
-.btn-accepter, .btn-refuser:hover {
-    cursor: pointer;
 }

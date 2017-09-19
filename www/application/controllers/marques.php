@@ -11,7 +11,7 @@ class Marques extends CI_Controller {
         // Check login
         if (!UserAcces::userIsLogged()) {
 
-            redirect('usagers/login');
+            redirect('usager/login');
         }
 
         $data['title'] = 'Liste Des Marques';
@@ -28,13 +28,13 @@ class Marques extends CI_Controller {
         // Check login
         if (!UserAcces::userIsLogged()) {
 
-            redirect('usagers/login');
+            redirect('usager/login');
         }
 
         // Check login
         if (!UserAcces::userIsLogged()) {
 
-            redirect('usagers/login');
+            redirect('usager/login');
         }
 
         $data['title'] = 'Ajouter une Marque';
@@ -74,13 +74,13 @@ class Marques extends CI_Controller {
         // Check login
         if (!UserAcces::userIsLogged()) {
 
-            redirect('usagers/login');
+            redirect('usager/login');
         }
 
         // Check login
         if (!UserAcces::userIsLogged()) {
 
-            redirect('usagers/login');
+            redirect('usager/login');
         }
 
         $this->marque_model->deleteMarque($marque_id);

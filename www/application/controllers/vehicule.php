@@ -42,7 +42,7 @@ class Vehicule extends CI_Controller {
 
         // Check login
         if (!UserAcces::userIsLogged()) {
-            redirect('usagers/login');
+            redirect('usager/login');
         }
 
         $this->load->model('arrondissement_model');
@@ -50,14 +50,6 @@ class Vehicule extends CI_Controller {
         $data['page_title'] = 'Messages reçus';
 
         $data['title'] = 'Ajouter un vehicule';
-
-        $data['usagers'] = $this->usager_model->getUsers();
-        $data['type_vehicules'] = $this->vehicule_model->getTypesVehicules();
-        $data['marques'] = $this->marque_model->getMarques();
-        $data['modeles'] = $this->modele_model->getModeles();
-        $data['carburants'] = $this->vehicule_model->getCarburants();
-        $data['transmissions'] = $this->vehicule_model->getTransmissions();
-        $data['arrondissements'] = $this->arrondissement_model->getArrondissements();
 
         $data['err_message'] = '* Tous Les Champs Sont Requis!';
 
@@ -69,7 +61,26 @@ class Vehicule extends CI_Controller {
         $this->form_validation->set_rules('date_fin', 'Date fin', 'required');
 
         if ($this->form_validation->run() === FALSE) {
+            $data['usagers'] = $this->usager_model->getUsers();
+            $data['types_vehicules'] = $this->vehicule_model->getTypesVehicules();
+            $data['marques'] = $this->marque_model->getMarques();
+            $data['modeles'] = []; //$this->modele_model->getModeles();
+            $data['carburants'] = $this->vehicule_model->getCarburants();
+            $data['transmissions'] = $this->vehicule_model->getTransmissions();
+            $data['provinces'] = $this->arrondissement_model->getProvinces();
+            $data['villes'] = []; //$this->arrondissement_model->getVilles();
+            $data['arrondissements'] = []; //$this->arrondissement_model->getArrondissements();
+            $data['scripts'] = [
+                base_url() . 'assets/js/ajax_modeles_by_marque.js',
+                base_url() . 'assets/js/ajax_villes_by_province.js',
+                base_url() . 'assets/js/ajax_arrond_by_ville.js',
+                base_url() . 'assets/js/calendrier_date_debut_et_fin.js',
+//                base_url() . 'assets/js/bootstrap.min.js',
+//                base_url() . 'assets/js/bootstrap-datetimepicker.min.js'
+                ];
+
             $this->load->view('membre/form_ajouter_voiture', $data);
+
         } else {
             // Ajouter une photo de profile
             $config['upload_path'] = './assets/images/vehicules';
@@ -99,15 +110,6 @@ class Vehicule extends CI_Controller {
                 'carburant' => $this->carburant_model->getCarburantById($this->input->post('carburant_id')),
                 'transmission' => $this->transmission_model->getTransmissionById($this->input->post('transmission_id')),
                 'arr' => $this->arrondissement_model->getArrondissementById($this->input->post('arr_id')),
-
-//                'proprietaire_id' => $this->session->userdata('user_id'),
-//                'type_id' => $this->input->post('type_id'),
-//                'marque_id' => $this->input->post('marque_id'),
-//                'modele_id' => $this->input->post('modele_id'),
-//                'carburant_id' => $this->input->post('carburant_id'),
-//                'transmission_id' => $this->input->post('transmission_id'),
-//                'arr_id' => $this->input->post('arr_id'),
-
                 'matricule' => $this->input->post('matricule'),
                 'annee' => $this->input->post('annee'),
                 'nbre_places' => $this->input->post('nbre_places'),
@@ -134,7 +136,7 @@ class Vehicule extends CI_Controller {
 
         // Check login
         if (!UserAcces::userIsLogged()) {
-            redirect('usagers/login');
+            redirect('usager/login');
         }
         $this->vehicule_model->deleteVehicule($vehicule_id);
         redirect('vehicules');
@@ -144,7 +146,7 @@ class Vehicule extends CI_Controller {
 
         // Check login
         if (!UserAcces::userIsLogged()) {
-            redirect('usagers/login');
+            redirect('usager/login');
         }
         $this->load->model('arrondissement_model');
 
@@ -175,7 +177,7 @@ class Vehicule extends CI_Controller {
 
         // Check login
         if (!UserAcces::userIsLogged()) {
-            redirect('usagers/login');
+            redirect('usager/login');
         }
 
         // Ajouter une photo de profile
@@ -196,9 +198,17 @@ class Vehicule extends CI_Controller {
             $vehicule->setPhoto($_FILES['userfile']['name']);
         }
 
-
-//        $vehicule->setCarburant($this->vehicule_model->getCarburantById($this->input->post('carburant_id')));
-//        $vehicule->setModele($this->modele_model->getCarburantById($this->input->post('model_id')));
+        $vehicule->setCarburant($this->vehicule_model->getCarburantById($this->input->post('carburant_id')));
+        $vehicule->setMarque($this->marque_model->getMarqueById($this->input->post('marque_id')));
+        $vehicule->setModele($this->modele_model->getModeleById($this->input->post('modele_id')));
+        $vehicule->setProprietaire(UserAcces::getLoggedUser());
+        $vehicule->setType($this->typesvehicule_model->getTypeVehiculeById($this->input->post('type_id')));
+        $vehicule->setTransmission($this->transmission_model->getTransmissionById($this->input->post('transmission_id')));
+        $vehicule->setArrond($this->arrondissement_model->getArrondissementById($this->input->post('arr_id')));
+        $vehicule->setMatricule($this->input->post('matricule'));
+        $vehicule->setAnnee($this->input->post('annee'));
+        $vehicule->setNbPlaces($this->input->post('nbre_places'));
+        $vehicule->setPrix($this->input->post('prix'));
 
         $this->vehicule_model->updateVehicule($vehicule);
         redirect('vehicule/view/'.$vehicule->getId());
@@ -208,7 +218,7 @@ class Vehicule extends CI_Controller {
 
         // Check login
         if (!UserAcces::userIsLogged()) {
-            redirect('usagers/login');
+            redirect('usager/login');
         }
         $this->load->model('arrondissement_model');
 
@@ -229,16 +239,6 @@ class Vehicule extends CI_Controller {
 //        $data['vehicules'] = $this->vehicule_model->getVehicules();
 
         $this->load->view('membre/liste_voitures', $data);
-    }
-
-    public function get_cars() {
-
-        //$data['title'] = 'Liste des membres';
-
-        $this->load->model('voiture2');
-        $data['voitures'] = $this->voiture2->getVoitures();
-
-        $this->load->view('client/liste_voitures', $data);
     }
 
     public function insert_payement() {
