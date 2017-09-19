@@ -85,6 +85,8 @@ include VIEWPATH . 'client/boutons_client.php';
 <?php if ($location->estPayee()) { ?>
                         <td class=""><a class="btn btn-inline" href="<?= $base_url ?>reclamation/form_vehicule/<?=$location->getVehiculeId()?>#s"></a></td>
                         <td class=""><a class="btn btn-inline"href="<?= $base_url ?>reclamation/form_proprietaire/<?=$location->getLocataireId()?>#s"></a></td>
+<?php } else if ($location->estApprouvee()) { ?>
+                        <td colspan="2"><a href="<?=$base_url?>locations/form_payement/<?=$location->getId()?>#s"><i class="fa fa-dollar"> payer</i></a></td>
 <?php } else { ?>
                         <td colspan="2">-</td>
 <?php } ?>

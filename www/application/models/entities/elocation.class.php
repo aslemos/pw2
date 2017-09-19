@@ -18,6 +18,7 @@ class ELocation implements ILocation {
     private $_date_fin = '';
     private $_etat = 0;
     private $_nb_jours = 0;
+    private $_paiements = [];
 
     public function __construct(array $data) {
         $this->_location_id = $data['location_id'];
@@ -127,7 +128,7 @@ class ELocation implements ILocation {
      * @return bool
      */
     public function estPayee() {
-        return $this->estApprouvee();
+        return count($this->_paiements) > 0;
     }
 
     public static function getDescriptionEtat($etat_reservation) {
