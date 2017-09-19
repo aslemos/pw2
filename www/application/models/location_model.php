@@ -39,7 +39,6 @@ class Location_model extends CI_Model {
 
 
     public function create_location($data) {
-
 //        $data = array(
 //            'date_debut' => $this->input->post('date_debut'),
 //            'date_fin' => $this->input->post('date_fin'),
@@ -47,9 +46,7 @@ class Location_model extends CI_Model {
 //            'vehicule_id' => $this->input->post('vehicule_id'),
 //            'paiement_id' => $this->input->post('paiement_id')
 //        );
-
         $this->db->insert('locations', $data);
-
     }
 
 
@@ -201,13 +198,28 @@ class Location_model extends CI_Model {
     }
 
     public function get_paiements() {
-
         $this->db->order_by('paiement_id', 'DESC');
-
         $query = $this->db->get_where('paiements', array('paiements.user_id' => $user_id));
-
         return $query->result_array();
     }
+
+    public function create_payement($data2) {
+//        $data = array(
+//            'date_debut' => $this->input->post('date_debut'),
+//            'date_fin' => $this->input->post('date_fin'),
+//            'user_id' => $this->session->userdata('user_id'),
+//            'vehicule_id' => $this->input->post('vehicule_id'),
+//            'paiement_id' => $this->input->post('paiement_id')
+//        );
+
+        $this->db->set('date_paiement', 'NOW()', FALSE);
+
+        $this->db->insert('paiements', $data2);
+    }
+
+
+
+
 
     /**
      * Approuve une demande de réservation

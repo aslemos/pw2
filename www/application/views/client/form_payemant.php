@@ -19,6 +19,7 @@
                     <div class="col-md-6">
                         <label>Nom
                             <input type="text" name="nom" disabled value="<?= $users->getNom() ?> "/>
+                            <input type="hidden" name="user_id" value="<?= $users->getId() ?> ">
                         </label>
                     </div>
                     <div class="col-md-6">
@@ -30,7 +31,7 @@
                 <div class="row">
                     <div class="col-md-6">
                         <label>Type de paiement <span class="required">*</span>
-                            <input type="text" name="type_paiement" disabled value="Visa"/>
+                            <input type="text" name="type_paiement" value="Visa"/>
                         </label>
                     </div>
 
@@ -115,9 +116,8 @@
 
 
 <script>
-    
-</script>
 
+</script>
 
 
 <?php include VIEWPATH . '/common/footer.php'; ?>
