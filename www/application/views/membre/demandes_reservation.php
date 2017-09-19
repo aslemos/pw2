@@ -1,9 +1,8 @@
 <?php
-
 // Header
-include VIEWPATH . '/common/header.php';
+include VIEWPATH . 'common/header.php';
 //========================================================
-include VIEWPATH .'client/boutons_client.php';
+include VIEWPATH . 'client/boutons_client.php';
 ?>
 <h2><?=$title?></h2>
 <form action="" name="formulaire" id="form-demandes-id">
@@ -16,30 +15,34 @@ include VIEWPATH .'client/boutons_client.php';
 				<th class="">Modèle</th>
 				<th class="">Année</th>
 				<th class="">Matricule</th>
-				<th class="">Nom client</th>
-				<th class="">Prix</th>
-				<th class="date">Location<br />Date Début</th>
-				<th class="date">Location<br />Date Fin</th>
+				<th class="">Client</th>
+				<th class="">Prix/jour</th>
+				<th class="">Date Début</th>
+				<th class="">Date Fin</th>
+				<th class="">Jours</th>
+				<th class="">Prix Total</th>
 				<th class="titre_editable">Approuver</th>
 				<th class="titre_editable">Refuser</th>
 			</tr>
 		</thead>
 		<tbody>
-<!--À FAIRE : AFFICHAGE DYNAMIQUE DES VOITURES ICI-->
-			<tr>
-				<td class="">1</td>
-				<td class="">test</td>
-				<td class="">test</td>
-				<td class="">test</td>
-				<td class="">test</td>
-				<td class="">Client</td>
-				<td class="">$500</td>
-				<td class="date">Date début</td>
-				<td class="date">Date fin</td>
-				<td><a href="#"><img class="img-responsive" src="/assets/images/ok.png" ></a></td>
-				<td><a href="#"><img class="img-responsive" src="/assets/images/no.png" ></a></td>
+<?php foreach($reservations as $reservation) { ?>
+			<tr id="tr<?=$reservation->getId()?>">
+				<td class=""><?=$reservation->getId()?></td>
+				<td class=""><?=$reservation->getVehicule()->getMarque()->getNom()?></td>
+				<td class=""><?=$reservation->getVehicule()->getModele()->getNom()?></td>
+				<td class=""><?=$reservation->getVehicule()->getAnnee()?></td>
+				<td class=""><?=$reservation->getVehicule()->getMatricule()?></td>
+				<td class=""><?=$reservation->getLocataire()->toString()?></td>
+				<td class=""><?=$reservation->getVehicule()->getPrix()?></td>
+				<td class=""><?=$reservation->getDateDebut()?></td>
+				<td class=""><?=$reservation->getDateFin()?></td>
+				<td class=""><?=$reservation->getNbJours()?></td>
+				<td class=""><?=$reservation->getPrixTotal()?></td>
+				<td><span onclick="approuverReservation(<?=$reservation->getId()?>)" class="glyphicon glyphicon-ok-circle btn-accepter"></span></td>
+				<td><span onclick="refuserReservation(<?=$reservation->getId()?>)" class="glyphicon glyphicon-ban-circle btn-refuser"></span></td>
 			</tr>
-<!--------------------------------------------------->
+<?php } ?>
 
 		</tbody>
 	</table>
@@ -52,4 +55,4 @@ include VIEWPATH .'client/boutons_client.php';
 <?php
 //========================================================
 //Footer
-include VIEWPATH . '/common/footer.php';
+include VIEWPATH . 'common/footer.php';

@@ -22,9 +22,9 @@ include VIEWPATH . 'client/boutons_client.php';
 			</tr>
 			</thead>
 			<tbody>
-<?php foreach($vehicules as $i => $vehicule) { ?>
+<?php foreach($vehicules as $vehicule) { ?>
 			<tr>
-				<td class=""><?=$i+1?></td>
+				<td class=""><?=$vehicule['vehicule_id']?></td>
 				<td class=""><?=$vehicule['nom_marque']?></td>
 				<td class=""><?=$vehicule['nom_modele']?></td>
 				<td class=""><?=$vehicule['annee']?></td>

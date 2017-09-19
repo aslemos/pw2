@@ -165,6 +165,14 @@ class EUsager implements IUsager {
         $this->_etat = $etat;
     }
 
+    /**
+     * Affiche le Prénom et Nom de l'usager
+     * @return string
+     */
+    public function toString() {
+        return $this->_prenom . ' ' . $this->_nom;
+    }
+
     public static function getDescriptionEtat($etat_usager) {
         switch ($etat_usager) {
             case self::ETAT_EN_ATTENTE:

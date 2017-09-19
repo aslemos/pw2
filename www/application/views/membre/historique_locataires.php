@@ -12,7 +12,7 @@ include VIEWPATH . 'client/boutons_client.php';
             <label class="control-label col-md-2 col-xs-12">Locataire :</label>
             <div class="col-md-6 col-xs-12">
                 <select class="form-control" name="locataire_id">
-                    <option>-- Sélectionner --</option>
+                    <option>-- Tous --</option>
                     <?php foreach ($usagers as $usager) { ?>
                         <option value="<?= $usager['user_id']; ?>"<?=$usager['user_id']==$locataire_id?' selected':''?>><?= $usager['prenom']; ?></option>
                     <?php } ?>
@@ -58,31 +58,32 @@ include VIEWPATH . 'client/boutons_client.php';
                     <th class="">Matricule</th>
                     <th class="">Date début</th>
                     <th class="">Date fin</th>
-                    <th class="">Nombre de <br />jours loué</th>
+                    <th class="">Jours<br />location</th>
                     <th class="">Montant<br />total</th>
-                     <th class="">Locataire</th>
-                    <th class="">Réclamer Locataire</th>
+                    <th class="">Locataire</th>
+                    <th class="">État<br>réservation</th>
+                    <th class="">Réclamer<br>Locataire</th>
                 </tr>
             </thead>
             <tbody>
-                <?php
-                foreach ($locations as $location) {
-                    $diff = abs(strtotime($location['date_fin']) - strtotime($location['date_debut']));
-                    $nb_jours = (int) floor($diff / (60 * 60 * 24)) + 1;
-                    $valeur_total = $location['prix'] * $nb_jours;
-                    ?>
+<?php foreach ($locations as $location) { ?>
                     <tr>
-                        <td class=""><?= $location['location_id']; ?></td>
-                        <td class=""><?= $location['nom_marque']; ?></td>
-                        <td class=""><?= $location['nom_modele']; ?></td>
-                        <td class=""><?= $location['annee']; ?></td>
-                        <td class=""><?= $location['matricule']; ?></td>
-                        <td class=""><?= $location['date_debut']; ?></td>
-                        <td class=""><?= $location['date_fin']; ?></td>
-                        <td class=""><?= $nb_jours; ?></td>
-                        <td class=""><?= $valeur_total; ?></td>
-                        <td class=""><?= $location['prenom']; ?></td>
-                        <td class=""><a class="btn btn-inline" href="<?= $base_url ?>reclamation/form_locataire/<?= $location['location_id'] ?>#s"></a></td>
+                        <td class=""><?=$location->getId()?></td>
+                        <td class=""><?=$location->getVehicule()->getMarque()->getNom()?></td>
+                        <td class=""><?=$location->getVehicule()->getModele()->getNom()?></td>
+                        <td class=""><?=$location->getVehicule()->getAnnee()?></td>
+                        <td class=""><?=$location->getVehicule()->getMatricule()?></td>
+                        <td class=""><?=$location->getDateDebut()?></td>
+                        <td class=""><?=$location->getDateFin()?></td>
+                        <td class=""><?=$location->getNbJours()?></td>
+                        <td class=""><?=$location->getPrixTotal()?></td>
+                        <td class=""><?=$location->getLocataire()->toString()?></td>
+                        <td class=""><?=ELocation::getDescriptionEtat($location->getEtat())?></td>
+                        <td class="">
+<?php if ($location->estPayee()) { ?>
+                            <a class="btn btn-inline" href="<?= $base_url ?>reclamation/form_locataire/<?= $location->getId() ?>#s"></a>
+<?php } ?>
+                        </td>
                     </tr>
 <?php } ?>
             </tbody>

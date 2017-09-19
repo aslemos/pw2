@@ -1,6 +1,9 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
+// Définition de la date locale
+date_default_timezone_set('America/Toronto');
+
 /*
 |--------------------------------------------------------------------------
 | Base Site URL

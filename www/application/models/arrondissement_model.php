@@ -20,15 +20,33 @@ class Arrondissement_model extends CI_Model {
         return $query->result_array();
     }
 
-    public function getArrondissementeByVilleId($ville_id) {
+    public function getArrondissementsByVilleId($ville_id) {
 
         $this->db->order_by('nom_arr');
         $this->db->join('villes', 'villes.ville_id = arrondissements.ville_id');
-        $query = $this->db->get_where('arrondissements', ['ville_id' => $ville_id]);
+        $query = $this->db->get_where('arrondissements', ['arrondissements.ville_id' => $ville_id]);
 
         return $query->result_array();
     }
 
+    /**
+     * Retourne la liste de villes d'une province donnée
+     * @param int $province_id
+     * @return array
+     * @author Alessandro Souza Lemos
+     */
+    public function getVillesByProvinceId($province_id) {
+        $this->db->order_by('nom_ville');
+        $query = $this->db->get_where('villes', ['province' => $province_id]);
+        return $query->result_array();
+    }
+
+    /**
+     * Récupère un arrondissement spécifique par son ID
+     * @param int $arr_id
+     * @return EArrondissement
+     * @author Alessandro Souza Lemos
+     */
     public function getArrondissementById($arr_id) {
 
         // Trouve les données de l'arrondissement et la ville
@@ -42,14 +60,36 @@ class Arrondissement_model extends CI_Model {
         return $arrond;
     }
 
+    /**
+     * Retourne la liste complète de villes
+     * @return array
+     * @author Alessandro Souza Lemos
+     */
     public function getVilles() {
         $this->db->order_by('nom_ville');
         $query = $this->db->get('villes');
         return $query->result_array();
     }
 
+    /**
+     * Retourne une ville spécifique par son ID
+     * @param int $ville_id
+     * @return EVille
+     */
     public function getVilleById($ville_id) {
         $query = $this->db->get_where('villes', ['ville_id' => $ville_id]);
         return new EVille($query->result_array());
+    }
+
+    /**
+     * Trouve toutes les provinces
+     * @return array
+     */
+    public function getProvinces() {
+        $this->db->distinct();
+        $this->db->order_by('province');
+        $this->db->select('province AS province_id, province');
+        $query = $this->db->get('villes');
+        return $query->result_array();
     }
 }

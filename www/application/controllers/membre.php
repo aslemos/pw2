@@ -28,15 +28,15 @@ class Membre extends CI_Controller {
 
         $data['meta_keywords'] = '';
         $data['meta_description'] = '';
-        $data['page_title'] = 'Mes voitures';
-        $data['title'] = 'Mes voitures';
+        $data['page_title'] = 'Mes véhicules';
+        $data['title'] = 'Mes véhicules';
         $data['body_class'] = 'subpages membre';
         $data['vehicules'] = $this->vehicule_model->getVehiculesByUser(UserAcces::getLoggedUser());
         $this->load->view('membre/liste_voitures', $data);
     }
 
     /**
-     * Affiche les demandes de réservation<br>
+     * Affiche les demandes de réservation à approuver<br>
      *(en attente d'approbation par le propriétaire du véhicule).
      */
     public function demandesReservation() {
@@ -47,12 +47,16 @@ class Membre extends CI_Controller {
         $data['page_title'] = 'Demandes de réservation';
         $data['title'] = 'Demandes de réservation';
         $data['body_class'] = 'subpages membre';
-        $data['reservations'] = $this->location_model->getDemandesByUser(UserAcces::getLoggedUser());
-echo '<pre>';
-var_dump($data['reservations']);
-echo '</pre>';
+        $data['scripts'] = [
+            base_url() . 'assets/js/ajax_approbation_location.js'
+        ];
+
+        // trouve les réservations en attende d'autorisation
+        $data['reservations'] = $this->location_model->getDemandesByUser(
+                    UserAcces::getLoggedUser(),
+                    ELocation::LOCATION_EN_ATTENTE
+                );
+
         $this->load->view('membre/demandes_reservation', $data);
     }
-
-
 }

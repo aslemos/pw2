@@ -19,7 +19,7 @@ include VIEWPATH . 'common/header.php';
                     <div class="desc-container">
                         <h3>Formulaire de recherche</h3>
                         <div class="table-responsive">
-                            <form action="<?= $base_url; ?>vehicule/recherche" method="post" class="frm-inline">
+                            <form action="<?= $base_url; ?>vehicule/recherche#s" method="post" class="frm-inline">
                                 <table class="table table-striped">
                                     <tr class="form-group row">
                                         <td class="col-sm-6">
@@ -85,7 +85,7 @@ include VIEWPATH . 'common/header.php';
                                             <label for="annee">Année : </label>
                                         </td>
                                         <td class="col-sm-6">
-                                            <select class="form-control" id="annee" name="annee">
+                                            <select class="form-control" class="annee" id="annee" name="annee">
                                                 <option value="0">-- Toutes --</option>
                                                 <?php for ($i=Date('Y'), $fin=$i-20; $i>=$fin; $i--) { ?>
                                                     <option value="<?php echo $i ?>"<?=$i==$recherche->getAnnee()?' selected':''?>><?php echo $i; ?></option>
@@ -199,7 +199,7 @@ include VIEWPATH . 'common/header.php';
                                         <p><b>TRANSMISSION: </b> <?=$vehicule->getTransmission()->getNom()?></p>
                                         <p><b>TYPE VÉHICULE: </b>  <?=$vehicule->getType()->getNom()?></p>
                                         <p><b>DISPONIBLE:</b> à <?=$vehicule->getArrond()->toString()?>
-                                            <br> 
+                                            <br>
                                             <?=$vehicule->getDisponibilite()->toString()?></p>
                                         <p><?php echo $vehicule->getDescription() ?> </p>
                                     </div>
@@ -207,7 +207,7 @@ include VIEWPATH . 'common/header.php';
                                         <button type="submit" class="btn btn-primary btn-reserver">RÉSERVER</button>
                                     </div>
                                 </div>
-                                
+
                             </div>
                         </form>
 

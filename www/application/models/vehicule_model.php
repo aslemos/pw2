@@ -19,28 +19,35 @@ class Vehicule_model extends CI_Model {
      */
     public function rechercherVehicules(ERecherche $recherche) {
 
+        // Vérifie si les dates son consécutives
+        if ($recherche->getDateDebut() < $recherche->getDateFin()) {
+            return [];
+        }
+
         /*
          * Crée la sub-requête utilisée dans le NOT IN()
          *  qui trouve les locations existantes dans la période de location demandé
          */
         $this->db->select('locations.vehicule_id');
         $this->db->from('locations');
+        $this->db->where('locations.vehicule_id = disponibilites.vehicule_id');
+        $this->db->where('locations.etat_reservation !=', ELocation::LOCATION_NON_ACCEPTE);
 
         // Trouve la date de DÉBUT dans une réservation existante
-        $this->db->where('locations.vehicule_id = disponibilites.vehicule_id');
+        $this->db->group_start();
         $this->db->where('locations.date_debut <=', $recherche->getDateDebut());
         $this->db->where('locations.date_fin >=', $recherche->getDateDebut());
 
         // Trouve la date de FIN dans une réservation existante
-        $this->db->or_where('locations.vehicule_id = disponibilites.vehicule_id');
-        $this->db->where('locations.date_debut <=', $recherche->getDateFin());
+        $this->db->or_where('locations.date_debut <=', $recherche->getDateFin());
         $this->db->where('locations.date_fin >=', $recherche->getDateFin());
 
         // Trouve une réservation entre une date de DÉBUT et FIN
-        $this->db->or_where('locations.vehicule_id = disponibilites.vehicule_id');
-        $this->db->where('locations.date_debut >=', $recherche->getDateDebut());
+        $this->db->or_where('locations.date_debut >=', $recherche->getDateDebut());
         $this->db->where('locations.date_fin <=', $recherche->getDateFin());
+        $this->db->group_end();
         $query_reservations_existantes = $this->db->get_compiled_select();
+
 
         /*
          * Jointure
@@ -184,6 +191,74 @@ class Vehicule_model extends CI_Model {
         $result = $query->result_array();
         return FALSE;
     }
+
+    /**
+     * Vérifie si un véhicule est disponible dans une période donnée
+     * @param int $vehicule_id L'identifiant du véhicule
+     * @param string $date_debut La date de début de la réservation
+     * @param string $date_fin La date de fin de la réservation
+     * @return bool Si le véhicule est disponible.
+     */
+    public function disponibiliteParDate($vehicule_id, $date_debut, $date_fin) {
+
+        // Vérifie si les dates son consécutives
+        if ($date_fin < $date_debut) {
+            return FALSE;
+        }
+
+
+        /*
+         * Sous-query de l'analyse de réservations
+         * On analyse s'il y a des conflits de réservations (réservations pré-existantes)
+         */
+
+        $this->db->select('locations.vehicule_id');
+        $this->db->from('locations');
+        $this->db->where('locations.vehicule_id = disponibilites.vehicule_id');
+        $this->db->where('locations.etat_reservation !=', ELocation::LOCATION_NON_ACCEPTE);
+
+        // Trouve la date de DÉBUT dans une réservation existante
+        $this->db->group_start();
+        $this->db->where('locations.date_debut <=', $date_debut);
+        $this->db->where('locations.date_fin >=', $date_debut);
+
+        // Trouve la date de FIN dans une réservation existante
+        $this->db->or_where('locations.date_debut <=', $date_fin);
+        $this->db->where('locations.date_fin >=', $date_fin);
+
+        // Trouve une réservation entre une date de DÉBUT et FIN
+        $this->db->or_where('locations.date_debut >=', $date_debut);
+        $this->db->where('locations.date_fin <=', $date_fin);
+        $this->db->group_end();
+        $query_reservations = $this->db->get_compiled_select();
+
+
+        /*
+         * Requête principale
+         * On analyse si le véhicule est en mesure de location
+         */
+        $this->db->select('vehicules.vehicule_id');
+        $this->db->from('vehicules');
+
+        // le véhicule doit être actif
+        $this->db->where(
+            [
+                'disponibilites.vehicule_id' => $vehicule_id,
+                'vehicules.etat_vehicule' => EVehicule::ETAT_ACTIF
+            ]
+        );
+
+        // la demande doit être dans une période disponibilisé par le proprietaire
+        $this->db->join('disponibilites', 'disponibilites.vehicule_id = vehicules.vehicule_id');
+        $this->db->where('disponibilites.date_debut <=', $date_debut);
+        $this->db->where('disponibilites.date_fin >=', $date_fin);
+        $this->db->where_not_in('vehicules.vehicule_id', $query_reservations, FALSE);
+
+        // S'il y a de résultat, alors il y a un véhicule actif,
+        //  avec une disponibilité et sans conflit de réservation
+        $query = $this->db->get();
+        return !empty($query->result());
+   }
 
     /**
      * Trouve un véhicule, y compris ses disponibilités

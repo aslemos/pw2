@@ -10,7 +10,7 @@ class Roles extends CI_Controller {
         parent::__construct();
         // Check login
         if (!UserAcces::userIsLogged()) {
-            redirect('usagers/login');
+            redirect('usager/login');
         }
 
         // Usager n'est pas administrateur

@@ -9,7 +9,7 @@ class Modele extends CI_Controller {
     public function __construct() {
         parent::__construct();
         if (!UserAcces::userIsLogged()) {
-//            redirect('usagers/login');
+//            redirect('usager/login');
         }
     }
 
@@ -66,7 +66,7 @@ class Modele extends CI_Controller {
 
         // Check permission
         if (!UserAcces::userIsAdmin()) {
-            redirect('usagers/login');
+            redirect('usager/login');
         }
 
         $this->modele_model->deleteModele($modele_id);
@@ -75,11 +75,5 @@ class Modele extends CI_Controller {
         $this->session->set_flashdata('modele_deleted', 'Le modele a été supprimer avec succès!');
 
         redirect('modeles');
-    }
-
-    public function ajaxModelesByMarque($marque_id) {
-        echo json_encode(
-                $this->modele_model->getModelesByMarqueId($marque_id)
-                );
     }
 }

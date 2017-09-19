@@ -65,22 +65,6 @@
         }
     }
 
-    /* --- PAGE CAMIONS --- */
-    #camions {
-        .text-container {
-            padding: 0;
-
-            .title-container {
-                margin-bottom: 15px;
-                padding-bottom: 15px;
-
-                h4 {
-                    font-size: 16px;
-                }
-            }
-        }
-    }
-
     /* --- PAGE CONTACT --- */
     #contact {
         form {
@@ -148,20 +132,6 @@
         }
     }
 
-    /* --- PAGE CAMIONS --- */
-    #camions {
-        .text-container {
-            .title-container {
-                h2 {
-                    font-size: 30px;
-                }
-
-                h4 {
-                    font-size: 13px;
-                }
-            }
-        }
-    }
 
     /* --- FOOTER --- */
     footer {
@@ -201,24 +171,7 @@
         }
     }
 
-    /* --- PAGE CAMIONS --- */
-    #camions {
-        .text-container {
-            p {
-                font-size: 12px;
-            }
-        }
-    }
 
-    /* --- PAGE EVENEMENTS --- */
-    /*#evenements {
-        .single-evenement{
-            .img-container {
-                width: 100%;
-                height: auto;
-            }
-        }
-    }*/
 
     /* --- FOOTER --- */
     footer {
@@ -394,7 +347,7 @@
     }
 
     /* --- PAGE HISTORIQUE --- */
-    #historique {
+    #apropos {
         .img-container {
             padding: 15px 0;
         }
@@ -404,40 +357,6 @@
         }
     }
 
-    /* --- PAGE CAMIONS --- */
-    #camions {
-        .text-container {
-            .title-container {
-                h2 {
-                    font-size: 22px;
-                }
-            }
-        }
-    }
-
-    /* --- PAGE EVENEMENTS --- */
-    #evenements {
-        .title-container {
-            margin-bottom: 35px;
-        }
-
-        .filter-container {
-            margin: auto;
-            margin-bottom: 20px;
-            max-width: 300px;
-            position: initial;
-        }
-
-        .single-evenement {
-            .text-container {
-                padding: 20px;
-
-                .date-place, p {
-                    margin-bottom: 20px;
-                }
-            }
-        }
-    }
 
     /* --- FOOTER --- */
 
@@ -527,16 +446,12 @@
     }
 
     /* --- PAGE HISTORIQUE --- */
-    #historique {
+    #apropos {
         padding: 35px 0 0;
+        height: auto;
     }
 
-    /* --- PAGE CAMIONS --- */
-    #camions {
-        .button-group {
-            margin-bottom: 35px;
-        }
-    }
+    
 
     /* --- PAGE DEVENIR MEMBRE --- */
     #devenir-membre {
@@ -628,7 +543,7 @@
 
     /* --- MULTIPLE PAGES AND SECTIONS --- */
 
-    #footer-member, footer, #camions, #devenir-membre, #evenements, #contact {
+    #footer-member, footer, #devenir-membre, #evenements, #contact {
         padding: 35px 0;
     }
 }
@@ -710,15 +625,7 @@
         }
     }
 
-    /* --- PAGE CAMIONS --- */
-    #camions {
-        .button-group {
-            button {
-                font-size: 18px;
-                margin: 0 3px;
-            }
-        }
-    }
+    
 
     /* --- PAGE EVENEMENTS --- */
     #evenements {
@@ -797,10 +704,12 @@
         }
     }
 
-    /* --- THANKS --- */
-    #thanks {
-        h2 {
-            font-size: 24px;
+    /* --- A propos --*/
+  #apropos {
+       .cols{
+            padding: 0px ;
+            height: auto;
+            margin: 0px;
         }
     }
 
@@ -825,6 +734,16 @@
             h4 {
                 font-size: 12px;
             }
+        }
+    }
+}
+@media (max-width: 300px){
+    /* --- A propos --*/
+    #apropos {
+        .cols{
+            padding: 0px ;
+            height: auto;
+            margin: 0px;
         }
     }
 }

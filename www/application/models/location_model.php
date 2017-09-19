@@ -39,7 +39,6 @@ class Location_model extends CI_Model {
 
 
     public function create_location($data) {
-
 //        $data = array(
 //            'date_debut' => $this->input->post('date_debut'),
 //            'date_fin' => $this->input->post('date_fin'),
@@ -47,9 +46,7 @@ class Location_model extends CI_Model {
 //            'vehicule_id' => $this->input->post('vehicule_id'),
 //            'paiement_id' => $this->input->post('paiement_id')
 //        );
-
         $this->db->insert('locations', $data);
-
     }
 
 
@@ -119,7 +116,7 @@ class Location_model extends CI_Model {
 
         $this->db->where('vehicules.proprietaire_id', $user->getId());
         if ($etat) {
-            $query->db->where('locations.etat_reservation = ', $etat);
+            $this->db->where('locations.etat_reservation', $etat);
         }
         $this->db->order_by('locations.location_id', 'DESC');
         $this->db->join('vehicules', 'vehicules.vehicule_id = locations.vehicule_id');
@@ -128,7 +125,29 @@ class Location_model extends CI_Model {
         $this->db->join('usagers', 'usagers.user_id = locations.locataire_id');
 
         $query = $this->db->get('locations');
-        return $query->result_array();
+        $result = $query->result_array();
+        foreach($result as $pos => $data) {
+            $result[$pos] = $this->getInstanceLocationByData($data);
+        }
+        return $result;
+    }
+
+    /**
+     * Retourne une instance de ELocation en utilisant les données d'une requête
+     * @param array $data
+     * @return ELocation
+     */
+    public static function getInstanceLocationByData($data) {
+        $vehicule = new EVehicule($data);
+        $vehicule->setModele(new EModele($data));
+        $vehicule->setMarque(new EMarque($data));
+        //
+        $locataire = new EUsager($data);
+        //
+        $location = new ELocation($data);
+        $location->setVehicule($vehicule);
+        $location->setLocataire($locataire);
+        return $location;
     }
 
     /**
@@ -145,7 +164,12 @@ class Location_model extends CI_Model {
         $this->db->join('usagers', 'usagers.user_id = vehicules.proprietaire_id');
 
         $query = $this->db->get_where('locations', ['locations.locataire_id' => $user->getId()]);
-        return $query->result_array();
+        $result = $query->result_array();
+        foreach($result as $pos => $data) {
+            $result[$pos] = $this->getInstanceLocationByData($data);
+        }
+        return $result;
+//        return $query->result_array();
     }
 
     /**
@@ -156,22 +180,67 @@ class Location_model extends CI_Model {
     public function getLocatairesByUser(IUsager $proprietaire) {
 
         $this->db->order_by('locations.location_id', 'DESC');
+        $this->db->where([
+            'vehicules.proprietaire_id' => $proprietaire->getId(),
+            'locations.etat_reservation !=' => ELocation::LOCATION_EN_ATTENTE
+        ]);
         $this->db->join('vehicules', 'locations.vehicule_id = vehicules.vehicule_id');
         $this->db->join('modeles', 'modeles.modele_id = vehicules.modele_id');
         $this->db->join('marques', 'marques.marque_id = modeles.marque_id');
         $this->db->join('usagers', 'usagers.user_id = locations.locataire_id');
 
-        $query = $this->db->get_where('locations', array('vehicules.proprietaire_id' => $proprietaire->getId()));
-        return $query->result_array();
+        $query = $this->db->get('locations');
+        $result = $query->result_array();
+        foreach($result as $pos => $data) {
+            $result[$pos] = $this->getInstanceLocationByData($data);
+        }
+        return $result;
     }
 
     public function get_paiements() {
-
         $this->db->order_by('paiement_id', 'DESC');
-
         $query = $this->db->get_where('paiements', array('paiements.user_id' => $user_id));
-
         return $query->result_array();
+    }
+
+    public function create_payement($data2) {
+//        $data = array(
+//            'date_debut' => $this->input->post('date_debut'),
+//            'date_fin' => $this->input->post('date_fin'),
+//            'user_id' => $this->session->userdata('user_id'),
+//            'vehicule_id' => $this->input->post('vehicule_id'),
+//            'paiement_id' => $this->input->post('paiement_id')
+//        );
+
+        $this->db->set('date_paiement', 'NOW()', FALSE);
+
+        $this->db->insert('paiements', $data2);
+    }
+
+
+
+
+
+    /**
+     * Approuve une demande de réservation
+     * @param int $reservation_id L'identifiant de la réservation
+     * @return bool
+     */
+    public function approuverReservation($reservation_id) {
+        $this->db->where('location_id', $reservation_id);
+        $this->db->where('etat_reservation', ELocation::LOCATION_EN_ATTENTE);
+        return $this->db->update('locations', ['etat_reservation' => ELocation::LOCATION_ACCEPTE]);
+    }
+
+    /**
+     * Refuse une demande de réservation
+     * @param int $reservation_id L'identifiant de la réservation
+     * @return bool
+     */
+    public function refuserReservation($reservation_id) {
+        $this->db->where('location_id', $reservation_id);
+        $this->db->where('etat_reservation', ELocation::LOCATION_EN_ATTENTE);
+        return $this->db->update('locations', ['etat_reservation' => ELocation::LOCATION_NON_ACCEPTE]);
     }
 
 }

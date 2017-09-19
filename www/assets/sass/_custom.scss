@@ -28,11 +28,6 @@ img {
     width: 100%;
     margin-top: 20px;
 }
-// Le bouton de chaque ligne
-.btn-inline{
-    max-width: 40px;
-    max-height: 40px
-}
 
 .bg-gray {
     background-color: #e5e5e5;
@@ -227,6 +222,25 @@ h2 {
     }
 }
 
+/* --- A propos --- */
+
+#apropos{
+    h4{
+        text-align: center;
+        margin-bottom: 20px;
+    }
+    p{
+       text-align: justify;
+       margin: auto;
+       font-size:16px;
+       line-height: 20px;
+    }
+    .cols{
+        height: 510px;
+        margin-bottom: 40px;
+    }
+}
+
 /*---- LOCATION VOITURE PARTIE CLIENT ----*/
 
 #voitures{
@@ -241,12 +255,12 @@ h2 {
         }
         .desc-container{
             padding: 10px;
-            
+
             p{
                 text-align: justify;
                 font-size: 10pt;
                 line-height: 140%;
-                 
+
             }
         }
         .btn-reserver{
@@ -257,7 +271,7 @@ h2 {
         .prix{
                 margin-left: 210px;
                 color: greenyellow;
-                }  
+                }
     }
 }
 
@@ -266,20 +280,20 @@ h2 {
 /*.badgebox {
   opacity: 0;
   + .badge {
-     Move the check mark away when unchecked 
+     Move the check mark away when unchecked
     text-indent: -999999px;
-     Makes the badge's width stay the same checked and unchecked 
+     Makes the badge's width stay the same checked and unchecked
     width: 27px;
   }
   &:focus + .badge {
-     Set something to make the badge looks focused 
-     This really depends on the application, in my case it was: 
-     Adding a light border 
+     Set something to make the badge looks focused
+     This really depends on the application, in my case it was:
+     Adding a light border
     box-shadow: inset 0px 0px 5px;
-     Taking the difference out of the padding 
+     Taking the difference out of the padding
   }
   &:checked + .badge {
-     Move the check mark back when checked 
+     Move the check mark back when checked
     text-indent: 0;
   }
 }*/
@@ -339,9 +353,6 @@ label {
 }
 
 div[data-toggle="buttons"] label {
-  &.active, &:hover {
-    color: #7AA3CC;
-  }
   display: inline-block;
   padding: 6px 12px;
   margin-bottom: 0;
@@ -353,7 +364,7 @@ div[data-toggle="buttons"] label {
   vertical-align: top;
   cursor: pointer;
   background-color: none;
-  border: 0px solid  #c8c8c8;
+  border: 0px solid #c8c8c8;
   border-radius: 3px;
   color: #c8c8c8;
   -webkit-user-select: none;
@@ -361,6 +372,9 @@ div[data-toggle="buttons"] label {
   -ms-user-select: none;
   -o-user-select: none;
   user-select: none;
+  &.active, &:hover {
+    color: #7AA3CC;
+  }
   &:active, &.active {
     -webkit-box-shadow: none;
     box-shadow: none;
@@ -401,7 +415,13 @@ th:last-child, td:last-child {
 }
 
 th {
-  border-radius: 15px 15px 0  0;
+  /*border-radius: 15px 15px 0  0;*/
+  &:first-child {
+    border-radius: 15px 0 0 0;
+  }
+  &:last-child {
+    border-radius: 0 15px 0 0;
+  }
 }
 
 td {
@@ -414,18 +434,42 @@ th.date, td.date {
   min-width: 150px;
 }
 
-.btn-liens {
-  position: relative;
-  width: auto;
-  margin: 25px 0px;
-}
-
 .btn {
   background-color: #974952;
   border-radius: 25px;
   color: white;
   font-weight: bold;
   text-align: center;
+}
+
+.btn-liens {
+  position: relative;
+  width: auto;
+  margin: 25px 0px;
+}
+
+// Le bouton de chaque ligne
+.btn-inline {
+    max-width: 40px;
+    max-height: 40px
+}
+
+/* Boutons d'accepter et refuser */
+.btn-accepter {
+    color: green;
+    font-size: 26px;
+}
+.btn-refuser {
+    color: red;
+    font-size: 26px;
+}
+.btn-accepter, .btn-refuser:hover {
+    cursor: pointer;
+}
+
+.fa {
+    color: white;
+    font-size: 26px;
 }
 
 span {
@@ -540,42 +584,6 @@ label:hover input[type="checkbox"] ~ i.fa {
     color: #7AA3CC;
 }
 
-div[data-toggle="buttons"] label.active{
-    color: #7AA3CC;
-}
-
-div[data-toggle="buttons"] label {
-    display: inline-block;
-    padding: 6px 12px;
-    margin-bottom: 0;
-    font-size: 10px;
-    font-weight: normal;
-    line-height: 2em;
-    text-align: left;
-    white-space: nowrap;
-    vertical-align: top;
-    cursor: pointer;
-    background-color: none;
-    border: 0px solid
-        #c8c8c8;
-    border-radius: 3px;
-    color: #c8c8c8;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    -o-user-select: none;
-    user-select: none;
-}
-
-div[data-toggle="buttons"] label:hover {
-    color: #7AA3CC;
-}
-
-div[data-toggle="buttons"] label:active, div[data-toggle="buttons"] label.active {
-    -webkit-box-shadow: none;
-    box-shadow: none;
-}
-
 .gender{
     visibility:hidden;
     display:none;
@@ -607,42 +615,6 @@ label:hover input[type="radio"] ~ i.fa {
     color: #7AA3CC;
 }
 
-div[data-toggle="buttons"] label.active{
-    color: #7AA3CC;
-}
-
-div[data-toggle="buttons"] label {
-    display: inline-block;
-    padding: 6px 12px;
-    margin-bottom: 0;
-    font-size: 10px;
-    font-weight: normal;
-    line-height: 2em;
-    text-align: left;
-    white-space: nowrap;
-    vertical-align: top;
-    cursor: pointer;
-    background-color: none;
-    border: 0px solid
-        #c8c8c8;
-    border-radius: 3px;
-    color: #c8c8c8;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    -o-user-select: none;
-    user-select: none;
-}
-
-div[data-toggle="buttons"] label:hover {
-    color: #7AA3CC;
-}
-
-div[data-toggle="buttons"] label:active, div[data-toggle="buttons"] label.active {
-    -webkit-box-shadow: none;
-    box-shadow: none;
-}
-
 /*formulaire location*/
 
 .form-style-10 {
@@ -663,7 +635,7 @@ div[data-toggle="buttons"] label:active, div[data-toggle="buttons"] label.active
     border-radius: 6px;
     margin-bottom: 15px;
   }
-  h1 {
+  h3 {
     background: #AF0000;
     padding: 20px 30px 15px 30px;
     margin: -30px -30px 30px -30px;
@@ -774,5 +746,27 @@ div[data-toggle="buttons"] label:active, div[data-toggle="buttons"] label.active
 
 #part2, #part3 {
   padding: 50px;
+  display: none;
+}
+
+/*button edite User in form location*/
+
+  .editPersonInfo{
+        height: 60px;
+        width: 60px;
+        float: right;
+        background-color: orange;
+        border-radius: 25%;
+
+    }
+
+    #editPersonIcon{
+        margin-left: 15px;
+        margin-top: 12px;
+    }
+
+/*2-em part de form payement*/
+
+#myForm2 {
   display: none;
 }
