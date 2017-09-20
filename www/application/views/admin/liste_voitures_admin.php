@@ -9,26 +9,24 @@ include VIEWPATH . '/common/header.php';
 
         <form action="" name="formulaire" id="form-voitures-id">
             <table class="table table-responsive">
-                <tbody><tr>
-                        <td class="titre_editable">Nº</td>
-                        <td class="titre_editable">Marque</td>
-                        <td class="titre_editable">Modèle</td>
-                        <td class="titre_editable">Année</td>
-                        <td class="titre_editable">Type</td>
-                        <td class="titre_editable">Évaluation</td>
-                        <td class="titre_editable">Prix</td>
-                        <td class="titre_editable">Propriétaire</td>
-                        <td class="titre_editable">Matricule</td>
-                        <td class="titre_editable">État</td>
-                        <td class="titre_editable">Éditer</td>
-                        <td class="titre_editable">Approuver</td>
-                        <td class="titre_editable">Refuser</td>
+                <tbody>
+                    <tr>
+                        <th class="titre_editable">Nº</th>
+                        <th class="titre_editable">Marque</th>
+                        <th class="titre_editable">Modèle</th>
+                        <th class="titre_editable">Année</th>
+                        <th class="titre_editable">Type</th>
+                        <th class="titre_editable">Évaluation</th>
+                        <th class="titre_editable">Prix</th>
+                        <th class="titre_editable">Propriétaire</th>
+                        <th class="titre_editable">Matricule</th>
+                        <th class="titre_editable">État</th>
+                        <th class="titre_editable">Éditer</th>
+                        <th class="titre_editable">Approuver</th>
+                        <th class="titre_editable">Refuser</th>
                     </tr>
 
-                    <?php   foreach ($vehicules as $vehicule) {
-
-                       //var_dump($vehicules);
-                        ?>
+<?php   foreach ($vehicules as $vehicule) { ?>
                     <tr>
                         <td class="editable"><?= $vehicule['vehicule_id'] ?></td>
                         <td class="editable"><?= $vehicule['nom_marque'] ?></td>
@@ -47,10 +45,9 @@ include VIEWPATH . '/common/header.php';
                         <td class=""><a class="btn btn-inline"href="<?= $base_url ?>vehicule/bloquer/<?= $vehicule['vehicule_id'] ?>#s"></a></td>
 
                     </tr>
-                    <?php } ?>
-
-
-                </tbody></table>
+<?php } ?>
+                </tbody>
+            </table>
         </form>
 
         <!-- Div pour affichage -->

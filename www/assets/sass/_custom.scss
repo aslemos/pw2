@@ -61,8 +61,8 @@ img {
         text-align: center;
 }
 // Select form
-     
-.formSelector { 
+
+.formSelector {
     border: none;
     border-radius: 0;
     color: #575757;
@@ -72,7 +72,7 @@ img {
     line-height: 50px;
     margin-bottom: 25px;
 }
-.prix{ 
+.prix{
     color: greenyellow;
     font-size: 14pt;
 }
@@ -176,7 +176,7 @@ h2 {
     #pub-2 {
         background: url('../images/accueil/pubs/pub2.jpg') center center/cover no-repeat;
     }
-    
+
     p{
         margin: auto;
         max-width: 595px;
@@ -237,7 +237,7 @@ h2 {
 
     button{
         margin-bottom: 40px;
-    }    
+    }
 }
 
 /* --- A propos --- */
@@ -398,20 +398,20 @@ div[data-toggle="buttons"] label {
     box-shadow: none;
   }
 
-    input[type="radio"] {
-        display: none;
+  input[type="radio"] {
+    display: none;
 
-        ~ i.fa-circle-o,
-        &:checked ~ i.fa-check-circle-o {
-            display: inline;
-        }
-
-        ~ i.fa-check-circle-o,
-        &:checked ~ i.fa-circle-o {
-            display: none;
-            color: #7AA3CC;
-        }
+    ~ i.fa-circle-o,
+    &:checked ~ i.fa-check-circle-o {
+      display: inline;
     }
+
+    ~ i.fa-check-circle-o,
+    &:checked ~ i.fa-circle-o {
+      display: none;
+      color: #7AA3CC;
+    }
+  }
 }
 
 .gender {
@@ -430,7 +430,7 @@ tr {
   background-color: #974952;
   color: #ffffff;
 }
-form[id^="form-"] {
+.table {
     th, td {
       text-align: center;
       /*color: #ffffff;*/
