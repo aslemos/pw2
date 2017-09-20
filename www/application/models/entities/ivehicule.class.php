@@ -15,6 +15,7 @@ interface IVehicule {
     public function getDescription();
     public function setDescription($description);
 
+    public function getTransmissionId();
     public function getTransmission();
     public function setTransmission(ITransmission $transmission);
 
@@ -22,18 +23,22 @@ interface IVehicule {
     public function getProprietaire();
     public function setProprietaire(IUsager $proprietaire);
 
+    public function getTypeId();
     public function getType();
     public function setType(ITypeVehicule $type);
 
+    public function getMarqueId();
     public function getMarque();
     public function setMarque(IMarque $marque);
 
     public function getModele();
     public function setModele(IModele $modele);
 
+    public function getCarburantId();
     public function getCarburant();
     public function setCarburant(ICarburant $carburant);
 
+    public function getArrondId();
     public function getArrond();
     public function setArrond(IArrondissement $arrond);
 

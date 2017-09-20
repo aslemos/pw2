@@ -21,7 +21,7 @@ class Ajax extends CI_Controller {
      * @return json
      * @author Alessandro Souza Lemos
      */
-    public function disponibiliteParDate($vehicule_id, $date_debut, $date_fin) {
+    public function disponibiliteParDate($vehicule_id = 0, $date_debut = NULL, $date_fin = NULL) {
         $disp = $this->vehicule_model->disponibiliteParDate($vehicule_id, $date_debut, $date_fin);
         echo json_encode(['disponible' => $disp]);
     }
@@ -32,7 +32,7 @@ class Ajax extends CI_Controller {
      * @return json
      * @author Alessandro Souza Lemos
      */
-    public function modelesByMarque($marque_id) {
+    public function modelesByMarque($marque_id = 0) {
         echo json_encode(
                 $this->modele_model->getModelesByMarqueId($marque_id)
                 );
@@ -44,7 +44,7 @@ class Ajax extends CI_Controller {
      * @return json
      * @author Alessandro Souza Lemos
      */
-    public function villesByProvince($province_id) {
+    public function villesByProvince($province_id = 0) {
         $this->load->model('arrondissement_model');
         echo json_encode(
                 $this->arrondissement_model->getVillesByProvinceId($province_id)
@@ -57,7 +57,7 @@ class Ajax extends CI_Controller {
      * @return json
      * @author Alessandro Souza Lemos
      */
-    public function arrondByVille($ville_id) {
+    public function arrondByVille($ville_id = 0) {
         $this->load->model('arrondissement_model');
         echo json_encode(
                 $this->arrondissement_model->getArrondissementsByVilleId($ville_id)
@@ -70,7 +70,7 @@ class Ajax extends CI_Controller {
      * @return json indique le succès de l'opération
      * @author Alessandro Souza Lemos
      */
-    public function approuverReservation($location_id) {
+    public function approuverReservation($location_id = 0) {
         $this->load->model('location_model');
         echo json_encode([
                 'success' => $this->location_model->approuverReservation($location_id)
@@ -83,7 +83,7 @@ class Ajax extends CI_Controller {
      * @return json indique le succès de l'opération
      * @author Alessandro Souza Lemos
      */
-    public function refuserReservation($location_id) {
+    public function refuserReservation($location_id = 0) {
         $this->load->model('location_model');
         echo json_encode([
                 'success' => $this->location_model->refuserReservation($location_id)

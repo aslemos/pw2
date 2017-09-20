@@ -20,7 +20,7 @@ class Vehicule_model extends CI_Model {
     public function rechercherVehicules(ERecherche $recherche) {
 
         // Vérifie si les dates son consécutives
-        if ($recherche->getDateDebut() < $recherche->getDateFin()) {
+        if ($recherche->getDateFin() < $recherche->getDateDebut()) {
             return [];
         }
 
@@ -136,6 +136,69 @@ class Vehicule_model extends CI_Model {
      * @param string $date_fin La date de fin de la réservation
      * @return bool Si le véhicule est disponible.
      */
+    public function vehiculeEstDisponibleParDate($vehicule_id, $date_debut, $date_fin) {
+        /*
+         * Crée la sub-requête utilisée dans le NOT IN()
+         *  qui trouve les locations existantes dans la période de location demandé
+         */
+
+        $this->db->select('locations.vehicule_id');
+        $this->db->from('locations');
+        $this->db->where('locations', ['vehicule_id', $vehicule_id]);
+
+        $this->db->join('vehicules', 'vehicules.vehicule_id = locations.vehicule_id');
+        $this->db->where('vehicules.etat_vehicule', EVehicule::ETAT_ACTIF);
+
+        $this->db->join('disponibilites', 'disponibilites.vehicule_id = locations.vehicule_id');
+
+        // Trouve la date de DÉBUT dans une réservation existante
+        $this->db->where('locations.vehicule_id = disponibilites.vehicule_id');
+        $this->db->where('locations.date_debut <=', $recherche->getDateDebut());
+        $this->db->where('locations.date_fin >=', $recherche->getDateDebut());
+
+        // Trouve la date de FIN dans une réservation existante
+        $this->db->or_where('locations.vehicule_id = disponibilites.vehicule_id');
+        $this->db->where('locations.date_debut <=', $recherche->getDateFin());
+        $this->db->where('locations.date_fin >=', $recherche->getDateFin());
+
+        // Trouve une réservation entre une date de DÉBUT et FIN
+        $this->db->or_where('locations.vehicule_id = disponibilites.vehicule_id');
+        $this->db->where('locations.date_debut >=', $recherche->getDateDebut());
+        $this->db->where('locations.date_fin <=', $recherche->getDateFin());
+        $query_reservations_existantes = $this->db->get_compiled_select();
+
+        /*
+         * Jointure
+         */
+
+
+        /*
+         * Règles de la location :
+         */
+
+        // - on ne considère que les véhicules actifs
+        $this->db->where('vehicules.etat_vehicule', EVehicule::ETAT_ACTIF);
+
+        // - la demande doit être dans une période disponibilisé par le proprietaire
+        $this->db->where('disponibilites.date_debut <=', $recherche->getDateDebut());
+        $this->db->where('disponibilites.date_fin >=', $recherche->getDateFin());
+
+        // - on ne doit pas avoir de collisions de réservation
+        $this->db->where_not_in('disponibilites.vehicule_id ', $query_reservations_existantes, FALSE);
+
+        // Instantiation des objets EVehicule dans le résultat
+        $query = $this->db->get();
+        $result = $query->result_array();
+        return FALSE;
+    }
+
+    /**
+     * Vérifie si un véhicule est disponible dans une période donnée
+     * @param int $vehicule_id L'identifiant du véhicule
+     * @param string $date_debut La date de début de la réservation
+     * @param string $date_fin La date de fin de la réservation
+     * @return bool Si le véhicule est disponible.
+     */
     public function disponibiliteParDate($vehicule_id, $date_debut, $date_fin) {
 
         // Vérifie si les dates son consécutives
@@ -206,8 +269,19 @@ class Vehicule_model extends CI_Model {
     public function getVehiculeById($vehicule_id) {
 
         // Véhicule
-        $arr_vehicule = $this->getVehicules($vehicule_id);
-        return $this->getVehiculeByArray($arr_vehicule);
+        $data = $this->getVehicules($vehicule_id);
+        if (!empty($data)) {
+            $vehicule = $this->getVehiculeByArray($data);
+            $vehicule->getArrond()->getVille()->setProvince(
+                    new EProvince([
+                        'province_id' => $data['province'],
+                        'nom_province' => $data['province']
+                        ])
+                    );
+
+            return $vehicule;
+        }
+        return NULL;
     }
 
     public function getVehiculeByArray($arr_vehicule) {
@@ -278,18 +352,19 @@ class Vehicule_model extends CI_Model {
     public function createVehicule(EVehicule $vehicule) { // addVehicule
         // insère le véhicule en récuperant les données de l'objet
         $this->db->insert('vehicules', [
-            'proprietaire_id' => $vehicule->getProprieraireId(),
+            'proprietaire_id' => $vehicule->getProprietaireId(),
             'matricule' => $vehicule->getMatricule(),
+            'description' => $vehicule->getDescription(),
             'annee' => $vehicule->getAnnee(),
             'nbre_places' => $vehicule->getNbPlaces(),
             'prix' => $vehicule->getPrix(),
             'vehicule_photo' => $vehicule->getPhoto(),
             'type_id' => $vehicule->getTypeId(),
-            'marque_id' => $vehicule->getMarqueId(),
             'modele_id' => $vehicule->getModeleId(),
             'carburant_id' => $vehicule->getCarburantId(),
             'transmission_id' => $vehicule->getTransmissionId(),
-            'arr_id' => $vehicule->getArrondId()
+            'arr_id' => $vehicule->getArrondId(),
+            'etat_vehicule' => EVehicule::ETAT_EN_ATTENTE
         ]);
 
         // si la voiture a bien été insérée, on procède à l'insertion de sa disponibilité
@@ -421,6 +496,23 @@ class Vehicule_model extends CI_Model {
         return $query->result_array();
     }
 
+    /**
+     * Retourne un objet de type de véhicule
+     * @param int $type_id
+     * @return ETypeVehicule
+     * @author Alessandro Souza Lemos
+     */
+    public function getTypeVehiculeById($type_id) {
+        if (intval($type_id) > 0) {
+            $query = $this->db->get_where('type_vehicules', ['type_id' => $type_id]);
+            $data = $query->row_array();
+            if (!empty($data)) {
+                return new ETypeVehicule($data);
+            }
+        }
+        return NULL;
+    }
+
     public function getTypesVehicules() {
 
         $this->db->order_by('nom_type');
@@ -430,10 +522,15 @@ class Vehicule_model extends CI_Model {
         return $query->result_array();
     }
 
+    /**
+     * Retourne un objet de Carburant par son ID
+     * @param int $carburant_id
+     * @return ECarburant
+     */
     public function getCarburantById($carburant_id) {
         $data = $this->getCarburants($carburant_id);
-        if (!empty($data)) {
-            return new ECarburant($data);
+        if (count($data) > 0) {
+            return new ECarburant($data[0]);
         }
         return NULL;
     }
@@ -448,6 +545,23 @@ class Vehicule_model extends CI_Model {
         }
 
         return $query->result_array();
+    }
+
+    /**
+     * Retourne un objet Transmission par son ID
+     * @param int $transmission_id
+     * @return ETransmission
+     * @author Alessandro Souza Lemos
+     */
+    public function getTransmissionById($transmission_id) {
+        if (intval($transmission_id) > 0) {
+            $query = $this->db->get_where('transmissions', ['transmission_id' => $transmission_id]);
+            $data = $query->result_array();
+            if (count($data) > 0) {
+                return new ETransmission($data[0]);
+            }
+        }
+        return NULL;
     }
 
     public function getTransmissions($transmission_id = NULL) {

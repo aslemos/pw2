@@ -221,7 +221,7 @@ class Usager extends CI_Controller {
     public function editUser($user_id) {
 
         // Check login
-        if (!UserAcces::userIsAdmin()) {
+        if (!UserAcces::userIsAdmin() && !UserAcces::getLoggedUser()->getId() == $user_id) {
             redirect('noperm');
         }
 

@@ -11,6 +11,7 @@ interface IArrondissement {
     public function getNom();
     public function setNom($nom_arr);
 
+    public function getVilleId();
     public function getVille();
     public function setVille(IVille $ville);
 
