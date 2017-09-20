@@ -16,9 +16,11 @@ include VIEWPATH . 'common/header.php';
                                     <div class="blocks3">
                                         <div class="text-container">
                                             <h2>Notre mission</h2>
-                                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec ornare, neque quis pellentesque rutrum, turpis libero egestas ligula, quis efficitur urna justo luctus velit. Etiam a imperdiet nisi, in mattis nisi. Aenean mattis, ante at lacinia dictum, turpis arcu scelerisque est, et aliquet mauris lectus cursus nisl. Vivamus malesuada tincidunt velit, in hendrerit arcu bibendum ornare. Donec sed mi tempor, lacinia velit sed, tristique eros. Pellentesque commodo quis mi ac consectetur. Nam pretium pharetra hendrerit.</p>
+                                            <p> Le site ‘‘RentCars’’ est un site dédié à tous les résidents, de l'Île de Montréal (seulement), possédant une auto et désirant la partagé avec d’autres utilisateurs moyennant un tarif fixé par le propriétaire et approuvé par l’administration.</p>
 
-                                            <p>Vestibulum vitae pharetra ex. Nulla ac ultricies ante. Nullam et lectus consequat, pulvinar odio eu, pellentesque arcu. Nullam suscipit luctus elit, ac hendrerit nunc mollis et. Phasellus at tempus justo, nec fermentum velit. In at nulla in purus vehicula pharetra. Nulla dapibus eros et felis finibus, a pellentesque tortor aliquet. Nullam eget fermentum erat, sit amet accumsan risus. In dapibus dolor lorem, sit amet accumsan libero fermentum varius. Integer posuere commodo sollicitudin. Pellentesque convallis vulputate enim at faucibus.</p>
+                                            <p> Tous les membres, propriétaires et clients, doivent être inscrits (inscription en ligne) au préalable, et acceptés par l’administration. Ils peuvent par la suite, inscrire leurs (un ou plusieurs) véhicules en vue de les louer, comme ils peuvent louer les véhicules déjà disponibles.</p>
+                                            
+                                            <p> Les propriétaires peuvent en tout moment mettre leurs véhicules en location selon la période désirée, dans laquelle les dates de début et de fin ainsi que les tarifs seront indiqués.</p>
                                         </div>
 
                                     </div>
@@ -28,9 +30,7 @@ include VIEWPATH . 'common/header.php';
                                     <div class="blocks4">
                                         <div class="text-container">
                                             <h2>nos valeurs</h2>
-                                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec ornare, neque quis pellentesque rutrum, turpis libero egestas ligula, quis efficitur urna justo luctus velit. Etiam a imperdiet nisi, in mattis nisi. Aenean mattis, ante at lacinia dictum, turpis arcu scelerisque est, et aliquet mauris lectus cursus nisl. Vivamus malesuada tincidunt velit, in hendrerit arcu bibendum ornare. Donec sed mi tempor, lacinia velit sed, tristique eros. Pellentesque commodo quis mi ac consectetur. Nam pretium pharetra hendrerit.</p>
-
-                                            <p>Vestibulum vitae pharetra ex. Nulla ac ultricies ante. Nullam et lectus consequat, pulvinar odio eu, pellentesque arcu. Nullam suscipit luctus elit, ac hendrerit nunc mollis et. Phasellus at tempus justo, nec fermentum velit. In at nulla in purus vehicula pharetra. Nulla dapibus eros et felis finibus, a pellentesque tortor aliquet. Nullam eget fermentum erat, sit amet accumsan risus. In dapibus dolor lorem, sit amet accumsan libero fermentum varius. Integer posuere commodo sollicitudin. Pellentesque convallis vulputate enim at faucibus.</p>
+                                            <p>Notre site se veut innovateur dans le domaine du partage d’auto, il se différencie des autres (CommunAuto, Uber, ainsi que l’industrie du taxi de Montréal), par le fait qu’il n y a pas procédures administrative qui compliquent et retardent les démarches de locations, en plus les tarifs, ainsi que les modes de paiement, sont fixés par le propriétaire lui-même, pourvu qu’elles soient acceptés par les clients. Autre distinction, les utilisateurs peuvent adhérer et se retirer à tout moment, et les propriétaires ont droit d’accepter ou de refuser les demandes de location pour leurs véhicules respectifs.</p>         
                                         </div>
 
                                     </div>
