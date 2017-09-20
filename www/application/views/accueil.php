@@ -12,7 +12,7 @@ include VIEWPATH . 'common/header.php';
                     <div class="cols1 col-md-12 col-sm-12 ">
                         <div class="container-fluid">
                             <div class="row rows2 bg-gray">
-                                <div class="clos3 col-md-6 col-sm-12 bordered">
+                                <div class="clos col-md-6 col-sm-12 bordered">
                                     <div class="blocks3">
                                         <div class="text-container">
                                             <h2>Notre mission</h2>
@@ -26,7 +26,7 @@ include VIEWPATH . 'common/header.php';
                                     </div>
 
                                 </div>
-                                <div class="clos4 col-md-6 col-sm-12 ">
+                                <div class="clos col-md-6 col-sm-12 ">
                                     <div class="blocks4">
                                         <div class="text-container">
                                             <h2>nos valeurs</h2>
