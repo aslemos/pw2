@@ -20,7 +20,7 @@ include VIEWPATH . '/common/header.php';
                 <th class="">Refuser</th>
             </tr>
             <?php foreach ($usagers as $user) { ?>
-            <tr>
+            <tr id="tr<?php echo $user['user_id']?>">
                 <td class=""><?php echo $user['user_id']?></td>
                 <td class=""><?php echo $user['prenom']?></td>
                 <td class=""><?php echo $user['nom']?></td>
@@ -28,18 +28,8 @@ include VIEWPATH . '/common/header.php';
                 <td class=""><?php echo $user['telephone']?></td>
                 <td class=""><?php echo $user['code_postal']?></td>
                 <td><?php echo EUsager::getDescriptionEtat($user['etat_usager']); ?></td>
-                <td class="">
-                    <img src="<?= $base_url; ?>assets/images/ok.png" >
-                </td>
-                <td class="">
-                    <img src="<?= $base_url; ?>assets/images/no.png" >
-                </td>
-
-<!--                <td>
-                    <a class="" href="<?php echo $base_url . 'usager/view/' . $user['user_id']; ?>">
-                        <img class="img-responsive" src="<?= $base_url; ?>assets/images/usagers/<?php echo $user['user_photo']?>" >
-                    </a>
-                </td>-->
+				<td class="editable"><span id="btn-approuver-<?=$user['user_id']?>" title="Approuver ce membre" class="glyphicon glyphicon-ok-circle btn-accepter"></span></td>
+				<td class="editable"><span id="btn-refuser-<?=$user['user_id']?>" title="Refuser demande d'abonnement de ce membre" class="glyphicon glyphicon-ban-circle btn-refuser"></span></td>
             </tr>
             <?php } ?>
         </table>

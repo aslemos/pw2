@@ -31,37 +31,38 @@
                     </div>
 
                     <div class="row">
-
-                        <div class="col-md-12">
+                        <div class="col-md-12" id="myTest">
                             <label><h5>Type de paiement <span class="required">*</span></h5>
                                 <select name="field4" id="myselect" class="field-select" required>
-
                                     <option value=""></option>
-
                                     <?php foreach ($payements as $pay): ?>
-                                        <option value="<?php echo $pay->mode_id ?>"><?php echo $pay->nom_mode ?></option>
+                                        <option value="<?php echo $pay->mode_id ?>">
+                                            <?php echo $pay->nom_mode ?>
+                                        </option>
                                     <?php endforeach; ?>
                                 </select>
                             </label>
                         </div>
                     </div>
 
-                    <div class="row">
-                        <div class="col-md-4">
-                            <label><h5>Numéro de carte<span class="required">*</span></h5>
-                                <input type="number" name="nom"  value="" required/>
-                            </label>
-                        </div>
-                        <div class="col-md-4" id="date">
-                            <label><h5>Date d'expiration de la carte<span class="required">*</span></h5>
-                                <input id="dateExpiration" type="text" name="prenom"  value="" required/>
-                            </label>
-                        </div>
+                    <div id="myHide">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <label><h5>Numéro de carte<span class="required">*</span></h5>
+                                    <input id="in1" type="number" name="nom"  value="" required="required"/>
+                                </label>
+                            </div>
+                            <div class="col-md-4" id="date">
+                                <label><h5>Date d'expiration de la carte<span class="required">*</span></h5>
+                                    <input id="dateExpiration" type="text" name="prenom"  value="" required="required"/>
+                                </label>
+                            </div>
 
-                        <div class="col-md-4">
-                            <label><h5>Code de sécurité - CVV<span class="required" required>*</span></h5>
-                                <input id="dateExpiration" type="text" name="prenom"  value="" required/>
-                            </label>
+                            <div class="col-md-4">
+                                <label><h5>Code de sécurité - CVV<span class="required" required>*</span></h5>
+                                    <input id="dateExpiration2" type="text" name="prenom"  value="" required="required"/>
+                                </label>
+                            </div>
                         </div>
                     </div>
 
@@ -71,10 +72,38 @@
                     </div>
                 </div>
         </form>
- </div>
+        <div id="rew"></div>
+    </div>
 
 
 </body>
+
+
+<script>
+    $("select")
+            .change(function () {
+                var str = "";
+                $("select option:selected").each(function () {
+                    str += $(this).val();
+                });
+                //alert(str);
+                if (str == "2") {
+                    $("#myHide").slideUp();
+                    $("#in1").removeAttr('required');
+                    $('#dateExpiration').removeAttr('required');
+                    $('#dateExpiration2').removeAttr('required');
+                } else {
+                    $("#myHide").slideDown();
+                    $("#in1").attr('required', '');
+                    $('#dateExpiration').attr('required', '');
+                    $('#dateExpiration2').attr('required', '');
+                }
+                $("#rew").text(str);
+            })
+            .trigger("change");
+
+</script>
+
 
 
 <?php include VIEWPATH . '/common/footer.php'; ?>

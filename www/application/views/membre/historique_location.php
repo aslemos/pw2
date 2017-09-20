@@ -4,7 +4,7 @@ include VIEWPATH . 'common/header.php';
 //========================================================
 include VIEWPATH . 'client/boutons_client.php';
 ?>
-<h2>Historique des locations</h2>
+<h2><?=$title?></h2>
 <form action="<?= $base_url ?>locations/locationsByUser#s" method="post" name="formulaire" id="form-demandes-id">
     <div class="table-responsive">
 

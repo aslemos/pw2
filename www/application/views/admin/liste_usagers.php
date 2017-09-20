@@ -6,36 +6,9 @@ include VIEWPATH . '/common/header.php';
 <section id="listeAdmin">
 <?php include VIEWPATH . 'admin/boutons_admin.php'; ?>
     <h2><?=$title?></h2>
-    <form action="" name="formulaire" id="form-Members-id">
-        <table class="table table-reponsive">
-            <tr>
-                <th class="">Nº</th>
-                <th class="">Nom</th>
-                <th class="">Prénom</th>
-                <th class="">Nombre de voitures</th>
-                <th class="">E-email</th>
-                <th class="">Évaluaitable">Approuver</th>
-                <th class="">Refuser</th>
-            </tr>
-            <tr>
-                <td class="">1</td>
-                <td class="">test</td>
-                <td class="">test</td>
-                <td class="">test</td>
-                <td class="">test</td>
-                <td class="">test</td>
-                <td class="">
-                    <img src="<?= $base_url; ?>assets/images/ok.png" >
-                </td>
-                <td class="editable">
-                    <img src="<?= $base_url; ?>assets/images/no.png" >
-                </td>
-            </tr>
-        </table>
-    </form>
-
-    <form action="" name="formulaire" id="form-voitures-id">
+    <!--<form action="" name="formulaire" id="form-voitures-id">-->
     <div class="table-responsive">
+<?php if (count($usagers) > 0) { ?>
         <table class="table table-striped">
             <thead>
                 <tr>
@@ -72,8 +45,11 @@ include VIEWPATH . '/common/header.php';
                 <?php endforeach; ?>
             </tbody>
         </table>
+<?php } else { ?>
+        <h3 class="alert_title">Il n'y a pas de membre</h3>
+<?php } ?>
     </div>
-    </form>
+    <!--</form>-->
 
 </section>
 <?php

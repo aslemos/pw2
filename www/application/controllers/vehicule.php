@@ -35,6 +35,7 @@ class Vehicule extends CI_Controller {
         $data['base_url'] = base_url();
 
         $this->load->view('vehicules/view', $data);
+        //$this->load->view('vehicules/disponibilite', $data);
     }
 
     public function createVehicule() {
@@ -328,6 +329,7 @@ class Vehicule extends CI_Controller {
 
     /**
      * Fouille le $_POST et retourne toutes les données nécessaires à l'ajout / édition d'un véhicule<br>
+     * @param EVehicule $vehicule Optionnellement, les données du véhicules sont utilisées pour combler le manque d'information dans le POST
      * C'est un raccourci pour ramasser tous les champs du formulaire
      * @return array
      */

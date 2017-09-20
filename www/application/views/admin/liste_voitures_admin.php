@@ -25,10 +25,7 @@ include VIEWPATH . '/common/header.php';
                         <th class="">Refuser</th>
                     </tr>
 
-                    <?php   foreach ($vehicules as $vehicule) {
-
-                       //var_dump($vehicules);
-                        ?>
+<?php   foreach ($vehicules as $vehicule) { ?>
                     <tr>
                         <td class=""><?= $vehicule['vehicule_id'] ?></td>
                         <td class=""><?= $vehicule['nom_marque'] ?></td>
@@ -47,10 +44,9 @@ include VIEWPATH . '/common/header.php';
                         <td class=""><a class="btn btn-inline"href="<?= $base_url ?>vehicule/bloquer/<?= $vehicule['vehicule_id'] ?>#s"></a></td>
 
                     </tr>
-                    <?php } ?>
-
-
-                </tbody></table>
+<?php } ?>
+                </tbody>
+            </table>
         </form>
 
         <!-- Div pour affichage -->

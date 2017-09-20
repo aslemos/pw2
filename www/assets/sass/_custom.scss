@@ -400,20 +400,20 @@ div[data-toggle="buttons"] label {
     box-shadow: none;
   }
 
-    input[type="radio"] {
-        display: none;
+  input[type="radio"] {
+    display: none;
 
-        ~ i.fa-circle-o,
-        &:checked ~ i.fa-check-circle-o {
-            display: inline;
-        }
-
-        ~ i.fa-check-circle-o,
-        &:checked ~ i.fa-circle-o {
-            display: none;
-            color: #7AA3CC;
-        }
+    ~ i.fa-circle-o,
+    &:checked ~ i.fa-check-circle-o {
+      display: inline;
     }
+
+    ~ i.fa-check-circle-o,
+    &:checked ~ i.fa-circle-o {
+      display: none;
+      color: #7AA3CC;
+    }
+  }
 }
 
 .gender {
@@ -432,7 +432,7 @@ tr {
   background-color: #974952;
   color: #ffffff;
 }
-form[id^="form-"] {
+.table {
     th, td {
       text-align: center;
       /*color: #ffffff;*/

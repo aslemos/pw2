@@ -62,11 +62,11 @@
     </div>
 </div>
 <hr>
-<?php if(UserAcces::userIsLogged()) { ?>
-    <?php echo form_open($base_url.'vehicule/deleteVehicule/' . $vehicule->getId())?>
+<?php if(UserAcces::userIsSuperAdmin() || UserAcces::getUserId == $vehicule->getProprietaireId()) { ?>
+    <?php echo form_open($base_url.'vehicule/deleteVehicule/' . $vehicule->getId() . '#s')?>
         <input type="submit" class="btn btn-danger" value="Supprimer">
     </form>
-    <?php echo form_open($base_url.'vehicule/editVehicule/' . $vehicule->getId()); ?>
+    <?php echo form_open($base_url.'vehicule/editVehicule/' . $vehicule->getId() . '#s'); ?>
         <input type="submit" class="btn" value="Modifier">
     </form>
 <?php } ?>
