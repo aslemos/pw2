@@ -38,8 +38,14 @@ img {
    background-color: #FFFFFF;
 }
 .bordered {
-        border-right: solid 6px $bgColor;
-    }
+    border-right: solid 6px $bgColor;
+}
+
+.filedRequired{
+   color: red;
+   font-size: 14pt;
+}
+
 h2 {
         margin: 0;
         margin-top: 65px;
@@ -139,33 +145,17 @@ h2 {
     #pub-2 {
         background: url('../images/accueil/pubs/pub2.jpg') center center/cover no-repeat;
     }
+    
+    p{
+        margin: auto;
+        max-width: 595px;
+        text-align: justify;
+        font-size:16px;
+        line-height: 20px;
+    }
 
 }
 
-
-
-/*#about-home, #footer-member, #thanks {
-    h2 {
-        margin: 0;
-        margin-bottom: 25px;
-        padding-bottom: 25px;
-        position: relative;
-        text-align: center;
-
-        &:after {
-            background-color: #575757;
-            bottom: 0;
-            content: " ";
-            height: 3px;
-            left: 0;
-            margin: auto;
-            position: absolute;
-            right: 0;
-            text-align: center;
-            width: 40px;
-        }
-    }
-}*/
 
 #about-home {
 
@@ -190,20 +180,17 @@ h2 {
 
     p {
         margin: auto;
-        max-width: 595px;
         text-align: justify;
         font-size:16px;
-        line-height: 20px;
     }
 }
 
-#pub-home{
+.information{
+    span{
+        padding: 0;
+    }
     p{
-        margin: auto;
-        max-width: 595px;
-        text-align: justify;
-        font-size:16px;
-        line-height: 20px;
+        line-height: 190%;
     }
 }
 
@@ -219,7 +206,7 @@ h2 {
 
     button{
         margin-bottom: 40px;
-    }
+    }    
 }
 
 /* --- A propos --- */
@@ -482,7 +469,7 @@ span {
 }
 
 form {
-  label, select, input {
+  label, input {
     font-size: 20px;
     /*margin: 15px;*/
     /*line-height: 10px;*/
@@ -678,7 +665,7 @@ label:hover input[type="radio"] ~ i.fa {
       -webkit-box-shadow: inset 0px 1px 1px rgba(0, 0, 0, 0.33);
     }
   }
-  textarea, select {
+  textarea {
     display: block;
     box-sizing: border-box;
     -webkit-box-sizing: border-box;
@@ -769,4 +756,21 @@ label:hover input[type="radio"] ~ i.fa {
 
 #myForm2 {
   display: none;
+}
+
+// Select form
+     
+.formSelector { 
+    border: none;
+    border-radius: 0;
+    color: #575757;
+    font-size: 14px;
+    font-weight: bold;
+    height: 50px;
+    line-height: 50px;
+    margin-bottom: 25px;
+}
+.prix{ 
+    color: greenyellow;
+    font-size: 14pt;
 }

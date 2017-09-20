@@ -49,7 +49,7 @@ include VIEWPATH . 'common/header.php';
                             <div class="rows2">
 
                                 <label for="subject">Sujet</label>
-                                <select class="form-control" id="subject" name="subject" required="">
+                                <select class="form-control formSelector" id="subject" name="subject" required="">
                                     <option value="">-- Sujet (en choisir un) --</option>
                                     <option value="Informations">Informations</option>
                                     <option value="Soumission">Soumission</option>
