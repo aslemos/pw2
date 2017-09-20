@@ -131,12 +131,26 @@ class Reclamation extends CI_Controller {
 
         $this->load->model('message_model');
         $this->message_model->createMessage($msg);
-   $this->load->view('client/page_succes_reclamation',$data );
+        $this->load->view('client/page_succes_reclamation',$data );
 //        redirect($url_redirect);
     }
     
-     public function view($id_message) {
+     public function view($message_id) {
          
-         $this->load->view('admin/liste_reclamations', $data);
+         $data['base_url'] = base_url();
+         $data['title'] = 'Message Admin';
+         $data['messages'] = $this->message_model-> getMessageById($message_id);
+         $this->load->view('messagerie/view_reclamation',$data);
+         $this->load->model('message_model');
+         $this->message_model->getMessageById($message_id);
+         
+     }
+     
+     public function delete($message_id) {
+         
+     $this->load->view('messagerie/view_reclamation');
+     $this->load->model('message_model');
+     $this->message_model->deleteMessage($message_id);
+     
      }
 }
