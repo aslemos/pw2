@@ -1,7 +1,7 @@
 <?php include VIEWPATH . 'common/header.php'; ?>
 
 <style type="text/css">
-  
+
 </style>
 
 <div class="form-style-10">
@@ -15,7 +15,7 @@
                 <div class="col-md-4">
                     <label><h5>Marque</h5>
                         <input class="myInput" type="text" name="marque" disabled value="<?= $voitures['nom_marque']; ?> "/>
-                        <input type="hidden" name="vehicule_id" value="<?= $voitures['vehicule_id']; ?> ">
+                        <input type="hidden" id="vehicule_id" name="vehicule_id" value="<?= $voitures['vehicule_id']; ?> ">
                     </label>
                 </div>
                 <div class="col-md-4">
@@ -67,26 +67,26 @@
 
                 <div class="col-md-4">
                     <label><h5>Prix total</h5>
-                        <input class="myInput" type="text" name="prixTotal" disabled value="<?= $voitures['prix'] ?> "/>
+                        <input class="myInput" type="text" name="prixTotal" disabled value="//<?= $voitures['prix'] ?> "/>
                     </label>
                 </div>
             </div>
 
             <div class="row">
                 <div class="col-md-6">
-                    <label><h5>Date début</h5>
-                        <input class="myInput" type="text" id="date_debut" name="date_debut"  value="<?= $date_debut ?>"/>
+                    <label><h5>Date début<i class="fa fa-pencil-square-o" aria-hidden="true"></i></h5>
+                        <input type="text" id="date_debut" name="date_debut"  value="<?= $date_debut ?>"/>
                     </label>
                 </div>
                 <div class="col-md-6">
-                    <label><h5>Date fin</h5>
-                        <input class="myInput" type="text" id="date_fin" name="date_fin" value="<?= $date_fin ?> "/>
+                    <label><h5>Date fin<i class="fa fa-pencil-square-o" aria-hidden="true"></i></h5>
+                        <input type="text" id="date_fin" name="date_fin" value="<?= $date_fin ?> "/>
                     </label>
                 </div>
             </div>
 
             <div class="btn-group" role="group" aria-label="Basic example">
-                <!-- Andriy, regarde si utiliser une balise <a href> va résoudre le problème d'annulation de la location-->
+
                 <a href="<?= $base_url ?>" type="button" id="flip5" class="btn btn-danger animated bounceInLeft">
                     <i class="fa  fa-window-close" style="font-size:22px;"></i> Annuler
                 </a>
@@ -140,6 +140,46 @@
         </div>
     </form>
 </div>
+
+<script>
+    $(function () {
+
+        /*alert(vehicule_id);
+
+         alert(date_fin);*/
+
+        $("#flip2").click(function () {
+            var vehicule_id = $("#vehicule_id").val();
+            var date_debut = $("#date_debut").val();
+            var date_fin = $("#date_fin").val();
+
+            $.ajax({
+                url: base_url + "ajax/disponibiliteParDate/" + vehicule_id + "/" + date_debut + "/" + date_fin,
+                success: function (data) {
+                    var json = JSON.parse(data);
+                    if (json.disponible) {
+
+                        $("#part2").slideDown("slow");
+                        $("#part1").slideUp("slow");
+                        $("html, body").animate({scrollTop: 650}, 1000);
+                        $(".test").removeClass("zoomIn");
+                        $(".test2").addClass("animated zoomIn");
+
+
+                    } else {
+                        alert("Periode non disponible");
+
+                    }
+                }
+            });
+        });
+
+
+    });
+
+
+</script>
+
 
 <?php
 include VIEWPATH . 'common/footer.php';
