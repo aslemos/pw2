@@ -21,12 +21,13 @@ class Arrondissement_model extends CI_Model {
     }
 
     public function getArrondissementsByVilleId($ville_id) {
-
-        $this->db->order_by('nom_arr');
-        $this->db->join('villes', 'villes.ville_id = arrondissements.ville_id');
-        $query = $this->db->get_where('arrondissements', ['arrondissements.ville_id' => $ville_id]);
-
-        return $query->result_array();
+        if (intval($ville_id) > 0) {
+            $this->db->order_by('nom_arr');
+            $this->db->join('villes', 'villes.ville_id = arrondissements.ville_id');
+            $query = $this->db->get_where('arrondissements', ['arrondissements.ville_id' => $ville_id]);
+            return $query->result_array();
+        }
+        return [];
     }
 
     /**
@@ -36,9 +37,12 @@ class Arrondissement_model extends CI_Model {
      * @author Alessandro Souza Lemos
      */
     public function getVillesByProvinceId($province_id) {
-        $this->db->order_by('nom_ville');
-        $query = $this->db->get_where('villes', ['province' => $province_id]);
-        return $query->result_array();
+        if (strlen($province_id) == 2) {
+            $this->db->order_by('nom_ville');
+            $query = $this->db->get_where('villes', ['province' => $province_id]);
+            return $query->result_array();
+        }
+        return [];
     }
 
     /**
@@ -52,12 +56,15 @@ class Arrondissement_model extends CI_Model {
         // Trouve les données de l'arrondissement et la ville
         $this->db->join('villes', 'villes.ville_id = arrondissements.ville_id');
         $query = $this->db->get_where('arrondissements', ['arr_id' => $arr_id]);
-        $res_arrond = $query->result_array();
-        $arrond = new EArrondissement($res_arrond);
+        $data = $query->row_array();
+        if (!empty($data)) {
+            $arrond = new EArrondissement($data);
 
-        // Instantie la Ville
-        $arrond->setVille(new EVille($res_arrond));
-        return $arrond;
+            // Instantie la Ville
+            $arrond->setVille(new EVille($data));
+            return $arrond;
+        }
+        return NULL;
     }
 
     /**

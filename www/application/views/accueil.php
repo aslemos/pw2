@@ -83,7 +83,7 @@ include VIEWPATH . 'common/header.php';
                                         <div class="information">
                                             <p class="text-center"> Vitesse: <?php echo $vehicule['nom_transmission']; ?></p>
                                             <p class="text-center"> Nbre de sièges: <?php echo $vehicule['nbre_places']; ?></p>
-                                            <p class="text-center"> Tarif / jour: $<?php echo $vehicule['prix']; ?></p>
+                                            <p class="text-center"> <span class="prix"> Tarif / jour: $<?php echo $vehicule['prix']; ?></span></p>
                                         </div>
                                     </a>
                                 </div>

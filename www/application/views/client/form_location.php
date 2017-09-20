@@ -1,19 +1,7 @@
 <?php include VIEWPATH . 'common/header.php'; ?>
 
 <style type="text/css">
-    /*    .editPersonInfo{
-            height: 60px;
-            width: 60px;
-            float: right;
-            background-color: orange;
-            border-radius: 25%;
-
-        }
-
-        #editPersonIcon{
-            margin-left: 15px;
-            margin-top: 12px;
-        }*/
+  
 </style>
 
 <div class="form-style-10">
@@ -25,39 +13,39 @@
         <div class="inner-wrap" id="part1">
             <div class="row">
                 <div class="col-md-4">
-                    <label>Marque
-                        <input type="text" name="marque" disabled value="<?= $voitures['nom_marque']; ?> "/>
+                    <label><h5>Marque</h5>
+                        <input class="myInput" type="text" name="marque" disabled value="<?= $voitures['nom_marque']; ?> "/>
                         <input type="hidden" name="vehicule_id" value="<?= $voitures['vehicule_id']; ?> ">
                     </label>
                 </div>
                 <div class="col-md-4">
-                    <label>Modele
-                        <input type="text" name="type" disabled value="<?= $voitures['nom_modele']; ?> "/>
+                    <label><h5>Modele</h5>
+                        <input class="myInput" type="text" name="type" disabled value="<?= $voitures['nom_modele']; ?> "/>
                     </label>
                 </div>
 
                 <div class="col-md-4">
-                    <label>Type
-                        <input type="text" name="type" disabled value="<?= $voitures['nom_type']; ?> "/>
+                    <label><h5>Type</h5>
+                        <input class="myInput" type="text" name="type" disabled value="<?= $voitures['nom_type']; ?> "/>
                     </label>
                 </div>
             </div>
 
             <div class="row">
                 <div class="col-md-4">
-                    <label>Année
-                        <input type="text" name="annee" disabled value="<?= $voitures['annee']; ?> "/>
+                    <label><h5>Année</h5>
+                        <input class="myInput" type="text" name="annee" disabled value="<?= $voitures['annee']; ?> "/>
                     </label>
                 </div>
                 <div class="col-md-4">
-                    <label>Nombre de places
-                        <input type="text" name="places" disabled value="<?= $voitures['nbre_places'] ?> "/>
+                    <label><h5>Nombre de places</h5>
+                        <input class="myInput" type="text" name="places" disabled value="<?= $voitures['nbre_places'] ?> "/>
                     </label>
                 </div>
 
                 <div class="col-md-4">
-                    <label>Type de carburant
-                        <input type="text" name="carburant" disabled value="<?= $voitures['nom_carburant'] ?> "/>
+                    <label><h5>Type de carburant</h5>
+                        <input class="myInput" type="text" name="carburant" disabled value="<?= $voitures['nom_carburant'] ?> "/>
                     </label>
                 </div>
 
@@ -66,33 +54,33 @@
             <div class="row">
 
                 <div class="col-md-4">
-                    <label>Emplacement
-                        <input type="text" disabled name="arr" value="<?= $voitures['nom_arr'] ?> "/>
+                    <label><h5>Emplacement</h5>
+                        <input class="myInput" type="text" disabled name="arr" value="<?= $voitures['nom_arr'] ?> "/>
                     </label>
                 </div>
 
                 <div class="col-md-4">
-                    <label>Prix par jour
-                        <input type="text" disabled name="prix" value="<?= $voitures['prix'] ?> "/>
+                    <label><h5>Prix par jour</h5>
+                        <input class="myInput" type="text" disabled name="prix" value="<?= $voitures['prix'] ?> "/>
                     </label>
                 </div>
 
                 <div class="col-md-4">
-                    <label>Prix total
-                        <input type="text" name="prixTotal" disabled value="<?= $voitures['prix'] ?> "/>
+                    <label><h5>Prix total</h5>
+                        <input class="myInput" type="text" name="prixTotal" disabled value="<?= $voitures['prix'] ?> "/>
                     </label>
                 </div>
             </div>
 
             <div class="row">
                 <div class="col-md-6">
-                    <label>Date début
-                        <input type="text" id="date_debut" name="date_debut"  value="<?= $date_debut ?>"/>
+                    <label><h5>Date début</h5>
+                        <input class="myInput" type="text" id="date_debut" name="date_debut"  value="<?= $date_debut ?>"/>
                     </label>
                 </div>
                 <div class="col-md-6">
-                    <label>Date fin
-                        <input type="text" id="date_fin" name="date_fin" value="<?= $date_fin ?> "/>
+                    <label><h5>Date fin</h5>
+                        <input class="myInput" type="text" id="date_fin" name="date_fin" value="<?= $date_fin ?> "/>
                     </label>
                 </div>
             </div>
@@ -112,28 +100,28 @@
         <div class="inner-wrap" id="part2">
             <div class="row">
                 <div class="col-md-6">
-                    <label>Nom
-                        <input type="text" name="nom" disabled value="<?= $users->getNom() ?> "/>
+                    <label><h5>Nom</h5>
+                        <input class="myInput" type="text" name="nom" disabled value="<?= $users->getNom() ?> "/>
                         <input type="hidden" name="user_id" value="<?= $users->getId() ?> ">
 
                     </label>
                 </div>
                 <div class="col-md-6">
-                    <label>Prénom
-                        <input type="text" name="prenom" disabled value="<?= $users->getPrenom() ?> " />
+                    <label><h5>Prénom</h5>
+                        <input class="myInput" type="text" name="prenom" disabled value="<?= $users->getPrenom() ?> " />
                     </label>
                 </div>
             </div>
 
             <div class="row">
                 <div class="col-md-6">
-                    <label>Permis de conduire
-                        <input type="text" name="nom" disabled value="<?= $users->getPermisConduire() ?> "/>
+                    <label><h5>Permis de conduire</h5>
+                        <input class="myInput" type="text" name="nom" disabled value="<?= $users->getPermisConduire() ?> "/>
                     </label>
                 </div>
                 <div class="col-md-6">
-                    <label>Courriel
-                        <input type="text" name="prenom" disabled value="<?= $users->getCourriel() ?> " />
+                    <label><h5>Courriel</h5>
+                        <input class="myInput" type="text" name="prenom" disabled value="<?= $users->getCourriel() ?> " />
                     </label>
                 </div>
             </div>

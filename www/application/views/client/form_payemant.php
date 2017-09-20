@@ -1,21 +1,8 @@
 <?php include VIEWPATH . '/common/header.php'; ?>
 
-<style type="text/css">
-
-    #myInput,#myInput2  {
-        background-color: #F8F8F8;
-        color: black;
-        text-align: center;
-
-    }
-
-</style>
-
-
 <body>
     <div id="myForm1" class="form-style-10">
         <h3>Modes de paiement</h3>
-
         <form  method="post" action="<?= $base_url ?>locations/insererPayemant/">
             <div class="inner-wrap">
                 <div class="row">
@@ -28,8 +15,8 @@
                         </div>
 
                         <div class="col-md-6">
-                            <label><h4>Nom</h4>
-                                <input id="myInput" type="text" name="nom" disabled value="<?= $location->getLocataire()->getNom() ?> "/>
+                            <label><h5>Nom</h5>
+                                <input class="myInput" type="text" name="nom" disabled value="<?= $location->getLocataire()->getNom() ?> "/>
 
                                 <input type="hidden" name="user_id" value="<?= $location->getLocataireId() ?> ">
                                 <input type="hidden" name="montant" value="<?= $location->getPrixTotal() ?> ">
@@ -37,8 +24,8 @@
                             </label>
                         </div>
                         <div class="col-md-6">
-                            <label><h4>Prenom</h4>
-                                <input id="myInput2" type="text" name="prenom" disabled value="<?= $location->getLocataire()->getPrenom() ?> " />
+                            <label><h5>Prenom</h5>
+                                <input class="myInput" type="text" name="prenom" disabled value="<?= $location->getLocataire()->getPrenom() ?> " />
                             </label>
                         </div>
                     </div>
@@ -46,7 +33,7 @@
                     <div class="row">
 
                         <div class="col-md-12">
-                            <label>Type de paiement <span class="required">*</span>
+                            <label><h5>Type de paiement <span class="required">*</span></h5>
                                 <select name="field4" id="myselect" class="field-select" required>
 
                                     <option value=""></option>
@@ -61,18 +48,18 @@
 
                     <div class="row">
                         <div class="col-md-4">
-                            <label>Numéro de carte<span class="required">*</span>
+                            <label><h5>Numéro de carte<span class="required">*</span></h5>
                                 <input type="number" name="nom"  value="" required/>
                             </label>
                         </div>
                         <div class="col-md-4" id="date">
-                            <label>Date d'expiration de la carte<span class="required">*</span>
+                            <label><h5>Date d'expiration de la carte<span class="required">*</span></h5>
                                 <input id="dateExpiration" type="text" name="prenom"  value="" required/>
                             </label>
                         </div>
 
                         <div class="col-md-4">
-                            <label>Code de sécurité de la carte - CVV<span class="required">*</span>
+                            <label><h5>Code de sécurité - CVV<span class="required" required>*</span></h5>
                                 <input id="dateExpiration" type="text" name="prenom"  value="" required/>
                             </label>
                         </div>
@@ -146,7 +133,6 @@
         <button class="btn2"><span class="fa fa-pencil" style="font-size:25px;color:orange;"> </span>Précédent modes de paiements</button>
     </div>
 </body>
-
 
 
 <?php include VIEWPATH . '/common/footer.php'; ?>

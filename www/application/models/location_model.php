@@ -94,8 +94,8 @@ class Location_model extends CI_Model {
      */
     public function getLocationById($location_id) {
         $data = $this->get_locations($location_id);
-        if (count($data)) {
-            return $this->getInstanceLocationByData($data);//new ELocation($arr_location);
+        if (count($data) > 0) {
+            return $this->getInstanceLocationByData($data);
         }
         return NULL;
     }
@@ -162,7 +162,6 @@ class Location_model extends CI_Model {
             $result[$pos] = $this->getInstanceLocationByData($data);
         }
         return $result;
-//        return $query->result_array();
     }
 
     /**
@@ -197,16 +196,7 @@ class Location_model extends CI_Model {
     }
 
     public function create_payement($data2) {
-//        $data = array(
-//            'date_debut' => $this->input->post('date_debut'),
-//            'date_fin' => $this->input->post('date_fin'),
-//            'user_id' => $this->session->userdata('user_id'),
-//            'vehicule_id' => $this->input->post('vehicule_id'),
-//            'paiement_id' => $this->input->post('paiement_id')
-//        );
-
         $this->db->set('date_paiement', 'NOW()', FALSE);
-
         $this->db->insert('paiements', $data2);
     }
 

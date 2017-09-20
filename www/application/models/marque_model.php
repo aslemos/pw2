@@ -12,6 +12,24 @@ class Marque_model extends CI_Model {
         $this->load->database();
     }
 
+    /**
+     * Retourne une objet de marque par son ID
+     * @param int $marque_id
+     * @return EMarque
+     * @author Alessandro Souza Lemos
+     */
+    public function getMarqueById($marque_id) {
+        if (intval($marque_id) > 0) {
+            $query = $this->db->get_where('marques', ['marque_id' => $marque_id]);
+            $data = $query->result_array();
+            if (count($data) > 0) {
+                return new EMarque($data[0]);
+            }
+        }
+        return NULL;
+    }
+
+
     public function getMarques($marque_id = Null) {
 
         if ($marque_id === Null) {

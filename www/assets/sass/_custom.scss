@@ -38,8 +38,45 @@ img {
    background-color: #FFFFFF;
 }
 .bordered {
-        border-right: solid 6px $bgColor;
-    }
+    border-right: solid 6px $bgColor;
+}
+
+.filedRequired{
+   color: red;
+   font-size: 14pt;
+}
+/*centrer text on page_succes_payemant*/
+ .succes {
+        text-align: center !important;
+}
+
+/*Champ obligatoire*/
+.required{
+        color: red;
+}
+ /*Champ griser*/
+.myInput{
+        background-color: #F8F8F8 !important;
+        color: black;
+        text-align: center;
+}
+// Select form
+     
+.formSelector { 
+    border: none;
+    border-radius: 0;
+    color: #575757;
+    font-size: 14px;
+    font-weight: bold;
+    height: 50px;
+    line-height: 50px;
+    margin-bottom: 25px;
+}
+.prix{ 
+    color: greenyellow;
+    font-size: 14pt;
+}
+
 h2 {
         margin: 0;
         margin-top: 65px;
@@ -139,33 +176,17 @@ h2 {
     #pub-2 {
         background: url('../images/accueil/pubs/pub2.jpg') center center/cover no-repeat;
     }
+    
+    p{
+        margin: auto;
+        max-width: 595px;
+        text-align: justify;
+        font-size:16px;
+        line-height: 20px;
+    }
 
 }
 
-
-
-/*#about-home, #footer-member, #thanks {
-    h2 {
-        margin: 0;
-        margin-bottom: 25px;
-        padding-bottom: 25px;
-        position: relative;
-        text-align: center;
-
-        &:after {
-            background-color: #575757;
-            bottom: 0;
-            content: " ";
-            height: 3px;
-            left: 0;
-            margin: auto;
-            position: absolute;
-            right: 0;
-            text-align: center;
-            width: 40px;
-        }
-    }
-}*/
 
 #about-home {
 
@@ -190,20 +211,17 @@ h2 {
 
     p {
         margin: auto;
-        max-width: 595px;
         text-align: justify;
         font-size:16px;
-        line-height: 20px;
     }
 }
 
-#pub-home{
+.information{
+    span{
+        padding: 0;
+    }
     p{
-        margin: auto;
-        max-width: 595px;
-        text-align: justify;
-        font-size:16px;
-        line-height: 20px;
+        line-height: 190%;
     }
 }
 
@@ -219,7 +237,7 @@ h2 {
 
     button{
         margin-bottom: 40px;
-    }
+    }    
 }
 
 /* --- A propos --- */
@@ -379,6 +397,21 @@ div[data-toggle="buttons"] label {
     -webkit-box-shadow: none;
     box-shadow: none;
   }
+
+    input[type="radio"] {
+        display: none;
+
+        ~ i.fa-circle-o,
+        &:checked ~ i.fa-check-circle-o {
+            display: inline;
+        }
+
+        ~ i.fa-check-circle-o,
+        &:checked ~ i.fa-circle-o {
+            display: none;
+            color: #7AA3CC;
+        }
+    }
 }
 
 .gender {
@@ -395,39 +428,41 @@ table {
 
 tr {
   background-color: #974952;
-}
-
-th, td {
-  text-align: center;
   color: #ffffff;
-  max-width: 80px;
-  height: 40px;
-  overflow: hidden;
-  font-size: 16px;
 }
+form[id^="form-"] {
+    th, td {
+      text-align: center;
+      /*color: #ffffff;*/
+      max-width: 80px;
+      height: 40px;
+      overflow: hidden;
+      font-size: 16px;
+    }
 
-th:first-child, td:first-child {
-  max-width: 25px;
-}
+    th:first-child, td:first-child {
+      max-width: 25px;
+    }
 
-th:last-child, td:last-child {
-  max-width: 50px;
-}
+    th:last-child, td:last-child {
+      max-width: 50px;
+    }
 
-th {
-  /*border-radius: 15px 15px 0  0;*/
-  &:first-child {
-    border-radius: 15px 0 0 0;
-  }
-  &:last-child {
-    border-radius: 0 15px 0 0;
-  }
-}
+    th {
+      /*border-radius: 15px 15px 0  0;*/
+      &:first-child {
+        border-radius: 15px 0 0 0;
+      }
+      &:last-child {
+        border-radius: 0 15px 0 0;
+      }
+    }
 
-td {
-  border: 1px solid gray;
-  background-color: black;
-  color: #dddddd;
+    td {
+      border: 1px solid gray;
+      background-color: black;
+      color: #dddddd;
+    }
 }
 
 th.date, td.date {
@@ -482,7 +517,7 @@ span {
 }
 
 form {
-  label, select, input {
+  label, input {
     font-size: 20px;
     /*margin: 15px;*/
     /*line-height: 10px;*/
@@ -552,22 +587,6 @@ label.btn span {
     font-size: 1.5em ;
 }
 
-label input[type="radio"] ~ i.fa.fa-circle-o{
-    color: #c8c8c8;    display: inline;
-}
-label input[type="radio"] ~ i.fa.fa-dot-circle-o{
-    display: none;
-}
-label input[type="radio"]:checked ~ i.fa.fa-circle-o{
-    display: none;
-}
-label input[type="radio"]:checked ~ i.fa.fa-dot-circle-o{
-    color: #7AA3CC;    display: inline;
-}
-label:hover input[type="radio"] ~ i.fa {
-    color: #7AA3CC;
-}
-
 label input[type="checkbox"] ~ i.fa.fa-square-o{
     color: #c8c8c8;    display: inline;
 }
@@ -599,22 +618,24 @@ label.btn span {
     font-size: 1.5em ;
 }
 
-label input[type="radio"] ~ i.fa.fa-circle-o{
-    color: #c8c8c8;    display: inline;
-}
-label input[type="radio"] ~ i.fa.fa-dot-circle-o{
-    display: none;
-}
-label input[type="radio"]:checked ~ i.fa.fa-circle-o{
-    display: none;
-}
-label input[type="radio"]:checked ~ i.fa.fa-dot-circle-o{
-    color: #7AA3CC;    display: inline;
-}
-label:hover input[type="radio"] ~ i.fa {
-    color: #7AA3CC;
-}
+/*
+label.radio-inline {
+    border-radius: 0;
+    input[type="radio"] {
+        display: none;
 
+        ~ i.fa-circle-o,
+        &:checked ~ i.fa-check-circle-o {
+            display: inline;
+        }
+
+        ~ i.fa-check-circle-o,
+        &:checked ~ i.fa-circle-o {
+            display: none;
+            color: #7AA3CC;
+        }
+    }
+}*/
 /*formulaire location*/
 
 .form-style-10 {
@@ -678,7 +699,7 @@ label:hover input[type="radio"] ~ i.fa {
       -webkit-box-shadow: inset 0px 1px 1px rgba(0, 0, 0, 0.33);
     }
   }
-  textarea, select {
+  textarea {
     display: block;
     box-sizing: border-box;
     -webkit-box-sizing: border-box;
@@ -771,12 +792,4 @@ label:hover input[type="radio"] ~ i.fa {
   display: none;
 }
 
-/*centrer text on page_succes_payemant*/
- #succes {
-        text-align: center;
-    }
 
-    /*Champ obligatoire*/
-    .required{
-        color: red;
-    }
