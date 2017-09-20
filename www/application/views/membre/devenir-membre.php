@@ -123,19 +123,34 @@ include VIEWPATH . 'common/header.php';
 
                             <div class="form-group">
                                 <label class="control-label col-xs-3"></label>
-                                <div class="col-xs-2">
+                                <div class="col-xs-3">
                                     <input type="text" class="form-control" id="inputVille" placeholder="Ville" required>
                                 </div>
 
-                                <div class="col-xs-2">
+                                <div class="col-xs-3">
                                     <select name="choixProvince" class="form-control">
                                         <option SELECTED>Province</option>
                                     </select>
                                 </div>
 
-                                <div class="col-xs-2">
-                                    <input type="text" class="form-control" id="inputCode" placeholder="Code" required>
+
+                            </div>
+
+
+                            <div class="form-group">
+                                <label class="control-label col-xs-3"></label>
+
+                                <div class="col-xs-3">
+                                    <input type="text" class="form-control" id="inputVille" placeholder="Ville" required>
                                 </div>
+
+                                <div class="col-xs-3">
+                                    <select name="choixProvince" class="form-control">
+                                        <option SELECTED>Province</option>
+                                    </select>
+                                </div>
+
+
                             </div>
 
 
