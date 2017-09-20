@@ -33,14 +33,14 @@ $(function () {
 
 
     /*button Next1*/
-    $("#flip2").click(function () {
-        $("#part2").slideDown("slow");
-        $("#part1").slideUp("slow");
-        $("html, body").animate({scrollTop: 650}, 1000);
-        $(".test").removeClass("zoomIn");
-        $(".test2").addClass("animated zoomIn");
-
-    });
+//    $("#flip2").click(function () {
+//        $("#part2").slideDown("slow");
+//        $("#part1").slideUp("slow");
+//        $("html, body").animate({scrollTop: 650}, 1000);
+//        $(".test").removeClass("zoomIn");
+//        $(".test2").addClass("animated zoomIn");
+//
+//    });
 
     /*button Avant2*/
     $("#flip3").click(function () {
