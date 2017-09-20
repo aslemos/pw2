@@ -7,17 +7,17 @@ include VIEWPATH . '/common/header.php';
 <?php include VIEWPATH . 'admin/boutons_admin.php'; ?>
     <h2><?=$title?></h2>
     <form action="" name="formulaire" id="form-Members-id">
-        <table class="table table-responsive">
+        <table class="table table-reponsive">
             <tr>
-                <th class="titre_editable">Nº</th>
-                <th class="titre_editable">Prénom</th>
-                <th class="titre_editable">Nom</th>
-                <th class="titre_editable">Courriel</th>
-                <th class="titre_editable">Téléphone</th>
-                <th class="titre_editable">Code postal</th>
-                <th class="titre_editable">État</th>
-                <th class="titre_editable">Approuver</th>
-                <th class="titre_editable">Refuser</th>
+                <th class="">Nº</th>
+                <th class="">Prénom</th>
+                <th class="">Nom</th>
+                <th class="">Courriel</th>
+                <th class="">Téléphone</th>
+                <th class="">Code postal</th>
+                <th class="">État</th>
+                <th class="">Approuver</th>
+                <th class="">Refuser</th>
             </tr>
             <?php foreach ($usagers as $user) { ?>
             <tr id="tr<?php echo $user['user_id']?>">

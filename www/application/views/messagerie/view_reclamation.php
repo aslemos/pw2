@@ -12,12 +12,36 @@ require VIEWPATH . 'common/header.php';
 
 <h2><?=$title?></h2>
   
-<form class="form-horizontal">
+    <form id="frm-message" class="form-horizontal"  action="">
 
-    <label><?= var_dump($messages)?></label><br>
-    <label><?= $messages['nom_emetteur']?></label><br>
-    
-</form>
+        <div class="form-group">
+            <label class="control-label col-sm-3" for="nom_emetteur">Emetteur :</label>
+            <div class="col-sm-9">
+             <div class="col-sm-9">
+                 <input class="form-control" name="nom_emetteur" id="nom_emetteur" type="text" value="<?= $messages['nom_emetteur']?>">
+            </div>   
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-sm-3" for="sujet">Sujet :</label>
+            <div class="col-sm-9">
+                <input class="form-control" name="sujet" id="sujet" type="text" value="<?= $messages['sujet']?>">
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-sm-3" for="message">Message :</label>
+            <div class="col-sm-9">
+                <textarea class="form-control" name="message" id="message" cols="30" rows="10"><?= $messages['contenu']?></textarea>
+            </div>
+        </div>
+
+    </form>
+
+    <div class="row btn-liens" >
+        <a class="btn position" href="<?=$base_url?>admin/reclamations#s">Retourner</a>
+    </div>
 
     
 <?php

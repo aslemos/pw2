@@ -216,6 +216,10 @@ class Locations extends CI_Controller {
 
     /* afficher formulaire de reservation */
     public function form_location($id) {
+        // Check login
+        if (!UserAcces::userIsLogged()) {
+            redirect('usager/login');
+        }
         $data['body_class'] = "subpages voitures";
         $data['base_url'] = base_url();
         $data['page_title'] = 'Messages reçus';
@@ -223,6 +227,11 @@ class Locations extends CI_Controller {
 
         $this->load->model('vehicule_model');
         $this->load->model('modepaiement_model');
+
+
+        $this->load->model('location_model');
+        $data['location'] = $this->location_model->getLocationById($id);
+
 
         $data['date_debut'] = $this->input->post('date_debut');
         $data['date_fin'] = $this->input->post('date_fin');

@@ -8,36 +8,35 @@ include VIEWPATH . '/common/header.php';
     <h2><?=$title?></h2>
 
         <form action="" name="formulaire" id="form-voitures-id">
-            <table class="table table-responsive">
-                <tbody>
-                    <tr>
-                        <th class="titre_editable">Nº</th>
-                        <th class="titre_editable">Marque</th>
-                        <th class="titre_editable">Modèle</th>
-                        <th class="titre_editable">Année</th>
-                        <th class="titre_editable">Type</th>
-                        <th class="titre_editable">Évaluation</th>
-                        <th class="titre_editable">Prix</th>
-                        <th class="titre_editable">Propriétaire</th>
-                        <th class="titre_editable">Matricule</th>
-                        <th class="titre_editable">État</th>
-                        <th class="titre_editable">Éditer</th>
-                        <th class="titre_editable">Approuver</th>
-                        <th class="titre_editable">Refuser</th>
+            <table class="table table-reponsive">
+                <tbody><tr>
+                        <th class="">Nº</th>
+                        <th class="">Marque</th>
+                        <th class="">Modèle</th>
+                        <th class="">Année</th>
+                        <th class="">Type</th>
+                        <th class="">Évaluation</th>
+                        <th class="">Prix</th>
+                        <th class="">Propriétaire</th>
+                        <th class="">Matricule</th>
+                        <th class="">État</th>
+                        <th class="">Éditer</th>
+                        <th class="">Approuver</th>
+                        <th class="">Refuser</th>
                     </tr>
 
 <?php   foreach ($vehicules as $vehicule) { ?>
                     <tr>
-                        <td class="editable"><?= $vehicule['vehicule_id'] ?></td>
-                        <td class="editable"><?= $vehicule['nom_marque'] ?></td>
-                        <td class="editable"><?= $vehicule['nom_modele'] ?></td>
-                        <td class="editable"><?= $vehicule['annee'] ?></td>
-                        <td class="editable"><?= $vehicule['nom_type'] ?></td>
-                        <td class="editable"></td>
-                        <td class="editable"><?= $vehicule['prix'] ?></td>
-                        <td class="editable"><?= $vehicule['prenom'].' '.$vehicule['nom'] ?></td>
-                        <td class="editable"><?= $vehicule['matricule'] ?></td>
-                        <td class="editable"><?= EVehicule::getDescriptionEtat($vehicule['etat_vehicule']) ?></td>
+                        <td class=""><?= $vehicule['vehicule_id'] ?></td>
+                        <td class=""><?= $vehicule['nom_marque'] ?></td>
+                        <td class=""><?= $vehicule['nom_modele'] ?></td>
+                        <td class=""><?= $vehicule['annee'] ?></td>
+                        <td class=""><?= $vehicule['nom_type'] ?></td>
+                        <td class=""></td>
+                        <td class=""><?= $vehicule['prix'] ?></td>
+                        <td class=""><?=$vehicule['prenom'].' '.$vehicule['nom'] ?></td>
+                        <td class=""><?= $vehicule['matricule'] ?></td>
+                        <td class=""><?= EVehicule::getDescriptionEtat($vehicule['etat_vehicule']) ?></td>
 
                         <!--Actions-->
                         <td class=""><a class="btn btn-inline" href="<?= $base_url ?>vehicule/editVehicule/<?= $vehicule['vehicule_id'] ?>#s"></a></td>
