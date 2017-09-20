@@ -256,11 +256,8 @@ class Locations extends CI_Controller {
     }
 
 
-
-
     /* afficher formulaire de payement */
-    public function form_payement() {
-
+    public function form_payement($location_id) {
         $data['body_class'] = "subpages voitures";
         $data['base_url'] = base_url();
         $data['page_title'] = 'Messages reçus';
@@ -269,11 +266,10 @@ class Locations extends CI_Controller {
         if (!UserAcces::userIsLogged()) {
             redirect('usager/login');
         }
-
         $user = UserAcces::getLoggedUser();
-
         $this->load->model('location_model');
-        $data['locations'] = $this->location_model->getLocationsByUser($user);
+
+        $data['location'] = $this->location_model->getLocationById($location_id);
 
         $this->load->model('vehicule_model');
         $this->load->model('modepaiement_model');
@@ -281,7 +277,6 @@ class Locations extends CI_Controller {
         $data['users'] = UserAcces::getLoggedUser();
         $data['payements'] = $this->modepaiement_model->getModesPaiements();
         //$data['voitures'] = $this->vehicule_model->getVehicules($id);
-
 
         $this->load->view('client/form_payemant', $data);
     }
@@ -297,11 +292,10 @@ class Locations extends CI_Controller {
         if (!UserAcces::userIsLogged()) {
             redirect('usager/login');
         }
-
         $user = UserAcces::getLoggedUser();
         $this->load->model('location_model');
         $data['locations'] = $this->location_model->getLocationsByUser($user);
-
+        $data['location_id'] = $this->input->post('location_id');
 
         $data2['user_id'] = $this->input->post('user_id');
         $data2['location_id'] = $this->input->post('location_id');
@@ -311,7 +305,7 @@ class Locations extends CI_Controller {
         $this->load->model('location_model');
         $this->location_model->create_payement($data2);
 
-        $this->load->view('client/page_succes_payemant',$data );
+        $this->load->view('client/page_succes_payemant',$data);
 
     }
 

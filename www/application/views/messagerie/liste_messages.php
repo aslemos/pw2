@@ -37,5 +37,6 @@ require VIEWPATH . 'common/header.php';
     </tr>
 <?php } ?>
 </table>
+
 <?php
 require VIEWPATH . 'common/footer.php';

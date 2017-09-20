@@ -15,10 +15,9 @@ class Location_model extends CI_Model {
     public function get_locations($location_id = NULL) {
 
         $this->db->order_by('location_id', 'DESC');
-
         $this->db->join('usagers', 'locations.locataire_id = usagers.user_id');
         $this->db->join('vehicules', 'locations.vehicule_id = vehicules.vehicule_id');
-        $this->db->join('modeles', 'modeles.model_id = vehicules.model_id');
+        $this->db->join('modeles', 'modeles.modele_id = vehicules.modele_id');
         $this->db->join('marques', 'marques.marque_id = modeles.marque_id');
 
         if ($location_id == NULL) {

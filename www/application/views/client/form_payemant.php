@@ -1,28 +1,11 @@
 <?php include VIEWPATH . '/common/header.php'; ?>
 
-<style type="text/css">
-
-    #tester, #tester2 {
-        background-color: #F8F8F8;
-        color: black;
-        text-align: center;
-
-    }
-</style>
-
-
 <body>
     <div id="myForm1" class="form-style-10">
-        <h3>Une récente modes de paiement</h3>
-
+        <h3>Modes de paiement</h3>
         <form  method="post" action="<?= $base_url ?>locations/insererPayemant/">
             <div class="inner-wrap">
                 <div class="row">
-
-                    <?php foreach ($locations as $location) { ?>
-                        <input type="hidden" name="location_id" value="<?= $location->getId() ?> ">
-                    <?php } ?>
-                    <input type="hidden" name="user_id" value="<?= $users->getId() ?> ">
 
                     <div class="row">
 
@@ -32,27 +15,25 @@
                         </div>
 
                         <div class="col-md-6">
-                            <label><h4>Nom</h4>
-                                <input id="tester" type="text" name="nom" disabled value="<?= $users->getNom() ?> "/>
+                            <label><h5>Nom</h5>
+                                <input class="myInput" type="text" name="nom" disabled value="<?= $location->getLocataire()->getNom() ?> "/>
 
-                                <input type="hidden" name="user_id" value="<?= $users->getId() ?> ">
+                                <input type="hidden" name="user_id" value="<?= $location->getLocataireId() ?> ">
                                 <input type="hidden" name="montant" value="<?= $location->getPrixTotal() ?> ">
-
+                                <input type="hidden" name="location_id" value="<?= $location->getId() ?> ">
                             </label>
                         </div>
                         <div class="col-md-6">
-                            <label><h4>Prenom</h4>
-                                <input id="tester2" type="text" name="prenom" disabled value="<?= $users->getPrenom() ?> " />
+                            <label><h5>Prenom</h5>
+                                <input class="myInput" type="text" name="prenom" disabled value="<?= $location->getLocataire()->getPrenom() ?> " />
                             </label>
                         </div>
                     </div>
 
-
-
                     <div class="row">
 
                         <div class="col-md-12">
-                            <label>Type de paiement <span class="required">*</span>
+                            <label><h5>Type de paiement <span class="required">*</span></h5>
                                 <select name="field4" id="myselect" class="field-select" required>
 
                                     <option value=""></option>
@@ -63,43 +44,26 @@
                                 </select>
                             </label>
                         </div>
-
-
-
-                        <!--                    <div class="col-md-6">
-                                                <label>Type de paiement <span class="required">*</span>
-                                                    <input type="text" name="type_paiement" value="Visa"/>
-                                                </label>
-                                            </div>
-
-                                            <div class="col-md-6">
-                                                <label>Numéro de carte
-                                                    <input type="number" name="nom"  value="123456"/>
-                                                </label>
-                                            </div>-->
-
                     </div>
 
                     <div class="row">
                         <div class="col-md-4">
-                            <label>Numéro de carte<span class="required">*</span>
+                            <label><h5>Numéro de carte<span class="required">*</span></h5>
                                 <input type="number" name="nom"  value="" required/>
                             </label>
                         </div>
                         <div class="col-md-4" id="date">
-                            <label>Date d'expiration de la carte<span class="required">*</span>
+                            <label><h5>Date d'expiration de la carte<span class="required">*</span></h5>
                                 <input id="dateExpiration" type="text" name="prenom"  value="" required/>
                             </label>
                         </div>
 
                         <div class="col-md-4">
-                            <label>Code de sécurité de la carte - CVV<span class="required">*</span>
+                            <label><h5>Code de sécurité - CVV<span class="required" required>*</span></h5>
                                 <input id="dateExpiration" type="text" name="prenom"  value="" required/>
                             </label>
                         </div>
                     </div>
-
-
 
                     <div class="btn-group" role="group" aria-label="Basic example">
                         <button type="button" id="flip5" class="btn btn-danger animated bounceInLeft"><a href="<?= $base_url ?>" > <i class="fa  fa-window-close" style="font-size:22px;"></i> Annuler</a></button>
@@ -166,18 +130,9 @@
 
             </div>
         </form>
-
-
         <button class="btn2"><span class="fa fa-pencil" style="font-size:25px;color:orange;"> </span>Précédent modes de paiements</button>
-
     </div>
-
 </body>
-
-
-<script>
-
-</script>
 
 
 <?php include VIEWPATH . '/common/footer.php'; ?>
