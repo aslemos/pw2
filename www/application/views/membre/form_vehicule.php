@@ -48,31 +48,34 @@ include VIEWPATH . '/common/header.php';
 
             <div class="form-group">
                 <label class="control-label col-xs-3" for="annee">Année:</label>
-                <div class="input-group col-xs-6" id="datetimepickerAnnee">
-                    <!--<input type="number" max="<?=Date('Y')+1?>" min="<?=Date('Y')-30?>" class="form-control" name="annee" id="annee" required>-->
-                    <select class="form-control" name="annee" id="annee" required>
-                        <option value="">-- Choisissez --</option>
+                <div class="col-xs-6">
+                    <!--<div class="input-group" id="datetimepickerAnnee">-->
+                        <select class="form-control" name="annee" id="annee" required>
+                            <option value="">-- Choisissez --</option>
 <?php for ($i=Date('Y')+1, $fin=$i-30; $i > $fin; $i--) { ?>
-                        <option value="<?=$i?>"<?=$i==$form['annee']?' selected':''?>><?=$i?></option>
+                            <option value="<?=$i?>"<?=$i==$form['annee']?' selected':''?>><?=$i?></option>
 <?php } ?>
-                    </select>
-                    <span class="input-group-addon">
-                        <span class="glyphicon glyphicon-calendar"></span>
-                    </span>
+                        </select>
+<!--                        <span class="input-group-addon">
+                            <span class="glyphicon glyphicon-calendar"></span>
+                        </span>-->
+                    <!--</div>-->
                 </div>
             </div>
 
             <div class="form-group">
                 <label class="control-label col-xs-3" for="transmission_id">Transmission:</label>
-                <div class="btn-group col-xs-9" data-toggle="buttons">
+                <div class="col-xs-6">
+                    <div class="xbtn-group" data-toggle="buttons">
 <?php foreach ($transmissions as $transmission) { ?>
-                    <label class="btn radio-inline">
-                        <input type="radio" name="transmission_id" value="<?=$transmission['transmission_id']?>"<?=$transmission['transmission_id']==$form['transmission_id']?' checked':''?> required>
-                        <i class="fa fa-circle-o fa-2x"></i>
-                        <i class="fa fa-check-circle-o fa-2x"></i>
-                        <span class="test"><?=$transmission['nom_transmission']?></span>
-                    </label>
+                        <label class="btn">
+                            <input type="radio" name="transmission_id" value="<?=$transmission['transmission_id']?>"<?=$transmission['transmission_id']==$form['transmission_id']?' checked':''?> required>
+                            <i class="fa fa-circle-o fa-2x"></i>
+                            <i class="fa fa-check-circle-o fa-2x"></i>
+                            <span class="test"><?=$transmission['nom_transmission']?></span>
+                        </label>
 <?php } ?>
+                    </div>
                 </div>
             </div>
 
@@ -158,24 +161,26 @@ include VIEWPATH . '/common/header.php';
 
 if ($form['vehicule_id'] == '0') { ?>
             <div class="form-group">
+
                 <label class="control-label col-xs-3" for="date_debut">Disponibilité:</label>
-
-                <div class="input-group date col-xs-6" id="xdatetimepickerDe">
-                    <input type="text" class="form-control" name="date_debut" id="date_debut" value="<?=$form['date_debut']?>" title="Insérez la date initiale où ce véhicule sera disponible" placeholder="date début" required>
-                    <span class="input-group-addon">
-                        <span class="glyphicon glyphicon-calendar"></span>
-                    </span>
+                <div class="col-md-3 col-xs-6">
+                    <div class="input-group date" id="xdatetimepickerDe">
+                        <input type="text" class="form-control" name="date_debut" id="date_debut" value="<?=$form['date_debut']?>" title="Insérez la date initiale où ce véhicule sera disponible" placeholder="date début" required>
+                        <span class="input-group-addon">
+                            <span class="glyphicon glyphicon-calendar"></span>
+                        </span>
+                    </div>
                 </div>
-
-                <label class="control-label col-xs-3">à</label>
-
-                <div class="input-group date col-xs-6" id="xdatetimepickerA">
-                    <input type="text" class="form-control" name="date_fin" id="date_fin" value="<?=$form['date_fin']?>" title="Insérez la date jusqu'où ce véhicule sera disponible" placeholder="date fin" required>
-                    <span class="input-group-addon">
-                        <span class="glyphicon glyphicon-calendar"></span>
-                    </span>
+                <div class="col-md-3 col-md-offset-0 col-xs-6 col-xs-offset-3">
+                    <div class="input-group date" id="xdatetimepickerA">
+                        <input type="text" class="form-control" name="date_fin" id="date_fin" value="<?=$form['date_fin']?>" title="Insérez la date jusqu'où ce véhicule sera disponible" placeholder="date fin" required>
+                        <span class="input-group-addon">
+                            <span class="glyphicon glyphicon-calendar"></span>
+                        </span>
+                    </div>
                 </div>
             </div>
+
 <?php } ?>
             <div class="form-group">
                 <label class="control-label col-xs-3" for="photo">Photo:</label>

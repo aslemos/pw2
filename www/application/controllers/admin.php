@@ -28,7 +28,8 @@ class Admin extends CI_Controller {
             redirect('noperm');
         }
 
-        $data['title'] = 'Liste des administrateurs';
+        $data['page_title'] = 'Liste des administrateurs du site';
+        $data['title'] = 'Administrateurs du site';
         $data['body_class'] = '';
         $data['base_url'] = base_url();
         $data['usagers'] = $this->usager_model->getAdmins();
@@ -54,8 +55,6 @@ class Admin extends CI_Controller {
      * Liste générale des voitures du site, visible pour l'administrateur
      */
     public function listeVehicules() {
-        $data['meta_keywords'] = '';
-        $data['meta_description'] = '';
         $data['page_title'] = 'Liste des véhicules';
         $data['title'] = 'Les véhicules';
         $data['body_class'] = 'subpages listeAdmin';
@@ -81,6 +80,7 @@ class Admin extends CI_Controller {
     public function approuverMembre() {
         $data['page_title'] = 'Approbation de membre';
         $data['title'] = 'Approbation de membre';
+        $data['body_class'] = 'subpages listeAdmin';
         $data['usagers'] = $this->usager_model->getUsagersEnAttente();
         $this->load->view('admin/liste_usagers_approuver', $data);
     }
@@ -89,13 +89,16 @@ class Admin extends CI_Controller {
      * Affichage des réclamations
      */
     public function reclamations() {
-       echo 'liste et visualisation des messages de réclamation';
-       $this->load->model('message_model');
-       $data['reclamation'] = $this->message_model->getReclamations();
-       //this-load-view()
-       $this->load->view('admin/liste_reclamations', $data); 
-       //var_dump($this->data);
-       // message_model function  getreclamayion
+        $data['page_title'] = 'Réclamations des membres';
+        $data['title'] = 'Réclamations des membres';
+        $data['body_class'] = 'subpages listeAdmin';
+        echo 'liste et visualisation des messages de réclamation';
+        $this->load->model('message_model');
+        $data['reclamation'] = $this->message_model->getReclamations();
+        //this-load-view()
+        $this->load->view('admin/liste_reclamations', $data);
+        //var_dump($this->data);
+        // message_model function  getreclamayion
     }
 
     /**
@@ -103,6 +106,9 @@ class Admin extends CI_Controller {
      * par intermède de la fonction 'Contacter admin'
      */
     public function messages() {
+        $data['page_title'] = 'Messages des membres';
+        $data['title'] = 'Messages des membres';
+        $data['body_class'] = 'subpages listeAdmin';
         echo 'liste et visualisation des messages internes à l\'administrateur';
         $messages = $this->message_model->getMessagesAdmin();
         echo '<pre>';
@@ -115,6 +121,9 @@ class Admin extends CI_Controller {
      * Ce sont les messages laissés par les visiteurs du site.
      */
     public function contacts() {
+        $data['page_title'] = 'Contacts des visiteurs du site';
+        $data['title'] = 'Contacts des visiteurs';
+        $data['body_class'] = 'subpages listeAdmin';
         echo 'liste et visualisation des messages de contact des visiteurs du site';
         $contacts = $this->message_model->getContacts();
         echo '<pre>';
