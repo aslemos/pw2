@@ -14,25 +14,18 @@ class Location_model extends CI_Model {
 
     public function get_locations($location_id = NULL) {
 
+        $this->db->order_by('location_id', 'DESC');
+        $this->db->join('usagers', 'locations.locataire_id = usagers.user_id');
+        $this->db->join('vehicules', 'locations.vehicule_id = vehicules.vehicule_id');
+        $this->db->join('modeles', 'modeles.modele_id = vehicules.modele_id');
+        $this->db->join('marques', 'marques.marque_id = modeles.marque_id');
+
         if ($location_id == NULL) {
-
-            $this->db->order_by('location_id', 'DESC');
-
-            $this->db->join('usagers', 'locations.locataire_id = usagers.user_id');
-            $this->db->join('vehicules', 'locations.vehicule_id = vehicules.vehicule_id');
-            //$this->db->join('paiements', 'locations.paiement_id = paiements.paiement_id');
-
             $query = $this->db->get('locations');
-
             return $query->result_array();
         }
 
-        $this->db->join('usagers', 'locations.locataire_id = usagers.user_id');
-        $this->db->join('vehicules', 'locations.vehicule_id = vehicules.vehicule_id');
-        //$this->db->join('paiements', 'locations.paiement_id = paiements.paiement_id');
-
         $query = $this->db->get_where('locations', array('locations.location_id' => $location_id));
-
         return $query->row_array();
     }
 
@@ -100,9 +93,9 @@ class Location_model extends CI_Model {
      * @return ELocation
      */
     public function getLocationById($location_id) {
-        $arr_location = $this->get_locations($location_id);
-        if (count($arr_location)) {
-            return new ELocation($arr_location);
+        $data = $this->get_locations($location_id);
+        if (count($data)) {
+            return $this->getInstanceLocationByData($data);//new ELocation($arr_location);
         }
         return NULL;
     }

@@ -770,3 +770,13 @@ label:hover input[type="radio"] ~ i.fa {
 #myForm2 {
   display: none;
 }
+
+/*centrer text on page_succes_payemant*/
+ #succes {
+        text-align: center;
+    }
+
+    /*Champ obligatoire*/
+    .required{
+        color: red;
+    }

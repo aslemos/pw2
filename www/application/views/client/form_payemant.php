@@ -2,12 +2,13 @@
 
 <style type="text/css">
 
-    #tester, #tester2 {
+    #myInput,#myInput2  {
         background-color: #F8F8F8;
         color: black;
         text-align: center;
 
     }
+
 </style>
 
 
@@ -19,35 +20,28 @@
             <div class="inner-wrap">
                 <div class="row">
 
-                    <?php foreach ($locations as $location) { ?>
-                        <input type="hidden" name="location_id" value="<?= $location->getId() ?> ">
-                    <?php } ?>
-                    <input type="hidden" name="user_id" value="<?= $users->getId() ?> ">
-
                     <div class="row">
 
-                      <!--  <div class="col-md-12">
+                        <div class="col-md-12">
                             <h4>Montant total: <?= $location->getPrixTotal() ?>$</h4>
                             <hr>
-                        </div>-->
+                        </div>
 
                         <div class="col-md-6">
                             <label><h4>Nom</h4>
-                                <input id="tester" type="text" name="nom" disabled value="<?= $users->getNom() ?> "/>
+                                <input id="myInput" type="text" name="nom" disabled value="<?= $location->getLocataire()->getNom() ?> "/>
 
-                                <input type="hidden" name="user_id" value="<?= $users->getId() ?> ">
+                                <input type="hidden" name="user_id" value="<?= $location->getLocataireId() ?> ">
                                 <input type="hidden" name="montant" value="<?= $location->getPrixTotal() ?> ">
-
+                                <input type="hidden" name="location_id" value="<?= $location->getId() ?> ">
                             </label>
                         </div>
                         <div class="col-md-6">
                             <label><h4>Prenom</h4>
-                                <input id="tester2" type="text" name="prenom" disabled value="<?= $users->getPrenom() ?> " />
+                                <input id="myInput2" type="text" name="prenom" disabled value="<?= $location->getLocataire()->getPrenom() ?> " />
                             </label>
                         </div>
                     </div>
-
-
 
                     <div class="row">
 
@@ -63,21 +57,6 @@
                                 </select>
                             </label>
                         </div>
-
-
-
-                        <!--                    <div class="col-md-6">
-                                                <label>Type de paiement <span class="required">*</span>
-                                                    <input type="text" name="type_paiement" value="Visa"/>
-                                                </label>
-                                            </div>
-
-                                            <div class="col-md-6">
-                                                <label>Numéro de carte
-                                                    <input type="number" name="nom"  value="123456"/>
-                                                </label>
-                                            </div>-->
-
                     </div>
 
                     <div class="row">
@@ -98,8 +77,6 @@
                             </label>
                         </div>
                     </div>
-
-
 
                     <div class="btn-group" role="group" aria-label="Basic example">
                         <button type="button" id="flip5" class="btn btn-danger animated bounceInLeft"><a href="<?= $base_url ?>" > <i class="fa  fa-window-close" style="font-size:22px;"></i> Annuler</a></button>
@@ -166,18 +143,10 @@
 
             </div>
         </form>
-
-
         <button class="btn2"><span class="fa fa-pencil" style="font-size:25px;color:orange;"> </span>Précédent modes de paiements</button>
-
     </div>
-
 </body>
 
-
-<script>
-
-</script>
 
 
 <?php include VIEWPATH . '/common/footer.php'; ?>
