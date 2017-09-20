@@ -7,17 +7,17 @@ include VIEWPATH . '/common/header.php';
 <?php include VIEWPATH . 'admin/boutons_admin.php'; ?>
     <h2><?=$title?></h2>
     <form action="" name="formulaire" id="form-Members-id">
-        <table class="table table-responsive">
+        <table class="table table-reponsive">
             <tr>
-                <td class="titre_editable">Nº</td>
-                <td class="titre_editable">Prénom</td>
-                <td class="titre_editable">Nom</td>
-                <td class="titre_editable">Courriel</td>
-                <td class="titre_editable">Téléphone</td>
-                <td class="titre_editable">Code postal</td>
-                <td class="titre_editable">État</td>
-                <td class="titre_editable">Approuver</td>
-                <td class="titre_editable">Refuser</td>
+                <th class="">Nº</th>
+                <th class="">Prénom</th>
+                <th class="">Nom</th>
+                <th class="">Courriel</th>
+                <th class="">Téléphone</th>
+                <th class="">Code postal</th>
+                <th class="">État</th>
+                <th class="">Approuver</th>
+                <th class="">Refuser</th>
             </tr>
             <?php foreach ($usagers as $user) { ?>
             <tr>
@@ -28,10 +28,10 @@ include VIEWPATH . '/common/header.php';
                 <td class=""><?php echo $user['telephone']?></td>
                 <td class=""><?php echo $user['code_postal']?></td>
                 <td><?php echo EUsager::getDescriptionEtat($user['etat_usager']); ?></td>
-                <td class="editable">
+                <td class="">
                     <img src="<?= $base_url; ?>assets/images/ok.png" >
                 </td>
-                <td class="editable">
+                <td class="">
                     <img src="<?= $base_url; ?>assets/images/no.png" >
                 </td>
 

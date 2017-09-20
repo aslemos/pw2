@@ -92,7 +92,6 @@ class Admin extends CI_Controller {
         $data['page_title'] = 'Réclamations des membres';
         $data['title'] = 'Réclamations des membres';
         $data['body_class'] = 'subpages listeAdmin';
-        echo 'liste et visualisation des messages de réclamation';
         $this->load->model('message_model');
         $data['reclamation'] = $this->message_model->getReclamations();
         //this-load-view()
