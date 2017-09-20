@@ -27,6 +27,12 @@ class EArrondissement implements IArrondissement {
         return $this;
     }
 
+    public function getVilleId() {
+        if ($this->_ville) {
+            return $this->_ville->getId();
+        }
+        return NULL;
+    }
     public function getVille() {
         return $this->_ville;
     }

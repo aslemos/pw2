@@ -11,6 +11,7 @@ interface IVille {
     public function getNom();
     public function setNom($nom_ville);
 
+    public function getProvinceId();
     public function getProvince();
-    public function setProvince($province);
+    public function setProvince(IProvince $province);
 }

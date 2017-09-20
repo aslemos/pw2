@@ -9,31 +9,34 @@ include VIEWPATH . 'common/header.php';
             <div class="cols6">
                 <div class="blocks6">
                     <h2>Formulaire d'inscription membre</h2>
+                    <?php echo validation_errors(); ?>
                 </div>
             </div>
         </div>
         <div class="rows5 row alternate">
+            <p><span class="filedRequired">*</span> Ces champs sont obligatoires</p>
+            <br>
             <div class="cols7 col-md-12 col-sm-12 col-xs-12">
                 <div class="blocks7">
                     <div>
-                        <form method="post" name="monFormulaire" action="<?=$base_url?>usager/inscription#s" class="form-horizontal" id="needs-validation" novalidate >
+                        <form method="post" name="monFormulaire" action="" class="form-horizontal" id="needs-validation" > <!--novalidate-->
 
                             <div class="form-group">
-                                <label class="control-label col-xs-3" for="lastName">Nom de famille:</label>
+                                <label class="control-label col-xs-3" for="lastName">Nom de famille: <span class="filedRequired">*</span></label>
                                 <div class="col-xs-6">
-                                    <input type="text" class="form-control" id="lastName" placeholder="Entrez le nom de famille">
+                                    <input type="text" class="form-control" name="lastName" id="lastName" placeholder="Entrez le nom de famille" required>
                                 </div>
                             </div>
 
                             <div class="form-group">
-                                <label class="control-label col-xs-3" for="firstName">Prenom:</label>
+                                <label class="control-label col-xs-3" for="firstName">Prenom: <span class="filedRequired">*</span></label>
                                 <div class="col-xs-6">
-                                    <input type="text" class="form-control" id="firstName" placeholder="Entrez le nom">
+                                    <input type="text" class="form-control" name="firstName" id="firstName" placeholder="Entrez le nom" required> 
                                 </div>
                             </div>
 
                             <div class="form-group">
-                                <label class="control-label col-xs-3">Date de naissance:</label>
+                                <label class="control-label col-xs-3">Date de naissance:<span class="filedRequired">*</span></label>
                                 <div class="col-xs-2" id="input_jour">
 
                                 </div>
@@ -47,12 +50,12 @@ include VIEWPATH . 'common/header.php';
 
 
                             <div class="form-group">
-                                <label class="control-label col-xs-3">Sex:</label>
+                                <label class="control-label col-xs-3">Sexe: <span class="filedRequired">*</span></label>
 
                                 <div class="btn-group" data-toggle="buttons">
                                     <div class="col-xs-6">
                                         <label class="btn active" >
-                                            <input type="radio" name='gender2' class="gender" checked>
+                                            <input type="radio" name='gender2' class="gender" checked required>
                                             <i class="fa fa-circle-o fa-2x"></i>
                                             <i class="fa fa-check-circle-o fa-2x"></i>
                                             <span class="test"> Homme</span>
@@ -61,7 +64,7 @@ include VIEWPATH . 'common/header.php';
 
                                     <div class="col-xs-6">
                                         <label class="btn">
-                                            <input type="radio" name='gender2' class="gender">
+                                            <input type="radio" name='gender2' class="gender" required>
                                             <i class="fa fa-circle-o fa-2x"></i>
                                             <i class="fa fa-check-circle-o fa-2x"></i>
                                             <span class="test"> Femme</span>
@@ -71,141 +74,115 @@ include VIEWPATH . 'common/header.php';
                             </div>
 
                             <div class="form-group">
-                                <label class="control-label col-xs-3" for="inputConduire">Numéro de permis de conduire:</label>
+                                <label class="control-label col-xs-3" for="inputConduire">Numéro de permis de conduire: <span class="filedRequired">*</span></label>
                                 <div class="col-xs-6">
-                                    <input type="text" class="form-control" id="inputConduire" placeholder="Entrez le numéro de permis de conduire">
+                                    <input type="text" class="form-control" name="inputConduire" id="inputConduire" placeholder="Entrez le numéro de permis de conduire" required>
                                 </div>
                             </div>
 
                             <div class="form-group">
-                                <label class="control-label col-xs-3" for="phoneNumber">Numéro de téléphone:</label>
+                                <label class="control-label col-xs-3" for="phoneNumber">Numéro de téléphone: <span class="filedRequired">*</span></label>
                                 <div class="col-xs-6">
-                                    <input type="tel" class="form-control" id="phoneNumber" placeholder="Entrez le numéro de téléphone">
-                                </div>
-                            </div>
-
-
-                            <div class="form-group">
-                                <label class="control-label col-xs-3" for="inputEmail">Email:</label>
-                                <div class="col-xs-6">
-                                    <input  type="email" class="form-control" id="inputEmail" placeholder="Email">
+                                    <input type="tel" class="form-control" name="phoneNumber" id="phoneNumber" placeholder="Entrez le numéro de téléphone" required>
                                 </div>
                             </div>
 
 
                             <div class="form-group">
-                                <label class="control-label col-xs-3" for="inputPassword">Mot de passe:</label>
+                                <label class="control-label col-xs-3" for="inputEmail">Email: <span class="filedRequired">*</span></label>
                                 <div class="col-xs-6">
-                                    <input type="password" class="form-control" id="inputPassword" placeholder="Entrez le mot de passe plus de 8 caractères">
+                                    <input  type="email" name="inputEmail" class="form-control" id="inputEmail" placeholder="Email" required>
+                                </div>
+                            </div>
+
+
+                            <div class="form-group">
+                                <label class="control-label col-xs-3" for="inputPassword">Mot de passe: <span class="filedRequired">*</span></label>
+                                <div class="col-xs-6">
+                                    <input type="password" name="inputPassword" class="form-control" id="inputPassword" placeholder="Entrez le mot de passe plus de 8 caractères" required>
                                 </div>
                             </div>
 
                             <div class="form-group">
-                                <label class="control-label col-xs-3" for="confirmPassword">Confirmer mot de passe:</label>
+                                <label class="control-label col-xs-3" for="confirmPassword">Confirmer mot de passe: <span class="filedRequired">*</span></label>
                                 <div class="col-xs-6">
-                                    <input type="password" class="form-control" id="confirmPassword" placeholder="Retapez le mot de passe">
+                                    <input type="password" name="confirmPassword" class="form-control" id="confirmPassword" placeholder="Retapez le mot de passe" required>
                                 </div>
                             </div>
 
                             <div class="form-group">
-                                <label  class="control-label col-xs-3" for="inputAddress">Adresse</label>
+                                <label  class="control-label col-xs-3" for="inputAddress">Adresse: <span class="filedRequired">*</span></label>
                                 <div class="col-xs-6">
-                                    <input type="text" class="form-control" id="inputAddress" placeholder="1234 rue de Gaspe">
+                                    <input type="text" name="inputAddress" class="form-control" id="inputAddress" placeholder="1234 rue de Gaspe" required>
                                 </div>
                             </div>
 
                             <div class="form-group">
-                                <label  class="control-label col-xs-3" for="inputAddress2">Adresse 2</label>
+                                <label  class="control-label col-xs-3" for="inputAddress2">Adresse 2: <span class="filedRequired">  </span></label>
                                 <div class="col-xs-6">
-                                    <input type="text" class="form-control" id="inputAddress2" placeholder="Appartement, studio ou étage">
+                                    <input type="text" name="inputAddress2" class="form-control" id="inputAddress2" placeholder="Appartement, studio ou étage">
                                 </div>
                             </div>
 
                             <div class="form-group">
-                                <label class="control-label col-xs-3"></label>
+                                <label class="control-label col-xs-3"  for="province_id"><span class="filedRequired">*</span></label>
                                 <div class="col-xs-3">
-                                    <input type="text" class="form-control" id="inputVille" placeholder="Ville" required>
-                                </div>
-
-                                <div class="col-xs-3">
-                                    <select name="choixProvince" class="form-control">
-                                        <option SELECTED>Province</option>
+                                    <select class="form-control formSelector" name="province_id" id="province_id">
+                                        <option value="0">-- Choisissez Province --</option>
+                                        <?php foreach ($provinces as $province) { ?>
+                                            <option value="<?= $province['province_id'] ?>"><?= $province['province'] ?></option>
+                                        <?php } ?>
                                     </select>
                                 </div>
 
-
-                            </div>
-
-
-                            <div class="form-group">
-                                <label class="control-label col-xs-3"></label>
-
+                                <!--<label class="control-label col-xs-2"  for="ville">Ville</label>-->
                                 <div class="col-xs-3">
-                                    <input type="text" class="form-control" id="inputVille" placeholder="Ville" required>
-                                </div>
-
-                                <div class="col-xs-3">
-                                    <select name="choixProvince" class="form-control">
-                                        <option SELECTED>Province</option>
+                                    <select class="form-control formSelector" name="ville_id" id="ville_id">
+                                        <option value="0">-- Choisissez Ville --</option>
+                                        <?php foreach ($villes as $ville) { ?>
+                                            <option value="<?= $ville['ville_id'] ?>"><?= $ville['nom_ville'] ?></option>
+                                        <?php } ?>
                                     </select>
                                 </div>
-
-
-                            </div>
-
-
-<!--                                <div class="form-group">
-                                <label class="control-label col-xs-3">Payment:</label>
-                                <div class="col-xs-2">
-                                    <label for="visa" class="btn btn-primary form-control">Visa
-                                        <input type="checkbox" id="visa" class="badgebox" value="">
-                                        <span class="badge">&check;</span>
-                                    </label>
-                                </div>
-
-                                <div class="col-xs-2">
-                                    <label class="btn btn-primary form-control" for="masterCard">MasterCard
-                                        <input type="checkbox" id="masterCard" class="badgebox" value="">
-                                        <span class="badge">&check;</span>
-                                    </label>
-                                </div>
-
-                                <div class="col-xs-2">
-                                    <label class="btn btn-primary form-control" for="americanExpress ">American Express
-                                        <input type="checkbox" id="default3" class="badgebox" value="">
-                                        <span class="badge">&check;</span>
-                                    </label>
-                                </div>
                             </div>
 
                             <div class="form-group">
-                                <label class="control-label col-xs-3"></label>
-                                <div class="col-xs-2">
-                                    <label for="default4" class="btn btn-primary form-control">
-                                        <input type="checkbox" id="default4" class="badgebox" value="">PayPal
-                                        <span class="badge">&check;</span>
-                                    </label>
+                                <label class="control-label col-xs-3"><span class="filedRequired">*</span></label>
+                                <div class="col-xs-3">
+                                    <select class="form-control formSelector" name="arr_id" id="arr_id">
+                                        <option value="0">-- Choisissez Arrondissement--</option>
+                                        <?php foreach ($arrondissement as $ville) { ?>
+                                            <option value="<?= $ville['ville_id'] ?>"><?= $ville['nom_ville'] ?></option>
+                                        <?php } ?>
+                                    </select>
                                 </div>
+                                <div class="col-xs-3">
+                                    <input type="text" name="CodePostal" class="form-control" id="inputCode" placeholder="Code Postal" required>
+                                </div>
+                            </div>
 
-                                <div class="col-xs-2">
-                                    <label for="default5" class="btn btn-primary form-control">Discover
-                                        <input type="checkbox" id="default5" class="badgebox" value="">
-                                        <span class="badge">&check;</span>
-                                    </label>
-                                </div>
-
-                                <div class="col-xs-2">
-                                    <label for="default6" class="btn btn-primary form-control">Interac
-                                        <input type="checkbox" id="default6" class="badgebox" value="">
-                                        <span class="badge">&check;</span>
-                                    </label>
-                                </div>
-                            </div>-->
+                            <!--                            <div class="form-group">
+                                                            
+                                                            <div class="col-xs-2">
+                                                                <select name="choixProvince" id="province_id" class="form-control formSelector">
+                                                                    <option SELECTED>Province</option>
+                                                                </select>
+                                                            </div>
+                                                            
+                                                            <label class="control-label col-xs-3" for="inputVille"></label>
+                                                            <div class="col-xs-2">
+                                                                <input type="text" name="inputVille" class="form-control" id="inputVille" placeholder="Ville" required>
+                                                            </div>
+                            
+                                                            <div class="col-xs-2">
+                                                                <input type="text" name="CodePostal" class="form-control" id="inputCode" placeholder="Code Postal" required>
+                                                            </div>
+                                                        </div>-->
 
                             <div class="form-group">
                                 <div class="col-xs-offset-3 col-xs-9">
                                     <label class="checkbox-inline">
-                                        <input type="checkbox" value="agree">  Je suis d'accord avec <a href="#"  data-toggle="modal" data-target="#myModal">conditions</a>.
+                                        <input type="checkbox" value="agree" required>  Je suis d'accord avec <a href="#"  data-toggle="modal" data-target="#myModal">conditions</a>.<span class="filedRequired">*</span>
                                     </label>
 
                                     <!-- Modal -->
@@ -231,6 +208,7 @@ include VIEWPATH . 'common/header.php';
                             </div>
 
                             <br />
+                            
                             <div class="form-group">
                                 <div class="col-xs-offset-3 col-xs-9">
                                     <input type="submit" class="btn btn-primary" value="S'inscrire">
@@ -241,48 +219,7 @@ include VIEWPATH . 'common/header.php';
 
 
                         <script>
-                            $(document).ready(function() {
 
-                            // Ramplir Date de naissance
-                            var liste_jour = "<select name='jour' class='form-control'>    <option value='0'>Jour</option>";
-                            for (var i = 1; i <= 31; i++) {
-                                liste_jour += "<option value='" + i + "'>" + i + "</option>";
-                            }
-                            ;
-                            liste_jour += "</select>";
-
-
-                            var liste_mois = "<select name='mois' class='form-control'><option value='0'>Mois</option>";
-                            for (var i = 1; i <= 12; i++) {
-                                liste_mois += "<option value='" + i + "'>" + i + "</option>";
-                            }
-                            ;
-                            liste_mois += "</select>";
-
-                            var liste_annee = "<select name='annee' class='form-control'><option value='0'>Année</option>";
-                            for (var i = 1916; i <= 2016; i++) {
-                                liste_annee += "<option value='" + i + "'>" + i + "</option>";
-                            }
-                            ;
-                            liste_annee += "</select>";
-
-                            // Insérer nos listes dans le DOM
-                            document.getElementById("input_jour").innerHTML = liste_jour;
-                            document.getElementById("input_mois").innerHTML = liste_mois;
-                            document.getElementById("input_annee").innerHTML = liste_annee;
-
-
-
-                            /*ramlir Province*/
-                            var generMarque = new Array("AB", "BC", "MB", "NB", "ON", "QC");
-                            var d = document.monFormulaire.choixProvince;
-                            for (var i = 0; i < generMarque.length; i++)
-                            {
-                                d.length++;
-                                d.options[d.length - 1].text = generMarque[i];
-                            }
-
-                            });
                         </script>
 
                     </div>

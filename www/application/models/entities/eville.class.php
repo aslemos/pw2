@@ -28,10 +28,17 @@ class EVille implements IVille {
         return $this;
     }
 
+    public function getProvinceId() {
+        if ($this->_province) {
+            return $this->_province->getId();
+        }
+        return NULL;
+    }
+
     public function getProvince() {
         return $this->_province;
     }
-    public function setProvince($province) {
+    public function setProvince(IProvince $province) {
         $this->_province = $province;
         return $this;
     }

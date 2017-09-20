@@ -20,7 +20,7 @@ class Vehicule_model extends CI_Model {
     public function rechercherVehicules(ERecherche $recherche) {
 
         // Vérifie si les dates son consécutives
-        if ($recherche->getDateDebut() < $recherche->getDateFin()) {
+        if ($recherche->getDateFin() < $recherche->getDateDebut()) {
             return [];
         }
 
@@ -269,8 +269,19 @@ class Vehicule_model extends CI_Model {
     public function getVehiculeById($vehicule_id) {
 
         // Véhicule
-        $arr_vehicule = $this->getVehicules($vehicule_id);
-        return $this->getVehiculeByArray($arr_vehicule);
+        $data = $this->getVehicules($vehicule_id);
+        if (!empty($data)) {
+            $vehicule = $this->getVehiculeByArray($data);
+            $vehicule->getArrond()->getVille()->setProvince(
+                    new EProvince([
+                        'province_id' => $data['province'],
+                        'nom_province' => $data['province']
+                        ])
+                    );
+
+            return $vehicule;
+        }
+        return NULL;
     }
 
     public function getVehiculeByArray($arr_vehicule) {
@@ -341,18 +352,19 @@ class Vehicule_model extends CI_Model {
     public function createVehicule(EVehicule $vehicule) { // addVehicule
         // insère le véhicule en récuperant les données de l'objet
         $this->db->insert('vehicules', [
-            'proprietaire_id' => $vehicule->getProprieraireId(),
+            'proprietaire_id' => $vehicule->getProprietaireId(),
             'matricule' => $vehicule->getMatricule(),
+            'description' => $vehicule->getDescription(),
             'annee' => $vehicule->getAnnee(),
             'nbre_places' => $vehicule->getNbPlaces(),
             'prix' => $vehicule->getPrix(),
             'vehicule_photo' => $vehicule->getPhoto(),
             'type_id' => $vehicule->getTypeId(),
-            'marque_id' => $vehicule->getMarqueId(),
             'modele_id' => $vehicule->getModeleId(),
             'carburant_id' => $vehicule->getCarburantId(),
             'transmission_id' => $vehicule->getTransmissionId(),
-            'arr_id' => $vehicule->getArrondId()
+            'arr_id' => $vehicule->getArrondId(),
+            'etat_vehicule' => EVehicule::ETAT_EN_ATTENTE
         ]);
 
         // si la voiture a bien été insérée, on procède à l'insertion de sa disponibilité
@@ -484,6 +496,23 @@ class Vehicule_model extends CI_Model {
         return $query->result_array();
     }
 
+    /**
+     * Retourne un objet de type de véhicule
+     * @param int $type_id
+     * @return ETypeVehicule
+     * @author Alessandro Souza Lemos
+     */
+    public function getTypeVehiculeById($type_id) {
+        if (intval($type_id) > 0) {
+            $query = $this->db->get_where('type_vehicules', ['type_id' => $type_id]);
+            $data = $query->row_array();
+            if (!empty($data)) {
+                return new ETypeVehicule($data);
+            }
+        }
+        return NULL;
+    }
+
     public function getTypesVehicules() {
 
         $this->db->order_by('nom_type');
@@ -493,10 +522,15 @@ class Vehicule_model extends CI_Model {
         return $query->result_array();
     }
 
+    /**
+     * Retourne un objet de Carburant par son ID
+     * @param int $carburant_id
+     * @return ECarburant
+     */
     public function getCarburantById($carburant_id) {
         $data = $this->getCarburants($carburant_id);
-        if (!empty($data)) {
-            return new ECarburant($data);
+        if (count($data) > 0) {
+            return new ECarburant($data[0]);
         }
         return NULL;
     }
@@ -511,6 +545,23 @@ class Vehicule_model extends CI_Model {
         }
 
         return $query->result_array();
+    }
+
+    /**
+     * Retourne un objet Transmission par son ID
+     * @param int $transmission_id
+     * @return ETransmission
+     * @author Alessandro Souza Lemos
+     */
+    public function getTransmissionById($transmission_id) {
+        if (intval($transmission_id) > 0) {
+            $query = $this->db->get_where('transmissions', ['transmission_id' => $transmission_id]);
+            $data = $query->result_array();
+            if (count($data) > 0) {
+                return new ETransmission($data[0]);
+            }
+        }
+        return NULL;
     }
 
     public function getTransmissions($transmission_id = NULL) {
