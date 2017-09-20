@@ -31,14 +31,16 @@ $(function () {
     });
 
     // met une séquence de 30 ans dans l'élément dont la classe est 'annee'
-    $('.annee').each(function(){
+    $('select.annee, datalist.annee').each(function(){
 
         var debut = (new Date()).getFullYear();
-        var valeur = (this.value*1 > 0) ? this.value : debut;
+        var pos = (this.value*1 > 0) ? this.value : -1;
 
-        this.innerHTML = this.options[0].outerHTML;
+        if (this.tagName === 'select' && this.options[0]) {
+            this.innerHTML = this.options[0].outerHTML;
+        }
         for (var i=debut+1, fin=debut-30; i > fin; i--) {
-            this.innerHTML += '<option value=""' + (i===valeur?' selected':'') + '>' + i + '</option>';
+            this.innerHTML += '<option value=""' + (i===pos?' selected':'') + '>' + i + '</option>';
         }
     });
 //    $('#annee').datetimepicker({

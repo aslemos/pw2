@@ -14,7 +14,7 @@ class EVehicule implements IVehicule {
     private $_annee;
     private $_nb_places;
     private $_prix;
-    private $_etat;
+    private $_etat = self::ETAT_EN_ATTENTE;
     private $_disponibilite_id = -1;
     //
     private $_proprietaire = NULL;  // Objet EUser
@@ -28,16 +28,36 @@ class EVehicule implements IVehicule {
 
     public function __construct(array $data = NULL) {
         if ($data) {
-            $this->_vehicule_id = $data['vehicule_id'] ? $data['vehicule_id'] : 0;
+            $this->_vehicule_id = isset($data['vehicule_id']) ? $data['vehicule_id'] : 0;
             $this->setDescription($data['description']);
             $this->setAnnee($data['annee']);
             $this->setNbPlaces($data['nbre_places']);
             $this->setMatricule($data['matricule']);
             $this->setPrix($data['prix']);
             $this->setPhoto($data['vehicule_photo']);
-            $this->setEtat($data['etat_vehicule']);
+            if (isset($data['etat_vehicule'])) {
+                $this->setEtat($data['etat_vehicule']);
+            }
             if (isset($data['dispo_id'])) {
                 $this->_disponibilite_id = $data['dispo_id'];
+            }
+            if (isset($data['proprietaire']) && $data['proprietaire'] instanceof EUsager) {
+                $this->setProprietaire($data['proprietaire']);
+            }
+            if (isset($data['type']) && $data['type'] instanceof ETypeVehicule) {
+                $this->setType($data['type']);
+            }
+            if (isset($data['modele']) && $data['modele'] instanceof EModele) {
+                $this->setModele($data['modele']);
+            }
+            if (isset($data['carburant']) && $data['carburant'] instanceof ECarburant) {
+                $this->setCarburant($data['carburant']);
+            }
+            if (isset($data['transmission']) && $data['transmission'] instanceof ETransmission) {
+                $this->setTransmission($data['transmission']);
+            }
+            if (isset($data['arr']) && $data['arr'] instanceof EArrondissement) {
+                $this->setArrond($data['arr']);
             }
         }
     }
@@ -54,10 +74,16 @@ class EVehicule implements IVehicule {
     }
 
     public function getMarqueId() {
-        return $this->_modele->getMarque()->getId();
+        if ($this->getMarque()) {
+            return $this->getMarque()->getId();
+        }
+        return NULL;
     }
     public function getMarque() {
-        return $this->_modele->getMarque();
+        if ($this->_modele) {
+            return $this->_modele->getMarque();
+        }
+        return NULL;
     }
     public function setMarque(IMarque $marque) {
         $this->_modele->setMarque($marque);
@@ -65,7 +91,10 @@ class EVehicule implements IVehicule {
     }
 
     public function getModeleId() {
-        return $this->_modele->getId();
+        if ($this->_modele) {
+            return $this->_modele->getId();
+        }
+        return NULL;
     }
     public function getModele() {
         return $this->_modele;
@@ -76,7 +105,10 @@ class EVehicule implements IVehicule {
     }
 
     public function getTypeId() {
-        return $this->_type->getId();
+        if ($this->_type) {
+            return $this->_type->getId();
+        }
+        return NULL;
     }
     public function getType() {
         return $this->_type;
@@ -87,7 +119,10 @@ class EVehicule implements IVehicule {
     }
 
     public function getCarburantId() {
-        return $this->_carburant->getId();
+        if ($this->_carburant) {
+            return $this->_carburant->getId();
+        }
+        return NULL;
     }
     public function getCarburant() {
         return $this->_carburant;
@@ -97,7 +132,10 @@ class EVehicule implements IVehicule {
     }
 
     public function getArrondId() {
-        return $this->_arrondissement->getId();
+        if ($this->_arrondissement) {
+            return $this->_arrondissement->getId();
+        }
+        return NULL;
     }
     public function getArrond() {
         return $this->_arrondissement;
@@ -132,10 +170,27 @@ class EVehicule implements IVehicule {
         return $this->_etat;
     }
     public function setEtat($etat) {
-        $this->_etat = $etat;
-        return $this;
+
+        // valide l'état avant de l'accepter
+        if (in_array($etat, [
+            self::ETAT_ACTIF,
+            self::ETAT_INACTIF,
+            self::ETAT_EN_ATTENTE,
+            self::ETAT_REFUSE
+            ])) {
+
+            $this->_etat = $etat;
+            return $this;
+        }
+        throw new Exception('État invalide');
     }
 
+    public function getTransmissionId() {
+        if ($this->_transmission) {
+            return $this->_transmission->getId();
+        }
+        return NULL;
+    }
     public function getTransmission() {
         return $this->_transmission;
     }
@@ -145,7 +200,10 @@ class EVehicule implements IVehicule {
     }
 
     public function getProprietaireId() {
-        return $this->_proprietaire->getId();
+        if ($this->_proprietaire) {
+            return $this->_proprietaire->getId();
+        }
+        return NULL;
     }
     public function getProprietaire() {
         return $this->_proprietaire;
