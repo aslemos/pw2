@@ -772,11 +772,17 @@ label:hover input[type="radio"] ~ i.fa {
 }
 
 /*centrer text on page_succes_payemant*/
- #succes {
-        text-align: center;
+ .succes {
+        text-align: center !important;
     }
 
     /*Champ obligatoire*/
     .required{
         color: red;
+    }
+ /*Champ griser*/
+     .myInput{
+        background-color: #F8F8F8 !important;
+        color: black;
+        text-align: center;
     }
