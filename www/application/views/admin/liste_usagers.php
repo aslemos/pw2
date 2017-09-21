@@ -1,15 +1,14 @@
 <?php
 // Header
-include VIEWPATH . '/common/header.php';
+include VIEWPATH . 'common/header.php';
 //========================================================
+include VIEWPATH . 'admin/boutons_admin_usagers.php';
 ?>
 <section id="listeAdmin">
-<?php include VIEWPATH . 'admin/boutons_admin_usagers.php'; ?>
     <h2><?=$title?></h2>
-    <!--<form action="" name="formulaire" id="form-voitures-id">-->
-    <div class="table-responsive">
 <?php if (count($usagers) > 0) { ?>
-        <table class="table table-striped">
+    <div class="table-responsive">
+        <table class="table">
             <thead>
                 <tr>
                     <th class="">Nº</th>
@@ -24,7 +23,7 @@ include VIEWPATH . '/common/header.php';
                 </tr>
             </thead>
             <tbody>
-                <?php foreach ($usagers as $user) : ?>
+<?php foreach ($usagers as $user) : ?>
                 <tr>
                     <td class=""><?php echo $user['user_id']?></td>
                     <td class=""><?php echo $user['prenom']?></td>
@@ -42,18 +41,16 @@ include VIEWPATH . '/common/header.php';
                         <img src="<?= $base_url; ?>assets/images/no.png" >
                     </td>
                 </tr>
-                <?php endforeach; ?>
+<?php endforeach; ?>
             </tbody>
         </table>
-<?php } else { ?>
-        <h3 class="alert_title">Il n'y a pas de membre</h3>
-<?php } ?>
     </div>
-    <!--</form>-->
-
+<?php } else { ?>
+    <h3 class="alert_title">Aucun membre n'a été trouvé</h3>
+<?php } ?>
 </section>
 <?php
 // footer
 include VIEWPATH . '/common/footer.php';
 //========================================================
-?>
+

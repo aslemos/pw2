@@ -1,62 +1,59 @@
 <?php
 // Header
-include VIEWPATH . '/common/header.php';
+include VIEWPATH . 'common/header.php';
 //========================================================
+include VIEWPATH . 'admin/boutons_admin_vehicules.php';
 ?>
 <section id="listeAdmin">
-    <?php include VIEWPATH . 'admin/boutons_admin_vehicules.php'; ?>
     <h2><?=$title?></h2>
+<?php if (count($vehicules) > 0) { ?>
+    <div class="table-responsive">
+        <table class="table">
+            <tbody><tr>
+                    <th class="">Nº</th>
+                    <th class="">Marque</th>
+                    <th class="">Modèle</th>
+                    <th class="">Année</th>
+                    <th class="">Type</th>
+                    <th class="">Évaluation</th>
+                    <th class="">Prix</th>
+                    <th class="">Propriétaire</th>
+                    <th class="">Matricule</th>
+                    <th class="">État</th>
+                    <th colspan="2">Actions</th>
+                </tr>
 
-        <form action="" name="formulaire" id="form-voitures-id">
-            <table class="table table-reponsive">
-                <tbody><tr>
-                        <th class="">Nº</th>
-                        <th class="">Marque</th>
-                        <th class="">Modèle</th>
-                        <th class="">Année</th>
-                        <th class="">Type</th>
-                        <th class="">Évaluation</th>
-                        <th class="">Prix</th>
-                        <th class="">Propriétaire</th>
-                        <th class="">Matricule</th>
-                        <th class="">État</th>
-                        <th class="">Éditer</th>
-                        <th class="">Approuver</th>
-                        <th class="">Refuser</th>
-                    </tr>
+<?php foreach ($vehicules as $vehicule) { ?>
+                <tr id="tr<?= $vehicule['vehicule_id']?>">
+                    <td class=""><?= $vehicule['vehicule_id'] ?></td>
+                    <td class=""><?= $vehicule['nom_marque'] ?></td>
+                    <td class=""><?= $vehicule['nom_modele'] ?></td>
+                    <td class=""><?= $vehicule['annee'] ?></td>
+                    <td class=""><?= $vehicule['nom_type'] ?></td>
+                    <td class=""></td>
+                    <td class=""><?= $vehicule['prix'] ?></td>
+                    <td class=""><?=$vehicule['prenom'].' '.$vehicule['nom'] ?></td>
+                    <td class=""><?= $vehicule['matricule'] ?></td>
+                    <td class=""><?= EVehicule::getDescriptionEtat($vehicule['etat_vehicule']) ?></td>
 
-<?php   foreach ($vehicules as $vehicule) { ?>
-                    <tr>
-                        <td class=""><?= $vehicule['vehicule_id'] ?></td>
-                        <td class=""><?= $vehicule['nom_marque'] ?></td>
-                        <td class=""><?= $vehicule['nom_modele'] ?></td>
-                        <td class=""><?= $vehicule['annee'] ?></td>
-                        <td class=""><?= $vehicule['nom_type'] ?></td>
-                        <td class=""></td>
-                        <td class=""><?= $vehicule['prix'] ?></td>
-                        <td class=""><?=$vehicule['prenom'].' '.$vehicule['nom'] ?></td>
-                        <td class=""><?= $vehicule['matricule'] ?></td>
-                        <td class=""><?= EVehicule::getDescriptionEtat($vehicule['etat_vehicule']) ?></td>
-
-                        <!--Actions-->
-                        <td class=""><a class="btn btn-inline" href="<?= $base_url ?>vehicule/editVehicule/<?= $vehicule['vehicule_id'] ?>#s"></a></td>
-                        <td class=""><a class="btn btn-inline"href="<?= $base_url ?>vehicule/debloquer/<?= $vehicule['vehicule_id'] ?>#s"></a></td>
-                        <td class=""><a class="btn btn-inline"href="<?= $base_url ?>vehicule/bloquer/<?= $vehicule['vehicule_id'] ?>#s"></a></td>
-
-                    </tr>
+                    <!--Actions-->
+                    <td class=""><a title="Modifier" href="<?= $base_url ?>vehicule/editVehicule/<?= $vehicule['vehicule_id'] ?>#s"><i class="fa fa-pencil-square-o"></i></a></td>
+<?php if ($vehicule['etat_vehicule'] == EUsager::ETAT_INACTIF) { ?>
+                    <td><a title="Activer véhicule" href="<?= $base_url ?>vehicule/debloquer/<?= $vehicule['vehicule_id'] ?>#s"><i class="fa fa-lock"></i></a></td>
+<?php } else { ?>
+                    <td><a title="Bloquer véhicule" href="<?= $base_url ?>vehicule/bloquer/<?= $vehicule['vehicule_id'] ?>#s"><i class="fa fa-unlock"></i></a></td>
 <?php } ?>
-                </tbody>
-            </table>
-        </form>
-
-        <!-- Div pour affichage -->
-        <div id="resultat"></div>
-        <div id="divAuto_voitures"></div>
-    </section>
-</main>
-
+                </tr>
+<?php } ?>
+            </tbody>
+        </table>
+    </div>
+<?php } else { ?>
+    <h3 class="alert_title">Aucun véhicule n'a été trouvé</h3>
+<?php } ?>
+</section>
 <?php
 // footer
-include VIEWPATH . '/common/footer.php';
+include VIEWPATH . 'common/footer.php';
 //========================================================
 
