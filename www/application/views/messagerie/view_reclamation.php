@@ -16,11 +16,9 @@ require VIEWPATH . 'common/header.php';
 
         <div class="form-group">
             <label class="control-label col-sm-3" for="nom_emetteur">Emetteur :</label>
-            <div class="col-sm-9">
              <div class="col-sm-9">
                  <input class="form-control" name="nom_emetteur" id="nom_emetteur" type="text" value="<?= $messages['nom_emetteur']?>">
             </div>   
-            </div>
         </div>
 
         <div class="form-group">
