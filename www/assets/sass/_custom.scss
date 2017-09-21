@@ -7,7 +7,21 @@ $bgColor:#efeff0;
 header{
     overflow: hidden;
 }
+.menu li a:hover{
+    background-color: darkred;
+    padding: 4px;
+    border-radius: 5px;
+}
 
+#nomUser{
+  vertical-align: super;
+  font-size: smaller; 
+  font-weight: normal;
+}
+
+header nav .menu {
+   width: 101%;
+}
 
 img {
     vertical-align: inherit;
@@ -72,7 +86,7 @@ img {
     margin-bottom: 25px;
 }
 .prix{
-    color: greenyellow;
+    color: green;
     font-size: 14pt;
 }
 
@@ -290,7 +304,7 @@ h2 {
         }
         .prix{
             margin-left: 210px;
-            color: greenyellow;
+            color: green;
         }
     }
 }
@@ -472,6 +486,12 @@ th.date, td.date {
 }
 
 .btn {
+    border-radius: 25px;
+    font-weight: bold;
+    text-align: center;
+}
+
+.btn-general {
     background-color: #974952;
     border-radius: 25px;
     color: white;

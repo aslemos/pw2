@@ -211,7 +211,7 @@ include VIEWPATH . 'common/header.php';
                                             <p><b>TYPE VÉHICULE: </b>  <?= $vehicule->getType()->getNom() ?></p>
                                             <p><b>DISPONIBLE:</b> à <?= $vehicule->getArrond()->toString() ?>
                                                 <br>
-                                                <?= $vehicule->getDisponibilite()->toString() ?></p>
+                                               <b> <?= $vehicule->getDisponibilite()->toString() ?></b></p>
                                             <p><?php echo $vehicule->getDescription() ?> </p>
                                         </div>
 

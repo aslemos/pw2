@@ -4,7 +4,7 @@ include VIEWPATH . '/common/header.php';
 //========================================================
 ?>
 <section id="listeAdmin">
-<?php include VIEWPATH . 'admin/boutons_admin.php'; ?>
+<?php include VIEWPATH . 'admin/boutons_admin_usagers.php'; ?>
     <h2><?=$title?></h2>
     <form action="" name="formulaire" id="form-Members-id">
         <table class="table table-responsive">

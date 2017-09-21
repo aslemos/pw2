@@ -4,7 +4,7 @@ include VIEWPATH . '/common/header.php';
 //========================================================
 ?>
 <section id="listeAdmin">
-    <?php include VIEWPATH . 'admin/boutons_admin.php'; ?>
+    <?php include VIEWPATH . 'admin/boutons_admin_vehicules.php'; ?>
     <h2><?=$title?></h2>
 
         <form action="" name="formulaire" id="form-voitures-id">
