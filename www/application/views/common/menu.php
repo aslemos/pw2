@@ -6,7 +6,7 @@
         <?php if (UserAcces::userIsLogged()) { ?>
             <li>
                 <div class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" title="Fonctionnalités de membre">
+                    <a href="#"  title="Fonctionnalités de membre">
                         ESPACE MEMBRE
                         <b class="caret"></b>
                     </a>
@@ -20,7 +20,8 @@
             </li>
 
             <?php if (UserAcces::userIsAdmin()) { ?>
-                <li class="dropdown"><a href="#" title="Fonctions d'administration du site">
+                <li class="dropdown">
+                    <a href="#" title="Fonctions d'administration du site">
                         ADMINISTRATION
                         <b class="caret"></b>
                     </a>
@@ -40,7 +41,8 @@
                 </li>
 
             <?php } ?>
-            <li class="dropdown"><a href="<?= $base_url ?>messagerie#s" title="Service de messagerie">
+            <li class="dropdown">
+                <a href="<?= $base_url ?>messagerie#s" title="Service de messagerie">
                     MESSAGERIE
                     <b class="caret"></b>
                 </a>
