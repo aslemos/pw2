@@ -66,7 +66,7 @@ img {
     border: none;
     border-radius: 0;
     color: #575757;
-    font-size: 14px;  
+    font-size: 14px;
     height: 50px;
     line-height: 50px;
     margin-bottom: 25px;
@@ -432,7 +432,7 @@ tr {
   background-color: #974952;
   color: #ffffff;
 }
-.table {
+.table, .table-responsive {
     th, td {
       text-align: center;
       /*color: #ffffff;*/
@@ -471,6 +471,12 @@ th.date, td.date {
     min-width: 150px;
 }
 
+.fa, .glyphicon {
+    color: #dddddd;
+    font-size: 26px;
+    font-weight: normal;
+}
+
 .btn {
     background-color: #974952;
     border-radius: 25px;
@@ -502,11 +508,6 @@ th.date, td.date {
 }
 .btn-accepter, .btn-refuser:hover {
     cursor: pointer;
-}
-
-.fa {
-    color: white;
-    font-size: 26px;
 }
 
 span {
@@ -589,55 +590,13 @@ label.btn span {
     font-size: 1.5em ;
 }
 
-label input[type="checkbox"] ~ i.fa.fa-square-o{
-    color: #c8c8c8;    display: inline;
-}
-label input[type="checkbox"] ~ i.fa.fa-check-square-o{
-    display: none;
-}
-label input[type="checkbox"]:checked ~ i.fa.fa-square-o{
-    display: none;
-}
-label input[type="checkbox"]:checked ~ i.fa.fa-check-square-o{
-    color: #7AA3CC;    display: inline;
-}
-label:hover input[type="checkbox"] ~ i.fa {
-    color: #7AA3CC;
-}
-
 .gender{
     visibility:hidden;
     display:none;
 }
 
-/*************************/
-/* FORM VOITURE - ANDRIY */
-/*************************/
 
-/*Radio buttons*/
 
-label.btn span {
-    font-size: 1.5em ;
-}
-
-/*
-label.radio-inline {
-    border-radius: 0;
-    input[type="radio"] {
-        display: none;
-
-        ~ i.fa-circle-o,
-        &:checked ~ i.fa-check-circle-o {
-            display: inline;
-        }
-
-        ~ i.fa-check-circle-o,
-        &:checked ~ i.fa-circle-o {
-            display: none;
-            color: #7AA3CC;
-        }
-    }
-}*/
 /*formulaire location*/
 
 .form-style-10 {
