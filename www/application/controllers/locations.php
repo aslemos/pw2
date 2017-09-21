@@ -229,8 +229,12 @@ class Locations extends CI_Controller {
         $this->load->model('modepaiement_model');
 
 
+
         $this->load->model('location_model');
-        $data['location'] = $this->location_model->getLocationById($id);
+       // $data['location'] = $this->location_model->getLocationById($location_id);
+
+
+
 
 
         $data['date_debut'] = $this->input->post('date_debut');
@@ -241,9 +245,9 @@ class Locations extends CI_Controller {
         $data['payements'] = $this->modepaiement_model->getModesPaiements();
 
         $this->load->view('client/form_location', $data);
-//        echo '<pre>';
-//        var_dump($data);
-//        echo '</pre>';
+       echo '<pre>';
+       var_dump($data);
+       echo '</pre>';
     }
 
 
@@ -278,8 +282,8 @@ class Locations extends CI_Controller {
             redirect('usager/login');
         }
         $user = UserAcces::getLoggedUser();
-        $this->load->model('location_model');
 
+        $this->load->model('location_model');
         $data['location'] = $this->location_model->getLocationById($location_id);
 
         $this->load->model('vehicule_model');
