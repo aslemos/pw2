@@ -2,7 +2,7 @@
 // Header
 include VIEWPATH . 'common/header.php';
 //========================================================
-include VIEWPATH . 'client/boutons_client.php';
+include VIEWPATH . 'client/boutons_prestataire.php';
 ?>
 <h2>Historique des locataires</h2>
 <form action="<?= $base_url ?>locations/locataires#s" method="post" name="formulaire" id="form-demandes-id">

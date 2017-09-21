@@ -2,9 +2,9 @@
 // Header
 include VIEWPATH . 'common/header.php';
 //========================================================
+include VIEWPATH .'client/boutons_prestataire.php';
 ?>
 <section id="ajouter-voitures">
-    <?php include VIEWPATH .'client/boutons_client.php'; ?>
     <div class="container">
         <h2><?=$title?></h2>
         <form method="post" enctype="multipart/form-data" name="monFormulaire" action="<?=$action?>" class="form-horizontal" id="needs-validation">
