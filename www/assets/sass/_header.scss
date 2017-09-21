@@ -80,6 +80,7 @@ header{
         border-bottom: solid 5px black;
         height: auto;
         padding: 22px 0;
+        overflow: visible;
         @extend %flexcolumns;
 
         .standard-logo, .slogan-container, #defile-link {

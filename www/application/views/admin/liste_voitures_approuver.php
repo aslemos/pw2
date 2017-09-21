@@ -15,12 +15,13 @@ include VIEWPATH . 'admin/boutons_admin_vehicules.php';
                     <th class="">Modèle</th>
                     <th class="">Année</th>
                     <th class="">Type</th>
-                    <th class="">Évaluation</th>
                     <th class="">Prix</th>
                     <th class="">Propriétaire</th>
                     <th class="">Matricule</th>
                     <th class="">État</th>
-                    <th colspan="2">Actions</th>
+                    <th class="">Voir</th>
+                    <th class="">Approuver</th>
+                    <th class="">Refuser</th>
                 </tr>
 
 <?php foreach ($vehicules as $vehicule) { ?>
@@ -30,30 +31,25 @@ include VIEWPATH . 'admin/boutons_admin_vehicules.php';
                     <td class=""><?= $vehicule['nom_modele'] ?></td>
                     <td class=""><?= $vehicule['annee'] ?></td>
                     <td class=""><?= $vehicule['nom_type'] ?></td>
-                    <td class=""></td>
                     <td class=""><?= $vehicule['prix'] ?></td>
                     <td class=""><?=$vehicule['prenom'].' '.$vehicule['nom'] ?></td>
                     <td class=""><?= $vehicule['matricule'] ?></td>
                     <td class=""><?= EVehicule::getDescriptionEtat($vehicule['etat_vehicule']) ?></td>
 
                     <!--Actions-->
-                    <td class=""><a title="Modifier" href="<?= $base_url ?>vehicule/editVehicule/<?= $vehicule['vehicule_id'] ?>#s"><i class="fa fa-pencil-square-o"></i></a></td>
-<?php if ($vehicule['etat_vehicule'] == EUsager::ETAT_INACTIF) { ?>
-                    <td><a title="Activer véhicule" href="<?= $base_url ?>vehicule/debloquer/<?= $vehicule['vehicule_id'] ?>#s"><i class="fa fa-lock"></i></a></td>
-<?php } else { ?>
-                    <td><a title="Bloquer véhicule" href="<?= $base_url ?>vehicule/bloquer/<?= $vehicule['vehicule_id'] ?>#s"><i class="fa fa-unlock"></i></a></td>
-<?php } ?>
+                    <td class=""><a href="<?= $base_url ?>vehicule/view/<?= $vehicule['vehicule_id'] ?>#s"><span class="glyphicon glyphicon-eye-open"></span></a></td>
+                    <td class=""><span id="btn-approuver-<?=$vehicule['vehicule_id']?>" title="Approuver ce véhicule" class="glyphicon glyphicon-ok-circle btn-accepter"></span></td>
+                    <td class=""><span id="btn-refuser-<?=$vehicule['vehicule_id']?>" title="REFUSER!" class="glyphicon glyphicon-ban-circle btn-refuser"></span></td>
                 </tr>
 <?php } ?>
             </tbody>
         </table>
     </div>
 <?php } else { ?>
-    <h3 class="alert_title">Aucun véhicule n'a été trouvé</h3>
+    <h3 class="alert_title">Aucun véhicule a été trouvé</h3>
 <?php } ?>
 </section>
 <?php
 // footer
 include VIEWPATH . 'common/footer.php';
 //========================================================
-
