@@ -63,7 +63,7 @@ include VIEWPATH .'client/boutons_prestataire.php';
                 <div class="col-xs-6">
                     <div class="xbtn-group" data-toggle="buttons">
 <?php foreach ($transmissions as $transmission) { ?>
-                        <label class="btn">
+                        <label class="btn btn-danger">
                             <input type="radio" name="transmission_id" value="<?=$transmission['transmission_id']?>"<?=$transmission['transmission_id']==$form['transmission_id']?' checked':''?> required>
                             <i class="fa fa-circle-o fa-2x"></i>
                             <i class="fa fa-check-circle-o fa-2x"></i>

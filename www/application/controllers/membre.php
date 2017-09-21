@@ -1,21 +1,15 @@
 <?php
 /*
- * Class membre pour gérer la liste des membres
-*/
+ * Class membre pour gérer l'accès des membres
+ */
 class Membre extends CI_Controller {
 
-//    public function view($page) {
-//
-//            $this->load->helper('url');
-//
-//            $data['title'] = ucfirst($page);
-//
-//            $data['base_url'] = base_url();
-//
-//            $this->load->view('membre/' . $page, $data);
-//
-//
-//    }
+    public function __construct() {
+        parent::__construct();
+        if (!UserAcces::userIsLogged()) {
+            redirect('usager/login');
+        }
+    }
 
     public function index() {
         $this->vehicules();

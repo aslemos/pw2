@@ -14,13 +14,6 @@ class Admin extends CI_Controller {
         }
     }
 
-    /*
-     * Routage
-     */
-    public function index() {$this->listeMembres();}
-    public function usagers() {$this->listeMembres();}
-    public function vehicules() {$this->listeVehicules();}
-    public function messagerie() {$this->messages();}
 
     /**
      * Liste des administrateurs du site
@@ -50,13 +43,7 @@ class Admin extends CI_Controller {
         $data['base_url'] = base_url();
 
         $data['usagers'] = $this->usager_model->getMembres();
-//        if (count($data['usagers']) > 0) {
         $this->load->view('admin/liste_usagers', $data);
-//        } else {
-//            $data['msg_title'] = 'Il n\'y a pas de membre';
-//            $data['msg_action'] = base_url() . 'admin/listeMembres#s';
-//            $this->load->view('common/page_message', $data);
-//        }
     }
 
     /**
