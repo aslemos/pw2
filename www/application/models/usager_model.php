@@ -30,7 +30,7 @@ class usager_model extends CI_Model {
         $this->db->join('roles', 'roles.role_id = usagers.role_id');
         $this->db->join('villes', 'villes.ville_id = usagers.ville_id');
 
-        if ($user_id == NULL) {
+        if ($user_id === NULL) {
             $this->db->order_by('usagers.prenom', 'ASC');
 
             $query = $this->db->get('usagers');
@@ -133,7 +133,7 @@ class usager_model extends CI_Model {
         $query = $this->db->get_where('usagers', array('username' => $username));
 
         //if(empty($query->row_array())){
-        if ($query->row_array() == NULL) {
+        if ($query->row_array() === NULL) {
 
             return true;
         } else {
@@ -148,7 +148,7 @@ class usager_model extends CI_Model {
         $query = $this->db->get_where('usagers', array('courriel' => $email));
 
         //if(empty($query->row_array())){
-        if ($query->row_array() == NULL) {
+        if ($query->row_array() === NULL) {
 
             return true;
         } else {
@@ -203,7 +203,7 @@ class usager_model extends CI_Model {
      * @author Alessandro Souza Lemos
      */
     public function approuverMembre($user_id) {
-        $user = $this->usager_model->getUserById($user_id);
+        $user = $this->getUserById($user_id);
         if ($user && $user->getEtat() == EUsager::ETAT_EN_ATTENTE) {
             $this->db->where('user_id', $user_id);
             return $this->db->update('usagers', ['etat_usager' => EUsager::ETAT_ACTIF]);
@@ -218,7 +218,7 @@ class usager_model extends CI_Model {
      * @author Alessandro Souza Lemos
      */
     public function refuserMembre($user_id) {
-        $user = $this->usager_model->getUserById($user_id);
+        $user = $this->getUserById($user_id);
         if ($user && $user->getEtat() == EUsager::ETAT_EN_ATTENTE) {
             $this->db->where('user_id', $user_id);
             return $this->db->update('usagers', ['etat_usager' => EUsager::ETAT_REFUSE]);

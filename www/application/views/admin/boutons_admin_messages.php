@@ -8,4 +8,5 @@
 
     <!-- Afficher les messages de contact -->
     <a class="btn btn-general position" href="<?= $base_url; ?>admin/contacts#s" >Contacts</a>
+
 </div>
