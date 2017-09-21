@@ -2,7 +2,6 @@
 
 class Admin extends CI_Controller {
 
-    private $func = [];
     public function __construct() {
         parent::__construct();
 
@@ -15,10 +14,13 @@ class Admin extends CI_Controller {
         }
     }
 
-    public function index() {
-        $this->listeMembres();
-    }
-
+    /*
+     * Routage
+     */
+    public function index() {$this->listeMembres();}
+    public function usagers() {$this->listeMembres();}
+    public function vehicules() {$this->listeVehicules();}
+    public function messagerie() {$this->messages();}
 
     /**
      * Liste des administrateurs du site
@@ -43,12 +45,18 @@ class Admin extends CI_Controller {
     public function listeMembres() {
         $data['page_title'] = 'Liste des membres';
         $data['title'] = 'Liste des membres';
+        $data['page_title'] = 'Liste des membres';
         $data['body_class'] = 'subpages listeAdmin';
         $data['base_url'] = base_url();
 
         $data['usagers'] = $this->usager_model->getMembres();
-
+//        if (count($data['usagers']) > 0) {
         $this->load->view('admin/liste_usagers', $data);
+//        } else {
+//            $data['msg_title'] = 'Il n\'y a pas de membre';
+//            $data['msg_action'] = base_url() . 'admin/listeMembres#s';
+//            $this->load->view('common/page_message', $data);
+//        }
     }
 
     /**
@@ -71,7 +79,10 @@ class Admin extends CI_Controller {
         $data['title'] = 'Véhicules en attente d\'approbation';
         $data['body_class'] = 'subpages listeAdmin';
         $data['vehicules'] = $this->vehicule_model->getVehiculesEnAttente();
-        $this->load->view('admin/liste_voitures_admin', $data);
+        $data['scripts'] = [
+            base_url() . 'assets/js/ajax_approbation_vehicule.js'
+        ];
+        $this->load->view('admin/liste_voitures_approuver', $data);
     }
 
     /**
@@ -79,9 +90,12 @@ class Admin extends CI_Controller {
      */
     public function approuverMembre() {
         $data['page_title'] = 'Approbation de membre';
-        $data['title'] = 'Approbation de membre';
+        $data['title'] = 'Membres en attente d\'approbation';
         $data['body_class'] = 'subpages listeAdmin';
         $data['usagers'] = $this->usager_model->getUsagersEnAttente();
+        $data['scripts'] = [
+            base_url() . 'assets/js/ajax_approbation_membre.js'
+        ];
         $this->load->view('admin/liste_usagers_approuver', $data);
     }
 

@@ -1,42 +1,14 @@
 <?php
 // Header
-include VIEWPATH . '/common/header.php';
+include VIEWPATH . 'common/header.php';
 //========================================================
+include VIEWPATH . 'admin/boutons_admin_usagers.php';
 ?>
 <section id="listeAdmin">
-<?php include VIEWPATH . 'admin/boutons_admin.php'; ?>
     <h2><?=$title?></h2>
-    <form action="" name="formulaire" id="form-Members-id">
-        <table class="table table-reponsive">
-            <tr>
-                <th class="">Nº</th>
-                <th class="">Nom</th>
-                <th class="">Prénom</th>
-                <th class="">Nombre de voitures</th>
-                <th class="">E-email</th>
-                <th class="">Évaluaitable">Approuver</th>
-                <th class="">Refuser</th>
-            </tr>
-            <tr>
-                <td class="">1</td>
-                <td class="">test</td>
-                <td class="">test</td>
-                <td class="">test</td>
-                <td class="">test</td>
-                <td class="">test</td>
-                <td class="">
-                    <img src="<?= $base_url; ?>assets/images/ok.png" >
-                </td>
-                <td class="editable">
-                    <img src="<?= $base_url; ?>assets/images/no.png" >
-                </td>
-            </tr>
-        </table>
-    </form>
-
-    <form action="" name="formulaire" id="form-voitures-id">
+<?php if (count($usagers) > 0) { ?>
     <div class="table-responsive">
-        <table class="table table-striped">
+        <table class="table">
             <thead>
                 <tr>
                     <th class="">Nº</th>
@@ -51,7 +23,7 @@ include VIEWPATH . '/common/header.php';
                 </tr>
             </thead>
             <tbody>
-                <?php foreach ($usagers as $user) : ?>
+<?php foreach ($usagers as $user) : ?>
                 <tr>
                     <td class=""><?php echo $user['user_id']?></td>
                     <td class=""><?php echo $user['prenom']?></td>
@@ -69,15 +41,16 @@ include VIEWPATH . '/common/header.php';
                         <img src="<?= $base_url; ?>assets/images/no.png" >
                     </td>
                 </tr>
-                <?php endforeach; ?>
+<?php endforeach; ?>
             </tbody>
         </table>
     </div>
-    </form>
-
+<?php } else { ?>
+    <h3 class="alert_title">Aucun membre n'a été trouvé</h3>
+<?php } ?>
 </section>
 <?php
 // footer
 include VIEWPATH . '/common/footer.php';
 //========================================================
-?>
+

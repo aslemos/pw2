@@ -136,69 +136,6 @@ class Vehicule_model extends CI_Model {
      * @param string $date_fin La date de fin de la réservation
      * @return bool Si le véhicule est disponible.
      */
-    public function vehiculeEstDisponibleParDate($vehicule_id, $date_debut, $date_fin) {
-        /*
-         * Crée la sub-requête utilisée dans le NOT IN()
-         *  qui trouve les locations existantes dans la période de location demandé
-         */
-
-        $this->db->select('locations.vehicule_id');
-        $this->db->from('locations');
-        $this->db->where('locations', ['vehicule_id', $vehicule_id]);
-
-        $this->db->join('vehicules', 'vehicules.vehicule_id = locations.vehicule_id');
-        $this->db->where('vehicules.etat_vehicule', EVehicule::ETAT_ACTIF);
-
-        $this->db->join('disponibilites', 'disponibilites.vehicule_id = locations.vehicule_id');
-
-        // Trouve la date de DÉBUT dans une réservation existante
-        $this->db->where('locations.vehicule_id = disponibilites.vehicule_id');
-        $this->db->where('locations.date_debut <=', $recherche->getDateDebut());
-        $this->db->where('locations.date_fin >=', $recherche->getDateDebut());
-
-        // Trouve la date de FIN dans une réservation existante
-        $this->db->or_where('locations.vehicule_id = disponibilites.vehicule_id');
-        $this->db->where('locations.date_debut <=', $recherche->getDateFin());
-        $this->db->where('locations.date_fin >=', $recherche->getDateFin());
-
-        // Trouve une réservation entre une date de DÉBUT et FIN
-        $this->db->or_where('locations.vehicule_id = disponibilites.vehicule_id');
-        $this->db->where('locations.date_debut >=', $recherche->getDateDebut());
-        $this->db->where('locations.date_fin <=', $recherche->getDateFin());
-        $query_reservations_existantes = $this->db->get_compiled_select();
-
-        /*
-         * Jointure
-         */
-
-
-        /*
-         * Règles de la location :
-         */
-
-        // - on ne considère que les véhicules actifs
-        $this->db->where('vehicules.etat_vehicule', EVehicule::ETAT_ACTIF);
-
-        // - la demande doit être dans une période disponibilisé par le proprietaire
-        $this->db->where('disponibilites.date_debut <=', $recherche->getDateDebut());
-        $this->db->where('disponibilites.date_fin >=', $recherche->getDateFin());
-
-        // - on ne doit pas avoir de collisions de réservation
-        $this->db->where_not_in('disponibilites.vehicule_id ', $query_reservations_existantes, FALSE);
-
-        // Instantiation des objets EVehicule dans le résultat
-        $query = $this->db->get();
-        $result = $query->result_array();
-        return FALSE;
-    }
-
-    /**
-     * Vérifie si un véhicule est disponible dans une période donnée
-     * @param int $vehicule_id L'identifiant du véhicule
-     * @param string $date_debut La date de début de la réservation
-     * @param string $date_fin La date de fin de la réservation
-     * @return bool Si le véhicule est disponible.
-     */
     public function disponibiliteParDate($vehicule_id, $date_debut, $date_fin) {
 
         // Vérifie si les dates son consécutives
@@ -257,7 +194,8 @@ class Vehicule_model extends CI_Model {
         // S'il y a de résultat, alors il y a un véhicule actif,
         //  avec une disponibilité et sans conflit de réservation
         $query = $this->db->get();
-        return !empty($query->result());
+        $data = $query->result();
+        return !empty($data);
    }
 
     /**
@@ -335,7 +273,7 @@ class Vehicule_model extends CI_Model {
         $this->db->join('arrondissements', 'vehicules.arr_id = arrondissements.arr_id');
         $this->db->join('villes', 'villes.ville_id = arrondissements.ville_id');
 
-        if ($vehicule_id == NULL) {
+        if ($vehicule_id === NULL) {
             $query = $this->db->get('vehicules');
             return $query->result_array();
         }
@@ -394,17 +332,19 @@ class Vehicule_model extends CI_Model {
 
         $this->db->where('vehicule_id', $vehicule->getId());
         return $this->db->update('vehicules', [
-            'proprietaire_id' => $vehicule->getProprietaire()->getId(),
-            'modele_id' => $vehicule->getModele()->getId(),
-            'carburant_id' => $vehicule->getCarburant()->getId(),
-            'transmission_id' => $vehicule->getTransmission()->getId(),
-            'type_id' => $vehicule->getType()->getId(),
-            'arr_id' => $vehicule->getArrond()->getId(),
+            'proprietaire_id' => $vehicule->getProprietaireId(),
             'matricule' => $vehicule->getMatricule(),
+            'description' => $vehicule->getDescription(),
             'annee' => $vehicule->getAnnee(),
             'nbre_places' => $vehicule->getNbPlaces(),
             'prix' => $vehicule->getPrix(),
-            'vehicule_photo' => $vehicule->getPhoto()
+            'vehicule_photo' => $vehicule->getPhoto(),
+            'type_id' => $vehicule->getTypeId(),
+            'modele_id' => $vehicule->getModeleId(),
+            'carburant_id' => $vehicule->getCarburantId(),
+            'transmission_id' => $vehicule->getTransmissionId(),
+            'arr_id' => $vehicule->getArrondId(),
+            'etat_vehicule' => $vehicule->getEtat()
         ]);
     }
 
@@ -578,24 +518,41 @@ class Vehicule_model extends CI_Model {
 
     /**
      * Débloque/autorise un véhicule à être utilisé dans le système
-     * @param int $vehicule_id
+     * @param EVehicule $vehicule
      */
-    public function debloquerVehicule($vehicule_id) {
-        $this->db->where('vehicule_id', $vehicule_id);
-        return $this->db->update('vehicules', [
-                    'etat_vehicule' => EVehicule::ETAT_ACTIF
-        ]);
+    public function debloquerVehicule(IVehicule $vehicule) {
+        if ($vehicule->getEtat() == EVehicule::ETAT_INACTIF) {
+            $vehicule->setEtat(EVehicule::ETAT_ACTIF);
+            return $this->vehicule_model->updateVehicule($vehicule);
+        }
+        return FALSE;
     }
 
     /**
      * Bloque un véhicule dans le système
-     * @param int $vehicule_id
+     * @param EVehicule $vehicule Le véhicule à bloquer
      */
-    public function bloquerVehicule($vehicule_id) {
-         $this->db->where('vehicule_id', $vehicule_id);
-          return $this->db->update('vehicules', [
-                    'etat_vehicule' => EVehicule::ETAT_INACTIF
-        ]);
+    public function bloquerVehicule(IVehicule $vehicule) {
+        if ($vehicule->getEtat() == EVehicule::ETAT_ACTIF) {
+            $vehicule->setEtat(EVehicule::ETAT_INACTIF);
+            return $this->vehicule_model->updateVehicule($vehicule);
+        }
+        return FALSE;
+    }
 
+    public function autoriserVehicule(IVehicule $vehicule) {
+        if ($vehicule->getEtat() == EVehicule::ETAT_EN_ATTENTE) {
+            $vehicule->setEtat(EVehicule::ETAT_ACTIF);
+            return $this->updateVehicule($vehicule);
+        }
+        return FALSE;
+    }
+
+    public function refuserVehicule(IVehicule $vehicule) {
+        if ($vehicule->getEtat() == EVehicule::ETAT_EN_ATTENTE) {
+            $vehicule->setEtat(EVehicule::ETAT_REFUSE);
+            return $this->updateVehicule($vehicule);
+        }
+        return FALSE;
     }
 }

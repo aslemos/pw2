@@ -2,7 +2,7 @@
 // Header
 include VIEWPATH . 'common/header.php';
 //========================================================
-include VIEWPATH . 'client/boutons_client.php';
+include VIEWPATH . 'client/boutons_prestataire.php';
 ?>
 <h2><?=$title?></h2>
 	<form action="" name="formulaire" id="form-voitures-id">

@@ -90,4 +90,41 @@ class Ajax extends CI_Controller {
                 ]);
     }
 
+    /**
+     * Approuve un nouveau membre
+     * @param int $user_id
+     * @return json indique le succès de l'opération
+     * @author Alessandro Souza Lemos
+     */
+    public function approuverMembre($user_id = 0) {
+        echo json_encode([
+                'success' => $this->usager_model->approuverMembre($user_id)
+                ]);
+    }
+
+    /**
+     * Refuse un membre
+     * @param int $user_id
+     * @return json indique le succès de l'opération
+     * @author Alessandro Souza Lemos
+     */
+    public function refuserMembre($user_id = 0) {
+        echo json_encode([
+                'success' => $this->usager_model->refuserMembre($user_id)
+                ]);
+    }
+
+    public function approuverVehicule($vehicule_id = 0) {
+        $vehicule = $this->vehicule_model->getVehiculeById($vehicule_id);
+        echo json_encode([
+            'success' => $vehicule && $this->vehicule_model->autoriserVehicule($vehicule)
+        ]);
+    }
+
+    public function refuserVehicule($vehicule_id = 0) {
+        $vehicule = $this->vehicule_model->getVehiculeById($vehicule_id);
+        echo json_encode([
+            'success' => $vehicule && $this->vehicule_model->refuserVehicule($vehicule)
+        ]);
+    }
 }

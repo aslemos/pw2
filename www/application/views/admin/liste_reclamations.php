@@ -1,4 +1,3 @@
-
 <?php
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -8,7 +7,7 @@
 
 require VIEWPATH . 'common/header.php';
 ?>
-<?php include VIEWPATH . 'admin/boutons_admin.php'; ?>
+<?php include VIEWPATH . 'admin/boutons_admin_messages.php'; ?>
  <h2>Liste de Reclamations </h2>
 
         <form action="" name="formulaire" id="form-reclamationsAdm-id">
@@ -22,10 +21,10 @@ require VIEWPATH . 'common/header.php';
                         <th class="">Supprimer</th>
                     </tr>
 
- 
-        
-    <?php   foreach ($reclamation as $reclama) { 
-                        
+
+
+    <?php   foreach ($reclamation as $reclama) {
+
                        //var_dump($reclamation);
                         ?>
                     <tr>
@@ -33,7 +32,7 @@ require VIEWPATH . 'common/header.php';
                         <td class=""><?= $reclama['nom_emetteur'] ?></td>
                         <td class=""><?= $reclama['date'] ?></td>
                         <td class=""><?= $reclama['sujet'] ?></td>
-                   
+
 
                         <td class=""><a class="btn btn-inline" href="<?= $base_url ?>reclamation/view/<?= $reclama['message_id'] ?>"></a></td>
                         <td class=""><a class="btn btn-inline"href="<?= $base_url ?>reclamation/delete/<?= $reclama['message_id'] ?>"></a></td>
@@ -42,8 +41,8 @@ require VIEWPATH . 'common/header.php';
      <?php } ?>
                 </tbody>
             </table>
-        </form>            
-                   
+        </form>
+
 
 <?php
 require VIEWPATH . 'common/footer.php';

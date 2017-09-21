@@ -11,7 +11,7 @@
     $menuLiHeight: 100%;
     $menuLiLineHeight: normal;
     $menuLiVerticalAlign:middle;
-    $menuLiMargin:0 10px;
+    $menuLiMargin:0 20px;
     $menuLiPadding:0;
     $menuLiEffectBgColor:transparent;
     $menuLinkColor:black;
@@ -141,7 +141,7 @@ nav {
                     a{
                         color: $submenuLinkColor;
                         display:block;
-                        min-width:330px;
+                        min-width:200px;
                         border-top:1px solid grey;
                         text-align:left;
                         padding:15px 0px 10px 0px;

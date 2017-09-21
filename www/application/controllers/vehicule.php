@@ -35,6 +35,7 @@ class Vehicule extends CI_Controller {
         $data['base_url'] = base_url();
 
         $this->load->view('vehicules/view', $data);
+        //$this->load->view('vehicules/disponibilite', $data);
     }
 
     public function createVehicule() {
@@ -328,6 +329,7 @@ class Vehicule extends CI_Controller {
 
     /**
      * Fouille le $_POST et retourne toutes les données nécessaires à l'ajout / édition d'un véhicule<br>
+     * @param EVehicule $vehicule Optionnellement, les données du véhicules sont utilisées pour combler le manque d'information dans le POST
      * C'est un raccourci pour ramasser tous les champs du formulaire
      * @return array
      */
@@ -489,12 +491,22 @@ class Vehicule extends CI_Controller {
     }
 
     public function debloquer($vehicule_id) {
-         $this->vehicule_model->debloquerVehicule($vehicule_id);
-         redirect('admin/listeVehicules');
+        $vehicule = $this->vehicule_model->getVehiculeById($vehicule_id);
+        if (!$vehicule || !$this->vehicule_model->debloquerVehicule($vehicule)) {
+            $this->session->set_flashdata('msg_error', 'Ce véhicule ne peut pas être débloqué');
+        } else {
+            $this->session->set_flashdata('msg_success', 'Le véhicule "' . $vehicule->toString() . '" a été débloqué');
+        }
+        redirect('admin/listeVehicules');
     }
 
     public function bloquer($vehicule_id) {
-         $this->vehicule_model->bloquerVehicule($vehicule_id);
-         redirect('admin/listeVehicules');
+        $vehicule = $this->vehicule_model->getVehiculeById($vehicule_id);
+        if (!$vehicule || !$this->vehicule_model->bloquerVehicule($vehicule)) {
+            $this->session->set_flashdata('msg_error', 'Ce véhicule ne peut pas être bloqué');
+        } else {
+            $this->session->set_flashdata('msg_success', 'Le véhicule "' . $vehicule->toString() . '" a été bloqué');
+        }
+        redirect('admin/listeVehicules');
     }
 }
