@@ -114,6 +114,7 @@ class Admin extends CI_Controller {
         echo '<pre>';
         var_dump($messages);
         echo '</pre>';
+        
     }
 
     /**

@@ -27,6 +27,13 @@ require VIEWPATH . 'common/header.php';
                 <input class="form-control" name="sujet" id="sujet" type="text" value="<?= $messages['sujet']?>" readonly>
             </div>
         </div>
+        
+        <div class="form-group">
+            <label class="control-label col-sm-3" for="sujet">Date :</label>
+            <div class="col-sm-9">
+                <input class="form-control" name="sujet" id="sujet" type="text" value="<?= $messages['date']?>" readonly>
+            </div>
+        </div>
 
         <div class="form-group">
             <label class="control-label col-sm-3" for="message">Message :</label>
