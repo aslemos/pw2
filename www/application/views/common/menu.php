@@ -1,13 +1,26 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed'); ?>
 <nav>
     <ul class="menu">
-        <li class=""><a href="<?= $base_url ?>" title="Page d'accueil">ACCUEIL</a></li>        
+        <li class=""><a href="<?= $base_url ?>" title="Page d'accueil">ACCUEIL</a></li>
         <li class=""><a href="<?= $base_url ?>vehicule/recherche#s" title="Trouvez une voiture">LOUER UN VÉHICULE</a></li>
         <?php if (UserAcces::userIsLogged()) { ?>
-            <li class=""><a href="<?= $base_url ?>membre#s" title="Fonctionnalités de membre"> GESTION DES VÉHICULES </a> </li>
+            <li>
+                <div class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" title="Fonctionnalités de membre">
+                        ESPACE MEMBRE
+                        <b class="caret"></b>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li role="presentation"><a role="menuitem" href="<?=$base_url?>locations/locationsByUser#s"><span class="text">Client</span></a></li>
+                        <li role="presentation"><a role="menuitem" href="<?=$base_url?>membre/vehicules#s"><span class="text">Prestataire</span></a></li>
+                        <li role="presentation"><a role="menuitem" href="<?=$base_url?>usager/editUser/<?=UserAcces::getUserId()?>#s"><span class="text">Mon profil</span></a></li>
+                        <li role="presentation"><a role="menuitem" href="<?=$base_url?>messagerie#s"><span class="text">Messages</span></a></li>
+                    </ul>
+                </div>
+            </li>
 
             <?php if (UserAcces::userIsAdmin()) { ?>
-                <li class="dropdown"><a href="" title="Fonctions d'administration du site">
+                <li class="dropdown"><a href="#" title="Fonctions d'administration du site">
                         ADMINISTRATION
                         <b class="caret"></b>
                     </a>
@@ -16,7 +29,7 @@
                         <li role="presentation"> <a role="menuitem" tabindex="-1" href="<?= $base_url ?>admin/listeMembres#s"> <span class="text"> Gestion Des Usagers </span></a></li>
                         <li role="presentation" class="divider"></li>
                         <li role="presentation"> <a role="menuitem" tabindex="-1" href="<?= $base_url ?>admin/listeVehicules#s"> <span class="text">Gestion Des Véhicules </span></a></li>
-                        <li role="presentation"> <a role="menuitem" tabindex="-1" href="<?= $base_url ?>admin/messages#s"> <span class="text">Gestion Des Messages </span></a></li>
+                        <li role="presentation"> <a role="menuitem" tabindex="-1" href="<?= $base_url ?>admin/messagerie#s"> <span class="text">Gestion Des Messages </span></a></li>
                         <?php if (UserAcces::userIsSuperAdmin()) { ?>
                             <li role="presentation"> <a role="menuitem" tabindex="-1" href="<?= $base_url ?>admin/listeAdmins#s"> <span class="text">Gestion Des Admins </span></a></li>
                         <?php } ?>

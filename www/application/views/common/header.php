@@ -92,7 +92,7 @@ $base_url = isset($base_url)
             </div>
         </section>
 
-        <div class="container">
+        <div id="s" class="container">
             <!-- Flash messages -->
             <?php if ($this->session->flashdata('msg_success')): ?>
                 <p class="alert alert-success text-center"><strong><?=$this->session->flashdata('msg_success') ?></strong></p>
@@ -102,4 +102,4 @@ $base_url = isset($base_url)
             <?php endif; ?>
 
         </div>
-        <main id="s" class="container">
+        <main class="container">
