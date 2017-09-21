@@ -80,24 +80,6 @@ class Reclamation extends CI_Controller {
 
     }
 
-//
-//     public function form_reclamation($id) {
-//        $data['body_class'] = "subpages voitures";
-//        $data['base_url'] = base_url();
-//        $data['page_title'] = 'Messages reçus';
-//
-//        $this->load->model('vehicule_model');
-//        $this->load->model('modepaiement_model');
-//
-//        $data['users'] = UserAcces::getLoggedUser();
-//        $data['voitures'] = $this->vehicule_model->getVehicules($id);
-//        $data['payements'] = $this->modepaiement_model->getModesPaiements();
-//
-//        $this->load->view('client/form_reclamation', $data);
-//    }
-
-
-
     public function insert_reclamation() {
 
         $url_redirect = base_url() . 'locations/locationsByUser';
@@ -134,20 +116,20 @@ class Reclamation extends CI_Controller {
         $this->load->view('client/page_succes_reclamation',$data );
 //        redirect($url_redirect);
     }
-    
+
      public function view($message_id) {
-         
+
          $data['base_url'] = base_url();
-         $data['title'] = 'Message Admin';
+         $data['title'] = 'Réclamation récue';
          $data['messages'] = $this->message_model-> getMessageById($message_id);
          $this->load->view('messagerie/view_reclamation',$data);
          $this->load->model('message_model');
          $this->message_model->getMessageById($message_id);
-         
+
      }
-     
+
      public function delete($message_id) {
-         
+
      $this->load->model('message_model');
      $this->message_model->deleteMessage($message_id);
      redirect('admin/reclamations#s');
