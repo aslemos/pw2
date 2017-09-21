@@ -114,5 +114,17 @@ class Ajax extends CI_Controller {
                 ]);
     }
 
+    public function approuverVehicule($vehicule_id = 0) {
+        $vehicule = $this->vehicule_model->getVehiculeById($vehicule_id);
+        echo json_encode([
+            'success' => $vehicule && $this->vehicule_model->autoriserVehicule($vehicule)
+        ]);
+    }
 
+    public function refuserVehicule($vehicule_id = 0) {
+        $vehicule = $this->vehicule_model->getVehiculeById($vehicule_id);
+        echo json_encode([
+            'success' => $vehicule && $this->vehicule_model->refuserVehicule($vehicule)
+        ]);
+    }
 }

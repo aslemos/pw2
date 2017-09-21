@@ -272,7 +272,7 @@ class Vehicule_model extends CI_Model {
         $this->db->join('arrondissements', 'vehicules.arr_id = arrondissements.arr_id');
         $this->db->join('villes', 'villes.ville_id = arrondissements.ville_id');
 
-        if ($vehicule_id == NULL) {
+        if ($vehicule_id === NULL) {
             $query = $this->db->get('vehicules');
             return $query->result_array();
         }
@@ -331,17 +331,19 @@ class Vehicule_model extends CI_Model {
 
         $this->db->where('vehicule_id', $vehicule->getId());
         return $this->db->update('vehicules', [
-            'proprietaire_id' => $vehicule->getProprietaire()->getId(),
-            'modele_id' => $vehicule->getModele()->getId(),
-            'carburant_id' => $vehicule->getCarburant()->getId(),
-            'transmission_id' => $vehicule->getTransmission()->getId(),
-            'type_id' => $vehicule->getType()->getId(),
-            'arr_id' => $vehicule->getArrond()->getId(),
+            'proprietaire_id' => $vehicule->getProprietaireId(),
             'matricule' => $vehicule->getMatricule(),
+            'description' => $vehicule->getDescription(),
             'annee' => $vehicule->getAnnee(),
             'nbre_places' => $vehicule->getNbPlaces(),
             'prix' => $vehicule->getPrix(),
-            'vehicule_photo' => $vehicule->getPhoto()
+            'vehicule_photo' => $vehicule->getPhoto(),
+            'type_id' => $vehicule->getTypeId(),
+            'modele_id' => $vehicule->getModeleId(),
+            'carburant_id' => $vehicule->getCarburantId(),
+            'transmission_id' => $vehicule->getTransmissionId(),
+            'arr_id' => $vehicule->getArrondId(),
+            'etat_vehicule' => $vehicule->getEtat()
         ]);
     }
 
@@ -515,24 +517,41 @@ class Vehicule_model extends CI_Model {
 
     /**
      * Débloque/autorise un véhicule à être utilisé dans le système
-     * @param int $vehicule_id
+     * @param EVehicule $vehicule
      */
-    public function debloquerVehicule($vehicule_id) {
-        $this->db->where('vehicule_id', $vehicule_id);
-        return $this->db->update('vehicules', [
-                    'etat_vehicule' => EVehicule::ETAT_ACTIF
-        ]);
+    public function debloquerVehicule(IVehicule $vehicule) {
+        if ($vehicule->getEtat() == EVehicule::ETAT_INACTIF) {
+            $vehicule->setEtat(EVehicule::ETAT_ACTIF);
+            return $this->vehicule_model->updateVehicule($vehicule);
+        }
+        return FALSE;
     }
 
     /**
      * Bloque un véhicule dans le système
-     * @param int $vehicule_id
+     * @param EVehicule $vehicule Le véhicule à bloquer
      */
-    public function bloquerVehicule($vehicule_id) {
-         $this->db->where('vehicule_id', $vehicule_id);
-          return $this->db->update('vehicules', [
-                    'etat_vehicule' => EVehicule::ETAT_INACTIF
-        ]);
+    public function bloquerVehicule(IVehicule $vehicule) {
+        if ($vehicule->getEtat() == EVehicule::ETAT_ACTIF) {
+            $vehicule->setEtat(EVehicule::ETAT_INACTIF);
+            return $this->vehicule_model->updateVehicule($vehicule);
+        }
+        return FALSE;
+    }
 
+    public function autoriserVehicule(IVehicule $vehicule) {
+        if ($vehicule->getEtat() == EVehicule::ETAT_EN_ATTENTE) {
+            $vehicule->setEtat(EVehicule::ETAT_ACTIF);
+            return $this->updateVehicule($vehicule);
+        }
+        return FALSE;
+    }
+
+    public function refuserVehicule(IVehicule $vehicule) {
+        if ($vehicule->getEtat() == EVehicule::ETAT_EN_ATTENTE) {
+            $vehicule->setEtat(EVehicule::ETAT_REFUSE);
+            return $this->updateVehicule($vehicule);
+        }
+        return FALSE;
     }
 }

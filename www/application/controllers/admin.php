@@ -2,7 +2,6 @@
 
 class Admin extends CI_Controller {
 
-    private $func = [];
     public function __construct() {
         parent::__construct();
 
@@ -77,7 +76,10 @@ class Admin extends CI_Controller {
         $data['title'] = 'Véhicules en attente d\'approbation';
         $data['body_class'] = 'subpages listeAdmin';
         $data['vehicules'] = $this->vehicule_model->getVehiculesEnAttente();
-        $this->load->view('admin/liste_voitures_admin', $data);
+        $data['scripts'] = [
+            base_url() . 'assets/js/ajax_approbation_vehicule.js'
+        ];
+        $this->load->view('admin/liste_voitures_approuver', $data);
     }
 
     /**
@@ -85,7 +87,7 @@ class Admin extends CI_Controller {
      */
     public function approuverMembre() {
         $data['page_title'] = 'Approbation de membre';
-        $data['title'] = 'Approbation de membre';
+        $data['title'] = 'Membres en attente d\'approbation';
         $data['body_class'] = 'subpages listeAdmin';
         $data['usagers'] = $this->usager_model->getUsagersEnAttente();
         $data['scripts'] = [

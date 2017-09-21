@@ -17,7 +17,7 @@ include VIEWPATH . 'common/header.php';
             <div class="rows4 title-container">
                 <div class="cols6">
                     <div class="blocks6">
-                        <h2>Trouver une voiture</h2>
+                        <h2>Trouver un véhicule</h2>
                     </div>
                 </div>
             </div>
@@ -47,7 +47,7 @@ include VIEWPATH . 'common/header.php';
                             </div>
                             <div class="row">
                                 <div class="col-md-4">
-                                    <h6>Modele</h6>
+                                    <h6>Modèle</h6>
                                 </div>
                                 <div class="col-md-8">
                                     <select class="form-control" id="modele_id" name="modele_id">
@@ -94,7 +94,7 @@ include VIEWPATH . 'common/header.php';
 
                             <div class="row">
                                 <div class="col-md-4">
-                                    <h6>Annee</h6>
+                                    <h6>Année</h6>
                                 </div>
                                 <div class="col-md-8">
                                     <select class="form-control" class="annee" id="annee" name="annee">
