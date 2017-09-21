@@ -86,7 +86,7 @@
                 $("select option:selected").each(function () {
                     str += $(this).val();
                 });
-                //alert(str);
+                alert(str);
                 if (str == "2") {
                     $("#myHide").slideUp();
                     $("#in1").removeAttr('required');
