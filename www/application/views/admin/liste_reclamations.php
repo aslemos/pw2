@@ -12,14 +12,14 @@ require VIEWPATH . 'common/header.php';
  <h2>Liste de Reclamations </h2>
 
         <form action="" name="formulaire" id="form-reclamationsAdm-id">
-            <table class="table table-responsive">
+            <table class="table table-reponsive">
                 <tbody><tr>
-                        <td class="titre_editable">Nº</td>
-                        <td class="titre_editable">Emetteur</td>
-                        <td class="titre_editable">Date</td>
-                        <td class="titre_editable">Sujet</td>
-                        <td class="titre_editable">Message</td>
-                        <td class="titre_editable">Supprimer</td>
+                        <th class="">Nº</th>
+                        <th class="">Emetteur</th>
+                        <th class="">Date</th>
+                        <th class="">Sujet</th>
+                        <th class="">Message</th>
+                        <th class="">Supprimer</th>
                     </tr>
 
  
@@ -29,20 +29,21 @@ require VIEWPATH . 'common/header.php';
                        //var_dump($reclamation);
                         ?>
                     <tr>
-                        <td class="editable"><?= $reclama['message_id'] ?></td>
-                        <td class="editable"><?= $reclama['nom_emetteur'] ?></td>
-                        <td class="editable"><?= $reclama['date'] ?></td>
-                        <td class="editable"><?= $reclama['sujet'] ?></td>
+                        <td class=""><?= $reclama['message_id'] ?></td>
+                        <td class=""><?= $reclama['nom_emetteur'] ?></td>
+                        <td class=""><?= $reclama['date'] ?></td>
+                        <td class=""><?= $reclama['sujet'] ?></td>
                    
 
                         <td class=""><a class="btn btn-inline" href="<?= $base_url ?>reclamation/view/<?= $reclama['message_id'] ?>"></a></td>
                         <td class=""><a class="btn btn-inline"href="<?= $base_url ?>reclamation/delete/<?= $reclama['message_id'] ?>"></a></td>
 
                     </tr>
+     <?php } ?>
                 </tbody>
             </table>
         </form>            
-                    <?php } ?>
+                   
 
 <?php
 require VIEWPATH . 'common/footer.php';

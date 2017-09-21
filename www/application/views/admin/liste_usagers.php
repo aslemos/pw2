@@ -7,25 +7,24 @@ include VIEWPATH . '/common/header.php';
 <?php include VIEWPATH . 'admin/boutons_admin.php'; ?>
     <h2><?=$title?></h2>
     <form action="" name="formulaire" id="form-Members-id">
-        <table class="table table-responsive">
+        <table class="table table-reponsive">
             <tr>
-                <td class="titre_editable">Nº</td>
-                <td class="titre_editable">Nom</td>
-                <td class="titre_editable">Prénom</td>
-                <td class="titre_editable">Nombre de voitures</td>
-                <td class="titre_editable">E-email</td>
-                <td class="titre_editable">Évaluation</td>
-                <td class="titre_editable">Approuver</td>
-                <td class="titre_editable">Refuser</td>
+                <th class="">Nº</th>
+                <th class="">Nom</th>
+                <th class="">Prénom</th>
+                <th class="">Nombre de voitures</th>
+                <th class="">E-email</th>
+                <th class="">Évaluaitable">Approuver</th>
+                <th class="">Refuser</th>
             </tr>
             <tr>
-                <td class="editable">1</td>
-                <td class="editable">test</td>
-                <td class="editable">test</td>
-                <td class="editable">test</td>
-                <td class="editable">test</td>
-                <td class="editable">test</td>
-                <td class="editable">
+                <td class="">1</td>
+                <td class="">test</td>
+                <td class="">test</td>
+                <td class="">test</td>
+                <td class="">test</td>
+                <td class="">test</td>
+                <td class="">
                     <img src="<?= $base_url; ?>assets/images/ok.png" >
                 </td>
                 <td class="editable">
