@@ -62,7 +62,7 @@ include VIEWPATH . 'common/header.php';
                                 <textarea id="comment" placeholder="" name="message" required=""></textarea>
 
                                 <div class="containerbottom text-right">
-                                    <button class="btn" type="submit">ENVOYER</button>
+                                    <button class="btn btn-general" type="submit">ENVOYER</button>
                                 </div>
                             </form>
                         </div>

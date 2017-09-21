@@ -194,7 +194,8 @@ class Vehicule_model extends CI_Model {
         // S'il y a de résultat, alors il y a un véhicule actif,
         //  avec une disponibilité et sans conflit de réservation
         $query = $this->db->get();
-        return !empty($query->result());
+        $data = $query->result();
+        return !empty($data);
    }
 
     /**

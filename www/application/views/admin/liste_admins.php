@@ -2,7 +2,7 @@
 // Header
 include VIEWPATH . 'common/header.php';
 //========================================================
-include VIEWPATH . 'admin/boutons_admin.php';
+include VIEWPATH . 'admin/boutons_admin_usagers.php';
 ?>
 <section id="listeAdmin">
     <h2><?=$title?></h2>
@@ -42,7 +42,7 @@ include VIEWPATH . 'admin/boutons_admin.php';
         </table>
     </div>
 <?php } else { ?>
-    <h3 class="alert_title">Aucun administrateur n'a été trouver</h3>
+    <h3 class="alert_title">Aucun administrateur n'a été trouvé</h3>
 <?php } ?>
 </section>
 <?php

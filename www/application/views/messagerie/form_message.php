@@ -7,10 +7,7 @@
 
 require VIEWPATH . 'common/header.php';
 ?>
-<div class="row btn-liens" >
-    <a class="btn position" href="<?= $base_url ?>messagerie#s">Annuler</a>
-    <button class="btn position" type="submit" form="frm-message">Envoyer</button>
-</div>
+
 <h2><?= $title ?></h2>
 <div>
     <form id="frm-message" class="form-horizontal" method="post" action="<?= $base_url ?>messagerie/enregistrer#s" class="inline-form">
@@ -41,6 +38,10 @@ require VIEWPATH . 'common/header.php';
         </div>
 
     </form>
+</div>
+<div class="row btn-liens" >
+    <a class="btn btn-danger position pull-right" href="<?= $base_url ?>messagerie#s">Annuler</a>
+    <button class="btn btn-success position pull-right" type="submit" form="frm-message">Envoyer</button>
 </div>
 <?php
 require VIEWPATH . 'common/footer.php';

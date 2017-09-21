@@ -2,7 +2,6 @@
 
 class Admin extends CI_Controller {
 
-    private $func = [];
     public function __construct() {
         parent::__construct();
 

@@ -2,7 +2,7 @@
 // Header
 include VIEWPATH . 'common/header.php';
 //========================================================
-include VIEWPATH . 'admin/boutons_admin.php';
+include VIEWPATH . 'admin/boutons_admin_usagers.php';
 ?>
 <section id="listeAdmin">
     <h2><?=$title?></h2>
