@@ -12,6 +12,19 @@ class usager_model extends CI_Model {
         $this->load->database();
     }
 
+    /**
+     * Trouve un usager par son ID et retourne son objet EUsager
+     * @param int $user_id L'identifiant de l'usager
+     * @return EUsager
+     */
+    public function getUserById($user_id) {
+        $data = $this->getUsers($user_id);
+        if (!empty($data)) {
+            return new EUsager($data);
+        }
+        return NULL;
+    }
+
     public function getUsers($user_id = NULL) {
 
         $this->db->join('roles', 'roles.role_id = usagers.role_id');
@@ -181,5 +194,35 @@ class usager_model extends CI_Model {
         $sql.= ' WHERE usagers.role_id IN (' . ERole::ROLE_ADMIN . ',' . ERole::ROLE_SUPERADMIN . ')';
         $query = $this->db->query($sql);
         return $query->result_array();
+    }
+
+    /**
+     * Approuve une demande d'abonnement
+     * @param int $user_id L'identifiant de l'usager
+     * @return bool
+     * @author Alessandro Souza Lemos
+     */
+    public function approuverMembre($user_id) {
+        $user = $this->usager_model->getUserById($user_id);
+        if ($user && $user->getEtat() == EUsager::ETAT_EN_ATTENTE) {
+            $this->db->where('user_id', $user_id);
+            return $this->db->update('usagers', ['etat_usager' => EUsager::ETAT_ACTIF]);
+        }
+        return FALSE;
+    }
+
+    /**
+     * Refuse une demande d'abonnement
+     * @param int $user_id L'identifiant de l'usager
+     * @return bool
+     * @author Alessandro Souza Lemos
+     */
+    public function refuserMembre($user_id) {
+        $user = $this->usager_model->getUserById($user_id);
+        if ($user && $user->getEtat() == EUsager::ETAT_EN_ATTENTE) {
+            $this->db->where('user_id', $user_id);
+            return $this->db->update('usagers', ['etat_usager' => EUsager::ETAT_REFUSE]);
+        }
+        return FALSE;
     }
 }

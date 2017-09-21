@@ -43,12 +43,18 @@ class Admin extends CI_Controller {
     public function listeMembres() {
         $data['page_title'] = 'Liste des membres';
         $data['title'] = 'Liste des membres';
+        $data['page_title'] = 'Liste des membres';
         $data['body_class'] = 'subpages listeAdmin';
         $data['base_url'] = base_url();
 
         $data['usagers'] = $this->usager_model->getMembres();
-
+//        if (count($data['usagers']) > 0) {
         $this->load->view('admin/liste_usagers', $data);
+//        } else {
+//            $data['msg_title'] = 'Il n\'y a pas de membre';
+//            $data['msg_action'] = base_url() . 'admin/listeMembres#s';
+//            $this->load->view('common/page_message', $data);
+//        }
     }
 
     /**
@@ -82,6 +88,9 @@ class Admin extends CI_Controller {
         $data['title'] = 'Approbation de membre';
         $data['body_class'] = 'subpages listeAdmin';
         $data['usagers'] = $this->usager_model->getUsagersEnAttente();
+        $data['scripts'] = [
+            base_url() . 'assets/js/ajax_approbation_membre.js'
+        ];
         $this->load->view('admin/liste_usagers_approuver', $data);
     }
 
@@ -92,7 +101,6 @@ class Admin extends CI_Controller {
         $data['page_title'] = 'Réclamations des membres';
         $data['title'] = 'Réclamations des membres';
         $data['body_class'] = 'subpages listeAdmin';
-        echo 'liste et visualisation des messages de réclamation';
         $this->load->model('message_model');
         $data['reclamation'] = $this->message_model->getReclamations();
         //this-load-view()

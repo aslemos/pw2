@@ -148,9 +148,8 @@ class Reclamation extends CI_Controller {
      
      public function delete($message_id) {
          
-     $this->load->view('messagerie/view_reclamation');
      $this->load->model('message_model');
      $this->message_model->deleteMessage($message_id);
-     
+     redirect('admin/reclamations#s');
      }
 }
