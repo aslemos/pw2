@@ -14,10 +14,13 @@ class Admin extends CI_Controller {
         }
     }
 
-    public function index() {
-        $this->listeMembres();
-    }
-
+    /*
+     * Routage
+     */
+    public function index() {$this->listeMembres();}
+    public function usagers() {$this->listeMembres();}
+    public function vehicules() {$this->listeVehicules();}
+    public function messagerie() {$this->messages();}
 
     /**
      * Liste des administrateurs du site

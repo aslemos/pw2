@@ -14,7 +14,7 @@
                         <li role="presentation"><a role="menuitem" href="<?=$base_url?>locations/locationsByUser#s"><span class="text">Client</span></a></li>
                         <li role="presentation"><a role="menuitem" href="<?=$base_url?>membre/vehicules#s"><span class="text">Prestataire</span></a></li>
                         <li role="presentation"><a role="menuitem" href="<?=$base_url?>usager/editUser/<?=UserAcces::getUserId()?>#s"><span class="text">Mon profil</span></a></li>
-                        <li role="presentation"><a role="menuitem" href="<?=$base_url?>messagerie#s"><span class="text">Messages</span></a></li>
+                        <li role="presentation"><a role="menuitem" href="<?=$base_url?>messagerie#s"><span class="text">Messagerie</span></a></li>
                     </ul>
                 </div>
             </li>
@@ -30,9 +30,12 @@
                         <li role="presentation" class="divider"></li>
                         <li role="presentation"> <a role="menuitem" tabindex="-1" href="<?= $base_url ?>admin/listeVehicules#s"> <span class="text">Gestion Des Véhicules </span></a></li>
                         <li role="presentation"> <a role="menuitem" tabindex="-1" href="<?= $base_url ?>admin/messagerie#s"> <span class="text">Gestion Des Messages </span></a></li>
+
+<!-- C'est redondant, parce que l'option de liste d'administrateur se trouve déjà dans l'affichage d'usagers
                         <?php if (UserAcces::userIsSuperAdmin()) { ?>
                             <li role="presentation"> <a role="menuitem" tabindex="-1" href="<?= $base_url ?>admin/listeAdmins#s"> <span class="text">Gestion Des Admins </span></a></li>
                         <?php } ?>
+-->
                     </ul>
                 </li>
 
