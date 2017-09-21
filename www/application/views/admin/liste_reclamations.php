@@ -7,7 +7,7 @@
 
 require VIEWPATH . 'common/header.php';
 ?>
-<?php include VIEWPATH . 'admin/boutons_admin.php'; ?>
+<?php include VIEWPATH . 'admin/boutons_admin_messages.php'; ?>
  <h2>Liste de Reclamations </h2>
 
         <form action="" name="formulaire" id="form-reclamationsAdm-id">

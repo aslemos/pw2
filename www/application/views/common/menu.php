@@ -6,7 +6,7 @@
         <?php if (UserAcces::userIsLogged()) { ?>
             <li>
                 <div class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" title="Fonctionnalités de membre">
+                    <a href="#"  title="Fonctionnalités de membre">
                         ESPACE MEMBRE
                         <b class="caret"></b>
                     </a>
@@ -20,7 +20,8 @@
             </li>
 
             <?php if (UserAcces::userIsAdmin()) { ?>
-                <li class="dropdown"><a href="#" title="Fonctions d'administration du site">
+                <li class="dropdown">
+                    <a href="#" title="Fonctions d'administration du site">
                         ADMINISTRATION
                         <b class="caret"></b>
                     </a>
@@ -29,7 +30,7 @@
                         <li role="presentation"> <a role="menuitem" tabindex="-1" href="<?= $base_url ?>admin/listeMembres#s"> <span class="text"> Gestion Des Usagers </span></a></li>
                         <li role="presentation" class="divider"></li>
                         <li role="presentation"> <a role="menuitem" tabindex="-1" href="<?= $base_url ?>admin/listeVehicules#s"> <span class="text">Gestion Des Véhicules </span></a></li>
-                        <li role="presentation"> <a role="menuitem" tabindex="-1" href="<?= $base_url ?>admin/messagerie#s"> <span class="text">Gestion Des Messages </span></a></li>
+                        <li role="presentation"> <a role="menuitem" tabindex="-1" href="<?= $base_url ?>admin/reclamations#s"> <span class="text">Gestion Des Messages </span></a></li>
                         <?php if (UserAcces::userIsSuperAdmin()) { ?>
                             <li role="presentation"> <a role="menuitem" tabindex="-1" href="<?= $base_url ?>admin/listeAdmins#s"> <span class="text">Gestion Des Admins </span></a></li>
                         <?php } ?>
@@ -37,7 +38,8 @@
                 </li>
 
             <?php } ?>
-            <li class="dropdown"><a href="<?= $base_url ?>messagerie#s" title="Service de messagerie">
+            <li class="dropdown">
+                <a href="<?= $base_url ?>messagerie#s" title="Service de messagerie">
                     MESSAGERIE
                     <b class="caret"></b>
                 </a>
