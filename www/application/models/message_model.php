@@ -48,7 +48,7 @@ class Message_Model extends CI_Model {
                 . ' LEFT JOIN usagers emet ON (messages.emetteur_id = emet.user_id)'
                 . ' LEFT JOIN usagers dest ON (messages.destinataire_id = dest.user_id)'
                 . ' WHERE emetteur_id = ' . $this->db->escape($user->getId())
-                . ' AND messages.type = ' . EMessage::MSG_TYPE_INTERNE
+                . ' AND messages.type IN (' . EMessage::MSG_TYPE_INTERNE . ',' .  EMessage::MSG_TYPE_ADMINISTRATIVE . ')'
                 . ' ORDER BY date DESC;';
         $st = $this->db->query($sql);
         return $st->result();

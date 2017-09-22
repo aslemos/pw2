@@ -19,7 +19,7 @@ include VIEWPATH . 'common/header.php';
             <div class="cols7 col-md-12 col-sm-12 col-xs-12">
                 <div class="blocks7">
                     <div>
-                        <form method="post" name="monFormulaire" action="<?= $action; ?>" class="form-horizontal" id="needs-validation" > <!--novalidate-->
+                        <form method="post" enctype="multipart/form-data" name="monFormulaire" action="<?= $action; ?>" class="form-horizontal" id="needs-validation" > <!--novalidate-->
 
                             <div class="form-group">
                                 <label class="control-label col-xs-3" for="lastName">Nom de famille: <span class="filedRequired">*</span></label>
@@ -179,23 +179,16 @@ include VIEWPATH . 'common/header.php';
                                 </div>
                             </div>
 
-                            <!--                            <div class="form-group">
+                            <div class="form-group">
+            <label class="control-label col-xs-3" for="photo">Photo:</label>
+            <div class="col-xs-6">
+                <input type="file" class="form-control-file" id="photo" name="photo">
+            </div>
+        </div>
 
-                                                            <div class="col-xs-2">
-                                                                <select name="choixProvince" id="province_id" class="form-control formSelector">
-                                                                    <option SELECTED>Province</option>
-                                                                </select>
-                                                            </div>
 
-                                                            <label class="control-label col-xs-3" for="inputVille"></label>
-                                                            <div class="col-xs-2">
-                                                                <input type="text" name="inputVille" class="form-control" id="inputVille" placeholder="Ville" required>
-                                                            </div>
 
-                                                            <div class="col-xs-2">
-                                                                <input type="text" name="CodePostal" class="form-control" id="inputCode" placeholder="Code Postal" required>
-                                                            </div>
-                                                        </div>-->
+        <br />
 
                             <div class="form-group">
                                 <div class="col-xs-offset-3 col-xs-9">
