@@ -138,7 +138,16 @@ header{
             display: block;
         }
     }
+    
+    &.messagerie {
+        #subpages-hero {
+            background: url('../images/messagerie/bg_messagerie.jpg') center center/cover no-repeat;
+        }
 
+        #slogan-messagerie {
+            display: block;
+        }
+    }
 
     &.voitures {
         #subpages-hero {

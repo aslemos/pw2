@@ -24,7 +24,7 @@ class Messagerie extends CI_Controller {
         $data['page_title'] = 'Messages reçus';
         $data['title'] = 'Messages reçus';
         $data['list_type'] = 'E'; // entrée
-        $data['body_class'] = '';
+        $data['body_class'] = 'subpages messagerie';
         $data['messages'] = $this->message_model->getMessages($user);
 
         $this->load->view('messagerie/liste_messages', $data);
@@ -38,7 +38,7 @@ class Messagerie extends CI_Controller {
         $data['page_title'] = 'Messages envoyés';
         $data['title'] = 'Messages envoyés';
         $data['list_type'] = 'S'; // sortie
-        $data['body_class'] = '';
+        $data['body_class'] = 'subpages messagerie';
         $data['messages'] = $this->message_model->getMessagesEnvoyes($user);
         $this->load->view('messagerie/liste_messages', $data);
     }
@@ -47,7 +47,7 @@ class Messagerie extends CI_Controller {
         $data['base_url'] = base_url();
         $data['page_title'] = 'Envoyer message à un membre';
         $data['title'] = 'Contacter d\'autre membre';
-        $data['body_class'] = '';
+        $data['body_class'] = 'subpages messagerie';
         $data['users'] = $this->usager_model->getUsers();
 
         $this->load->view('messagerie/form_message', $data);
@@ -74,7 +74,7 @@ class Messagerie extends CI_Controller {
         // appelle la page de résultat
         $data['base_url'] = base_url();
         $data['page_title'] = 'Composer message';
-        $data['body_class'] = '';
+        $data['body_class'] = 'subpages messagerie';
         $data['destinaraire'] = $dest;
         $this->load->view('messagerie/message_enregistre', $data);
     }
@@ -83,7 +83,7 @@ class Messagerie extends CI_Controller {
         $data['base_url'] = base_url();
         $data['page_title'] = 'Contacter un administrateur';
         $data['title'] = 'Contacter un administrateur';
-        $data['body_class'] = '';
+        $data['body_class'] = 'subpages messagerie';
         $data['users'] = $this->usager_model->getAdmins();
 
         $this->load->view('messagerie/form_message_admin', $data);
@@ -113,7 +113,7 @@ class Messagerie extends CI_Controller {
         // appelle la page de résultat
         $data['base_url'] = base_url();
         $data['page_title'] = 'Message à l\'administration du site';
-        $data['body_class'] = '';
+        $data['body_class'] = 'subpages messagerie';
         $data['destinaraire'] = $dest;
         $this->load->view('messagerie/message_enregistre', $data);
     }
@@ -121,6 +121,7 @@ class Messagerie extends CI_Controller {
     public function view_message_interne($message_id) {
         $data['base_url'] = base_url();
         $data['title'] = 'Contact de membre';
+        $data['body_class'] = 'subpages messagerie';
         $data['messages'] = $this->message_model-> getMessageById($message_id);
         $this->load->view('messagerie/view_message_inter',$data);
     }
