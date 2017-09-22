@@ -198,7 +198,7 @@ include VIEWPATH . 'common/header.php';
                                 <input type="hidden" name="date_fin" value="<?= $recherche->getDateFin() ?>">
                                 <div class="form-style-11">
                                     <div class="blocksDisplayVeh container-fuild">
-                                        <div class="img-container">
+                                        <div id="testImg" class="img-container">
                                             <img src="<?= $base_url ?>assets/images/vehicules/<?= $vehicule->getPhoto() ?>" alt="<?= $vehicule->toString() ?>">
                                         </div>
                                         <div>
