@@ -195,6 +195,7 @@
             nav{
                 left: 0;
             }
+            overflow: visible;
         }
     }
 
@@ -271,7 +272,7 @@
                     &.dropdown{
                         &:hover, &:focus{
                             .submenu{
-                                display: none;
+                                display: inline-block;
                             }
                         }
                     }

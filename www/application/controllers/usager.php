@@ -101,7 +101,16 @@ class Usager extends CI_Controller {
         $data['page_title'] = 'Devenir Membre';
         $data['body_class'] = 'subpages devenir-membre';
         $data['base_url'] = base_url();
-        $data['scripts'] = [ base_url().'assets/js/devenir_membre_js.js' ];
+         // Charger les Provinces et les arrondissements
+        $data['provinces'] = $this->arrondissement_model->getProvinces();
+        $data['villes'] = $this->arrondissement_model->getVillesByProvinceId($this->input->post('province_id'));
+        $data['arrondissements'] = $this->arrondissement_model->getArrondissementsByVilleId($this->input->post('ville_id'));
+        // Call Script
+        $data['scripts'] = [
+            base_url() . 'assets/js/ajax_villes_by_province.js',
+            base_url() . 'assets/js/ajax_arrond_by_ville.js',
+            base_url() . 'assets/js/devenir_membre_js.js'
+        ];
 
         $data['roles'] = $this->usager_model->getRoles();
         $data['err_message'] = '* Tous Les Champs Sont Requis!';

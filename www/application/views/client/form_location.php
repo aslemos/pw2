@@ -6,7 +6,7 @@
 
 <div class="form-style-10">
     <h3>Réservation<span>Vérifier et confirmer les informations</span></h3>
-    <form method="post" action="<?= $base_url ?>locations/insererLocation">
+    <form method="post" action="<?= $base_url ?>locations/insererLocation#s">
 
         <div class="section test animated zoomIn"><span>1</span>Information location de voiture</div>
 
@@ -67,7 +67,7 @@
 
                 <div class="col-md-4">
                     <label><h5>Prix total</h5>
-                        <input class="myInput" type="text" name="prixTotal" disabled value="//<?= $voitures['prix'] ?> "/>
+                        <input class="myInput" type="text" name="prixTotal" disabled value="<?= $prix_total?> "/>
                     </label>
                 </div>
             </div>

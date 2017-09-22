@@ -1,16 +1,15 @@
-<?php
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 
-require VIEWPATH . 'common/header.php';
-?>
-<h3>Message envoyé au destinataire</h3>
-<form action="<?=$base_url?>messagerie/envoyes#s">
-    <button type="submit">Ok</button>
-</form>
+<?php include VIEWPATH . '/common/header.php'; ?>
 
-<?php
-require VIEWPATH . 'common/footer.php';
+<body>
+    <div class="form-style-10">
+        <h3 class="succes">Félicitations!</h3>
+        <h4>Votre mesage a été envoyée !</h4>
+        <div class="btn-liens" >
+            <!-- Bouton pour afficher redirect apres succes -->
+            <a class="btn btn-success" href="<?= $base_url ?>messagerie/envoyes#s" >OK</a>
+        </div>
+    </div>
+</body>
+
+<?php include VIEWPATH . '/common/footer.php'; ?>
