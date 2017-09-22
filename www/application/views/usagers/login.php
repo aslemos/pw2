@@ -5,7 +5,7 @@ include VIEWPATH . 'common/header.php';
 ?>
 <section id="login">
     <div class="row">
-    <h1> FORMULAIRE D'IDENTIFICATION <h1>
+    <h2> FORMULAIRE D'IDENTIFICATION </h2>
     </div>
     <div class="container">
         <div class="row">
