@@ -55,7 +55,7 @@ include VIEWPATH . 'common/header.php';
                                 <div class="btn-group" data-toggle="buttons">
                                     <div class="col-xs-6">
                                         <label class="btn active" >
-                                            <input type="radio" name='gender2' class="gender" checked required>
+                                            <input type="radio" name='gender2' value="H" class="gender" checked required>
                                             <i class="fa fa-circle-o fa-2x"></i>
                                             <i class="fa fa-check-circle-o fa-2x"></i>
                                             <span class="test"> Homme</span>
@@ -64,7 +64,7 @@ include VIEWPATH . 'common/header.php';
 
                                     <div class="col-xs-6">
                                         <label class="btn">
-                                            <input type="radio" name='gender2' class="gender" required>
+                                            <input type="radio" name='gender2' value="F" class="gender" required>
                                             <i class="fa fa-circle-o fa-2x"></i>
                                             <i class="fa fa-check-circle-o fa-2x"></i>
                                             <span class="test"> Femme</span>
