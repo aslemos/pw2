@@ -31,7 +31,7 @@ include VIEWPATH . 'common/header.php';
                             <div class="form-group">
                                 <label class="control-label col-xs-3" for="firstName">Prenom: <span class="filedRequired">*</span></label>
                                 <div class="col-xs-6">
-                                    <input type="text" class="form-control" name="firstName" id="firstName" placeholder="Entrez le nom" required> 
+                                    <input type="text" class="form-control" name="firstName" id="firstName" placeholder="Entrez le nom" required>
                                 </div>
                             </div>
 
@@ -135,7 +135,7 @@ include VIEWPATH . 'common/header.php';
                                 <div class="col-xs-3">
                                     <select class="form-control formSelector" name="province_id" id="province_id">
                                         <option value="0">-- Choisissez Province --</option>
-                                        <?php 
+                                        <?php
                                         if(isset($provinces)){
                                         foreach ($provinces as $province) { ?>
                                             <option value="<?= $province['province_id'] ?>"><?= $province['province'] ?></option>
@@ -147,13 +147,13 @@ include VIEWPATH . 'common/header.php';
 
                                 <!--<label class="control-label col-xs-2"  for="ville">Ville</label>-->
                                 <div class="col-xs-3">
-                                    <select class="form-control formSelector" name="ville_id" id="ville_id">
-                                        <option value="0">-- Choisissez Ville --</option>
-                                        <?php 
+                                    <select class="form-control formSelector" name="ville_id" id="ville_id" required>
+                                        <option value="">-- Choisissez Ville --</option>
+                                        <?php
                                         if(isset($villes)){
                                         foreach ($villes as $ville) { ?>
                                             <option value="<?= $ville['ville_id'] ?>"><?= $ville['nom_ville'] ?></option>
-                                        <?php } 
+                                        <?php }
                                         }
                                         ?>
                                     </select>
@@ -163,8 +163,8 @@ include VIEWPATH . 'common/header.php';
                             <div class="form-group">
                                 <label class="control-label col-xs-3"><span class="filedRequired">*</span></label>
                                 <div class="col-xs-3">
-                                    <select class="form-control formSelector" name="arr_id" id="arr_id">
-                                        <option value="0">-- Choisissez Arrondissement--</option>
+                                    <select class="form-control formSelector" name="arr_id" id="arr_id" required>
+                                        <option value="">-- Choisissez Arrondissement--</option>
                                         <?php
                                         if(isset($arrondissement)){
                                         foreach ($arrondissement as $ville) { ?>
@@ -180,18 +180,18 @@ include VIEWPATH . 'common/header.php';
                             </div>
 
                             <!--                            <div class="form-group">
-                                                            
+
                                                             <div class="col-xs-2">
                                                                 <select name="choixProvince" id="province_id" class="form-control formSelector">
                                                                     <option SELECTED>Province</option>
                                                                 </select>
                                                             </div>
-                                                            
+
                                                             <label class="control-label col-xs-3" for="inputVille"></label>
                                                             <div class="col-xs-2">
                                                                 <input type="text" name="inputVille" class="form-control" id="inputVille" placeholder="Ville" required>
                                                             </div>
-                            
+
                                                             <div class="col-xs-2">
                                                                 <input type="text" name="CodePostal" class="form-control" id="inputCode" placeholder="Code Postal" required>
                                                             </div>
@@ -226,7 +226,7 @@ include VIEWPATH . 'common/header.php';
                             </div>
 
                             <br />
-                            
+
                             <div class="form-group">
                                 <div class="col-xs-offset-3 col-xs-9">
                                     <input type="submit" class="btn btn-primary" value="S'inscrire">
