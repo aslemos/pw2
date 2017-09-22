@@ -46,7 +46,7 @@ class Messagerie extends CI_Controller {
     public function composer() {
         $data['base_url'] = base_url();
         $data['page_title'] = 'Envoyer message à un membre';
-        $data['title'] = 'Contacter d\'autre membre';
+        $data['title'] = 'Contacter un membre';
         $data['body_class'] = 'subpages messagerie';
         $data['users'] = $this->usager_model->getUsers();
 
