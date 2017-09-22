@@ -9,7 +9,7 @@ header{
 }
 .menu li a:hover{
     background-color: #974952;
-    padding: 6px;
+    padding: 10px;
     border-radius: 5px;
 }
 
@@ -17,6 +17,12 @@ header{
   vertical-align: super;
   font-size: smaller;
   font-weight: normal;
+  color: grey;
+}
+
+#myPhoto{
+width: 20px;
+height: 30px;
 }
 
 header nav .menu {
