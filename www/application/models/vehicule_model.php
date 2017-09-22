@@ -20,7 +20,7 @@ class Vehicule_model extends CI_Model {
     public function rechercherVehicules(ERecherche $recherche) {
 
         // Vérifie si les dates son consécutives
-        if ($recherche->getDateDebut() <= Date('Y-m-d') || $recherche->getDateFin() < $recherche->getDateDebut()) {
+        if ($recherche->getDateDebut() < Date('Y-m-d') || $recherche->getDateFin() < $recherche->getDateDebut()) {
             return [];
         }
 

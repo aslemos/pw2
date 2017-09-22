@@ -552,6 +552,11 @@
 //---------------------
 
 @media (max-width: 480px){
+
+    .img-container{
+        height: 100px;
+    }
+
     /* --- GENERAL --- */
     body {
         h2 {
@@ -560,9 +565,9 @@
     }
 
     .bordered {
-    //border-right: solid 6px $bgColor;
-    border-bottom: solid 6px $bgColor;
-}
+        //border-right: solid 6px $bgColor;
+        border-bottom: solid 6px $bgColor;
+    }
 
     /* --- SUBPAGES-HEADER --- */
     .subpages {
@@ -685,6 +690,9 @@
         }
     }
 
+
+
+
     /* --- PAGE REGLEMENTS --- */
     #reglements {
         padding: 35px 0 0;
@@ -711,8 +719,8 @@
     }
 
     /* --- A propos --*/
-  #apropos {
-       .cols{
+    #apropos {
+        .cols{
             padding: 0px ;
             height: auto;
             margin: 0px;

@@ -22,8 +22,21 @@ class Ajax extends CI_Controller {
      * @author Alessandro Souza Lemos
      */
     public function disponibiliteParDate($vehicule_id = 0, $date_debut = NULL, $date_fin = NULL) {
-        $disp = $this->vehicule_model->disponibiliteParDate($vehicule_id, $date_debut, $date_fin);
-        echo json_encode(['disponible' => $disp]);
+        $vehicule = $this->vehicule_model->getVehiculeById($vehicule_id);
+        $disp = FALSE;
+        $nb_jours = 0;
+        $prix_total = 0;
+        if ($vehicule) {
+            $disp = $this->vehicule_model->disponibiliteParDate($vehicule_id, $date_debut, $date_fin);
+            if ($disp) {
+                $prix_total = ELocation::calculerPrixTotal($vehicule->getPrix(), $date_debut, $date_fin, $nb_jours);
+            }
+        }
+        echo json_encode([
+            'disponible' => $disp,
+            'nb_jours' => $nb_jours,
+            'prix_total' => $prix_total
+            ]);
     }
 
     /**

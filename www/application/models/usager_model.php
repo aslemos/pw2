@@ -80,7 +80,7 @@ class usager_model extends CI_Model {
         $data = array(
             'prenom' => $this->input->post('firstName'),
             'nom' => $this->input->post('lastName'),
-//            'dateNaissance' => $this->input->post('jour'),
+            'dateNaissance' => $this->input->post('annee').'-'.$this->input->post('mois').'-'.$this->input->post('jour'),
             'sexe' => $this->input->post('gender2'),
             'permis_conduire' => $this->input->post('inputConduire'),
             'telephone' => $this->input->post('phoneNumber'),
