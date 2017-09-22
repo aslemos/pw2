@@ -273,6 +273,12 @@ class Locations extends CI_Controller {
         $data2['location_id'] = $this->input->post('location_id');
         $data2['montant'] = $this->input->post('montant');
 
+
+         $data['scripts'] = [
+            base_url() . 'assets/js/scripts_verifier_payaimant.js',
+
+        ];
+
         // enregistre le payement
         $this->load->model('location_model');
         $this->location_model->create_payement($data2);
