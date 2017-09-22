@@ -21,6 +21,7 @@ Réclamation
 Payements
 ----------
 - Changer l'état de la réservation lorsque la valeur atteint le montant total
+- Après le paiement, retourner à l'historique de location
 
 
 Messagerie

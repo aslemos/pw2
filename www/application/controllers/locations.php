@@ -185,7 +185,7 @@ class Locations extends CI_Controller {
 
         $data['base_url'] = base_url();
         $data['page_title'] = 'Locataires du membre';
-        $data['title'] = 'Locataires du membre';
+        $data['title'] = 'Historique - Mes locataires';
         $data['body_class'] = "subpages membre";
         $data['scripts'] = [base_url() . 'assets/js/calendrier_date_debut_et_fin.js'];
         $data['usagers'] = $this->usager_model->getUsers();

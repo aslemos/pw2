@@ -27,6 +27,7 @@ interface ILocation {
     public function getTotalPaye();
 
     public function getEtat();
+    public function setEtat($etat_location);
 
     public function getPrixTotal();
 

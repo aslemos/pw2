@@ -22,8 +22,8 @@ include VIEWPATH . 'client/boutons_prestataire.php';
                     <th class="">Date Fin</th>
                     <th class="">Jours</th>
                     <th class="">Prix Total</th>
-                    <th class="titre_editable">Approuver</th>
-                    <th class="titre_editable">Refuser</th>
+                    <th colspan="2">Action</th>
+                    <!--<th class="titre_editable">Refuser</th>-->
                 </tr>
             </thead>
             <tbody>
@@ -40,8 +40,8 @@ include VIEWPATH . 'client/boutons_prestataire.php';
                     <td class=""><?= $reservation->getDateFin() ?></td>
                     <td class=""><?= $reservation->getNbJours() ?></td>
                     <td class=""><?= $reservation->getPrixTotal() ?></td>
-                    <td><span onclick="approuverReservation(<?= $reservation->getId() ?>)" class="glyphicon glyphicon-ok-circle btn-accepter"></span></td>
-                    <td><span onclick="refuserReservation(<?= $reservation->getId() ?>)" class="glyphicon glyphicon-ban-circle btn-refuser"></span></td>
+                    <td><span title="Approuver cette demande" onclick="approuverReservation(<?= $reservation->getId() ?>)" class="glyphicon glyphicon-ok-circle btn-accepter"></span></td>
+                    <td><span title="Refuser cette demande" onclick="refuserReservation(<?= $reservation->getId() ?>)" class="glyphicon glyphicon-ban-circle btn-refuser"></span></td>
                 </tr>
 <?php } ?>
             </tbody>

@@ -20,7 +20,7 @@ class Vehicule_model extends CI_Model {
     public function rechercherVehicules(ERecherche $recherche) {
 
         // Vérifie si les dates son consécutives
-        if ($recherche->getDateFin() < $recherche->getDateDebut()) {
+        if ($recherche->getDateDebut() <= Date('Y-m-d') || $recherche->getDateFin() < $recherche->getDateDebut()) {
             return [];
         }
 
@@ -31,7 +31,10 @@ class Vehicule_model extends CI_Model {
         $this->db->select('locations.vehicule_id');
         $this->db->from('locations');
         $this->db->where('locations.vehicule_id = disponibilites.vehicule_id');
-        $this->db->where('locations.etat_reservation !=', ELocation::LOCATION_NON_ACCEPTE);
+        $this->db->where_not_in('locations.etat_reservation', [
+            ELocation::LOCATION_REFUSE,
+            ELocation::LOCATION_ANNULE
+        ]);
 
         // Trouve la date de DÉBUT dans une réservation existante
         $this->db->group_start();
@@ -139,7 +142,7 @@ class Vehicule_model extends CI_Model {
     public function disponibiliteParDate($vehicule_id, $date_debut, $date_fin) {
 
         // Vérifie si les dates son consécutives
-        if ($date_fin < $date_debut) {
+        if ($date_debut < Date('Y-m-d') || $date_fin < $date_debut) {
             return FALSE;
         }
 
@@ -152,7 +155,10 @@ class Vehicule_model extends CI_Model {
         $this->db->select('locations.vehicule_id');
         $this->db->from('locations');
         $this->db->where('locations.vehicule_id = disponibilites.vehicule_id');
-        $this->db->where('locations.etat_reservation !=', ELocation::LOCATION_NON_ACCEPTE);
+        $this->db->where_not_in('locations.etat_reservation', [
+            ELocation::LOCATION_REFUSE,
+            ELocation::LOCATION_ANNULE
+        ]);
 
         // Trouve la date de DÉBUT dans une réservation existante
         $this->db->group_start();
