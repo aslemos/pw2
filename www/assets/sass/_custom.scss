@@ -21,8 +21,8 @@ header{
 }
 
 #myPhoto{
-width: 20px;
-height: 30px;
+width: 40px;
+height: auto;
 }
 
 header nav .menu {
@@ -40,7 +40,8 @@ img {
 }
 
 .information{
-    margin-left: 33%;
+    width: 200px;
+  margin: 0 auto;
 }
 // Google Maps
 .map {
@@ -224,11 +225,11 @@ h2 {
         }
     }
     .bordered{
-        border-bottom: solid 12px $bgColor;
-        min-height: 700px;
+        border-bottom: solid 20px $bgColor;
+        min-height: 500px;
     }
     .text-container {
-        padding: 75px 0;
+        padding: 5px 0;
     }
 
     p {
@@ -236,6 +237,19 @@ h2 {
         text-align: justify;
         font-size:16px;
     }
+}
+
+/*star evalution*/
+
+.myStar{
+    width: 150px;
+    height: auto;
+    //float: right;
+}
+
+#myStar{
+width: 150px;
+  margin: 0 auto;
 }
 
 .information{

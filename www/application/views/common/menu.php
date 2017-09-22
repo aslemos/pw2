@@ -6,6 +6,7 @@
                 <span id="nomUser">
                     <span>
                         <?php echo UserAcces::getLoggedUser()->getPrenom(); ?>
+                        <?php echo UserAcces::getLoggedUser()->getNom(); ?>
                     </span>
                        <i class="fa" aria-hidden="true">
  <img id="myPhoto" class="img-responsive" src="<?= $base_url; ?>assets/images/usagers/<?php echo UserAcces::getLoggedUser()->getUserPhoto();?>" ></i>
