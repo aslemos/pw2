@@ -51,12 +51,8 @@ class Reclamation extends CI_Controller {
 
     // reclamation/form_locataire/ID_locateur
     public function form_locataire($location_id) {
-          $this->load->model('location_model');
-          $data['locations'] = $this->location_model-> get_locations($location_id);
-
-//          echo "<pre>";
-//         var_dump($data);
-//          echo "</pre>";
+        $this->load->model('location_model');
+        $data['locations'] = $this->location_model-> get_locations($location_id);
 
         $data['type_message'] = EMessage::MSG_TYPE_RECLAMATION_LOCATAIRE;
         $data['objet_id'] = $location_id;
@@ -95,7 +91,7 @@ class Reclamation extends CI_Controller {
             case EMessage::MSG_TYPE_RECLAMATION_LOCATAIRE:
                 $msg = new EReclamationLocataire();
                 $url_redirect = base_url() . 'locations/locataires';
-               break;
+                break;
 
             default:
                 redirect('accueil');
@@ -105,6 +101,7 @@ class Reclamation extends CI_Controller {
         $data['body_class'] = "subpages voitures";
         $data['base_url'] = base_url();
         $data['page_title'] = 'Location reçus';
+        $data['action'] = $url_redirect;
 
         $msg->setEmetteur(UserAcces::getLoggedUser());
         $msg->setSujet($this->input->post('sujet'));
@@ -114,7 +111,6 @@ class Reclamation extends CI_Controller {
         $this->load->model('message_model');
         $this->message_model->createMessage($msg);
         $this->load->view('client/page_succes_reclamation',$data );
-//        redirect($url_redirect);
     }
 
      public function view($message_id) {
@@ -123,7 +119,7 @@ class Reclamation extends CI_Controller {
         $data['messages'] = $this->message_model-> getMessageById($message_id);
         $this->load->view('messagerie/view_reclamation',$data);
      }
-     
+
      public function view_reclamation_inte($message_id) {
 
          $data['base_url'] = base_url();

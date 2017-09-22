@@ -8,7 +8,6 @@ include VIEWPATH . 'client/boutons_client.php';
 <form action="<?= $base_url ?>locations/locationsByUser#s" method="post" name="formulaire" id="form-demandes-id">
     <div class="table-responsive">
 
-
         <div class="row form-group">
             <label class="control-label col-md-2 col-xs-12">Véhicule :</label>
             <div class="col-md-6 col-xs-12">
@@ -54,9 +53,10 @@ include VIEWPATH . 'client/boutons_client.php';
             <thead>
                 <tr>
                     <th class="">Nº</th>
-                    <th class="">Marque</th>
+                    <th class="">Véhicule</th>
+<!--                    <th class="">Marque</th>
                     <th class="">Modèle</th>
-                    <th class="">Année</th>
+                    <th class="">Année</th>-->
                     <th class="">Matricule</th>
                     <th class="">Date début</th>
                     <th class="">Date fin</th>
@@ -64,17 +64,17 @@ include VIEWPATH . 'client/boutons_client.php';
                     <th class="">Montant<br />total</th>
                     <th class="">Propriétaire</th>
                     <th class="">État<br>réservation</th>
-                    <th class="">Réclamer voiture</th>
-                    <th class="">Réclamer Propriétaire</th>
+                    <th title="Choisissez l'action" colspan="2">Action</th>
                 </tr>
             </thead>
             <tbody>
 <?php foreach ($locations as $location) { ?>
                     <tr>
                         <td class=""><?=$location->getId()?></td>
-                        <td class=""><?=$location->getVehicule()->getMarque()->getNom()?></td>
+                        <td class=""><?=$location->getVehicule()->toString()?></td>
+<!--                        <td class=""><?=$location->getVehicule()->getMarque()->getNom()?></td>
                         <td class=""><?=$location->getVehicule()->getModele()->getNom()?></td>
-                        <td class=""><?=$location->getVehicule()->getAnnee()?></td>
+                        <td class=""><?=$location->getVehicule()->getAnnee()?></td>-->
                         <td class=""><?=$location->getVehicule()->getMatricule()?></td>
                         <td class=""><?=$location->getDateDebut()?></td>
                         <td class=""><?=$location->getDateFin()?></td>
@@ -85,8 +85,8 @@ include VIEWPATH . 'client/boutons_client.php';
                         <td class=""><?=$location->getLocataire()->toString()?></td>
                         <td class=""><?=ELocation::getDescriptionEtat($location->getEtat())?></td>
 <?php if ($location->estPayee()) { ?>
-                        <td class=""><a class="btn btn-inline" href="<?= $base_url ?>reclamation/form_vehicule/<?=$location->getVehiculeId()?>#s"></a></td>
-                        <td class=""><a class="btn btn-inline"href="<?= $base_url ?>reclamation/form_proprietaire/<?=$location->getLocataireId()?>#s"></a></td>
+                        <td><a title="Faire une réclamation du véhicule" href="<?= $base_url ?>reclamation/form_vehicule/<?=$location->getVehiculeId()?>#s"><i class="fa fa-car fa-badge"><i class="fa fa-exclamation"></i></i></a></td>
+                        <td><a title="Faire une réclamation du propriétaire" href="<?= $base_url ?>reclamation/form_proprietaire/<?=$location->getLocataireId()?>#s"><i class="fa fa-user fa-badge"><i class="fa fa-exclamation"></i></i></a></td>
 <?php } else if ($location->estApprouvee()) { ?>
                         <td colspan="2"><a href="<?=$base_url?>locations/form_payement/<?=$location->getId()?>#s"><i class="fa fa-dollar"> payer</i></a></td>
 <?php } else { ?>

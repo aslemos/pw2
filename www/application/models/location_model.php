@@ -233,7 +233,7 @@ class Location_model extends CI_Model {
     public function refuserReservation($reservation_id) {
         $this->db->where('location_id', $reservation_id);
         $this->db->where('etat_reservation', ELocation::LOCATION_EN_ATTENTE);
-        return $this->db->update('locations', ['etat_reservation' => ELocation::LOCATION_NON_ACCEPTE]);
+        return $this->db->update('locations', ['etat_reservation' => ELocation::LOCATION_REFUSE]);
     }
 
 }

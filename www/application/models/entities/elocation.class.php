@@ -8,7 +8,7 @@
 class ELocation implements ILocation {
 
     const LOCATION_EN_ATTENTE = -1;
-    const LOCATION_NON_ACCEPTE = 0;
+    const LOCATION_REFUSE = 0;
     const LOCATION_ACCEPTE = 1;
     const LOCATION_PAYE = 2;
     const LOCATION_ANNULE = 3;
@@ -95,7 +95,7 @@ class ELocation implements ILocation {
             self::LOCATION_ACCEPTE,
             self::LOCATION_PAYE,
             self::LOCATION_ANNULE,
-            self::LOCATION_NON_ACCEPTE
+            self::LOCATION_REFUSE
                 ])) {
 
             $this->_etat = $etat_location;
@@ -187,7 +187,7 @@ class ELocation implements ILocation {
                 return 'Payé';
             case self::LOCATION_ANNULE:
                 return 'Annulé';
-            case self::LOCATION_NON_ACCEPTE:
+            case self::LOCATION_REFUSE:
                 return 'Refusé';
             default:
                 return 'Inconnu';
