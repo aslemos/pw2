@@ -1,9 +1,24 @@
 <?php include VIEWPATH . '/common/header.php'; ?>
 
+<style>
+    .incorrect {
+        background-color: red;
+    }
+    .correct{
+        background-color: green;
+    }
+    span{
+        font-size: 13px;
+        color: blue;
+    }
+</style>
+
+
+
 <body>
     <div id="myForm1" class="form-style-10">
         <h3>Paiement de réservation</h3>
-        <form  method="post" action="<?= $base_url ?>locations/insererPayemant/">
+        <form id="frm-paiement" method="post" action="<?= $base_url ?>locations/insererPayemant/">
             <div class="inner-wrap">
                 <div class="row">
 
@@ -11,7 +26,7 @@
 
                         <div class="col-md-12">
                             <h4>Montant total: <?= $location->getPrixTotal() ?>$</h4>
-                            <h6>(Véhicule : <?=$location->getVehicule()->toString()?> / Période : <?=$location->toString()?>)</h6>
+                            <h6>(Véhicule : <?= $location->getVehicule()->toString() ?> / Période : <?= $location->toString() ?>)</h6>
                             <hr>
                         </div>
 
@@ -50,8 +65,9 @@
                         <div class="row">
                             <div class="col-md-4">
                                 <label><h5>Numéro de carte<span class="required">*</span></h5>
-                                    <input id="in1" type="number" name="nom"  value="" required="required"/>
+                                    <input id="in1" type="number" name="nom"  value=""/>
                                 </label>
+                                <p class='incorrect'></p>
                             </div>
                             <div class="col-md-4" id="date">
                                 <label><h5>Date d'expiration de la carte<span class="required">*</span></h5>
@@ -61,7 +77,7 @@
 
                             <div class="col-md-4">
                                 <label><h5>Code de sécurité - CVV<span class="required" required>*</span></h5>
-                                    <input id="dateExpiration2" type="text" name="prenom"  value="" required="required"/>
+                                    <input id="dateExpiration2" type="text" name="prenom"  value="" required="required" maxlength="3"/>
                                 </label>
                             </div>
                         </div>
@@ -102,6 +118,50 @@
 //                $("#rew").text(str);
             })
             .trigger("change");
+
+
+
+
+
+
+
+
+
+    var cartenumero = document.getElementById("in1").value;
+    //console.log(cartenumero);
+
+
+    //Validation NumeroCC
+
+    function myFunction() {
+        var valide = true;
+
+        if (!calcLuhn(cartenumero)) {
+            document.getElementById("in1").className = "incorrect";
+            valide = false;
+        } else {
+            document.getElementById("in1").className = "correct";
+        }
+        return valide;
+    }
+
+    /**
+     * Algorithme de Luhn
+     * @param {string} chaine Le numéro à vérifier. Enlève tous les caractères non numériques avant le calcul.
+     * @returns {Boolean}
+     */
+    function calcLuhn(chaine) {
+        // enlève les caractères non numériques
+        var numero = chaine.match(/\d/g).toString().replace(/\,/g, '');
+        var somme = 0, pos = 1, chiffre;
+        for (var i = numero.length - 1; i >= 0; i--) {
+            chiffre = numero[i] * 1;
+            somme += (pos % 2 === 0 && chiffre !== 9) ? (chiffre * 2 % 9) : chiffre;
+            pos++;
+        }
+        return somme % 10 === 0;
+    }
+
 
 </script>
 

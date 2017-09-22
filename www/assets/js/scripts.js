@@ -1,23 +1,28 @@
 
-//Bouton Menu
+/**
+ * Algorithme de Luhn
+ * @param {string} chaine Le numéro à vérifier. Enlève tous les caractères non numériques avant le calcul.
+ * @returns {Boolean}
+ */
+function calcLuhn(chaine) {
+    // enlève les caractères non numériques
+    var numero = chaine.match(/\d/g).toString().replace(/\,/g, '');
+    var somme = 0, pos = 1, chiffre;
+    for (var i = numero.length - 1; i >= 0; i--) {
+        chiffre = numero[i] * 1;
+        somme += (pos % 2 === 0 && chiffre !== 9) ? (chiffre * 2 % 9) : chiffre;
+        pos++;
+    }
+    return somme % 10 === 0;
+}
 
+//Bouton Menu
 $(function () {
     $(".btn-menu").click(function () {
         $("body").toggleClass("menu-open");
     });
 });
 
-
-// Scroll low
-
-//var ascroll = false;
-//
-//$(document).scroll(function () {
-//    if (($(document).scrollTop() > 0) && ($(document).scrollTop() < 956) && !ascroll) {
-//        $('html,body').animate({scrollTop: $('#pub-home').offset().top}, 'slow');
-//        ascroll = true;
-//    }
-//});
 
 // Datepicker
 $(function () {
@@ -80,6 +85,29 @@ $(function () {
     $(".btn2").click(function () {
         $("#myForm1").slideDown("slow");
         $("#myForm2").slideUp("slow");
+    });
+
+
+
+        /*champ carte credit*/
+    $("#in1").on('blur', function () {
+        if (!calcLuhn(this.value)) {
+            $("#in1").addClass("incorrect");
+            $("#in1").removeClass("correct");
+        } else {
+            $(this).addClass("correct");
+            $(this).removeClass("incorrect");
+        }
+    });
+
+
+
+    $("#frm-paiement").on('submit', function () {
+        if (!calcLuhn($("#in1").val())) {
+            alert("Numero de carte pas valide");
+            return false;
+        }
+        return true;
     });
 
 });
