@@ -2,7 +2,7 @@
 
 <body>
     <div id="myForm1" class="form-style-10">
-        <h3>Modes de paiement</h3>
+        <h3>Paiement de réservation</h3>
         <form  method="post" action="<?= $base_url ?>locations/insererPayemant/">
             <div class="inner-wrap">
                 <div class="row">
@@ -11,6 +11,7 @@
 
                         <div class="col-md-12">
                             <h4>Montant total: <?= $location->getPrixTotal() ?>$</h4>
+                            <h6>(Véhicule : <?=$location->getVehicule()->toString()?> / Période : <?=$location->toString()?>)</h6>
                             <hr>
                         </div>
 
@@ -24,7 +25,7 @@
                             </label>
                         </div>
                         <div class="col-md-6">
-                            <label><h5>Prenom</h5>
+                            <label><h5>Prénom</h5>
                                 <input class="myInput" type="text" name="prenom" disabled value="<?= $location->getLocataire()->getPrenom() ?> " />
                             </label>
                         </div>
@@ -67,7 +68,7 @@
                     </div>
 
                     <div class="btn-group" role="group" aria-label="Basic example">
-                        <button type="button" id="flip5" class="btn btn-danger animated bounceInLeft"><a href="<?= $base_url ?>" > <i class="fa  fa-window-close" style="font-size:22px;"></i> Annuler</a></button>
+                        <button type="button" id="flip5" class="btn btn-danger animated bounceInLeft"><a href="<?= $base_url ?>locations/locationsByUser#s" > <i class="fa  fa-window-close" style="font-size:22px;"></i> Annuler</a></button>
                         <button type="submit" id="flip6" class="btn btn-success animated bounceInRight">Payer <i class="fa fa-dollar" style="font-size:22px;"></i></button>
                     </div>
                 </div>
@@ -86,7 +87,7 @@
                 $("select option:selected").each(function () {
                     str += $(this).val();
                 });
-                
+
                 if (str == "2") {
                     $("#myHide").slideUp();
                     $("#in1").removeAttr('required');
@@ -98,7 +99,7 @@
                     $('#dateExpiration').attr('required', '');
                     $('#dateExpiration2').attr('required', '');
                 }
-                $("#rew").text(str);
+//                $("#rew").text(str);
             })
             .trigger("change");
 

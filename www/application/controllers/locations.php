@@ -274,25 +274,26 @@ class Locations extends CI_Controller {
 
     /* afficher formulaire de payement */
     public function form_payement($location_id) {
-        $data['body_class'] = "subpages voitures";
-        $data['base_url'] = base_url();
-        $data['page_title'] = 'Messages reçus';
 
          // Check login
         if (!UserAcces::userIsLogged()) {
             redirect('usager/login');
         }
-        $user = UserAcces::getLoggedUser();
 
         $this->load->model('location_model');
-        $data['location'] = $this->location_model->getLocationById($location_id);
+        // vérifie si la location existe. Sinon, on affiche 404
+        $location = $this->location_model->getLocationById($location_id);
+        if (!$location) {
+            show_404();
+        }
 
-        $this->load->model('vehicule_model');
+        $data['location'] = $location;
+        $data['body_class'] = "subpages voitures";
+        $data['base_url'] = base_url();
+        $data['page_title'] = 'Paiement de réservation : ' . $data['location']->getVehicule()->toString();
+
         $this->load->model('modepaiement_model');
-
-        $data['users'] = UserAcces::getLoggedUser();
         $data['payements'] = $this->modepaiement_model->getModesPaiements();
-        //$data['voitures'] = $this->vehicule_model->getVehicules($id);
 
         $this->load->view('client/form_payemant', $data);
     }

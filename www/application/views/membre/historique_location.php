@@ -88,7 +88,7 @@ include VIEWPATH . 'client/boutons_client.php';
                         <td><a title="Faire une réclamation du véhicule" href="<?= $base_url ?>reclamation/form_vehicule/<?=$location->getVehiculeId()?>#s"><i class="fa fa-car fa-badge"><i class="fa fa-exclamation"></i></i></a></td>
                         <td><a title="Faire une réclamation du propriétaire" href="<?= $base_url ?>reclamation/form_proprietaire/<?=$location->getLocataireId()?>#s"><i class="fa fa-user fa-badge"><i class="fa fa-exclamation"></i></i></a></td>
 <?php } else if ($location->estApprouvee()) { ?>
-                        <td colspan="2"><a href="<?=$base_url?>locations/form_payement/<?=$location->getId()?>#s"><i class="fa fa-dollar"> payer</i></a></td>
+                        <td colspan="2"><a title="Payer la réservation" href="<?=$base_url?>locations/form_payement/<?=$location->getId()?>#s"><i class="fa fa-dollar"></i></a></td>
 <?php } else { ?>
                         <td colspan="2">-</td>
 <?php } ?>
