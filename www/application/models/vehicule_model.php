@@ -223,6 +223,16 @@ class Vehicule_model extends CI_Model {
                         ])
                     );
 
+            // cherche les disponibilités du véhicule
+            $this->db->order_by('date_debut');
+            $query = $this->db->get_where('disponibilites', ['vehicule_id', $vehicule_id]);
+            $result = $query->result_array();
+            foreach($result as $data) {
+                $vehicule->addDisponibilite(
+                        new EDisponibilite($data)
+                        );
+            }
+
             return $vehicule;
         }
         return NULL;
