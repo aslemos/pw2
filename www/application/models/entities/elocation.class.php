@@ -10,6 +10,7 @@ class ELocation implements ILocation {
     const LOCATION_EN_ATTENTE = -1;
     const LOCATION_NON_ACCEPTE = 0;
     const LOCATION_ACCEPTE = 1;
+    const LOCATION_PAYE = 2;
 
     private $_location_id = 0;
     private $_vehicule = NULL;
@@ -129,6 +130,35 @@ class ELocation implements ILocation {
      */
     public function estPayee() {
         return count($this->_paiements) > 0;
+    }
+
+
+    /**
+     * Ajoute un paiement à la location
+     * @param IPaiement $paiement
+     */
+    public function addPaiement(IPaiement $paiement) {
+        $existe = FALSE;
+        for ($i=0, $nb=count($this->_paiements); $i < $nb && !$existe; $i++) {
+            $existe = ($this->_paiements[$i]->getId() == $paiement->getId());
+        }
+        if (!$existe) {
+            $this->_paiements[] = $paiement;
+        }
+    }
+
+    public function getPaiements($pos = -1) {
+        if ($pos < 0) {
+            return $this->_paiements;
+        }
+        return isset($this->_paiements[$pos]);
+    }
+
+    public function getTotalPaye() {
+        $total = 0;
+        foreach($this->_paiements as $paiement) {
+            $total += $paiement->getMontant();
+        }
     }
 
     public static function getDescriptionEtat($etat_reservation) {

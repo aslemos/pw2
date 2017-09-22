@@ -8,3 +8,24 @@ x [asl] éliminer les champs date_debut / date_fin de la table 'voiture'
 - Dans la recherche, considérer les réservations en attente d'approbation ??
 - Lorsqu'on clique sur 'réserver', faire apparaître le form de login modal avant de passer à la confirmation
 
+
+Réclamation
+-----------
+- ajouter méthode dans l'objet ELocation pour tester si la réservation est payé
+- en sachant que la réservation est payée, afficher les boutons de :
+    . réclamation de voiture et
+    . réclamation propriétaire
+    dans l'espace client (historique)
+
+
+Payements
+----------
+- Changer l'état de la réservation lorsque la valeur atteint le montant total
+
+
+Messagerie
+----------
+- Ne pas envoyer un message à soi-même
+- Dans le message à l'admin, ne pas voir sur la liste déroulante que les administrateurs
+- Dans messages envoyés, spécifier le type de message envoyé
+
