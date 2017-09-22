@@ -48,14 +48,14 @@
                     <b class="caret"></b>
                 </a>
                 <ul class="submenu">
-                     links 
+                     links
                     <li role="presentation"> <a role="menuitem" tabindex="-1" href="premiers-vendredis"> <span class="text"> Gestion De Mes Messages </span></a></li>
                     <li role="presentation" class="divider"></li>
                     <li role="presentation"> <a role="menuitem" tabindex="-1" href="aperos"> <span class="text"> Contacter Membre </span></a></li>
                     <li role="presentation"> <a role="menuitem" tabindex="-1" href="aperos"> <span class="text"> Contacter Admin </span></a></li>
                 </ul>
             </li>-->
-            <li class=""><a href="<?= $base_url ?>usager/logout" title="Se déconnecter du système">SE DÉCONNECTER <span id="nomUser"><?php echo UserAcces::getLoggedUser()->getPrenom(); ?></span></a></li>
+            <li class=""><a href="<?= $base_url ?>usager/logout" title="Se déconnecter du système">SE DÉCONNECTER</a></li>
         <?php } else { ?>
             <li class=""><a href="<?= $base_url ?>accueil/apropos#s" title="Qui sommes nous">À PROPOS</a></li>
             <li class=""><a href="<?= $base_url ?>contact#s" title="Entrez en contact avec nous">CONTACTEZ-NOUS</a></li>
