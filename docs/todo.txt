@@ -25,7 +25,8 @@ Payements
 
 Messagerie
 ----------
+- ok - Dans le message à l'admin, ne pas voir sur la liste déroulante que les administrateurs
 - Ne pas envoyer un message à soi-même
-- Dans le message à l'admin, ne pas voir sur la liste déroulante que les administrateurs
 - Dans messages envoyés, spécifier le type de message envoyé
+- Dans messages envoyés, voir les messages à l'administrateur
 

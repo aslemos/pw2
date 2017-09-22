@@ -16,6 +16,7 @@ require VIEWPATH . 'common/header.php';
             <label class="control-label col-sm-3" for="destinataire_id">Destinataire :</label>
             <div class="col-sm-9">
                 <select class="form-control" name="destinataire_id" id="destinataire_id">
+                    <option value="">-- Non spécifié --</option>
                     <?php foreach ($users as $user) { ?>
                         <option value="<?= $user['user_id']; ?>"><?= $user['prenom'] ?></option>
                     <?php } ?>

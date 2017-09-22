@@ -14,8 +14,8 @@ require VIEWPATH . 'common/header.php';
             <table class="table table-reponsive">
                 <tbody><tr>
                         <th class="">Nº</th>
-                        <th class="">Émetteur</th>
                         <th class="">Date</th>
+                        <th class="">Émetteur</th>
                         <th class="">Sujet</th>
                         <th class="">Message</th>
                         <th class="">Supprimer</th>
@@ -29,8 +29,8 @@ require VIEWPATH . 'common/header.php';
                         ?>
                     <tr>
                         <td class=""><?= $reclama['message_id'] ?></td>
-                        <td class=""><?= $reclama['nom_emetteur'] ?></td>
                         <td class=""><?= $reclama['date'] ?></td>
+                        <td class=""><?= $reclama['nom_emetteur'] ?></td>
                         <td class=""><?= $reclama['sujet'] ?></td>
 
 

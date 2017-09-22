@@ -45,8 +45,8 @@ class Messagerie extends CI_Controller {
 
     public function composer() {
         $data['base_url'] = base_url();
-        $data['page_title'] = 'Composer message';
-        $data['title'] = 'Envoyer message à un autre membre';
+        $data['page_title'] = 'Envoyer message à un membre';
+        $data['title'] = 'Contacter d\'autre membre';
         $data['body_class'] = '';
         $data['users'] = $this->usager_model->getUsers();
 
@@ -91,16 +91,20 @@ class Messagerie extends CI_Controller {
 
     public function enregistrerAdmin() {
 
-        // trouve le destinataire
-        $dest = new EUsager(
-                $this->usager_model->getUsers($this->input->post('destinataire_id'))
-        );
+        $msg = new EMessage();
+        $this->message_model->createMessage($msg);
 
         // crée le message
         $msg = new EMessageAdmin();
         $msg->setEmetteur(UserAcces::getLoggedUser());
         $msg->setSujet($this->input->post('sujet'));
         $msg->setContenu($this->input->post('message'));
+
+        // trouve le destinataire
+        $dest = $this->usager_model->getUserById($this->input->post('destinataire_id'));
+        if ($dest) {
+            $msg->setDestinataire($dest);
+        }
 
         // enregistre le message
         $this->load->model('message_model');
@@ -113,5 +117,4 @@ class Messagerie extends CI_Controller {
         $data['destinaraire'] = $dest;
         $this->load->view('messagerie/message_enregistre', $data);
     }
-
 }
