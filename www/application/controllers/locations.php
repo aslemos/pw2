@@ -231,11 +231,9 @@ class Locations extends CI_Controller {
 
 
         $this->load->model('location_model');
-       // $data['location'] = $this->location_model->getLocationById($location_id);
 
-
-
-
+        $date_debut=$this->input->post('date_debut');
+        $date_fin =$this->input->post('date_fin');
 
         $data['date_debut'] = $this->input->post('date_debut');
         $data['date_fin'] = $this->input->post('date_fin');
@@ -244,10 +242,13 @@ class Locations extends CI_Controller {
         $data['voitures'] = $this->vehicule_model->getVehicules($id);
         $data['payements'] = $this->modepaiement_model->getModesPaiements();
 
+        $nb_jours = 0;
+        $data['prix_total'] = ELocation::calculerPrixTotal($data['voitures']['prix'], $date_debut, $date_fin, $nb_jours);
+
         $this->load->view('client/form_location', $data);
-       echo '<pre>';
-       var_dump($data);
-       echo '</pre>';
+//       echo '<pre>';
+//       var_dump($data);
+//       echo '</pre>';
     }
 
 
