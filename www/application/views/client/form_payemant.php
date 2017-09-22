@@ -1,9 +1,10 @@
 <?php include VIEWPATH . '/common/header.php'; ?>
 
+
 <body>
     <div id="myForm1" class="form-style-10">
         <h3>Paiement de réservation</h3>
-        <form  method="post" action="<?= $base_url ?>locations/insererPayemant/">
+        <form id="frm-paiement" method="post" action="<?= $base_url ?>locations/insererPayemant/">
             <div class="inner-wrap">
                 <div class="row">
 
@@ -11,7 +12,7 @@
 
                         <div class="col-md-12">
                             <h4>Montant total: <?= $location->getPrixTotal() ?>$</h4>
-                            <h6>(Véhicule : <?=$location->getVehicule()->toString()?> / Période : <?=$location->toString()?>)</h6>
+                            <h6>(Véhicule : <?= $location->getVehicule()->toString() ?> / Période : <?= $location->toString() ?>)</h6>
                             <hr>
                         </div>
 
@@ -50,8 +51,9 @@
                         <div class="row">
                             <div class="col-md-4">
                                 <label><h5>Numéro de carte<span class="required">*</span></h5>
-                                    <input id="in1" type="number" name="nom"  value="" required="required"/>
+                                    <input id="in1" type="number" name="nom"  value=""/>
                                 </label>
+                                <p class='incorrect'></p>
                             </div>
                             <div class="col-md-4" id="date">
                                 <label><h5>Date d'expiration de la carte<span class="required">*</span></h5>
@@ -61,7 +63,7 @@
 
                             <div class="col-md-4">
                                 <label><h5>Code de sécurité - CVV<span class="required" required>*</span></h5>
-                                    <input id="dateExpiration2" type="text" name="prenom"  value="" required="required"/>
+                                    <input id="dateExpiration2" type="text" name="prenom"  value="" required="required" maxlength="3"/>
                                 </label>
                             </div>
                         </div>
@@ -79,31 +81,6 @@
 
 </body>
 
-
-<script>
-    $("select")
-            .change(function () {
-                var str = "";
-                $("select option:selected").each(function () {
-                    str += $(this).val();
-                });
-
-                if (str == "2") {
-                    $("#myHide").slideUp();
-                    $("#in1").removeAttr('required');
-                    $('#dateExpiration').removeAttr('required');
-                    $('#dateExpiration2').removeAttr('required');
-                } else {
-                    $("#myHide").slideDown();
-                    $("#in1").attr('required', '');
-                    $('#dateExpiration').attr('required', '');
-                    $('#dateExpiration2').attr('required', '');
-                }
-//                $("#rew").text(str);
-            })
-            .trigger("change");
-
-</script>
 
 
 

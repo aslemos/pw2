@@ -194,6 +194,14 @@ class ELocation implements ILocation {
         }
     }
 
+    /**
+     * Calcule le prix total de la location
+     * @param float $prix
+     * @param string $date_debut
+     * @param string $date_fin
+     * @param int $nb_jours
+     * @return float
+     */
     public static function calculerPrixTotal($prix, $date_debut, $date_fin, &$nb_jours) {
         $diff = abs(strtotime($date_fin) - strtotime($date_debut));
         $nb_jours = (int) floor($diff / (60 * 60 * 24)) + 1;
