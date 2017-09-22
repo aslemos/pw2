@@ -4,22 +4,20 @@
     <span id="nomUser"><span><?php echo UserAcces::getLoggedUser()->getPrenom(); ?></span><i class="fa fa-user-o" aria-hidden="true"></i></span>
       <?php } ?>
     <ul class="menu">
-        <li class=""><a href="<?= $base_url ?>" title="Page d'accueil">ACCUEIL</a></li>
+        <li class=""><a href="<?= $base_url ?>accueil" title="Page d'accueil">ACCUEIL</a></li>
         <li class=""><a href="<?= $base_url ?>vehicule/recherche#s" title="Trouvez une voiture">LOUER UN VÉHICULE</a></li>
         <?php if (UserAcces::userIsLogged()) { ?>
-            <li>
-                <div class="dropdown">
+            <li class="dropdown">
                     <a href="#"  title="Fonctionnalités de membre">
                         ESPACE MEMBRE
                         <b class="caret"></b>
                     </a>
-                    <ul class="dropdown-menu">
-                        <li role="presentation"><a role="menuitem" href="<?=$base_url?>locations/locationsByUser#s"><span class="text">Client</span></a></li>
-                        <li role="presentation"><a role="menuitem" href="<?=$base_url?>membre/vehicules#s"><span class="text">Prestataire</span></a></li>
-                        <li role="presentation"><a role="menuitem" href="<?=$base_url?>usager/editUser/<?=UserAcces::getUserId()?>#s"><span class="text">Mon profil</span></a></li>
+                    <ul class="submenu">
+                        <li role="presentation"><a role="menuitem" href="<?=$base_url?>locations/locationsByUser#s"><span class="text">Espace Client</span></a></li>
+                        <li role="presentation"><a role="menuitem" href="<?=$base_url?>membre/vehicules#s"><span class="text">Espace Prestataire</span></a></li>
+                        <li role="presentation"><a role="menuitem" href="<?=$base_url?>usager/editUser/<?=UserAcces::getUserId()?>#s"><span class="text">Editer Mon profil</span></a></li>
                         <li role="presentation"><a role="menuitem" href="<?=$base_url?>messagerie#s"><span class="text">Messagerie</span></a></li>
                     </ul>
-                </div>
             </li>
 
             <?php if (UserAcces::userIsAdmin()) { ?>
@@ -33,7 +31,7 @@
                         <li role="presentation"> <a role="menuitem" tabindex="-1" href="<?= $base_url ?>admin/listeMembres#s"> <span class="text"> Gestion Des Usagers </span></a></li>
                         <li role="presentation" class="divider"></li>
                         <li role="presentation"> <a role="menuitem" tabindex="-1" href="<?= $base_url ?>admin/listeVehicules#s"> <span class="text">Gestion Des Véhicules </span></a></li>
-                        <li role="presentation"> <a role="menuitem" tabindex="-1" href="<?= $base_url ?>admin/messagerie#s"> <span class="text">Gestion Des Messages </span></a></li>
+                        <li role="presentation"> <a role="menuitem" tabindex="-1" href="<?= $base_url ?>admin/reclamations#s"> <span class="text">Gestion Des Messages </span></a></li>
 
 <!-- C'est redondant, parce que l'option de liste d'administrateur se trouve déjà dans l'affichage d'usagers
                         <?php if (UserAcces::userIsSuperAdmin()) { ?>
@@ -44,22 +42,21 @@
                 </li>
 
             <?php } ?>
-            <li class="dropdown">
+<!--            <li class="dropdown">
                 <a href="<?= $base_url ?>messagerie#s" title="Service de messagerie">
                     MESSAGERIE
                     <b class="caret"></b>
                 </a>
                 <ul class="submenu">
-                    <!-- links -->
+                     links 
                     <li role="presentation"> <a role="menuitem" tabindex="-1" href="premiers-vendredis"> <span class="text"> Gestion De Mes Messages </span></a></li>
                     <li role="presentation" class="divider"></li>
                     <li role="presentation"> <a role="menuitem" tabindex="-1" href="aperos"> <span class="text"> Contacter Membre </span></a></li>
                     <li role="presentation"> <a role="menuitem" tabindex="-1" href="aperos"> <span class="text"> Contacter Admin </span></a></li>
                 </ul>
-            </li>
-            <li class=""><a href="<?= $base_url ?>usager/logout" title="Se déconnecter du système">SE DÉCONNECTER </a></li>
-
-                <?php } else { ?>
+            </li>-->
+            <li class=""><a href="<?= $base_url ?>usager/logout" title="Se déconnecter du système">SE DÉCONNECTER <span id="nomUser"><?php echo UserAcces::getLoggedUser()->getPrenom(); ?></span></a></li>
+        <?php } else { ?>
             <li class=""><a href="<?= $base_url ?>accueil/apropos#s" title="Qui sommes nous">À PROPOS</a></li>
             <li class=""><a href="<?= $base_url ?>contact#s" title="Entrez en contact avec nous">CONTACTEZ-NOUS</a></li>
             <li class=""><a href="<?= $base_url ?>usager/inscription#s" title="Devenez membre du service">S'INSCRIRE</a></li>
