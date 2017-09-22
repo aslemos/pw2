@@ -131,4 +131,19 @@ class Messagerie extends CI_Controller {
         $this->message_model->deleteMessage($message_id);
         redirect('admin/messages#s');
     }
+    
+      public function view_message_envoyes($message_id) {
+        $data['base_url'] = base_url();
+        $data['title'] = 'Liste envoyes';
+        $data['body_class'] = 'subpages messagerie';
+        $data['messages'] = $this->message_model-> getMessageById($message_id);
+        $this->load->view('messagerie/view_envoyes',$data);
+    }
+    
+    public function delete_message_envoyes($message_id) {
+        $this->load->model('message_model');
+        $this->message_model->deleteMessage($message_id);
+        redirect('messagerie/envoyes#s');
+    }
+
 }
