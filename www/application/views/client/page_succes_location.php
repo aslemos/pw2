@@ -6,7 +6,7 @@
         <h4>Veuillez attendre approbation du propriétaire</h4>
         <div class="btn-liens" >
             <!-- Bouton pour afficher redirect apres succes -->
-            <a class="btn btn-success" href="<?= $base_url ?>vehicule/recherche" >OK</a>
+            <a class="btn btn-success" href="<?= $base_url ?>locations/locationsByUser#s" >OK</a>
         </div>
     </div>
 </body>
