@@ -124,7 +124,7 @@ include VIEWPATH . 'common/header.php';
                             </div>
 
                             <div class="form-group">
-                                <label  class="control-label col-xs-3" for="inputAddress2">Adresse 2: <span class="filedRequired">  </span></label>
+                                <label  class="control-label col-xs-3" for="inputAddress2">Adresse 2: <span class="filedRequired">(facultatif)</span></label>
                                 <div class="col-xs-6">
                                     <input type="text" name="inputAddress2" class="form-control" id="inputAddress2" placeholder="Appartement, studio ou étage">
                                 </div>
@@ -133,7 +133,7 @@ include VIEWPATH . 'common/header.php';
                             <div class="form-group">
                                 <label class="control-label col-xs-3"  for="province_id"><span class="filedRequired">*</span></label>
                                 <div class="col-xs-3">
-                                    <select class="form-control formSelector" name="province_id" id="province_id">
+                                    <select class="form-control formSelector" name="province_id" id="province_id" required>
                                         <option value="0">-- Choisissez Province --</option>
                                         <?php
                                         if(isset($provinces)){
