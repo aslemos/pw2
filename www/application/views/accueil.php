@@ -44,10 +44,17 @@ include VIEWPATH . 'common/header.php';
                         </div>
                         <div class="row secon-row">
                             <div class="col-md-6 col-sm-6 col-xs-12">
+                                <?php if(UserAcces::userIsLogged()){ ?>
+                                <a href="<?= $base_url ?>usager/editUser/<?= UserAcces::getUserId() ?>#s" class="single-pub" id="pub-1">
+
+                                    <h2 class="pub-title"> Devenir membre </h2>
+                                </a>
+                                <?php } else { ?>
                                 <a href="<?= $base_url ?>usager/inscription#s" class="single-pub" id="pub-1">
 
                                     <h2 class="pub-title"> Devenir membre </h2>
                                 </a>
+                                <?php } ?>
                             </div>
 
                             <div class="col-md-6 col-sm-6 col-xs-12">

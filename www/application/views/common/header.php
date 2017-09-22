@@ -63,8 +63,8 @@ $base_url = isset($base_url)
                 <div class="row">
                     <div class="col-md-2 col-sm-6 col-xs-6">
                         <div class="logo-container">
-                            <a href="<?=$base_url?>" title="Logo RentCars"><img src="<?=$base_url?>assets/images/header/logo1.png" alt="" class="standard-logo"></a>
-                            <a href="<?=$base_url?>" title="Logo RentCars"><img src="<?=$base_url?>assets/images/header/logo2.png" alt="" class="subpages-logo"></a>
+                            <a href="<?=$base_url?>accueil" title="Logo RentCars"><img src="<?=$base_url?>assets/images/header/logo1.png" alt="" class="standard-logo"></a>
+                            <a href="<?=$base_url?>accueil" title="Logo RentCars"><img src="<?=$base_url?>assets/images/header/logo2.png" alt="" class="subpages-logo"></a>
                         </div>
                     </div>
                     <div class="col-md-10 col-sm-6 col-xs-6">

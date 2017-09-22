@@ -71,17 +71,8 @@ class Usager extends CI_Controller {
 
     // Déconnexion
     public function logout() {
-        
-//     var_dump(UserAcces::getLoggedUser()->getPrenom());
-//       var_dump($_SESSION['user_data']->getPrenom());
-//       //var_dump(EUsager::getPrenom());
-//       die();
-        // Unset user data
+     // Unset user data
         unset($_SESSION['user_data']);
-
-        // Set message
-//        $this->session->set_flashdata('user_loggedout', 'Vous Êtes Déconnecté');
-
         redirect('accueil');
     }
 
@@ -156,7 +147,7 @@ class Usager extends CI_Controller {
 //                $enc_password = md5($this->input->post('password'));
 //            }
 
-//            $this->usager_model->register($enc_password, $user_photo);
+//            $this->usager_model->registerUser($enc_password, $user_photo);
 
             // Message de confirmation d'enregistrement
             $this->session->set_flashdata('msg_success', 'Enregistrement terminé');
