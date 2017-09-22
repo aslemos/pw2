@@ -101,7 +101,8 @@ class Message_Model extends CI_Model {
      * @return array
      */
     public function getMessagesAdmin() {
-        $sql = 'SELECT messages.* FROM messages'
+        $sql = 'SELECT messages.*, usagers.prenom as nom_emetteur FROM messages' 
+                . ' LEFT JOIN usagers ON (messages.emetteur_id = usagers.user_id)'
                 . ' WHERE messages.type = ' . EMessage::MSG_TYPE_ADMINISTRATIVE
                 . ' ORDER BY date DESC;';
         $st = $this->db->query($sql);
@@ -113,7 +114,8 @@ class Message_Model extends CI_Model {
      * @return array
      */
     public function getContacts() {
-        $sql = 'SELECT messages.* FROM messages'
+        $sql = 'SELECT messages.*, usagers.prenom as nom_emetteur FROM messages' 
+                . ' LEFT JOIN usagers ON (messages.emetteur_id = usagers.user_id)'
                 . ' WHERE messages.type = ' . EMessage::MSG_TYPE_CONTACT
                 . ' ORDER BY date DESC;';
         $st = $this->db->query($sql);
