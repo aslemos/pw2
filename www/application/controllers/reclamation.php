@@ -118,14 +118,10 @@ class Reclamation extends CI_Controller {
     }
 
      public function view($message_id) {
-
-         $data['base_url'] = base_url();
-         $data['title'] = 'Réclamation récue';
-         $data['messages'] = $this->message_model-> getMessageById($message_id);
-         $this->load->view('messagerie/view_reclamation',$data);
-         $this->load->model('message_model');
-         $this->message_model->getMessageById($message_id);
-
+        $data['base_url'] = base_url();
+        $data['title'] = 'Réclamation récue';
+        $data['messages'] = $this->message_model-> getMessageById($message_id);
+        $this->load->view('messagerie/view_reclamation',$data);
      }
      
      public function view_reclamation_inte($message_id) {
@@ -152,23 +148,8 @@ class Reclamation extends CI_Controller {
 
 
      public function delete($message_id) {
-
-     $this->load->model('message_model');
-     $this->message_model->deleteMessage($message_id);
-     redirect('admin/reclamations#s');
-     }
-     
-      public function delete_message_interne($message_id) {
-
-     $this->load->model('message_model');
-     $this->message_model->deleteMessage($message_id);
-     redirect('admin/messages#s');
-     }
-     
-      public function delete_message_contacts($message_id) {
-
-     $this->load->model('message_model');
-     $this->message_model->deleteMessage($message_id);
-     redirect('admin/contacts#s');
-     }
+        $this->load->model('message_model');
+        $this->message_model->deleteMessage($message_id);
+        redirect('admin/reclamations#s');
+    }
 }
