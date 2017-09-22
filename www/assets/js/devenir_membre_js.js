@@ -34,14 +34,14 @@ $(document).ready(function () {
 
 
 
-    /*remplir Province*/
-    var generMarque = new Array("AB", "BC", "MB", "NB", "ON", "QC");
-    var d = document.monFormulaire.choixProvince;
-    for (var i = 0; i < generMarque.length; i++)
-    {
-        d.length++;
-        d.options[d.length - 1].text = generMarque[i];
-    }
+//    /*remplir Province*/
+//    var generMarque = new Array("AB", "BC", "MB", "NB", "ON", "QC");
+//    var d = document.monFormulaire.choixProvince;
+//    for (var i = 0; i < generMarque.length; i++)
+//    {
+//        d.length++;
+//        d.options[d.length - 1].text = generMarque[i];
+//    }
 
 });
 
