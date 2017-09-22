@@ -45,8 +45,8 @@ class Messagerie extends CI_Controller {
 
     public function composer() {
         $data['base_url'] = base_url();
-        $data['page_title'] = 'Composer message';
-        $data['title'] = 'Nouveau message';
+        $data['page_title'] = 'Envoyer message à un membre';
+        $data['title'] = 'Contacter d\'autre membre';
         $data['body_class'] = '';
         $data['users'] = $this->usager_model->getUsers();
 
@@ -74,6 +74,45 @@ class Messagerie extends CI_Controller {
         // appelle la page de résultat
         $data['base_url'] = base_url();
         $data['page_title'] = 'Composer message';
+        $data['body_class'] = '';
+        $data['destinaraire'] = $dest;
+        $this->load->view('messagerie/message_enregistre', $data);
+    }
+
+    public function composerAdmin() {
+        $data['base_url'] = base_url();
+        $data['page_title'] = 'Contacter un administrateur';
+        $data['title'] = 'Contacter un administrateur';
+        $data['body_class'] = '';
+        $data['users'] = $this->usager_model->getAdmins();
+
+        $this->load->view('messagerie/form_message_admin', $data);
+    }
+
+    public function enregistrerAdmin() {
+
+        $msg = new EMessage();
+        $this->message_model->createMessage($msg);
+
+        // crée le message
+        $msg = new EMessageAdmin();
+        $msg->setEmetteur(UserAcces::getLoggedUser());
+        $msg->setSujet($this->input->post('sujet'));
+        $msg->setContenu($this->input->post('message'));
+
+        // trouve le destinataire
+        $dest = $this->usager_model->getUserById($this->input->post('destinataire_id'));
+        if ($dest) {
+            $msg->setDestinataire($dest);
+        }
+
+        // enregistre le message
+        $this->load->model('message_model');
+        $this->message_model->createMessage($msg);
+
+        // appelle la page de résultat
+        $data['base_url'] = base_url();
+        $data['page_title'] = 'Message à l\'administration du site';
         $data['body_class'] = '';
         $data['destinaraire'] = $dest;
         $this->load->view('messagerie/message_enregistre', $data);

@@ -95,7 +95,15 @@ class Location_model extends CI_Model {
     public function getLocationById($location_id) {
         $data = $this->get_locations($location_id);
         if (count($data) > 0) {
-            return $this->getInstanceLocationByData($data);
+            $location = $this->getInstanceLocationByData($data);
+
+            // trouve les paiements
+            $query = $this->db->get_where('paiements', ['location_id' => $location->getId()]);
+            $result = $query->result_array();
+            foreach ($result as $data) {
+                $location->addPaiement(new EPaiement($data));
+            }
+            return $location;
         }
         return NULL;
     }
@@ -189,7 +197,7 @@ class Location_model extends CI_Model {
         return $result;
     }
 
-    public function get_paiements() {
+    public function get_paiements($user_id) {
         $this->db->order_by('paiement_id', 'DESC');
         $query = $this->db->get_where('paiements', array('paiements.user_id' => $user_id));
         return $query->result_array();

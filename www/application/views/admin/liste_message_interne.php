@@ -8,7 +8,8 @@
 require VIEWPATH . 'common/header.php';
 ?>
 <?php include VIEWPATH . 'admin/boutons_admin_messages.php'; ?>
- <h2>Liste de Réclamations </h2>
+
+ <h2>Liste des Messages Internes </h2>
 
         <form action="" name="formulaire" id="form-reclamationsAdm-id">
             <table class="table table-reponsive">
@@ -23,19 +24,17 @@ require VIEWPATH . 'common/header.php';
 
 
 
-    <?php   foreach ($reclamation as $reclama) {
+    <?php   foreach ($messages as $message) {
 
-                       //var_dump($reclamation);
                         ?>
                     <tr>
-                        <td class=""><?= $reclama['message_id'] ?></td>
-                        <td class=""><?= $reclama['date'] ?></td>
-                        <td class=""><?= $reclama['nom_emetteur'] ?></td>
-                        <td class=""><?= $reclama['sujet'] ?></td>
+                        <td class=""><?= $message['message_id'] ?></td>
+                        <td class=""><?= $message['date'] ?></td>
+                        <td class=""><?= $message['nom_emetteur'] ?></td>
+                        <td class=""><?= $message['sujet'] ?></td>
 
-
-                        <td class=""><a class="btn btn-inline" href="<?= $base_url ?>reclamation/view/<?= $reclama['message_id'] ?>#s"></a></td>
-                        <td class=""><a class="btn btn-inline"href="<?= $base_url ?>reclamation/delete/<?= $reclama['message_id'] ?>"></a></td>
+                        <td class=""><a class="btn btn-inline" href="<?= $base_url ?>reclamation/view/<?= $message['message_id'] ?>#s"></a></td>
+                        <td class=""><a class="btn btn-inline"href="<?= $base_url ?>reclamation/delete_message_interne/<?= $message['message_id'] ?>"></a></td>
 
                     </tr>
      <?php } ?>
@@ -46,5 +45,3 @@ require VIEWPATH . 'common/header.php';
 
 <?php
 require VIEWPATH . 'common/footer.php';
-
-

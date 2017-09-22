@@ -22,6 +22,10 @@ interface ILocation {
     public function getVehiculeId();
     public function setVehicule(IVehicule $vehicule);
 
+    public function addPaiement(IPaiement $paiement);
+    public function getPaiements($pos = -1);
+    public function getTotalPaye();
+
     public function getEtat();
 
     public function getPrixTotal();

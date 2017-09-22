@@ -139,6 +139,7 @@ $autoload['model'] = array(
     'commentaire_model',
     'usager_model',
     'role_model',
-    'message_model'
+    'message_model',
+    'arrondissement_model'
 );
 
