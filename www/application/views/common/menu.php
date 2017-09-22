@@ -1,5 +1,8 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed'); ?>
 <nav>
+     <?php if (UserAcces::userIsLogged()) { ?>
+    <span id="nomUser"><span><?php echo UserAcces::getLoggedUser()->getPrenom(); ?></span><i class="fa fa-user-o" aria-hidden="true"></i></span>
+      <?php } ?>
     <ul class="menu">
         <li class=""><a href="<?= $base_url ?>" title="Page d'accueil">ACCUEIL</a></li>
         <li class=""><a href="<?= $base_url ?>vehicule/recherche#s" title="Trouvez une voiture">LOUER UN VÉHICULE</a></li>
@@ -54,8 +57,8 @@
                     <li role="presentation"> <a role="menuitem" tabindex="-1" href="aperos"> <span class="text"> Contacter Admin </span></a></li>
                 </ul>
             </li>
-            <li class=""><a href="<?= $base_url ?>usager/logout" title="Se déconnecter du système">SE DÉCONNECTER <span id="nomUser"><?php echo UserAcces::getLoggedUser()->getPrenom(); ?><i class="fa fa-user-o" aria-hidden="true"></i></span></a></li>
-        
+            <li class=""><a href="<?= $base_url ?>usager/logout" title="Se déconnecter du système">SE DÉCONNECTER </a></li>
+
                 <?php } else { ?>
             <li class=""><a href="<?= $base_url ?>accueil/apropos#s" title="Qui sommes nous">À PROPOS</a></li>
             <li class=""><a href="<?= $base_url ?>contact#s" title="Entrez en contact avec nous">CONTACTEZ-NOUS</a></li>
