@@ -7,7 +7,7 @@ include VIEWPATH . 'common/header.php';
 <style type="text/css">
     /*formulaire location*/
     .myH{
-       text-align:center;
+        text-align:center;
     }
 </style>
 <main>
@@ -202,8 +202,16 @@ include VIEWPATH . 'common/header.php';
                                             <img src="<?= $base_url ?>assets/images/vehicules/<?= $vehicule->getPhoto() ?>" alt="<?= $vehicule->toString() ?>">
                                         </div>
                                         <div>
-                                            <h3> <?= $vehicule->toString() ?> <span class="prix"> <?= $vehicule->getPrix() ?>$/JOUR </span></h3>
+                                            <h3>
+                                                <?= $vehicule->toString() ?>
+
+                                                <span class="prix">
+                                                    <img class="myStar2" src="<?= $base_url ?>assets/images/accueil/3etoiles.png" alt="images etoile">
+                                                    <?= $vehicule->getPrix() ?>$/JOUR
+                                                </span>
+                                            </h3>
                                         </div>
+
                                         <div class="desc-container">
                                             <p><b>NOMBRE SIÈGES: </b> <?= $vehicule->getNbPlaces() ?></p>
                                             <p><b>CARBURANT: </b> <?= $vehicule->getCarburant()->getNom() ?></p>
@@ -211,7 +219,7 @@ include VIEWPATH . 'common/header.php';
                                             <p><b>TYPE VÉHICULE: </b>  <?= $vehicule->getType()->getNom() ?></p>
                                             <p><b>DISPONIBLE:</b> à <?= $vehicule->getArrond()->toString() ?>
                                                 <br>
-                                               <b> <?= $vehicule->getDisponibilite()->toString() ?></b></p>
+                                                <b> <?= $vehicule->getDisponibilite()->toString() ?></b></p>
                                             <p><?php echo $vehicule->getDescription() ?> </p>
                                         </div>
 

@@ -19,7 +19,7 @@ include VIEWPATH . 'common/header.php';
                                             <p> Le site ‘‘RentCars’’ est un site dédié à tous les résidents, de l'Île de Montréal (seulement), possédant une auto et désirant la partagé avec d’autres utilisateurs moyennant un tarif fixé par le propriétaire et approuvé par l’administration.</p>
 
                                             <p> Tous les membres, propriétaires et clients, doivent être inscrits (inscription en ligne) au préalable, et acceptés par l’administration. Ils peuvent par la suite, inscrire leurs (un ou plusieurs) véhicules en vue de les louer, comme ils peuvent louer les véhicules déjà disponibles.</p>
-                                            
+
                                             <p> Les propriétaires peuvent en tout moment mettre leurs véhicules en location selon la période désirée, dans laquelle les dates de début et de fin ainsi que les tarifs seront indiqués.</p>
                                         </div>
 
@@ -30,7 +30,7 @@ include VIEWPATH . 'common/header.php';
                                     <div class="blocks4">
                                         <div class="text-container">
                                             <h2>nos valeurs</h2>
-                                            <p>Notre site se veut innovateur dans le domaine du partage d’auto, il se différencie des autres (CommunAuto, Uber, ainsi que l’industrie du taxi de Montréal), par le fait qu’il n y a pas procédures administrative qui compliquent et retardent les démarches de locations, en plus les tarifs, ainsi que les modes de paiement, sont fixés par le propriétaire lui-même, pourvu qu’elles soient acceptés par les clients. Autre distinction, les utilisateurs peuvent adhérer et se retirer à tout moment, et les propriétaires ont droit d’accepter ou de refuser les demandes de location pour leurs véhicules respectifs.</p>         
+                                            <p>Notre site se veut innovateur dans le domaine du partage d’auto, il se différencie des autres (CommunAuto, Uber, ainsi que l’industrie du taxi de Montréal), par le fait qu’il n y a pas procédures administrative qui compliquent et retardent les démarches de locations, en plus les tarifs, ainsi que les modes de paiement, sont fixés par le propriétaire lui-même, pourvu qu’elles soient acceptés par les clients. Autre distinction, les utilisateurs peuvent adhérer et se retirer à tout moment, et les propriétaires ont droit d’accepter ou de refuser les demandes de location pour leurs véhicules respectifs.</p>
                                         </div>
 
                                     </div>
@@ -80,17 +80,29 @@ include VIEWPATH . 'common/header.php';
                         <div class="cols3 col-md-4 col-sm-12  bordered">
                             <div class="blocks3">
                                 <div class="text-container">
+
+
                                     <a href="<?= $base_url ?>vehicule/view/<?= $vehicule['vehicule_id']; ?>#s">
-                                        <img src="<?= $base_url ?>assets/images/vehicules/<?php echo $vehicule['vehicule_photo']; ?>" alt="images voitures">
-                                        <h2 class="text-center">
+
+                                        <h3 class="text-center">
                                             <?php echo $vehicule['nom_marque']; ?>
                                             <?php echo $vehicule['nom_modele']; ?>
+                                        </h3>
+
+                                        <h4 class="text-center">
                                             <?php echo $vehicule['annee']; ?>
-                                        </h2>
+                                        </h4>
+
+
+                                        <img src="<?= $base_url ?>assets/images/vehicules/<?php echo $vehicule['vehicule_photo']; ?>" alt="images voitures">
+                                        <div id=myStar>
+                                            <img class="myStar" src="<?= $base_url ?>assets/images/accueil/etoiles5sur5.png" alt="images etoile">
+                                        </div>
+                                        <hr>
                                         <div class="information">
-                                            <p class="text-center"> Vitesse: <?php echo $vehicule['nom_transmission']; ?></p>
-                                            <p class="text-center"> Nbre de sièges: <?php echo $vehicule['nbre_places']; ?></p>
-                                            <p class="text-center"> <span class="prix"> Tarif / jour: $<?php echo $vehicule['prix']; ?></span></p>
+                                            <p class="text-center"><i class="fa fa-cogs" aria-hidden="true"></i> <b>Vitesse:</b> <?php echo $vehicule['nom_transmission']; ?></p>
+                                            <p class="text-center"> <i class="fa fa-users" aria-hidden="true"></i> <b>Nbre de sièges:</b> <?php echo $vehicule['nbre_places']; ?></p>
+                                            <p class="text-center"> <span class="prix"><i class="fa fa-usd" aria-hidden="true"></i> <b>Tarif / jour:</b> $<?php echo $vehicule['prix']; ?></span></p>
                                         </div>
                                     </a>
                                 </div>

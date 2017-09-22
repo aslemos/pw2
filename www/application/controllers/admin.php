@@ -109,11 +109,8 @@ class Admin extends CI_Controller {
         $data['page_title'] = 'Messages des membres';
         $data['title'] = 'Messages des membres';
         $data['body_class'] = 'subpages listeAdmin';
-        echo 'liste et visualisation des messages internes à l\'administrateur';
-        $messages = $this->message_model->getMessagesAdmin();
-        echo '<pre>';
-        var_dump($messages);
-        echo '</pre>';
+        $data['messages'] =  $this->message_model->getMessagesAdmin();
+        $this->load->view('admin/liste_message_interne', $data);
     }
 
     /**
@@ -122,13 +119,10 @@ class Admin extends CI_Controller {
      */
     public function contacts() {
         $data['page_title'] = 'Contacts des visiteurs du site';
-        $data['title'] = 'Contacts des visiteurs';
+        $data['title'] = 'Contacts des visiteurs du site';
         $data['body_class'] = 'subpages listeAdmin';
-        echo 'liste et visualisation des messages de contact des visiteurs du site';
-        $contacts = $this->message_model->getContacts();
-        echo '<pre>';
-        var_dump($contacts);
-        echo '</pre>';
+        $data['contacts'] = $this->message_model->getContacts();
+        $this->load->view('admin/liste_contacts', $data);
     }
 }
 

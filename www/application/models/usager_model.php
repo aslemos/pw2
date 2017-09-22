@@ -192,6 +192,7 @@ class usager_model extends CI_Model {
         $sql = 'SELECT * FROM usagers';
         $sql.= ' INNER JOIN roles ON (roles.role_id = usagers.role_id)';
         $sql.= ' WHERE usagers.role_id IN (' . ERole::ROLE_ADMIN . ',' . ERole::ROLE_SUPERADMIN . ')';
+        $sql.= ' ORDER BY prenom';
         $query = $this->db->query($sql);
         return $query->result_array();
     }

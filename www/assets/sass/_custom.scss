@@ -21,8 +21,8 @@ header{
 }
 
 #myPhoto{
-width: 20px;
-height: 30px;
+width: 40px;
+height: auto;
 }
 
 header nav .menu {
@@ -40,7 +40,8 @@ img {
 }
 
 .information{
-    margin-left: 33%;
+    width: 200px;
+  margin: 0 auto;
 }
 // Google Maps
 .map {
@@ -58,7 +59,8 @@ img {
     background-color: #FFFFFF;
 }
 .bordered {
-    border-right: solid 6px $bgColor;
+    border-right: solid 10px $bgColor;
+     border-bottom: solid 10px $bgColor;
 }
 
 .filedRequired{
@@ -224,11 +226,11 @@ h2 {
         }
     }
     .bordered{
-        border-bottom: solid 12px $bgColor;
-        min-height: 700px;
+        border-bottom: solid 20px $bgColor;
+        min-height: 500px;
     }
     .text-container {
-        padding: 75px 0;
+        padding: 5px 0;
     }
 
     p {
@@ -236,6 +238,25 @@ h2 {
         text-align: justify;
         font-size:16px;
     }
+}
+
+/*star evalution*/
+
+.myStar{
+    width: 150px;
+    height: auto;
+    //float: right;
+}
+
+.myStar2{
+    width: 100px;
+    height: auto;
+    //float: right;
+}
+
+#myStar{
+width: 150px;
+  margin: 0 auto;
 }
 
 .information{
@@ -309,7 +330,7 @@ h2 {
             height: 70px;
         }
         .prix{
-            margin-left: 210px;
+            margin-left: 150px;
             color: green;
         }
     }

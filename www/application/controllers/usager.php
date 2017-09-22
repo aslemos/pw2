@@ -117,8 +117,8 @@ class Usager extends CI_Controller {
 //        $this->form_validation->set_rules('inputAddress', 'Adresse', 'required');
 //        $this->form_validation->set_rules('inputVille', 'Ville', 'required');
 //        $this->form_validation->set_rules('CodePostal', 'Code Postal', 'required');
-       
-        
+
+
 
         if ($this->form_validation->run() === FALSE) {
             $this->load->view('membre/devenir-membre', $data);
@@ -174,7 +174,7 @@ class Usager extends CI_Controller {
         $data['prenom'] = $data['user']['prenom'];
         $data['nom'] = $data['user']['nom'];
 
-        $this->load->view('usagers/usager', $data);
+        $this->load->view('usagers/view', $data);
     }
 
     // verifier si l'usager existe
