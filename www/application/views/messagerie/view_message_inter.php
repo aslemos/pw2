@@ -27,7 +27,7 @@ require VIEWPATH . 'common/header.php';
                 <input class="form-control" name="sujet" id="sujet" type="text" value="<?= $messages['sujet']?>" readonly>
             </div>
         </div>
-        
+
         <div class="form-group">
             <label class="control-label col-sm-3" for="sujet">Date :</label>
             <div class="col-sm-9">
@@ -45,7 +45,7 @@ require VIEWPATH . 'common/header.php';
     </form>
 
     <div class="row btn-liens" >
-        <a class="btn btn-general position" href="<?=$base_url?>admin/reclamations#s">Retourner</a>
+        <a class="btn btn-general position" href="<?=$base_url?>admin/messages#s">Retourner</a>
     </div>
 
 

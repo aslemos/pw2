@@ -117,4 +117,17 @@ class Messagerie extends CI_Controller {
         $data['destinaraire'] = $dest;
         $this->load->view('messagerie/message_enregistre', $data);
     }
+
+    public function view_message_interne($message_id) {
+        $data['base_url'] = base_url();
+        $data['title'] = 'Contact de membre';
+        $data['messages'] = $this->message_model-> getMessageById($message_id);
+        $this->load->view('messagerie/view_message_inter',$data);
+    }
+
+    public function delete_message_interne($message_id) {
+        $this->load->model('message_model');
+        $this->message_model->deleteMessage($message_id);
+        redirect('admin/messages#s');
+    }
 }

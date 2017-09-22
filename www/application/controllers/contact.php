@@ -43,7 +43,7 @@ class Contact extends CI_Controller {
         $message.= 'Entreprise : ' . ($this->input->post('company') ? $this->input->post('company') : 'non fourni') . '<br>';
         $message.= 'Phone : ' . ($this->input->post('phone') ? $this->input->post('phone') : 'non fourni') . '<br>';
         $message.= 'Courriel : ' . ($this->input->post('email') ? $this->input->post('email') : 'non fourni') . '<br><br>';
-        $message.= $this->input->post('message');
+        $message.= 'Message : ' . $this->input->post('message');
         $msg->setContenu($message);
 
         // enregistre le message
@@ -53,5 +53,19 @@ class Contact extends CI_Controller {
         // revient à la page de message
         $this->session->set_flashdata('msg_success', 'Message envoyé avec succès');
         redirect('contact');
+    }
+
+     public function view($message_id) {
+         $data['base_url'] = base_url();
+         $data['page_title'] = 'Contact du site';
+         $data['title'] = 'Contact du site';
+         $data['messages'] = $this->message_model-> getMessageById($message_id);
+         $this->load->view('messagerie/view_contacts',$data);
+    }
+
+    public function delete($message_id) {
+        $this->load->model('message_model');
+        $this->message_model->deleteMessage($message_id);
+        redirect('admin/contacts#s');
     }
 }
