@@ -78,16 +78,20 @@ class usager_model extends CI_Model {
 
         $role_id = '3';
         $data = array(
-            'prenom' => $this->input->post('prenom'),
-            'nom' => $this->input->post('nom'),
-            'permis_conduire' => $this->input->post('permis_conduire'),
-            'adresse' => $this->input->post('adresse'),
-            'ville' => $this->input->post('ville'),
-            'code_postal' => $this->input->post('code_postal'),
-            'telephone' => $this->input->post('phone'),
-            'courriel' => $this->input->post('email'),
+            'prenom' => $this->input->post('firstName'),
+            'nom' => $this->input->post('lastName'),
+//            'dateNaissance' => $this->input->post('jour'),
+            'sexe' => $this->input->post('gender2'),
+            'permis_conduire' => $this->input->post('inputConduire'),
+            'telephone' => $this->input->post('phoneNumber'),
+            'courriel' => $this->input->post('inputEmail'),
             'username' => $this->input->post('username'),
             'motdepasse' => $enc_password,
+            'adresse' => $this->input->post('inputAddress'),
+            'adresse2' => $this->input->post('inputAddress2'),
+            'ville_id' => $this->input->post('ville_id'),
+            'arr_id' => $this->input->post('arr_id'),
+            'code_postal' => $this->input->post('codePostal'),
             'role_id' => $role_id,
             'user_photo' => $user_photo
         );

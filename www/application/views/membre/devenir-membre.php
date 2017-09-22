@@ -19,7 +19,7 @@ include VIEWPATH . 'common/header.php';
             <div class="cols7 col-md-12 col-sm-12 col-xs-12">
                 <div class="blocks7">
                     <div>
-                        <form method="post" name="monFormulaire" action="" class="form-horizontal" id="needs-validation" > <!--novalidate-->
+                        <form method="post" name="monFormulaire" action="<?= $action; ?>" class="form-horizontal" id="needs-validation" > <!--novalidate-->
 
                             <div class="form-group">
                                 <label class="control-label col-xs-3" for="lastName">Nom de famille: <span class="filedRequired">*</span></label>
@@ -95,6 +95,12 @@ include VIEWPATH . 'common/header.php';
                                 </div>
                             </div>
 
+                            <div class="form-group">
+                                <label class="control-label col-xs-3" for="username">Username: <span class="filedRequired">*</span></label>
+                                <div class="col-xs-6">
+                                    <input type="text" class="form-control" name="username" id="username" placeholder="Entrez Username" required>
+                                </div>
+                            </div>
 
                             <div class="form-group">
                                 <label class="control-label col-xs-3" for="inputPassword">Mot de passe: <span class="filedRequired">*</span></label>
@@ -129,9 +135,13 @@ include VIEWPATH . 'common/header.php';
                                 <div class="col-xs-3">
                                     <select class="form-control formSelector" name="province_id" id="province_id">
                                         <option value="0">-- Choisissez Province --</option>
-                                        <?php foreach ($provinces as $province) { ?>
+                                        <?php 
+                                        if(isset($provinces)){
+                                        foreach ($provinces as $province) { ?>
                                             <option value="<?= $province['province_id'] ?>"><?= $province['province'] ?></option>
-                                        <?php } ?>
+                                        <?php }
+                                        }
+                                        ?>
                                     </select>
                                 </div>
 
@@ -139,9 +149,13 @@ include VIEWPATH . 'common/header.php';
                                 <div class="col-xs-3">
                                     <select class="form-control formSelector" name="ville_id" id="ville_id">
                                         <option value="0">-- Choisissez Ville --</option>
-                                        <?php foreach ($villes as $ville) { ?>
+                                        <?php 
+                                        if(isset($villes)){
+                                        foreach ($villes as $ville) { ?>
                                             <option value="<?= $ville['ville_id'] ?>"><?= $ville['nom_ville'] ?></option>
-                                        <?php } ?>
+                                        <?php } 
+                                        }
+                                        ?>
                                     </select>
                                 </div>
                             </div>
@@ -151,13 +165,17 @@ include VIEWPATH . 'common/header.php';
                                 <div class="col-xs-3">
                                     <select class="form-control formSelector" name="arr_id" id="arr_id">
                                         <option value="0">-- Choisissez Arrondissement--</option>
-                                        <?php foreach ($arrondissement as $ville) { ?>
+                                        <?php
+                                        if(isset($arrondissement)){
+                                        foreach ($arrondissement as $ville) { ?>
                                             <option value="<?= $ville['ville_id'] ?>"><?= $ville['nom_ville'] ?></option>
-                                        <?php } ?>
+                                        <?php }
+                                        }
+                                        ?>
                                     </select>
                                 </div>
                                 <div class="col-xs-3">
-                                    <input type="text" name="CodePostal" class="form-control" id="inputCode" placeholder="Code Postal" required>
+                                    <input type="text" name="codePostal" class="form-control" id="inputCode" placeholder="Code Postal" required>
                                 </div>
                             </div>
 
@@ -216,11 +234,6 @@ include VIEWPATH . 'common/header.php';
                                 </div>
                             </div>
                         </form>
-
-
-                        <script>
-
-                        </script>
 
                     </div>
                 </div>

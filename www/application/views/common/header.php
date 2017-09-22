@@ -89,6 +89,7 @@ $base_url = isset($base_url)
                 <img src="<?=$base_url?>assets/images/devenir-membre/slogan_devenir_membre.png" alt="slogan-devenir-membre" id="slogan-devenir-membre">
                 <img src="<?=$base_url?>assets/images/membre/slogan_membre.png" alt="slogan-membre" id="slogan-membre">
                 <img src="<?=$base_url?>assets/images/contacter-nous/slogan_contacter_nous.png" alt="slogan-contacter-nous" id="slogan-contacter-nous">
+                <img src="<?=$base_url?>assets/images/messagerie/slogan_messagerie.png" alt="slogan-messagerie" id="slogan-messagerie">
             </div>
         </section>
 
