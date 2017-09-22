@@ -143,11 +143,11 @@ class Usager extends CI_Controller {
                 $data = array(
                     'upload_data' => $this->upload->data(),
                 );
-                $user_photo = $_FILES['userfile']['name'];     
+                $user_photo = $_FILES['userfile']['name'];
             }
             // Encrypter le mot de passe
             $enc_password = md5($this->input->post('inputPassword'));
-            
+
             // Sauvegarder à la base de donnée
             $this->usager_model->registerUser($enc_password, $user_photo);
 
@@ -223,7 +223,7 @@ class Usager extends CI_Controller {
     public function editUser($user_id) {
 
         // Check login
-        if (!UserAcces::userIsAdmin() && !UserAcces::getLoggedUser()->getId() == $user_id) {
+        if (!UserAcces::userIsAdmin() && !UserAcces::getUserId() == $user_id) {
             redirect('noperm');
         }
 
@@ -251,7 +251,7 @@ class Usager extends CI_Controller {
     public function updateUser() {
 
         // Check permission
-        if (!UserAcces::userIsAdmin()) {
+        if (!UserAcces::userIsAdmin() && !UserAcces::getUserId() == $this->input->post('user_id')) {
             redirect('noperm');
         }
 

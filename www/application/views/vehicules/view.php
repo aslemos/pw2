@@ -1,5 +1,5 @@
 <?php include VIEWPATH . 'common/header.php'; ?>
-<h2><?php echo $vehicule->getMarque()->getNom() . ' ' . $vehicule->getModele()->getNom() . ' ' .$vehicule->getAnnee() ; ?></h2>
+<h2><?php echo $vehicule->toString(); ?></h2>
 <div class="row">
     <div class="col-sm-12 col-md-6 col-lg-6">
         <img class="img-responsive" src="<?=$base_url?>assets/images/vehicules/<?php echo $vehicule->getPhoto();?>" title="<?=$vehicule->toString()?>" alt="<?=$vehicule->toString()?>">
@@ -14,7 +14,7 @@
                 <td>Type :</td>
                 <td><?php echo $vehicule->getType()->getNom(); ?></td>
             </tr>
-<?php if(UserAcces::userIsAdmin() || UserAcces::userIsLogged() && UserAcces::getLoggedUser()->getId() == $vehicule->getProprietaireId()) { ?>
+<?php if(UserAcces::userIsAdmin() || UserAcces::getUserId() == $vehicule->getProprietaireId()) { ?>
             <tr class="form-group">
                 <td>Matricule :</td><td><?php echo $vehicule->getMatricule(); ?></td>
             </tr>
@@ -38,7 +38,7 @@
                 <td>Non disponible en ce moment</td>
 <?php } ?>
             </tr>
-<?php if(UserAcces::userIsAdmin() || UserAcces::userIsLogged() && UserAcces::getLoggedUser()->getId() == $vehicule->getProprietaireId()) { ?>
+<?php if(UserAcces::userIsAdmin() || UserAcces::getUserId() == $vehicule->getProprietaireId()) { ?>
             <tr class="form-group">
                 <td>Propriétaire :</td>
                 <td><?php echo $vehicule->getProprietaire()->getNom() . ', ' . $vehicule->getProprietaire()->getPrenom(); ?></td>
@@ -62,7 +62,7 @@
     </div>
 </div>
 <hr>
-<?php if(UserAcces::userIsSuperAdmin() || UserAcces::getUserId == $vehicule->getProprietaireId()) { ?>
+<?php if(UserAcces::userIsSuperAdmin() || UserAcces::getUserId() == $vehicule->getProprietaireId()) { ?>
     <?php echo form_open($base_url.'vehicule/deleteVehicule/' . $vehicule->getId() . '#s')?>
         <input type="submit" class="btn btn-danger" value="Supprimer">
     </form>

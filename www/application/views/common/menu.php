@@ -26,8 +26,10 @@
                     <b class="caret"></b>
                 </a>
                 <ul class="submenu">
+                <?php if (UserAcces::userIsAdmin() || UserAcces::userIsActif()) { ?>
                     <li role="presentation"><a role="menuitem" href="<?= $base_url ?>locations/locationsByUser#s"><span class="text">Espace Client</span></a></li>
                     <li role="presentation"><a role="menuitem" href="<?= $base_url ?>membre/vehicules#s"><span class="text">Espace Prestataire</span></a></li>
+                <?php } ?>
                     <li role="presentation"><a role="menuitem" href="<?= $base_url ?>usager/editUser/<?= UserAcces::getUserId() ?>#s"><span class="text">Editer Mon profil</span></a></li>
                     <li role="presentation"><a role="menuitem" href="<?= $base_url ?>messagerie#s"><span class="text">Messagerie</span></a></li>
                 </ul>

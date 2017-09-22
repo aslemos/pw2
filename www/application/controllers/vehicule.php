@@ -30,7 +30,7 @@ class Vehicule extends CI_Controller {
     public function view($vehicule_id = NULL) {
 
         $data['vehicule'] = $this->vehicule_model->getVehiculeById($vehicule_id);
-        $data['page_title'] = 'Détails du ' . $data['vehicule']->getMarque()->getNom() . ' ' . $data['vehicule']->getModele()->getNom();
+        $data['page_title'] = 'Détails du ' . $data['vehicule']->toString();
         $data['body_class'] = '';
         $data['base_url'] = base_url();
 
@@ -43,6 +43,9 @@ class Vehicule extends CI_Controller {
         // Check login
         if (!UserAcces::userIsLogged()) {
             redirect('usager/login');
+        }
+        if (!UserAcces::userIsAdmin() && !UserAcces::userIsActif()) {
+            redirect('noperm');
         }
 
         $this->load->model('arrondissement_model');

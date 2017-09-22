@@ -9,6 +9,9 @@ class Membre extends CI_Controller {
         if (!UserAcces::userIsLogged()) {
             redirect('usager/login');
         }
+        if (!UserAcces::userIsAdmin() && !UserAcces::userIsActif()) {
+            redirect('noperm');
+        }
     }
 
     public function index() {

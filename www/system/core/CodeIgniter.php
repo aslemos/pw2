@@ -399,7 +399,8 @@ if ( ! is_php('5.4'))
  */
 
 	$e404 = FALSE;
-	$class = ucfirst($RTR->class);
+//	$class = ucfirst($RTR->class);
+	$class = $RTR->class;
 	$method = $RTR->method;
 
 	if (empty($class) OR ! file_exists(APPPATH.'controllers/'.$RTR->directory.$class.'.php'))
@@ -453,7 +454,7 @@ if ( ! is_php('5.4'))
 				$error_method = 'index';
 			}
 
-			$error_class = ucfirst($error_class);
+//			$error_class = ucfirst($error_class);
 
 			if ( ! class_exists($error_class, FALSE))
 			{
