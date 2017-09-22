@@ -11,6 +11,7 @@ class ELocation implements ILocation {
     const LOCATION_NON_ACCEPTE = 0;
     const LOCATION_ACCEPTE = 1;
     const LOCATION_PAYE = 2;
+    const LOCATION_ANNULE = 3;
 
     private $_location_id = 0;
     private $_vehicule = NULL;
@@ -88,6 +89,20 @@ class ELocation implements ILocation {
     public function getEtat() {
         return $this->_etat;
     }
+    public function setEtat($etat_location) {
+        if (in_array($etat_location, [
+            self::LOCATION_EN_ATTENTE,
+            self::LOCATION_ACCEPTE,
+            self::LOCATION_PAYE,
+            self::LOCATION_ANNULE,
+            self::LOCATION_NON_ACCEPTE
+                ])) {
+
+            $this->_etat = $etat_location;
+            return $this;
+        }
+        throw new Exception('État invalide');
+    }
 
     public function setDateDebut($date_debut) {
         $this->_date_debut = $date_debut;
@@ -129,7 +144,7 @@ class ELocation implements ILocation {
      * @return bool
      */
     public function estPayee() {
-        return count($this->_paiements) > 0;
+        return $this->_etat == self::LOCATION_PAYE;
     }
 
 
@@ -159,16 +174,21 @@ class ELocation implements ILocation {
         foreach($this->_paiements as $paiement) {
             $total += $paiement->getMontant();
         }
+        return $total;
     }
 
     public static function getDescriptionEtat($etat_reservation) {
         switch ($etat_reservation) {
             case self::LOCATION_EN_ATTENTE:
                 return 'En attente';
-            case self::LOCATION_NON_ACCEPTE:
-                return 'Refusé';
             case self::LOCATION_ACCEPTE:
                 return 'Accepé';
+            case self::LOCATION_PAYE:
+                return 'Payé';
+            case self::LOCATION_ANNULE:
+                return 'Annulé';
+            case self::LOCATION_NON_ACCEPTE:
+                return 'Refusé';
             default:
                 return 'Inconnu';
         }
@@ -177,6 +197,6 @@ class ELocation implements ILocation {
     public static function calculerPrixTotal($prix, $date_debut, $date_fin, &$nb_jours) {
         $diff = abs(strtotime($date_fin) - strtotime($date_debut));
         $nb_jours = (int) floor($diff / (60 * 60 * 24)) + 1;
-        return $prix * $nb_jours;
+        return floatval($prix * $nb_jours);
     }
 }

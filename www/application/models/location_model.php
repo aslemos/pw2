@@ -20,7 +20,7 @@ class Location_model extends CI_Model {
         $this->db->join('modeles', 'modeles.modele_id = vehicules.modele_id');
         $this->db->join('marques', 'marques.marque_id = modeles.marque_id');
 
-        if ($location_id == NULL) {
+        if ($location_id === NULL) {
             $query = $this->db->get('locations');
             return $query->result_array();
         }
@@ -32,13 +32,6 @@ class Location_model extends CI_Model {
 
 
     public function create_location($data) {
-//        $data = array(
-//            'date_debut' => $this->input->post('date_debut'),
-//            'date_fin' => $this->input->post('date_fin'),
-//            'user_id' => $this->session->userdata('user_id'),
-//            'vehicule_id' => $this->input->post('vehicule_id'),
-//            'paiement_id' => $this->input->post('paiement_id')
-//        );
         $this->db->insert('locations', $data);
     }
 
@@ -49,9 +42,7 @@ class Location_model extends CI_Model {
 
         $this->db->where('location_id', $location_id);
 
-        $this->db->delete('locations');
-
-        return true;
+        return $this->db->delete('locations');
     }
 
     public function update_location(ILocation $location) {
@@ -62,7 +53,8 @@ class Location_model extends CI_Model {
             'date_debut' => $location->getDateDebut(),
             'date_fin' => $location->getDateFin(),
             'locataire_id' => $location->getLocataire()->getId(),
-            'vehicule_id' => $location->getVehicule()->getId()
+            'vehicule_id' => $location->getVehicule()->getId(),
+            'etat_reservation' => $location->getEtat()
         ]);
     }
 
@@ -96,13 +88,6 @@ class Location_model extends CI_Model {
         $data = $this->get_locations($location_id);
         if (count($data) > 0) {
             $location = $this->getInstanceLocationByData($data);
-
-            // trouve les paiements
-            $query = $this->db->get_where('paiements', ['location_id' => $location->getId()]);
-            $result = $query->result_array();
-            foreach ($result as $data) {
-                $location->addPaiement(new EPaiement($data));
-            }
             return $location;
         }
         return NULL;
@@ -138,7 +123,7 @@ class Location_model extends CI_Model {
      * @param array $data
      * @return ELocation
      */
-    public static function getInstanceLocationByData($data) {
+    private function getInstanceLocationByData($data) {
         $vehicule = new EVehicule($data);
         $vehicule->setModele(new EModele($data));
         $vehicule->setMarque(new EMarque($data));
@@ -148,6 +133,13 @@ class Location_model extends CI_Model {
         $location = new ELocation($data);
         $location->setVehicule($vehicule);
         $location->setLocataire($locataire);
+
+        // trouve les paiements
+        $query = $this->db->get_where('paiements', ['location_id' => $location->getId()]);
+        $result = $query->result_array();
+        foreach ($result as $data) {
+            $location->addPaiement(new EPaiement($data));
+        }
         return $location;
     }
 
@@ -203,13 +195,23 @@ class Location_model extends CI_Model {
         return $query->result_array();
     }
 
-    public function create_payement($data2) {
+
+    /**
+     * Enregistre un paiement et met à jour l'état de la location
+     * @param array $data
+     */
+    public function create_payement($data) {
         $this->db->set('date_paiement', 'NOW()', FALSE);
-        $this->db->insert('paiements', $data2);
+        $this->db->insert('paiements', $data);
+
+        // On vérifie si le montant payé atteint le prix de la location.
+        // Dans ce cas, on dit qu'elle est payée.
+        $location = $this->getLocationById($data['location_id']);
+        if ($location->getTotalPaye() >= $location->getPrixTotal()) {
+            $location->setEtat(ELocation::LOCATION_PAYE);
+            $this->update_location($location);
+        }
     }
-
-
-
 
 
     /**
