@@ -115,9 +115,9 @@ class Usager extends CI_Controller {
         $this->form_validation->set_rules('phoneNumber', 'Telephone', 'required');
         $this->form_validation->set_rules('inputEmail', 'Email', 'required|callback_checkEmailExists');
         $this->form_validation->set_rules('inputPassword', 'Password', 'required');
-//        $this->form_validation->set_rules('confirmPassword', 'Confirm Password', 'matches[password]');
+        $this->form_validation->set_rules('confirmPassword', 'Confirm Password', 'matches[inputPassword]');
         $this->form_validation->set_rules('inputAddress', 'Adresse', 'required');
-//        $this->form_validation->set_rules('inputVille', 'Ville', 'required');
+        //$this->form_validation->set_rules('inputVille', 'Ville', 'required');
         $this->form_validation->set_rules('codePostal', 'Code Postal', 'required');
 
 
@@ -130,20 +130,16 @@ class Usager extends CI_Controller {
              //Ajouter une photo de profile
             $config['upload_path'] = str_replace(['\\', '/'], DIRECTORY_SEPARATOR, APPPATH . '../assets/images/usagers');
             $config['allowed_types'] = 'gif|jpg|png';
-            $config['max_size'] = '2048';
-            $config['max_width'] = '2000';
-            $config['max_height'] = '2000';
+            $config['max_size'] = '10000';
+//            $config['max_width'] = '2000';
+//            $config['max_height'] = '2000';
 
             $this->load->library('upload', $config);
 
-            if (!$this->upload->do_upload()) {
-                $errors = array('error' => $this->upload->display_errors());
+            if (!$this->upload->do_upload('photo')) {
                 $user_photo = 'noimage.png';
             } else {
-                $data = array(
-                    'upload_data' => $this->upload->data(),
-                );
-                $user_photo = $_FILES['userfile']['name'];
+                $user_photo = $this->upload->data('file_name');
             }
             // Encrypter le mot de passe
             $enc_password = md5($this->input->post('inputPassword'));

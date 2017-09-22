@@ -24,6 +24,8 @@ require VIEWPATH . 'common/header.php';
         <th>Date</th>
         <th><?=($list_type == 'E') ? 'Emetteur' : 'Destinataire'?></th>
         <th>Sujet</th>
+        <th class="">Visualiser</th>
+        <th class="">Supprimer</th>
     </tr>
 <?php foreach($messages as $message) {
     $class = $list_type == 'E' && $message->etat == EMessage::MSG_ETAT_NON_LU
@@ -34,6 +36,12 @@ require VIEWPATH . 'common/header.php';
         <td><?=$message->date?></td>
         <td><?=($list_type == 'E') ? $message->nom_emetteur : $message->nom_destinataire?></td>
         <td><?=$message->sujet ?></td>
+        
+
+        <td class=""><a class="fa fa-eye" href="<?= $base_url ?>messagerie/view_message_envoyes/<?= $message->message_id ?>#s"></a></td>
+        <td class=""><a class="fa fa-trash-o" href="<?= $base_url ?>messagerie/delete_message_envoyes/<?= $message->message_id ?>"></a></td>
+        
+        
     </tr>
 <?php } ?>
 </table>

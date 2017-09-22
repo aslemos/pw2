@@ -165,6 +165,8 @@
                         $(".test").removeClass("zoomIn");
                         $(".test2").addClass("animated zoomIn");
 
+                        //$(".prixTotal").val(json.prix_total);
+                        //document.getElementsByClass(".prixTotal").innerHTML = json.prix_total + obj.birth;
 
                     } else {
                         alert("Periode non disponible");
