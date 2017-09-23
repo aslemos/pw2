@@ -37,4 +37,12 @@ Messagerie
 - Ne pas envoyer un message à soi-même
 - Dans messages envoyés, spécifier le type de message envoyé
 - ok - Dans messages envoyés, voir les messages à l'administrateur
-
+- Créer un message automatique lors des événements :
+  . Refus de membre : message au membre
+  . Refus de véhicule : message au propriétaire du véhicule
+  . Ajout de réservation : message au propriétaire du véhicule
+  . Approbation / Refus de réservation : message au client
+  . Paiement de réservation : message au propriétaire
+  . Réclamation de voiture : message à l'administrateur et au propriétaire de la voiture
+  . Réclamation de propriétaire : message à l'administrateur et au propriétaire
+  . Réclamation de locataire : message à l'administrateur et au locataire
