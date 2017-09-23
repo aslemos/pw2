@@ -1,9 +1,5 @@
 <?php include VIEWPATH . 'common/header.php'; ?>
 
-<style type="text/css">
-
-</style>
-
 <div class="form-style-10">
     <h3>Réservation<span>Vérifier et confirmer les informations</span></h3>
     <form method="post" action="<?= $base_url ?>locations/insererLocation#s">

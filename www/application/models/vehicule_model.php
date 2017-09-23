@@ -337,10 +337,20 @@ class Vehicule_model extends CI_Model {
 
     public function deleteVehicule($vehicule_id) {
 
-        $this->db->where('vehicule_id', $vehicule_id);
+        //TODO: vérifier s'il y a de mouvement avant de permettre la suppression.
+        try {
+            $this->db->where('vehicule_id', $vehicule_id);
+            $this->db->delete('locations');
 
-        $this->db->delete('vehicules');
+            $this->db->where('vehicule_id', $vehicule_id);
+            $this->db->delete('disponibilites');
 
+            $this->db->where('vehicule_id', $vehicule_id);
+            $this->db->delete('vehicules');
+
+        } catch (Exception $e) {
+            return false;
+        }
         return true;
     }
 

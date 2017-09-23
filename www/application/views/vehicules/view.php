@@ -62,6 +62,7 @@
     </div>
 </div>
 <hr>
+<!--
 <?php if(UserAcces::userIsSuperAdmin() || UserAcces::getUserId() == $vehicule->getProprietaireId()) { ?>
     <?php echo form_open($base_url.'vehicule/deleteVehicule/' . $vehicule->getId() . '#s')?>
         <input type="submit" class="btn btn-danger" value="Supprimer">
@@ -71,4 +72,5 @@
     </form>
 <?php } ?>
 <hr>
+-->
 <?php include VIEWPATH . 'common/footer.php';

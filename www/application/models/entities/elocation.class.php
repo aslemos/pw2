@@ -87,6 +87,11 @@ class ELocation implements ILocation {
     }
 
     public function getEtat() {
+        if ($this->_etat == self::LOCATION_PAYE &&
+                $this->getTotalPaye() < $this->getPrixTotal()) {
+
+            return self::LOCATION_ACCEPTE;
+        }
         return $this->_etat;
     }
     public function setEtat($etat_location) {
@@ -135,7 +140,7 @@ class ELocation implements ILocation {
      * @return bool
      */
     public function estApprouvee() {
-       return $this->_etat == self::LOCATION_ACCEPTE;
+       return $this->getEtat() == self::LOCATION_ACCEPTE;
     }
 
     /**
@@ -144,7 +149,8 @@ class ELocation implements ILocation {
      * @return bool
      */
     public function estPayee() {
-        return $this->_etat == self::LOCATION_PAYE;
+//        return $this->_etat == self::LOCATION_PAYE;
+        return $this->getTotalPaye() >= $this->getPrixTotal();
     }
 
 
@@ -176,7 +182,7 @@ class ELocation implements ILocation {
         }
         return $total;
     }
-
+//
     public static function getDescriptionEtat($etat_reservation) {
         switch ($etat_reservation) {
             case self::LOCATION_EN_ATTENTE:

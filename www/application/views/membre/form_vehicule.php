@@ -24,7 +24,7 @@ include VIEWPATH .'client/boutons_prestataire.php';
         <div class="form-group">
             <label class="control-label col-xs-3" for="modele_id">Modèle:</label>
             <div class="col-xs-6">
-                <select class="form-control formSelector" name="modele_id" id="modele_id" required>
+                <select class="form-control formSelector" name="modele_id" id="modele_id" data-search="strict" required>
                     <option value="">-- Choisissez --</option>
 <?php foreach($modeles as $modele) { ?>
                     <option value="<?=$modele['modele_id']?>"<?=$modele['modele_id']==$form['modele_id']?' selected':''?>><?=$modele['nom_modele']?></option>
@@ -189,7 +189,7 @@ if ($form['vehicule_id'] == '0') { ?>
         <div class="form-group">
             <div class="col-xs-offset-3 col-xs-9">
 <?php if ($form['vehicule_id'] == '0') { ?>
-                <input type="submit" class="btn btn-primary" value="S'inscrire">
+                <input type="submit" class="btn btn-primary" value="Ajouter">
 <?php } else { ?>
                 <input type="submit" class="btn btn-primary" value="Sauvegarder">
 <?php } ?>

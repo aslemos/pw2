@@ -249,6 +249,9 @@ class Locations extends CI_Controller {
         $data['body_class'] = "subpages voitures";
         $data['base_url'] = base_url();
         $data['page_title'] = 'Paiement de réservation : ' . $data['location']->getVehicule()->toString();
+        $data['scripts'] = [
+            base_url() . 'assets/js/scripts_verifier_payaimant.js'
+        ];
 
         $this->load->model('modepaiement_model');
         $data['payements'] = $this->modepaiement_model->getModesPaiements();

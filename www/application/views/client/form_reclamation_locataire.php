@@ -3,7 +3,7 @@
 <body>
 
     <div class="form-style-10">
-        <h3>Reclamation de locataire!<span></span></h3>
+        <h3>Réclamation de locataire!<span></span></h3>
         <form method="post" action="<?= $base_url ?>reclamation/insert_reclamation">
 
             <input type="hidden" name="type_message" value="<?= $type_message; ?>">
@@ -19,7 +19,7 @@
                         </label>
                     </div>
                     <div class="col-md-6">
-                        <label><h4>Prenom</h4>
+                        <label><h4>Prénom</h4>
                             <input class="myInput" type="text" name="prenom" disabled value="<?= $locations['prenom']; ?> " />
                         </label>
                     </div>
@@ -48,7 +48,7 @@
                         </label>
                     </div>
                     <div class="col-md-6">
-                        <label><h4>Prenom</h4>
+                        <label><h4>Prénom</h4>
                             <input class="myInput" type="text" name="prenom" disabled value="<?= $users->getPrenom() ?> " />
                         </label>
                     </div>

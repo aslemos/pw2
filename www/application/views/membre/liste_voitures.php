@@ -4,6 +4,17 @@ include VIEWPATH . 'common/header.php';
 //========================================================
 include VIEWPATH . 'client/boutons_prestataire.php';
 ?>
+<script>
+    $(function(){
+        $('[id^="btn-supp-"]').on('click', function(){
+            var id = this.id.split('-')[2];
+            if (id && confirm("Êtes-vous sûr de vouloir supprimer ce véhicule ?")) {
+                document.location.href = base_url + 'vehicule/deleteVehicule/' + id;
+            }
+        });
+
+    });
+</script>
 <h2><?=$title?></h2>
 	<form action="" name="formulaire" id="form-voitures-id">
 		<div class="table-responsive">
@@ -33,12 +44,11 @@ include VIEWPATH . 'client/boutons_prestataire.php';
 <?php if ($vehicule['etat_vehicule'] == EVehicule::ETAT_ACTIF) { ?>
                 <td><a title="Modifier" href="<?= $base_url ?>vehicule/editVehicule/<?= $vehicule['vehicule_id'] ?>#s"><i class="fa fa-pencil-square-o"></i></a></td>
                 <td><a title="Disponibiliser" href="<?= $base_url ?>disponibilite/create/<?= $vehicule['vehicule_id'] ?>#s"><i class="fa fa-calendar"></i></a></td>
-				<td><a title="Supprimer" href="#s"><i class="fa fa-trash-o"></i></a></td>
 <?php } else { ?>
                 <td></td>
                 <td></td>
-				<td><a title="Supprimer" href="#s"><i class="fa fa-trash-o"></i></a></td>
 <?php } ?>
+				<td><a title="Supprimer" id="btn-supp-<?=$vehicule['vehicule_id']?>" href="javascript:void(0)"><i class="fa fa-trash-o"></i></a></td>
 			</tr>
 <?php } ?>
 			</tbody>

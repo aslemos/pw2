@@ -1,10 +1,14 @@
 <?php include VIEWPATH . '/common/header.php'; ?>
 
-
+<style type="text/css">
+    #in1.incorrect {
+        box-shadow: 0 0 15px red;
+    }
+</style>
 <body>
     <div id="myForm1" class="form-style-10">
         <h3>Paiement de réservation</h3>
-        <form id="frm-paiement" method="post" action="<?= $base_url ?>locations/insererPayemant/">
+        <form id="frm-paiement" method="post" action="<?= $base_url ?>locations/insererPayemant#s">
             <div class="inner-wrap">
                 <div class="row">
 
@@ -51,9 +55,9 @@
                         <div class="row">
                             <div class="col-md-4">
                                 <label><h5>Numéro de carte<span class="required">*</span></h5>
-                                    <input id="in1" type="number" name="nom"  value=""/>
+                                    <input id="in1" type="number" name="nom" value=""/>
                                 </label>
-                                <p class='incorrect'></p>
+                                <!--<p class='incorrect'></p>-->
                             </div>
                             <div class="col-md-4" id="date">
                                 <label><h5>Date d'expiration de la carte<span class="required">*</span></h5>
@@ -70,7 +74,7 @@
                     </div>
 
                     <div class="btn-group" role="group" aria-label="Basic example">
-                        <button type="button" id="flip5" class="btn btn-danger animated bounceInLeft"><a href="<?= $base_url ?>locations/locationsByUser#s" > <i class="fa  fa-window-close" style="font-size:22px;"></i> Annuler</a></button>
+                        <a id="flip5" class="btn btn-danger animated bounceInLeft" href="<?= $base_url ?>locations/locationsByUser#s" > <i class="fa  fa-window-close" style="font-size:22px;"></i> Annuler</a>
                         <button type="submit" id="flip6" class="btn btn-success animated bounceInRight">Payer <i class="fa fa-dollar" style="font-size:22px;"></i></button>
                     </div>
                 </div>
