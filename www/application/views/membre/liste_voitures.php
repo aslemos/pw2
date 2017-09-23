@@ -40,6 +40,7 @@ include VIEWPATH . 'client/boutons_prestataire.php';
 				<td class=""><?=$vehicule['annee']?></td>
 				<td class=""><?=$vehicule['matricule']?></td>
 				<td class=""><?=$vehicule['prix']?></td>
+				<!--<td class=""><?=EVehicule::getDescriptionEtat($vehicule['etat_vehicule']). ' ('.$vehicule['nb_locations'].')'?></td>-->
 				<td class=""><?=EVehicule::getDescriptionEtat($vehicule['etat_vehicule'])?></td>
 <?php if ($vehicule['etat_vehicule'] == EVehicule::ETAT_ACTIF) { ?>
                 <td><a title="Modifier" href="<?= $base_url ?>vehicule/editVehicule/<?= $vehicule['vehicule_id'] ?>#s"><i class="fa fa-pencil-square-o"></i></a></td>

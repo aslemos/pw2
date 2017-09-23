@@ -415,6 +415,10 @@ class Vehicule_model extends CI_Model {
      */
     public function getVehiculesByUser(IUsager $user) {
 
+        // Utilisation du champ de groupe COUNT() pour trouver le nombre de locations valides
+        $this->db->select('*, COUNT(locations.location_id) as nb_locations');
+        $this->db->distinct();
+
         $this->db->order_by('vehicules.vehicule_id', 'DESC');
 
         $this->db->join('usagers', 'usagers.user_id = vehicules.proprietaire_id');
@@ -422,6 +426,10 @@ class Vehicule_model extends CI_Model {
         $this->db->join('marques', 'marques.marque_id = modeles.marque_id');
         $this->db->join('type_vehicules', 'vehicules.type_id = type_vehicules.type_id');
         $this->db->join('arrondissements', 'vehicules.arr_id = arrondissements.arr_id');
+
+        // Join pour trouver le nombre de locations valides de la voiture
+        // Valide, c'est : non annulé et non refusé
+        $this->db->join('locations', 'locations.vehicule_id = vehicules.vehicule_id AND locations.etat_reservation != ' . ELocation::LOCATION_REFUSE . ' AND locations.etat_reservation != ' . ELocation::LOCATION_ANNULE, 'left');
 
         $query = $this->db->get_where('vehicules', array('usagers.user_id' => $user->getId()));
 
