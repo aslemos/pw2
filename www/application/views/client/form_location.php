@@ -67,7 +67,7 @@
 
                 <div class="col-md-4">
                     <label><h5>Prix total</h5>
-                        <input class="myInput" type="text" name="prixTotal" disabled value="<?= $prix_total?> "/>
+                        <input class="myInput" id="prixTotal" type="text" name="prixTotal" value="<?= $prix_total?> "/>
                     </label>
                 </div>
             </div>
@@ -165,7 +165,7 @@
                         $(".test").removeClass("zoomIn");
                         $(".test2").addClass("animated zoomIn");
 
-                        //$(".prixTotal").val(json.prix_total);
+                        $("#prixTotal").val(json.prix_total);
                         //document.getElementsByClass(".prixTotal").innerHTML = json.prix_total + obj.birth;
 
                     } else {
