@@ -11,17 +11,24 @@ x [asl] éliminer les champs date_debut / date_fin de la table 'voiture'
 
 Réclamation
 -----------
-- ajouter méthode dans l'objet ELocation pour tester si la réservation est payé
-- en sachant que la réservation est payée, afficher les boutons de :
+- ok - ajouter méthode dans l'objet ELocation pour tester si la réservation est payé
+- ok - en sachant que la réservation est payée, afficher les boutons de :
     . réclamation de voiture et
     . réclamation propriétaire
     dans l'espace client (historique)
 
 
+Disponibilité
+-------------
+- Permettre l'édition en-ligne d'une disponibilité
+- Tester la collision de dates lors de la création d'une période
+- Ne pas permettre une date de début inférieure à aujourd'hui
+
+
 Payements
 ----------
-- Changer l'état de la réservation lorsque la valeur atteint le montant total
-- Après le paiement, retourner à l'historique de location
+- ok - Changer l'état de la réservation lorsque la valeur atteint le montant total
+- ok - Après le paiement, retourner à l'historique de location
 
 
 Messagerie
@@ -29,5 +36,5 @@ Messagerie
 - ok - Dans le message à l'admin, ne pas voir sur la liste déroulante que les administrateurs
 - Ne pas envoyer un message à soi-même
 - Dans messages envoyés, spécifier le type de message envoyé
-- Dans messages envoyés, voir les messages à l'administrateur
+- ok - Dans messages envoyés, voir les messages à l'administrateur
 
