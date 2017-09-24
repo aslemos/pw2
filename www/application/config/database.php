@@ -99,9 +99,9 @@ $db['default'] = array(
 $db['default']['failover'] = array(
                 array(
                         'hostname' => 'localhost',
-                        'username' => 'e1695643',
-                        'password' => '740721',
-                        'database' => 'e1695643',
+                        'username' => 'root',
+                        'password' => '',
+                        'database' => 'pw2',
                         'dbdriver' => 'mysqli',
                         'dbprefix' => '',
                         'pconnect' => FALSE,

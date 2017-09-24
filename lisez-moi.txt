@@ -1,0 +1,37 @@
+
+
+REMARQUES SUR LA MISE EN PRODUCTION DU PROJET :
+-----------------------------------------------
+
+
+- Répertoires importants :
+
+  ./www  - racine du site
+  ./bd   - scripts de BD
+  ./docs - documents généraux du projet, dont la charte graphique et les sprints
+
+
+
+- Pour créer la BD :
+
+  Veuillez utiliser le fichier ./bd/projetweb2.sql
+
+
+- Pour configurer CodeIgniter :
+
+  Connexion à la BD : ./www/application/config/database.php
+  BASE_URL du site  : ./www/application/config/config.php
+
+
+
+- Pour accéder au WEBDEV :
+
+  http://e1695643.webdev.cmaisonneuve.qc.ca/pw2/accueil
+
+  role       = username / passwd
+  ------------------------------
+  user       = andriyma / 12345
+  admin      = majid    / 12345
+  superadmin = aslemos  / 12345
+
+
