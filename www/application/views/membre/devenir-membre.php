@@ -119,7 +119,7 @@ include VIEWPATH . 'common/header.php';
                             <div class="form-group">
                                 <label  class="control-label col-xs-3" for="inputAddress">Adresse: <span class="filedRequired">*</span></label>
                                 <div class="col-xs-6">
-                                    <input type="text" name="inputAddress" class="form-control" id="inputAddress" placeholder="1234 rue de Gaspe" pattern="\d{1,5}\s\w*\s\w*" title="Veuillez Respecter Format: XXXX rue/boulevard Nom de la rue" required>
+                                    <input type="text" name="inputAddress" class="form-control" id="inputAddress" placeholder="1234 rue de Gaspe" pattern="\d{1,5}((,|\s)[\wéàèù-]*)+" title="Veuillez Respecter Format: XXXX rue/boulevard Nom de la rue" required>
                                 </div>
                             </div>
 
