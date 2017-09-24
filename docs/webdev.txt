@@ -1,0 +1,8 @@
+
+http://e1695643.webdev.cmaisonneuve.qc.ca/pw2/accueil
+
+role       = username / passwd
+------------------------------
+user       = andriyma / 12345
+admin      = majid    / 12345
+superadmin = aslemos  / 12345
