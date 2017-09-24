@@ -8,7 +8,7 @@ include VIEWPATH . 'common/header.php';
         <div class="rows4 title-container">
             <div class="cols6">
                 <div class="blocks6">
-                    <h2>Editer mon profil membre</h2>
+                    <h2>Éditer mon profil membre</h2>
                     <?php echo validation_errors(); ?>
                 </div>
             </div>
@@ -34,7 +34,7 @@ include VIEWPATH . 'common/header.php';
                                     <input type="text" class="form-control" name="firstName" id="firstName" placeholder="Entrez le nom" value="<?= $user['prenom']; ?>" required>
                                 </div>
                             </div>
-                            
+
                             <div class="form-group">
                                 <label class="control-label col-xs-3" for="dateNaissance">Date de Naissance: <span class="filedRequired">*</span></label>
                                 <div class="col-xs-6">
@@ -42,7 +42,7 @@ include VIEWPATH . 'common/header.php';
                                 </div>
                             </div>
 
-                           
+
                             <div class="form-group">
                                 <label class="control-label col-xs-3">Sexe: <span class="filedRequired">*</span></label>
 
@@ -70,7 +70,7 @@ include VIEWPATH . 'common/header.php';
                             <div class="form-group">
                                 <label class="control-label col-xs-3" for="inputConduire">Numéro de permis de conduire: <span class="filedRequired">*</span></label>
                                 <div class="col-xs-6">
-                                    <input type="text" class="form-control" name="inputConduire" id="inputConduire" placeholder="Entrez le numéro de permis de conduire" pattern="^[a-zA-z]\d{4}(\-)\d{6}(\-)\d{2}$" title="Numéro de permis de conduire Incorrect" value="<?= $user['permis_conduire']; ?>" required>
+                                    <input type="text" class="form-control" name="inputConduire" id="inputConduire" placeholder="Format : A9999-999999-99" pattern="^[a-zA-Z]\d{4}-\d{6}-\d{2}$" title="Numéro de permis de conduire Incorrect" value="<?= $user['permis_conduire']; ?>" required>
                                 </div>
                             </div>
 
@@ -97,16 +97,16 @@ include VIEWPATH . 'common/header.php';
                             </div>
 
                             <div class="form-group">
-                                <label class="control-label col-xs-3" for="inputPassword">Mot de passe: <span class="filedRequired">*</span></label>
-                                <div class="col-xs-6">              
-                                    <input type="password" name="inputPassword" class="form-control" id="inputPassword" placeholder="Entrez le mot de passe plus de 8 caractères, au moins une lettre majuscule, un numéro et un caractère spécial" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*-+?&])[A-Za-z\d$@$!%*-+?&]{8,}" title="Veuillez Respecter Format: Minimum de huit caractères, au moins une lettre majuscule, une lettre minuscule, un numéro et un caractère spécial" required>
+                                <label class="control-label col-xs-3" for="inputPassword">Mot de passe:</label>
+                                <div class="col-xs-6">
+                                    <input type="password" name="inputPassword" class="form-control" id="inputPassword" placeholder="Entrez le mot de passe plus de 8 caractères, au moins une lettre majuscule, un numéro et un caractère spécial" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*-+?&])[A-Za-z\d$@$!%*-+?&]{8,}" title="Veuillez Respecter Format: Minimum de huit caractères, au moins une lettre majuscule, une lettre minuscule, un numéro et un caractère spécial">
                                 </div>
                             </div>
 
                             <div class="form-group">
-                                <label class="control-label col-xs-3" for="confirmPassword">Confirmer mot de passe: <span class="filedRequired">*</span></label>
+                                <label class="control-label col-xs-3" for="confirmPassword">Confirmer mot de passe:</label>
                                 <div class="col-xs-6">
-                                    <input type="password" name="confirmPassword" class="form-control" id="confirmPassword" placeholder="Retapez le mot de passe" required>
+                                    <input type="password" name="confirmPassword" class="form-control" id="confirmPassword" placeholder="Retapez le mot de passe">
                                 </div>
                             </div>
 
@@ -129,15 +129,9 @@ include VIEWPATH . 'common/header.php';
                                 <div class="col-xs-3">
                                     <select class="form-control formSelector" name="province_id" id="province_id" required>
                                         <option value="0">-- Choisissez Province --</option>
-                                        <?php
-                                        if (isset($provinces)) {
-                                            foreach ($provinces as $province) {
-                                                ?>
-                                                <option value="<?= $province['province_id'] ?>" <?= $province['province_id'] == $user['province'] ? ' selected' : '' ?>><?= $province['province'] ?></option>
-                                            <?php
-                                            }
-                                        }
-                                        ?>
+                                        <?php foreach ($provinces as $province) { var_dump($province); ?>
+                                            <option value="<?= $province['province_id'] ?>" <?= $province['province_id'] == $user['province_id'] ? ' selected' : '' ?>><?= $province['province'] ?></option>
+                                        <?php } ?>
                                     </select>
                                 </div>
 
@@ -145,15 +139,9 @@ include VIEWPATH . 'common/header.php';
                                 <div class="col-xs-3">
                                     <select class="form-control formSelector" name="ville_id" id="ville_id" required>
                                         <option value="">-- Choisissez Ville --</option>
-                                        <?php
-                                        if (isset($villes)) {
-                                            foreach ($villes as $ville) {
-                                                ?>
-                                                <option value="<?= $ville['ville_id'] ?>" <?= $ville['ville_id'] == $user['ville_id'] ? ' selected' : '' ?>><?= $ville['nom_ville'] ?></option>
-    <?php
-    }
-}
-?>
+                                        <?php foreach ($villes as $ville) { ?>
+                                            <option value="<?= $ville['ville_id'] ?>" <?= $ville['ville_id'] == $user['ville_id'] ? ' selected' : '' ?>><?= $ville['nom_ville'] ?></option>
+                                        <?php } ?>
                                     </select>
                                 </div>
                             </div>
@@ -163,29 +151,23 @@ include VIEWPATH . 'common/header.php';
                                 <div class="col-xs-3">
                                     <select class="form-control formSelector" name="arr_id" id="arr_id" required>
                                         <option value="">-- Choisissez Arrondissement--</option>
-                                        <?php
-                                        if (isset($arrondissement)) {
-                                            foreach ($arrondissement as $ville) {
-                                                ?>
-                                                <option value="<?= $ville['ville_id'] ?>" <?= $ville['ville_id'] == $user['ville_id'] ? ' selected' : '' ?>><?= $ville['nom_ville'] ?></option>
-    <?php
-    }
-}
-?>
+                                        <?php foreach ($arrondissements as $arrond) { ?>
+                                            <option value="<?= $arrond['arr_id'] ?>" <?= $arrond['arr_id'] == $user['arr_id'] ? ' selected' : '' ?>><?= $arrond['nom_arr'] ?></option>
+                                        <?php } ?>
                                     </select>
                                 </div>
                                 <div class="col-xs-3">
-                                    <input type="text" name="codePostal" class="form-control" id="inputCode" placeholder="Code Postal" pattern="^[A-Za-z]\d[A-Za-z](\-| |)\d[A-Za-z]\d$" title="Veuillez Respecter Format: L2L 2L1" value="<?= $user['code_postal'] ?>" required>
+                                    <input type="text" name="codePostal" class="form-control" id="inputCode" placeholder="Code Postal" pattern="^[A-Za-z]\d[A-Za-z](-| )\d[A-Za-z]\d$" title="Veuillez Respecter Format: L2L 2L1" value="<?= $user['code_postal'] ?>" required>
                                 </div>
                             </div>
 
                             <div class="form-group">
                                 <label class="control-label col-xs-3" for="photo">Photo:</label>
                                 <div class="col-xs-6">
-                                    <input type="file" class="form-control-file" id="photo" name="photo"  value="<?= $user['user_photo'] ?>">
+                                    <input type="file" class="form-control-file" id="photo" name="photo"  value="<?php //= $user['user_photo'] ?>">
                                 </div>
                             </div>
-                            <input type="hidden" id="user_id" name="user_id" value="<?=UserAcces::getLoggedUser()->getId();?>"> 
+                            <input type="hidden" id="user_id" name="user_id" value="<?=UserAcces::getLoggedUser()->getId();?>">
                             <br />
 
                             <div class="form-group">

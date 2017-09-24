@@ -62,6 +62,13 @@ class Arrondissement_model extends CI_Model {
 
             // Instantie la Ville
             $arrond->setVille(new EVille($data));
+
+            // Instantie la Province
+            $arrond->getVille()->setProvince(new EProvince([
+                'province_id' => $data['province'],
+                'nom_province' => $data['province']
+                ])
+            );
             return $arrond;
         }
         return NULL;

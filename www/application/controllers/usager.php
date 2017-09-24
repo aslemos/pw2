@@ -2,26 +2,6 @@
 
 class Usager extends CI_Controller {
 
-//    public function index() {
-//
-//        // Check login
-//        if (!UserAcces::userIsLogged()) {
-//            redirect('usager/login');
-//        }
-//        if (!UserAcces::userIsAdmin()) {
-//            redirect('noperm'); // TODO: utiliser une page d'erreur personnalisée
-//        }
-//
-//        $data['title'] = 'Liste des usagers';
-//        $data['body_class'] = '';
-//        $data['base_url'] = base_url();
-//
-//        $data['usagers'] = $this->usager_model->getUsers();
-//
-//        $this->load->view('usagers/index', $data);
-//
-//    }
-
     // Connexion
     public function login() {
         $data['page_title'] = 'Se connecter';
@@ -100,7 +80,7 @@ class Usager extends CI_Controller {
 
         $data['roles'] = $this->usager_model->getRoles();
         $data['err_message'] = '* Tous Les Champs Sont Requis!';
-        
+
         // Validation Formulaire coté back end
         $this->form_validation->set_rules('lastName', 'Prenom', 'required');
         $this->form_validation->set_rules('firstName', 'Nom', 'required');
@@ -109,7 +89,7 @@ class Usager extends CI_Controller {
         $this->form_validation->set_rules('phoneNumber', 'Telephone', 'required');
         $this->form_validation->set_rules('inputEmail', 'Email', 'required|callback_checkEmailExists');
         $this->form_validation->set_rules('username', 'Username','required|trim|is_unique[usagers.username]');
-      
+
         $this->form_validation->set_rules('inputPassword', 'Password', 'required');
         $this->form_validation->set_rules('confirmPassword', 'Confirm Password', 'matches[inputPassword]');
         $this->form_validation->set_rules('inputAddress', 'Adresse', 'required');
@@ -218,18 +198,23 @@ class Usager extends CI_Controller {
         if (!UserAcces::userIsAdmin() && !UserAcces::getUserId() == $user_id) {
             redirect('noperm');
         }
-        
+
         // Charger les données de cette personne
-        $data['user'] = $this->usager_model->getUsers($user_id);
+        $user = $this->usager_model->getUsers($user_id);
+        if (empty($user)) {
+            show_404();
+        }
+
+        // Trouver l'ID de la province
+        $arrond = $this->arrondissement_model->getArrondissementById($user['arr_id']);
+        $user['province_id'] = $arrond->getVille()->getProvinceId();
+
+
+        $data['user'] = $user;
 
         $data['err_message'] = '* Tous Les Champs Sont Requis!';
 
         $data['roles'] = $this->usager_model->getRoles();
-
-        if (empty($data['user'])) {
-
-            show_404();
-        }
 
         $this->load->model('arrondissement_model');
         $data['page_title'] = 'Mise à jour usager';
@@ -240,8 +225,8 @@ class Usager extends CI_Controller {
         $data['action'] = base_url() . 'usager/updateUser/'. UserAcces::getLoggedUser()->getId().'#s';
          // Charger les Provinces et les arrondissements
         $data['provinces'] = $this->arrondissement_model->getProvinces();
-        $data['villes'] = $this->arrondissement_model->getVillesByProvinceId($this->input->post('province_id'));
-        $data['arrondissements'] = $this->arrondissement_model->getArrondissementsByVilleId($this->input->post('ville_id'));
+        $data['villes'] = $this->arrondissement_model->getVillesByProvinceId($user['province_id']);
+        $data['arrondissements'] = $this->arrondissement_model->getArrondissementsByVilleId($user['ville_id']);
         // Call Script
         $data['scripts'] = [
             base_url() . 'assets/js/ajax_villes_by_province.js',
@@ -264,7 +249,7 @@ class Usager extends CI_Controller {
         if (UserAcces::userIsSuperAdmin() && $this->input->post('role_id')) {
             $data['role_id'] = $this->input->post('role_id');
         }
-        
+
         $data['meta_keywords'] = '';
         $data['meta_description'] = '';
         $data['page_title'] = 'Mise à jour usager';
@@ -283,9 +268,28 @@ class Usager extends CI_Controller {
         ];
 
         $data['roles'] = $this->usager_model->getRoles();
-        $data['user'] = $this->usager_model->getUsers($user_id);
+
+        //$data['user'] = $this->usager_model->getUsers($user_id);
+        $data['user'] = array(
+                'prenom' => $this->input->post('firstName'),
+                'nom' => $this->input->post('lastName'),
+                'DateNaissance' => $this->input->post('dateNaissance'),
+                'sexe' => $this->input->post('gender2'),
+                'permis_conduire' => $this->input->post('inputConduire'),
+                'telephone' => $this->input->post('phoneNumber'),
+                'courriel' => $this->input->post('inputEmail'),
+                'username' => $this->input->post('username'),
+                'adresse' => $this->input->post('inputAddress'),
+                'adresse2' => $this->input->post('inputAddress2'),
+                'province_id' => $this->input->post('province_id'),
+                'ville_id' => $this->input->post('ville_id'),
+                'arr_id' => $this->input->post('arr_id'),
+                'code_postal' => $this->input->post('codePostal'),
+                'user_id' => $this->input->post('user_id')
+            );
+
         $data['err_message'] = '* Tous Les Champs Sont Requis!';
-       
+
         // Validation Formulaire coté back end
         $this->form_validation->set_rules('lastName', 'Prenom', 'required');
         $this->form_validation->set_rules('firstName', 'Nom', 'required');
@@ -294,9 +298,11 @@ class Usager extends CI_Controller {
         $this->form_validation->set_rules('phoneNumber', 'Telephone', 'required');
 //        $this->form_validation->set_rules('inputEmail', 'Email', 'required|callback_checkEmailExists');
 //        $this->form_validation->set_rules('username', 'Username','required|trim|is_unique[usagers.username]');
-      
-        $this->form_validation->set_rules('inputPassword', 'Password', 'required');
-        $this->form_validation->set_rules('confirmPassword', 'Confirm Password', 'matches[inputPassword]');
+
+//        $this->form_validation->set_rules('inputPassword', 'Password', 'required');
+        if ($this->input->post('inputPassword')) {
+            $this->form_validation->set_rules('confirmPassword', 'Confirm Password', 'matches[inputPassword]');
+        }
         $this->form_validation->set_rules('inputAddress', 'Adresse', 'required');
         //$this->form_validation->set_rules('inputVille', 'Ville', 'required');
         $this->form_validation->set_rules('codePostal', 'Code Postal', 'required');
@@ -315,47 +321,52 @@ class Usager extends CI_Controller {
 //            $config['max_width'] = '2000';
 //            $config['max_height'] = '2000';
 
-            $this->load->library('upload', $config);
-
-            if (!$this->upload->do_upload('photo')) {
-                $user_photo = $data['user']['user_photo'];
-            } else {
-                $user_photo = $this->upload->data('file_name');
-            }
-            // Encrypter le mot de passe
-            $enc_password = md5($this->input->post('inputPassword'));
-            
             $data = array(
-            'prenom' => $this->input->post('firstName'),
-            'nom' => $this->input->post('lastName'),
-            'dateNaissance' => $this->input->post('dateNaissance'),
-            'sexe' => $this->input->post('gender2'),
-            'permis_conduire' => $this->input->post('inputConduire'),
-            'telephone' => $this->input->post('phoneNumber'),
-            'courriel' => $this->input->post('inputEmail'),
-            'username' => $this->input->post('username'),
-            'motdepasse' => $enc_password,
-            'adresse' => $this->input->post('inputAddress'),
-            'adresse2' => $this->input->post('inputAddress2'),
-            'ville_id' => $this->input->post('ville_id'),
-            'arr_id' => $this->input->post('arr_id'),
-            'code_postal' => $this->input->post('codePostal'),
-            'user_photo' => $user_photo,
-            'user_id' => $this->input->post('user_id')
-        );
+                'prenom' => $this->input->post('firstName'),
+                'nom' => $this->input->post('lastName'),
+                'dateNaissance' => $this->input->post('dateNaissance'),
+                'sexe' => $this->input->post('gender2'),
+                'permis_conduire' => $this->input->post('inputConduire'),
+                'telephone' => $this->input->post('phoneNumber'),
+                'courriel' => $this->input->post('inputEmail'),
+                'username' => $this->input->post('username'),
+                'adresse' => $this->input->post('inputAddress'),
+                'adresse2' => $this->input->post('inputAddress2'),
+                'ville_id' => $this->input->post('ville_id'),
+                'arr_id' => $this->input->post('arr_id'),
+                'code_postal' => $this->input->post('codePostal'),
+                'user_id' => $this->input->post('user_id')
+            );
+
+            // Trouve la photo téléversée, le cas échéant
+            $this->load->library('upload', $config);
+            if ($this->upload->do_upload('photo')) {
+                $data['user_photo'] = $this->upload->data('file_name');
+            }
+
+            // Encrypter le mot de passe
+            if ($this->input->post('inputPassword')) {
+                $data['motdepasse'] = md5($this->input->post('inputPassword'));
+            }
 
             // Sauvegarder à la base de donnée
            // $this->usager_model->registerUser($enc_password, $user_photo);
-            $this->usager_model->updateUserMod($data);
+            if ($this->usager_model->updateUserMod($data)) {
 
-            // Message de confirmation d'enregistrement
-            $this->session->set_flashdata('msg_success', 'Enregistrement des modifications est terminé');
+                // Message de confirmation d'enregistrement
+                $this->session->set_flashdata('msg_success', 'Enregistrement des modifications est terminé');
+
+            } else {
+                // Une erreur d'est produite
+                $this->session->set_flashdata('msg_error', 'Problème dans l\'enregistrement de l\'usager');
+
+            }
 
             //redirect('usager/login#s');
             redirect('membre/vehicules#s');
         }
-        
 
-        
+
+
     }
 }

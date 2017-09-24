@@ -25,6 +25,13 @@ $(function () {
     $(".btn-menu").click(function () {
         $("body").toggleClass("menu-open");
     });
+
+    $('#dateNaissance').datepicker({
+        dateFormat: "yy-mm-dd",
+        showAnim: "show",
+        changeMonth: true,
+        changeYear: true
+    });
 });
 
 
