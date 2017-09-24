@@ -76,14 +76,14 @@ include VIEWPATH . 'common/header.php';
                             <div class="form-group">
                                 <label class="control-label col-xs-3" for="inputConduire">Numéro de permis de conduire: <span class="filedRequired">*</span></label>
                                 <div class="col-xs-6">
-                                    <input type="text" class="form-control" name="inputConduire" id="inputConduire" placeholder="Entrez le numéro de permis de conduire" required>
+                                    <input type="text" class="form-control" name="inputConduire" id="inputConduire" placeholder="Entrez le numéro de permis de conduire" pattern="^[a-zA-z]\d{4}(\-)\d{6}(\-)\d{2}$" title="Numéro de permis de conduire Incorrect" required>
                                 </div>
                             </div>
 
                             <div class="form-group">
                                 <label class="control-label col-xs-3" for="phoneNumber">Numéro de téléphone: <span class="filedRequired">*</span></label>
                                 <div class="col-xs-6">
-                                    <input type="tel" class="form-control" name="phoneNumber" id="phoneNumber" placeholder="Entrez le numéro de téléphone" required>
+                                    <input type="tel" class="form-control" name="phoneNumber" id="phoneNumber" pattern="\d{10}" title="Veuillez respecter ce format: 5143184728" placeholder="Entrez le numéro de téléphone Format: 5143184728" required>
                                 </div>
                             </div>
 
@@ -105,7 +105,7 @@ include VIEWPATH . 'common/header.php';
                             <div class="form-group">
                                 <label class="control-label col-xs-3" for="inputPassword">Mot de passe: <span class="filedRequired">*</span></label>
                                 <div class="col-xs-6">
-                                    <input type="password" name="inputPassword" class="form-control" id="inputPassword" placeholder="Entrez le mot de passe plus de 8 caractères" required>
+                                    <input type="password" name="inputPassword" class="form-control" id="inputPassword" placeholder="Entrez le mot de passe plus de 8 caractères, au moins une lettre majuscule, un numéro et un caractère spécial" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*-+?&])[A-Za-z\d$@$!%*-+?&]{8,}" title="Veuillez Respecter Format: Minimum de huit caractères, au moins une lettre majuscule, une lettre minuscule, un numéro et un caractère spécial" required>
                                 </div>
                             </div>
 
@@ -119,7 +119,7 @@ include VIEWPATH . 'common/header.php';
                             <div class="form-group">
                                 <label  class="control-label col-xs-3" for="inputAddress">Adresse: <span class="filedRequired">*</span></label>
                                 <div class="col-xs-6">
-                                    <input type="text" name="inputAddress" class="form-control" id="inputAddress" placeholder="1234 rue de Gaspe" required>
+                                    <input type="text" name="inputAddress" class="form-control" id="inputAddress" placeholder="1234 rue de Gaspe" pattern="\d{1,5}\s\w*\s\w*" title="Veuillez Respecter Format: XXXX rue/boulevard Nom de la rue" required>
                                 </div>
                             </div>
 
@@ -175,7 +175,7 @@ include VIEWPATH . 'common/header.php';
                                     </select>
                                 </div>
                                 <div class="col-xs-3">
-                                    <input type="text" name="codePostal" class="form-control" id="inputCode" placeholder="Code Postal" required>
+                                    <input type="text" name="codePostal" class="form-control" id="inputCode" placeholder="Code Postal" pattern="^[A-Za-z]\d[A-Za-z](\-| |)\d[A-Za-z]\d$" title="Veuillez Respecter Format: L2L 2L1" required>
                                 </div>
                             </div>
 

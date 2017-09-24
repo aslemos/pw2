@@ -168,7 +168,7 @@ class usager_model extends CI_Model {
         return true;
     }
 
-    public function updateUser($data) {
+    public function updateUserMod($data) {
 
         $this->db->where('user_id', $data['user_id']);
         return $this->db->update('usagers', $data);

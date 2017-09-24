@@ -5,7 +5,7 @@
 $(document).ready(function () {
 
     // Ramplir Date de naissance
-    var liste_jour = "<select class='formSelector form-control' name='jour' class='form-control' required>    <option value='0'>Jour</option>";
+    var liste_jour = "<select class='formSelector form-control' name='jour' class='form-control' required>    <option value=''>Jour</option>";
     for (var i = 1; i <= 31; i++) {
         liste_jour += "<option value='" + i + "'>" + i + "</option>";
     }
@@ -13,14 +13,14 @@ $(document).ready(function () {
     liste_jour += "</select>";
 
 
-    var liste_mois = "<select class='formSelector form-control' name='mois' class='form-control' required><option value='0'>Mois</option>";
+    var liste_mois = "<select class='formSelector form-control' name='mois' class='form-control' required><option value=''>Mois</option>";
     for (var i = 1; i <= 12; i++) {
         liste_mois += "<option value='" + i + "'>" + i + "</option>";
     }
     ;
     liste_mois += "</select>";
 
-    var liste_annee = "<select class='formSelector form-control' name='annee' class='form-control' required><option value='0'>Année</option>";
+    var liste_annee = "<select class='formSelector form-control' name='annee' class='form-control' required><option value=''>Année</option>";
     for (var i = 1916; i <= 2016; i++) {
         liste_annee += "<option value='" + i + "'>" + i + "</option>";
     }
@@ -33,15 +33,6 @@ $(document).ready(function () {
     document.getElementById("input_annee").innerHTML = liste_annee;
 
 
-
-//    /*remplir Province*/
-//    var generMarque = new Array("AB", "BC", "MB", "NB", "ON", "QC");
-//    var d = document.monFormulaire.choixProvince;
-//    for (var i = 0; i < generMarque.length; i++)
-//    {
-//        d.length++;
-//        d.options[d.length - 1].text = generMarque[i];
-//    }
 
 });
 
