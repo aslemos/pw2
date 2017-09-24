@@ -3,8 +3,8 @@
 <body>
 
     <div class="form-style-10">
-        <h3>Réclamation de locataire!<span></span></h3>
-        <form method="post" action="<?= $base_url ?>reclamation/insert_reclamation">
+        <h3><?=$title?><span></span></h3>
+        <form method="post" action="<?=$action?>">
 
             <input type="hidden" name="type_message" value="<?= $type_message; ?>">
             <input type="hidden" name="objet_id" value="<?= $objet_id; ?>">
