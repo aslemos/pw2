@@ -8,7 +8,11 @@ include VIEWPATH . 'common/header.php';
         <div class="rows4 title-container">
             <div class="cols6">
                 <div class="blocks6">
+<?php if ($user['user_id'] == UserAcces::getUserId()) { ?>
                     <h2>Éditer mon profil membre</h2>
+<?php } else { ?>
+                    <h2>Éditer profil d'usager</h2>
+<?php } ?>
                     <?php echo validation_errors(); ?>
                 </div>
             </div>
@@ -20,6 +24,8 @@ include VIEWPATH . 'common/header.php';
                 <div class="blocks7">
                     <div>
                         <form method="post" enctype="multipart/form-data" name="monFormulaire" action="<?= $action; ?>" class="form-horizontal" id="needs-validation" > <!--novalidate-->
+                            <input type="hidden" name="user_id" value="<?=$user['user_id']?>">
+                            <input type="hidden" name="origin" value="<?=$origin?>">
 
                             <div class="form-group">
                                 <label class="control-label col-xs-3" for="lastName">Nom de famille: <span class="filedRequired">*</span></label>
@@ -29,7 +35,7 @@ include VIEWPATH . 'common/header.php';
                             </div>
 
                             <div class="form-group">
-                                <label class="control-label col-xs-3" for="firstName">Prenom: <span class="filedRequired">*</span></label>
+                                <label class="control-label col-xs-3" for="firstName">Prénom: <span class="filedRequired">*</span></label>
                                 <div class="col-xs-6">
                                     <input type="text" class="form-control" name="firstName" id="firstName" placeholder="Entrez le nom" value="<?= $user['prenom']; ?>" required>
                                 </div>
@@ -129,7 +135,7 @@ include VIEWPATH . 'common/header.php';
                                 <div class="col-xs-3">
                                     <select class="form-control formSelector" name="province_id" id="province_id" required>
                                         <option value="0">-- Choisissez Province --</option>
-                                        <?php foreach ($provinces as $province) { var_dump($province); ?>
+                                        <?php foreach ($provinces as $province) { ?>
                                             <option value="<?= $province['province_id'] ?>" <?= $province['province_id'] == $user['province_id'] ? ' selected' : '' ?>><?= $province['province'] ?></option>
                                         <?php } ?>
                                     </select>
@@ -167,8 +173,21 @@ include VIEWPATH . 'common/header.php';
                                     <input type="file" class="form-control-file" id="photo" name="photo"  value="<?php //= $user['user_photo'] ?>">
                                 </div>
                             </div>
-                            <input type="hidden" id="user_id" name="user_id" value="<?=UserAcces::getLoggedUser()->getId();?>">
                             <br />
+
+<?php if (UserAcces::userIsSuperAdmin()) { ?>
+                            <div class="form-group">
+                                <label  class="control-label col-xs-3" for="inputRole">Rôle: <span class="filedRequired">*</span></label>
+                                <div class="col-xs-6">
+                                    <select class="form-control formSelector" name="role_id" id="role_id" required>
+                                        <option value="">-- Rôle --</option>
+                                        <?php foreach ($roles as $role) { ?>
+                                            <option value="<?= $role['role_id'] ?>" <?= $role['role_id'] == $user['role_id'] ? ' selected' : '' ?>><?= $role['nom_role'] ?></option>
+                                        <?php } ?>
+                                    </select>
+                                </div>
+                            </div>
+<?php } ?>
 
                             <div class="form-group">
                                 <div class="col-xs-offset-3 col-xs-9">

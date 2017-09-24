@@ -18,8 +18,7 @@ include VIEWPATH . 'admin/boutons_admin_usagers.php';
                 <th class="">Téléphone</th>
                 <th class="">Code postal</th>
                 <th class="">État</th>
-                <th class="">Approuver</th>
-                <th class="">Refuser</th>
+                <th colspan="3">Action</th>
             </tr>
             <?php foreach ($usagers as $user) { ?>
             <tr id="tr<?php echo $user['user_id']?>">
@@ -31,6 +30,7 @@ include VIEWPATH . 'admin/boutons_admin_usagers.php';
                 <td class=""><?php echo $user['telephone']?></td>
                 <td class=""><?php echo $user['code_postal']?></td>
                 <td><?php echo EUsager::getDescriptionEtat($user['etat_usager']); ?></td>
+                <td><a title="Visualiser" href="<?php echo $base_url . 'usager/view/' . $user['user_id']; ?>/am#s"><i class="fa fa-eye"></i></a></td>
                 <td class="editable"><span id="btn-approuver-<?=$user['user_id']?>" title="Approuver ce membre" class="glyphicon glyphicon-ok-circle btn-accepter"></span></td>
                 <td class="editable"><span id="btn-refuser-<?=$user['user_id']?>" title="Refuser demande d'abonnement de ce membre" class="glyphicon glyphicon-ban-circle btn-refuser"></span></td>
             </tr>

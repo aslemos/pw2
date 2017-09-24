@@ -8,7 +8,7 @@
         <form>
             <table class="table">
                 <tr class="form-group">
-                    <td>Prenom :</td>
+                    <td>Prénom :</td>
                     <td><?php echo $user['prenom']; ?></td>
                 </tr>
                 <tr class="form-group">
@@ -52,11 +52,29 @@
     </div>
 </div>
 <hr>
-<form action="<?=$base_url?>usager/deleteUser/<?=$user['user_id']?>#s" id="frm-delete"></form>
-<form action="<?=$base_url?>usager/editUser/<?=$user['user_id']?>#s" id="frm-edit"></form>
+<?php if (isset($action)) { ?>
+<form action="<?=$action?>" id="frm-view">
+    <input type="submit" class="btn btn-danger position" value="OK">
+</form>
+<?php } ?>
+<?php /*
+<form action="<?=$base_url?>usager/deleteUser/<?=$user['user_id']?>/<?=$origin?>#s" id="frm-delete"></form>
+<form action="<?=$base_url?>usager/editUser/<?=$user['user_id']?>/<?=$origin?>#s" id="frm-edit"></form>
 <div class="btn-liens">
+<?php if (UserAcces::userIsSuperAdmin() && UserAcces::getUserId() != $user['user_id'] ||
+        UserAcces::userIsAdmin() && $user['role_id'] == ERole::ROLE_CLIENT) { ?>
+
     <input type="submit" form="frm-delete" class="btn btn-danger position" value="Supprimer">
+<?php } ?>
+
+<?php if (UserAcces::userIsSuperAdmin() ||
+        UserAcces::userIsAdmin() && $user['role_id'] == ERole::ROLE_CLIENT ||
+        UserAcces::getUserId() == $user['user_id']) {?>
+
     <input type="submit" form="frm-edit" class="btn btn-warning position" value="Modifier">
+<?php } ?>
 </div>
+
+ */?>
 
 <?php include VIEWPATH . 'common/footer.php';

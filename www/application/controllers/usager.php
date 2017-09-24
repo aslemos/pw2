@@ -130,7 +130,7 @@ class Usager extends CI_Controller {
         }
     }
 
-    public function view($user_id = NULL) {
+    public function view($user_id, $origin = NULL) {
 
         // Check login
         if (!UserAcces::userIsAdmin()) {
@@ -147,6 +147,18 @@ class Usager extends CI_Controller {
         $data['base_url'] = base_url();
         $data['prenom'] = $data['user']['prenom'];
         $data['nom'] = $data['user']['nom'];
+        $data['origin'] = $origin;
+        switch ($origin) {
+            case 'la':
+                $data['action'] = base_url() . 'admin/listeAdmins#s';
+                break;
+            case 'lm':
+                $data['action'] = base_url() . 'admin/listeMembres#s';
+                break;
+            case 'am':
+                $data['action'] = base_url() . 'admin/approuverMembre#s';
+                break;
+        }
 
         $this->load->view('usagers/view', $data);
     }
@@ -187,12 +199,13 @@ class Usager extends CI_Controller {
             redirect('noperm');
         }
 
-        $this->usager_model->delete_user($user_id);
+        show_404();
+//        $this->usager_model->delete_user($user_id);
 
         redirect('usagers');
     }
 
-    public function editUser($user_id) {
+    public function editUser($user_id, $origin = NULL) {
 
         // Check login
         if (!UserAcces::userIsAdmin() && !UserAcces::getUserId() == $user_id) {
@@ -220,13 +233,15 @@ class Usager extends CI_Controller {
         $data['page_title'] = 'Mise à jour usager';
         $data['title'] = 'Mise à jour usager';
         $data['body_class'] = 'subpages devenir-membre';
+        $data['origin'] = $origin;
         $data['base_url'] = base_url();
         // Action
-        $data['action'] = base_url() . 'usager/updateUser/'. UserAcces::getLoggedUser()->getId().'#s';
+        $data['action'] = base_url() . 'usager/updateUser#s';
          // Charger les Provinces et les arrondissements
         $data['provinces'] = $this->arrondissement_model->getProvinces();
         $data['villes'] = $this->arrondissement_model->getVillesByProvinceId($user['province_id']);
         $data['arrondissements'] = $this->arrondissement_model->getArrondissementsByVilleId($user['ville_id']);
+        $data['roles'] = $this->role_model->getRoles();
         // Call Script
         $data['scripts'] = [
             base_url() . 'assets/js/ajax_villes_by_province.js',
@@ -237,18 +252,13 @@ class Usager extends CI_Controller {
         $this->load->view('usagers/edit', $data);
     }
 
-    public function updateUser($user_id) {
+    public function updateUser() {
 
         // Check permission
         if (!UserAcces::userIsAdmin() && !UserAcces::getUserId() == $this->input->post('user_id')) {
             redirect('noperm');
         }
 
-
-        // Ne met à jour que si l'usager est superadmin
-        if (UserAcces::userIsSuperAdmin() && $this->input->post('role_id')) {
-            $data['role_id'] = $this->input->post('role_id');
-        }
 
         $data['meta_keywords'] = '';
         $data['meta_description'] = '';
@@ -271,22 +281,22 @@ class Usager extends CI_Controller {
 
         //$data['user'] = $this->usager_model->getUsers($user_id);
         $data['user'] = array(
-                'prenom' => $this->input->post('firstName'),
-                'nom' => $this->input->post('lastName'),
-                'DateNaissance' => $this->input->post('dateNaissance'),
-                'sexe' => $this->input->post('gender2'),
-                'permis_conduire' => $this->input->post('inputConduire'),
-                'telephone' => $this->input->post('phoneNumber'),
-                'courriel' => $this->input->post('inputEmail'),
-                'username' => $this->input->post('username'),
-                'adresse' => $this->input->post('inputAddress'),
-                'adresse2' => $this->input->post('inputAddress2'),
-                'province_id' => $this->input->post('province_id'),
-                'ville_id' => $this->input->post('ville_id'),
-                'arr_id' => $this->input->post('arr_id'),
-                'code_postal' => $this->input->post('codePostal'),
-                'user_id' => $this->input->post('user_id')
-            );
+            'prenom' => $this->input->post('firstName'),
+            'nom' => $this->input->post('lastName'),
+            'DateNaissance' => $this->input->post('dateNaissance'),
+            'sexe' => $this->input->post('gender2'),
+            'permis_conduire' => $this->input->post('inputConduire'),
+            'telephone' => $this->input->post('phoneNumber'),
+            'courriel' => $this->input->post('inputEmail'),
+            'username' => $this->input->post('username'),
+            'adresse' => $this->input->post('inputAddress'),
+            'adresse2' => $this->input->post('inputAddress2'),
+            'province_id' => $this->input->post('province_id'),
+            'ville_id' => $this->input->post('ville_id'),
+            'arr_id' => $this->input->post('arr_id'),
+            'code_postal' => $this->input->post('codePostal'),
+            'user_id' => $this->input->post('user_id')
+        );
 
         $data['err_message'] = '* Tous Les Champs Sont Requis!';
 
@@ -304,7 +314,7 @@ class Usager extends CI_Controller {
             $this->form_validation->set_rules('confirmPassword', 'Confirm Password', 'matches[inputPassword]');
         }
         $this->form_validation->set_rules('inputAddress', 'Adresse', 'required');
-        //$this->form_validation->set_rules('inputVille', 'Ville', 'required');
+        $this->form_validation->set_rules('arr_id', 'Arrondissement', 'required');
         $this->form_validation->set_rules('codePostal', 'Code Postal', 'required');
 
 
@@ -349,6 +359,11 @@ class Usager extends CI_Controller {
                 $data['motdepasse'] = md5($this->input->post('inputPassword'));
             }
 
+            // Ne met à jour que si l'usager est superadmin
+            if (UserAcces::userIsSuperAdmin() && $this->input->post('role_id')) {
+                $data['role_id'] = $this->input->post('role_id');
+            }
+
             // Sauvegarder à la base de donnée
            // $this->usager_model->registerUser($enc_password, $user_photo);
             if ($this->usager_model->updateUserMod($data)) {
@@ -362,7 +377,18 @@ class Usager extends CI_Controller {
 
             }
 
-            //redirect('usager/login#s');
+            switch ($this->input->post('origin')) {
+                case 'la':
+                    redirect('admin/listeAdmins#s');
+                    break;
+                case 'lm':
+                    redirect('admin/listeMembres#s');
+                    break;
+                case 'am':
+                    redirect('admin/approuverMembre#s');
+                    break;
+            }
+
             redirect('membre/vehicules#s');
         }
 
