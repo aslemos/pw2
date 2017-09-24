@@ -51,6 +51,8 @@ interface IVehicule {
     public function getNbPlaces();
     public function setNbPlaces($nb_places);
 
+    public function getNbLocations();
+
     public function getPrix();
     public function setPrix($prix);
 

@@ -16,6 +16,7 @@ class EVehicule implements IVehicule {
     private $_prix;
     private $_etat = self::ETAT_EN_ATTENTE;
     private $_disponibilite_id = -1;
+    private $_nb_locations = 0;
     //
     private $_proprietaire = NULL;  // Objet EUser
     private $_modele = NULL;        // Objet EModele
@@ -29,6 +30,9 @@ class EVehicule implements IVehicule {
     public function __construct(array $data = NULL) {
         if ($data) {
             $this->_vehicule_id = isset($data['vehicule_id']) ? $data['vehicule_id'] : 0;
+            $this->_nb_locations = isset($data['nb_locations']) ? $data['nb_locations'] : -1;
+//            $this->_nb_locations = $data['nb_locations'];
+
             $this->setDescription($data['description']);
             $this->setAnnee($data['annee']);
             $this->setNbPlaces($data['nbre_places']);
@@ -251,6 +255,10 @@ class EVehicule implements IVehicule {
     public function setNbPlaces($nb_places) {
         $this->_nb_places = $nb_places;
         return $this;
+    }
+
+    public function getNbLocations() {
+        return $this->_nb_locations;
     }
 
     public function toString() {

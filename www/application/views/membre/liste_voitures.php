@@ -28,6 +28,7 @@ include VIEWPATH . 'client/boutons_prestataire.php';
 				<th class="">Matricule</th>
 				<th class="">Prix</th>
 				<th class="">État</th>
+                <th class="">Locations</th>
 				<th colspan="3">Action</th>
 			</tr>
 			</thead>
@@ -40,16 +41,19 @@ include VIEWPATH . 'client/boutons_prestataire.php';
 				<td class=""><?=$vehicule['annee']?></td>
 				<td class=""><?=$vehicule['matricule']?></td>
 				<td class=""><?=$vehicule['prix']?></td>
-				<!--<td class=""><?=EVehicule::getDescriptionEtat($vehicule['etat_vehicule']). ' ('.$vehicule['nb_locations'].')'?></td>-->
 				<td class=""><?=EVehicule::getDescriptionEtat($vehicule['etat_vehicule'])?></td>
+				<td class=""><?=$vehicule['nb_locations']?></td>
 <?php if ($vehicule['etat_vehicule'] == EVehicule::ETAT_ACTIF) { ?>
-                <td><a title="Modifier" href="<?= $base_url ?>vehicule/editVehicule/<?= $vehicule['vehicule_id'] ?>#s"><i class="fa fa-pencil-square-o"></i></a></td>
                 <td><a title="Disponibiliser" href="<?= $base_url ?>disponibilite/create/<?= $vehicule['vehicule_id'] ?>#s"><i class="fa fa-calendar"></i></a></td>
 <?php } else { ?>
                 <td></td>
+<?php } ?>
+                <td><a title="Modifier" href="<?= $base_url ?>vehicule/editVehicule/<?= $vehicule['vehicule_id'] ?>#s"><i class="fa fa-pencil-square-o"></i></a></td>
+<?php if ($vehicule['nb_locations'] == 0) { ?>
+				<td><a title="Supprimer" id="btn-supp-<?=$vehicule['vehicule_id']?>" href="javascript:void(0)"><i class="fa fa-trash-o"></i></a></td>
+<?php } else { ?>
                 <td></td>
 <?php } ?>
-				<td><a title="Supprimer" id="btn-supp-<?=$vehicule['vehicule_id']?>" href="javascript:void(0)"><i class="fa fa-trash-o"></i></a></td>
 			</tr>
 <?php } ?>
 			</tbody>
