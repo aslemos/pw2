@@ -70,7 +70,7 @@ include VIEWPATH . 'common/header.php';
                             <div class="form-group">
                                 <label class="control-label col-xs-3" for="inputConduire">Numéro de permis de conduire: <span class="filedRequired">*</span></label>
                                 <div class="col-xs-6">
-                                    <input type="text" class="form-control" name="inputConduire" id="inputConduire" placeholder="Format : A9999-999999-99" pattern="^[a-zA-Z]\d{4}-\d{6}-\d{2}$" title="Numéro de permis de conduire Incorrect" value="<?= $user['permis_conduire']; ?>" required>
+                                    <input type="text" class="form-control" name="inputConduire" id="inputConduire" placeholder="Format : A9999-999999-99" pattern="^[a-zA-Z]\d{4}-\d{6}-\d{2}$" title="Numéro de permis de conduire Incorrect. Format : A9999-999999-99" value="<?= $user['permis_conduire']; ?>" required>
                                 </div>
                             </div>
 
