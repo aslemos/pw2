@@ -3,15 +3,15 @@
 <body>
 
     <div class="form-style-10">
-        <h3>Reclamation de proprietaire!<span></span></h3>
-        <form method="post" action="<?= $base_url ?>reclamation/insert_reclamation">
+        <h3><?=$title?><span></span></h3>
+        <form method="post" action="<?=$action?>">
 
             <input type="hidden" name="type_message" value="<?= $type_message; ?>">
             <input type="hidden" name="objet_id" value="<?= $objet_id; ?>">
 
             <div class="inner-wrap">
 
-                <div class="section"><span>1</span>Informations du proprietaire</div>
+                <div class="section"><span>1</span>Informations du propriétaire</div>
                 <div class="row">
                     <div class="col-md-6">
                         <label><h4>Nom</h4>
@@ -19,7 +19,7 @@
                         </label>
                     </div>
                     <div class="col-md-6">
-                        <label><h4>Prenom</h4>
+                        <label><h4>Prénom</h4>
                             <input class="myInput" type="text" name="prenom" disabled value="<?= $voitures['prenom']; ?> " />
                         </label>
                     </div>
@@ -48,7 +48,7 @@
                         </label>
                     </div>
                     <div class="col-md-6">
-                        <label><h4>Prenom</h4>
+                        <label><h4>Prénom</h4>
                             <input class="myInput" type="text" name="prenom" disabled value="<?= $users->getPrenom() ?> " />
                         </label>
                     </div>

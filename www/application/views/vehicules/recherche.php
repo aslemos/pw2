@@ -17,7 +17,7 @@ include VIEWPATH . 'common/header.php';
             <div class="rows4 title-container">
                 <div class="cols6">
                     <div class="blocks6">
-                        <h2>Trouver un véhicule</h2>
+                        <h2><?=$title?></h2>
                     </div>
                 </div>
             </div>

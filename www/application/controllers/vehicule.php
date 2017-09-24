@@ -152,7 +152,7 @@ class Vehicule extends CI_Controller {
         }
     }
 
-    public function deleteVehicule($vehicule_id) {
+    public function deleteVehicule($vehicule_id, $origin = NULL) {
 
         // Check login
         if (!UserAcces::userIsLogged()) {
@@ -165,9 +165,24 @@ class Vehicule extends CI_Controller {
             if (!UserAcces::userIsAdmin() && !UserAcces::getUserId() == $vehicule->getProprietaireId()) {
                 redirect('noperm');
             }
-            $this->vehicule_model->deleteVehicule($vehicule);
+
+            // Essaye de supprimer le véhicule en prévoyant une possible exception
+            try {
+                if ($this->vehicule_model->deleteVehicule($vehicule->getId())) {
+                    $this->session->set_flashdata('msg_success', 'Véhicule supprimé');
+                } else {
+                    $this->session->set_flashdata('msg_error', 'Une erreur inconnue \'est produite. Veuiller communiquer avec un administrateur.');
+                }
+
+            } catch (Exception $e) {
+                $this->session->set_flashdata('msg_error', 'Une erreur s\'est produite : ' . $e->getMessage() . '<br>Veuiller communiquer avec un administrateur.');
+
+            }
         }
-        redirect('vehicules');
+        if ($origin == 'a') {
+            redirect('admin/listeVehicules#s');
+        }
+        redirect('membre/vehicules#s');
     }
 
     public function editVehicule($vehicule_id) {
@@ -457,7 +472,8 @@ class Vehicule extends CI_Controller {
 
     public function recherche() {
 
-        $data['page_title'] = 'Voitures';
+        $data['page_title'] = 'Recherche et réservation';
+        $data['title'] = 'Trouver un véhicule';
         $data['body_class'] = 'subpages voitures';
         $data['meta_keywords'] = '';
         $data['meta_description'] = '';

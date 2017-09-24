@@ -1,8 +1,6 @@
 <?php
 /*
- *
- *
- *
+ * Fichier de modèle des véhicules
  */
 
 class Vehicule_model extends CI_Model {
@@ -223,11 +221,26 @@ class Vehicule_model extends CI_Model {
                         ])
                     );
 
+            // cherche les disponibilités du véhicule
+            $this->db->order_by('date_debut');
+            $query = $this->db->get_where('disponibilites', ['vehicule_id', $vehicule_id]);
+            $result = $query->result_array();
+            foreach($result as $data) {
+                $vehicule->addDisponibilite(
+                        new EDisponibilite($data)
+                        );
+            }
+
             return $vehicule;
         }
         return NULL;
     }
 
+    /**
+     * Instancie un objet EVehicule en utilisant les données de l'array en paramètre
+     * @param array $arr_vehicule Les données du véhicule, normalement une ligne de la query.
+     * @return EVehicule
+     */
     public function getVehiculeByArray($arr_vehicule) {
 
         $vehicule = new EVehicule($arr_vehicule);
@@ -266,9 +279,38 @@ class Vehicule_model extends CI_Model {
         return $vehicule;
     }
 
-    public function getVehicules($vehicule_id = NULL) {
+    /**
+     * Trouve la liste de voitures
+     * @param mixte $vehicule_id Si int, réprésente l'ID du véhicule.<br>Si array, c'est un WHERE
+     * @param array $order array associatif réprésentant l'ORDER BY
+     * @return array
+     */
+    public function getVehicules($vehicule_id = NULL, $order = NULL) {
 
-        $this->db->order_by('vehicule_id', 'DESC');
+        // Utilisation du champ de groupe COUNT() pour trouver le nombre de locations valides
+        $this->db->select('
+            vehicules.*,
+            usagers.*,
+            type_vehicules.*,
+            modeles.*,
+            marques.*,
+            carburants.*,
+            transmissions.*,
+            arrondissements.*,
+            villes.*,
+            COUNT(locations.location_id) as nb_locations
+        ');
+        $this->db->from('vehicules');
+        $this->db->distinct();
+
+        if (is_array($order)) {
+            foreach($order as $key => $value) {
+                $this->db->order_by($key, $value);
+            }
+
+        } else {
+            $this->db->order_by('vehicules.vehicule_id', 'DESC');
+        }
 
         $this->db->join('usagers', 'vehicules.proprietaire_id = usagers.user_id');
         $this->db->join('type_vehicules', 'vehicules.type_id = type_vehicules.type_id');
@@ -279,13 +321,24 @@ class Vehicule_model extends CI_Model {
         $this->db->join('arrondissements', 'vehicules.arr_id = arrondissements.arr_id');
         $this->db->join('villes', 'villes.ville_id = arrondissements.ville_id');
 
-        if ($vehicule_id === NULL) {
-            $query = $this->db->get('vehicules');
-            return $query->result_array();
+        // Join pour trouver le nombre de locations valides de la voiture
+        // C'est valide si elle est non annulée et non refusée
+        $this->db->join('locations', 'locations.vehicule_id = vehicules.vehicule_id AND locations.etat_reservation != ' . ELocation::LOCATION_REFUSE . ' AND locations.etat_reservation != ' . ELocation::LOCATION_ANNULE, 'left');
+        $this->db->group_by('vehicules.vehicule_id');
+
+        if (is_array($vehicule_id)) {
+            foreach($vehicule_id as $key => $value) {
+                $this->db->where($key, $value);
+            }
+
+        } else if (intval($vehicule_id) > 0) {
+            $this->db->where('vehicules.vehicule_id', $vehicule_id);
+            $query = $this->db->get();
+            return $query->row_array();
         }
 
-        $query = $this->db->get_where('vehicules', array('vehicule_id' => $vehicule_id));
-        return $query->row_array();
+        $query = $this->db->get();
+        return $query->result_array();
     }
 
     /**
@@ -325,15 +378,41 @@ class Vehicule_model extends CI_Model {
         return $vehicule_id;
     }
 
+    /**
+     * Supprime un véhicule en observant s'il y a de mouvement (locations valides)
+     * @param int $vehicule_id
+     * @return boolean
+     */
     public function deleteVehicule($vehicule_id) {
 
-        $this->db->where('vehicule_id', $vehicule_id);
+        $vehicule = $this->getVehiculeById($vehicule_id);
+        if ($vehicule) {
 
-        $this->db->delete('vehicules');
+            if ($vehicule->getNbLocations() > 0) {
+                throw new Exception('Ce véhicule possède des locations');
+            }
 
-        return true;
+            $this->db->where('vehicule_id', $vehicule_id);
+            $this->db->delete('locations');
+
+            $this->db->where('vehicule_id', $vehicule_id);
+            $this->db->delete('locations');
+
+            $this->db->where('vehicule_id', $vehicule_id);
+            $this->db->delete('disponibilites');
+
+            $this->db->where('vehicule_id', $vehicule_id);
+            return $this->db->delete('vehicules');
+        }
+
+        return false;
     }
 
+    /**
+     * Met à jour un véhicule
+     * @param EVehicule $vehicule Le véhicule
+     * @return bool
+     */
     public function updateVehicule(EVehicule $vehicule) {
 
         $this->db->where('vehicule_id', $vehicule->getId());
@@ -395,37 +474,22 @@ class Vehicule_model extends CI_Model {
      */
     public function getVehiculesByUser(IUsager $user) {
 
-        $this->db->order_by('vehicules.vehicule_id', 'DESC');
+        return $this->getVehicules(
+            ['vehicules.proprietaire_id' => $user->getId()],
+            ['vehicules.vehicule_id' => 'DESC']
+        );
 
-        $this->db->join('usagers', 'usagers.user_id = vehicules.proprietaire_id');
-        $this->db->join('modeles', 'vehicules.modele_id = modeles.modele_id');
-        $this->db->join('marques', 'marques.marque_id = modeles.marque_id');
-        $this->db->join('type_vehicules', 'vehicules.type_id = type_vehicules.type_id');
-        $this->db->join('arrondissements', 'vehicules.arr_id = arrondissements.arr_id');
-
-        $query = $this->db->get_where('vehicules', array('usagers.user_id' => $user->getId()));
-
-        return $query->result_array();
     }
 
     /**
      * Trouve les véhicules qui sont en attente d'une autorisation
      */
     public function getVehiculesEnAttente() {
-        $this->db->order_by('vehicules.vehicule_id', 'DESC');
 
-        $this->db->join('usagers', 'usagers.user_id = vehicules.proprietaire_id');
-        $this->db->join('modeles', 'vehicules.modele_id = modeles.modele_id');
-        $this->db->join('marques', 'marques.marque_id = modeles.marque_id');
-        $this->db->join('type_vehicules', 'vehicules.type_id = type_vehicules.type_id');
-        $this->db->join('arrondissements', 'vehicules.arr_id = arrondissements.arr_id');
-
-        $query = $this->db->get_where('vehicules', array('vehicules.etat_vehicule' => EVehicule::ETAT_EN_ATTENTE));
-
-        return $query->result_array();
-    }
-
-    public function getHistoriqueByVehicule($vehicule_id) {
+        return $this->getVehicules(
+                ['vehicules.etat_vehicule' => EVehicule::ETAT_EN_ATTENTE],
+                ['vehicules.vehicule_id', 'DESC']
+        );
 
         $this->db->order_by('vehicules.vehicule_id', 'DESC');
 
@@ -437,10 +501,27 @@ class Vehicule_model extends CI_Model {
         $this->db->join('carburants', 'vehicules.carburant_id = carburants.carburant_id');
         $this->db->join('transmissions', 'vehicules.transmission_id = transmissions.transmission_id');
 
-        $query = $this->db->get_where('vehicules', array('vehicule.vehicule_id' => $vehicule_id));
+        $query = $this->db->get_where('vehicules', array('vehicules.etat_vehicule' => EVehicule::ETAT_EN_ATTENTE));
 
         return $query->result_array();
     }
+
+//    public function getHistoriqueByVehicule($vehicule_id) {
+//
+//        $this->db->order_by('vehicules.vehicule_id', 'DESC');
+//
+//        $this->db->join('usagers', 'usagers.user_id = vehicules.proprietaire_id');
+//        $this->db->join('modeles', 'vehicules.modele_id = modeles.modele_id');
+//        $this->db->join('marques', 'marques.marque_id = modeles.marque_id');
+//        $this->db->join('type_vehicules', 'vehicules.type_id = type_vehicules.type_id');
+//        $this->db->join('arrondissements', 'vehicules.arr_id = arrondissements.arr_id');
+//        $this->db->join('carburants', 'vehicules.carburant_id = carburants.carburant_id');
+//        $this->db->join('transmissions', 'vehicules.transmission_id = transmissions.transmission_id');
+//
+//        $query = $this->db->get_where('vehicules', array('vehicule.vehicule_id' => $vehicule_id));
+//
+//        return $query->result_array();
+//    }
 
     /**
      * Retourne un objet de type de véhicule

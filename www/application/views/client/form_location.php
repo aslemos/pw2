@@ -1,9 +1,5 @@
 <?php include VIEWPATH . 'common/header.php'; ?>
 
-<style type="text/css">
-
-</style>
-
 <div class="form-style-10">
     <h3>Réservation<span>Vérifier et confirmer les informations</span></h3>
     <form method="post" action="<?= $base_url ?>locations/insererLocation#s">
@@ -67,7 +63,7 @@
 
                 <div class="col-md-4">
                     <label><h5>Prix total</h5>
-                        <input class="myInput" type="text" name="prixTotal" disabled value="<?= $prix_total?> "/>
+                        <input class="myInput" id="prixTotal" type="text" name="prixTotal" value="<?= $prix_total?> "/>
                     </label>
                 </div>
             </div>
@@ -87,7 +83,7 @@
 
             <div class="btn-group" role="group" aria-label="Basic example">
 
-                <a href="<?= $base_url ?>" type="button" id="flip5" class="btn btn-danger animated bounceInLeft">
+                <a href="<?= $base_url ?>vehicule/recherche#s" type="button" id="flip5" class="btn btn-danger animated bounceInLeft">
                     <i class="fa  fa-window-close" style="font-size:22px;"></i> Annuler
                 </a>
                 <button type="button" id="flip2" class="btn btn-primary">Prochain <i class="fa fa-hand-o-right"></i></button>
@@ -165,7 +161,7 @@
                         $(".test").removeClass("zoomIn");
                         $(".test2").addClass("animated zoomIn");
 
-                        //$(".prixTotal").val(json.prix_total);
+                        $("#prixTotal").val(json.prix_total);
                         //document.getElementsByClass(".prixTotal").innerHTML = json.prix_total + obj.birth;
 
                     } else {

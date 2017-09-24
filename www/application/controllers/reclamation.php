@@ -15,6 +15,8 @@ class Reclamation extends CI_Controller {
         $data['body_class'] = "subpages membre";
         $data['base_url'] = base_url();
         $data['page_title'] = 'Réclamation de véhicule';
+        $data['title'] = 'Réclamation de véhicule';
+        $data['action'] = base_url() . 'reclamation/insert_reclamation#s';
 
         $this->load->model('vehicule_model');
 
@@ -33,6 +35,8 @@ class Reclamation extends CI_Controller {
         $data['body_class'] = "subpages membre";
         $data['base_url'] = base_url();
         $data['page_title'] = 'Réclamation de proprietaire';
+        $data['title'] = 'Réclamation de propriétaire';
+        $data['action'] = base_url() . 'reclamation/insert_reclamation#s';
 
         $this->load->model('usager_model');
 
@@ -60,6 +64,8 @@ class Reclamation extends CI_Controller {
         $data['body_class'] = "subpages membre";
         $data['base_url'] = base_url();
         $data['page_title'] = 'Réclamation de locataire';
+        $data['title'] = 'Réclamation de locataire';
+        $data['action'] = base_url() . 'reclamation/insert_reclamation#s';
 
 
 

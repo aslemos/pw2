@@ -33,7 +33,7 @@ include VIEWPATH . 'common/header.php';
                                                         <div class="input-group-addon">
                                                             <span class="glyphicon glyphicon-user"></span>
                                                         </div>
-                                                        <input type="text" placeholder="User Name" name="username" class="form-control">
+                                                        <input type="text" placeholder="User Name" name="username" class="form-control" autofocus>
                                                     </div>
                                                 </div>
                                             </div>

@@ -33,7 +33,10 @@ class EDisponibilite implements IDisponibilite {
     }
 
     public function getVehiculeId() {
-        return $this->_vehicule->getId();
+        if ($this->_vehicule) {
+            return $this->_vehicule->getId();
+        }
+        return NULL;
     }
 
     public function getVehicule() {

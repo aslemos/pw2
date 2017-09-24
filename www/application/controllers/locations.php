@@ -1,9 +1,7 @@
 <?php
 
 /*
- *
- *
- *
+ * Contrôleur des locations et paiements
  */
 
 class Locations extends CI_Controller {
@@ -18,99 +16,9 @@ class Locations extends CI_Controller {
         }
     }
 
-    public function index() {
-
-        $data['title'] = 'Historique des locations';
-
-        $data['vehicules'] = $this->vehicule_model->getVehicules();
-
-        $this->load->view('common/header');
-        $this->load->view('locations/index', $data);
-        $this->load->view('common/footer');
-    }
-
-    public function view($location_id = NULL) {
-
-        $data['location'] = $this->location_model->getLocations($location_id);
-
-        if (empty($data['location'])) {
-            show_404();
-        }
-
-        $data['location_id'] = $data['location']['location_id'];
-
-        $this->load->view('common/header');
-        $this->load->view('locations/location', $data);
-        $this->load->view('common/footer');
-    }
-
-    public function louer_car($id) { // à vérifier
-
-
-        $this->load->model('location');
-
-
-        $data = array(
-            'vehicule_id' => $this->input->post('vehicule_id'),
-            'date_debut ' => $this->input->post('date_debut'),
-            'date_fin' => $this->input->post('date_fin')
-        );
-
-        //Transfering data to Model
-        $this->insert_model->form_insert($data);
-        $data['message'] = 'Data Inserted Successfully';
-        //Loading View
-        $this->load->view('insert_view', $data);
-    }
-
-    public function createLocation() {
-
-        $data['title'] = 'Ajouter une location';
-
-        $data['usagers'] = $this->user_model->getUsers();
-        $data['vehicules'] = $this->vehicule_model->getVehicules();
-
-        $data['err_message'] = '* Tous Les Champs Sont Requis!';
-
-        $this->form_validation->set_rules('date_debut', 'Date début', 'required');
-        $this->form_validation->set_rules('date_fin', 'Date fin', 'required');
-
-        if ($this->form_validation->run() === FALSE) {
-
-            $this->load->view('common/header');
-            $this->load->view('locations/create', $data);
-            $this->load->view('common/footer');
-        } else {
-
-            $this->location_model->createLocation();
-            redirect('locations');
-        }
-    }
-
-    public function deleteLocation($location_id) {
-
-        $this->location_model->deleteLocation($location_id);
-        redirect('locations');
-    }
-
-    public function editLocation() {
-
-        //$data['location'] = $this->location_model->getLocations($location_id);
-
-        $data['usagers'] = $this->user_model->getUsers();
-        $data['vehicules'] = $this->vehicule_model->getVehicules();
-
-        //if(empty($data['location'])) {
-        //        show_404();
-        //}
-
-        $data['title'] = 'Approuver une location';
-
-        $this->load->view('common/header');
-        $this->load->view('locations/edit', $data);
-        $this->load->view('common/footer');
-    }
-
+    /**
+     * Mise-à-jour d'une réservation
+     */
     public function updateLocation() {
 
         $location = $this->location_model->getLocationById($this->input->post('location_id'));
@@ -126,6 +34,9 @@ class Locations extends CI_Controller {
         $this->location_model->updateLocation($location);
     }
 
+    /**
+     * Les locations prises par un membre (le client)
+     */
     public function locationsByUser() {
 
         $user = UserAcces::getLoggedUser();
@@ -146,6 +57,10 @@ class Locations extends CI_Controller {
         $this->load->view('membre/historique_location', $data);
     }
 
+    /**
+     * Affiche la liste des clients d'un prestataire
+     * C'est la liste de qui a utilisé les véhicules d'un propriétaire
+     */
     public function locataires() {
 
         $user = UserAcces::getLoggedUser();
@@ -164,30 +79,15 @@ class Locations extends CI_Controller {
         $this->load->view('membre/historique_locataires', $data); // fichier n'existe pas encore
     }
 
-    public function locationsByVehicule() {
-
-        $user_id = $this->session->userdata('user_id');
-        $username = $this->session->userdata('username');
-
-        $data['usagers'] = $this->user_model->get_usagers();
-        $data['vehicules'] = $this->vehicule_model->get_vehicules();
-
-        $data['title'] = 'Location par véhicule';
-
-        $data['locations'] = $this->location_model->getLocationsByVehicule($vehicule_id);
-
-        $this->load->view('common/header');
-        $this->load->view('locations/vehicule', $data);
-        $this->load->view('common/footer');
-    }
-
-
-    /* afficher formulaire de reservation */
-    public function form_location($id) {
+    /**
+     * Affiche le formulaire de réservation
+     * @param int $vehicule_id L'identifiant du véhicule
+     */
+    public function form_location($vehicule_id) {
 
         $data['body_class'] = "subpages voitures";
         $data['base_url'] = base_url();
-        $data['page_title'] = 'Messages reçus';
+        $data['page_title'] = 'Confirmer réservation';
         $data['scripts'] = [base_url() . 'assets/js/calendrier_date_debut_et_fin.js'];
 
         $this->load->model('vehicule_model');
@@ -204,7 +104,7 @@ class Locations extends CI_Controller {
         $data['date_fin'] = $this->input->post('date_fin');
 
         $data['users'] = UserAcces::getLoggedUser();
-        $data['voitures'] = $this->vehicule_model->getVehicules($id);
+        $data['voitures'] = $this->vehicule_model->getVehicules($vehicule_id);
         $data['payements'] = $this->modepaiement_model->getModesPaiements();
 
         $nb_jours = 0;
@@ -215,7 +115,9 @@ class Locations extends CI_Controller {
     }
 
 
-    /* inserer Resarvation */
+    /**
+     * Insère la réservation dans la BD
+     */
     public function insererLocation() {
         $data['body_class'] = "subpages voitures";
         $data['base_url'] = base_url();
@@ -235,7 +137,10 @@ class Locations extends CI_Controller {
     }
 
 
-    /* afficher formulaire de payement */
+    /**
+     * Affiche le formulaire de paiement de la réservation
+     * @param int $location_id
+     */
     public function form_payement($location_id) {
 
         $this->load->model('location_model');
@@ -249,6 +154,9 @@ class Locations extends CI_Controller {
         $data['body_class'] = "subpages voitures";
         $data['base_url'] = base_url();
         $data['page_title'] = 'Paiement de réservation : ' . $data['location']->getVehicule()->toString();
+        $data['scripts'] = [
+            base_url() . 'assets/js/scripts_verifier_payaimant.js'
+        ];
 
         $this->load->model('modepaiement_model');
         $data['payements'] = $this->modepaiement_model->getModesPaiements();
@@ -257,12 +165,14 @@ class Locations extends CI_Controller {
     }
 
 
-     /* inserer Payemant */
+    /**
+     * Enregistre le paiement dans la BD
+     */
     public function insererPayemant() {
 
         $data['body_class'] = "subpages voitures";
         $data['base_url'] = base_url();
-        $data['page_title'] = 'Location reçus';
+        $data['page_title'] = 'Confirmation de paiement';
 
         $user = UserAcces::getLoggedUser();
         $this->load->model('location_model');

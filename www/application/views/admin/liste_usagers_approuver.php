@@ -11,6 +11,7 @@ include VIEWPATH . 'admin/boutons_admin_usagers.php';
         <table class="table">
             <tr>
                 <th class="">Nº</th>
+                <th class="">Username</th>
                 <th class="">Prénom</th>
                 <th class="">Nom</th>
                 <th class="">Courriel</th>
@@ -23,6 +24,7 @@ include VIEWPATH . 'admin/boutons_admin_usagers.php';
             <?php foreach ($usagers as $user) { ?>
             <tr id="tr<?php echo $user['user_id']?>">
                 <td class=""><?php echo $user['user_id']?></td>
+                <td class=""><?php echo $user['username']?></td>
                 <td class=""><?php echo $user['prenom']?></td>
                 <td class=""><?php echo $user['nom']?></td>
                 <td class=""><?php echo $user['courriel']?></td>

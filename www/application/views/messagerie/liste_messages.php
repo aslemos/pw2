@@ -39,7 +39,7 @@ require VIEWPATH . 'common/header.php';
         
 
         <td class=""><a class="fa fa-eye" href="<?= $base_url ?>messagerie/view_message_envoyes/<?= $message->message_id ?>#s"></a></td>
-        <td class=""><a class="fa fa-trash-o" href="<?= $base_url ?>messagerie/delete_message_interne/<?= $message->message_id ?>"></a></td>
+        <td class=""><a class="fa fa-trash-o" href="<?= $base_url ?>messagerie/delete_message_envoyes/<?= $message->message_id ?>"></a></td>
         
         
     </tr>

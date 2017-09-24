@@ -9,6 +9,7 @@ interface IDisponibilite {
     public function getId();
 
     public function setVehicule(IVehicule $vehicule);
+    public function getVehiculeId();
     public function getVehicule();
 
     public function setDateDebut($date_debut);

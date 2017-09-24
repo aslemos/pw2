@@ -9,25 +9,51 @@ x [asl] éliminer les champs date_debut / date_fin de la table 'voiture'
 - Lorsqu'on clique sur 'réserver', faire apparaître le form de login modal avant de passer à la confirmation
 
 
+
+---------------------------------------
+               À FAIRE
+---------------------------------------
+
+Réservation
+-----------
+- Permettre d'annuler une réservation
+
 Réclamation
 -----------
-- ajouter méthode dans l'objet ELocation pour tester si la réservation est payé
-- en sachant que la réservation est payée, afficher les boutons de :
+- ok - ajouter méthode dans l'objet ELocation pour tester si la réservation est payé
+- ok - en sachant que la réservation est payée, afficher les boutons de :
     . réclamation de voiture et
     . réclamation propriétaire
     dans l'espace client (historique)
 
 
-Payements
-----------
-- Changer l'état de la réservation lorsque la valeur atteint le montant total
-- Après le paiement, retourner à l'historique de location
+Disponibilité
+-------------
+- Permettre l'édition en-ligne d'une disponibilité
+- Tester la collision de dates lors de la création d'une période
+- Ne pas permettre une date de début inférieure à aujourd'hui
+
+
+Paiement
+--------
+- ok - Changer l'état de la réservation lorsque la valeur atteint le montant total
+- ok - Après le paiement, retourner à l'historique de location
 
 
 Messagerie
 ----------
+- Implémenter la fonction de réponse
+- Améliorer l'affichage des messages (titres et champs) et la pertinence des champs affichés
 - ok - Dans le message à l'admin, ne pas voir sur la liste déroulante que les administrateurs
 - Ne pas envoyer un message à soi-même
 - Dans messages envoyés, spécifier le type de message envoyé
-- Dans messages envoyés, voir les messages à l'administrateur
-
+- ok - Dans messages envoyés, voir les messages à l'administrateur
+- Créer un message automatique lors des événements :
+  . Refus de membre : message au membre
+  . Refus de véhicule : message au propriétaire du véhicule
+  . Ajout de réservation : message au propriétaire du véhicule
+  . Approbation / Refus de réservation : message au client
+  . Paiement de réservation : message au propriétaire
+  . Réclamation de voiture : message à l'administrateur et au propriétaire de la voiture
+  . Réclamation de propriétaire : message à l'administrateur et au propriétaire
+  . Réclamation de locataire : message à l'administrateur et au locataire

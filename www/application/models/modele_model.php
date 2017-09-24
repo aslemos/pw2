@@ -40,14 +40,19 @@ class Modele_model extends CI_Model {
     /**
      * Trouve les modèles qui correspondent à la marque passée en paramètre
      * @param int $marque_id L'identifiant de la marque cherchée
+     * @param bool $strict Si FALSE, on retourne toute la liste dans le cas où on ne reçoit pas un ID valide
      * @return array
      */
-    public function getModelesByMarqueId($marque_id) {
+    public function getModelesByMarqueId($marque_id, $strict = FALSE) {
+        $this->db->order_by('nom_modele');
         if (intval($marque_id) > 0) {
-            $this->db->order_by('nom_modele');
             $query = $this->db->get_where('modeles', 'marque_id = ' . $this->db->escape($marque_id));
-//            $query = $this->db->get('modeles');
             return $query->result_array();
+
+        } else if (!$strict) {
+            $query = $this->db->get('modeles');
+            return $query->result_array();
+
         }
         return [];
     }

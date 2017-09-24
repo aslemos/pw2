@@ -45,9 +45,9 @@ class Ajax extends CI_Controller {
      * @return json
      * @author Alessandro Souza Lemos
      */
-    public function modelesByMarque($marque_id = 0) {
+    public function modelesByMarque($marque_id = 0, $strict = FALSE) {
         echo json_encode(
-                $this->modele_model->getModelesByMarqueId($marque_id)
+                $this->modele_model->getModelesByMarqueId($marque_id, $strict)
                 );
     }
 
