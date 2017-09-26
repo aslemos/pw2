@@ -14,7 +14,7 @@ include VIEWPATH . 'client/boutons_client.php';
                 <select class="form-control" name="vehicule_id">
                     <option>-- Tous --</option>
 <?php foreach ($vehicules as $vehicule) { ?>
-                    <option value="<?= $vehicule['vehicule_id']; ?>"<?=$vehicule['vehicule_id']==$vehicule_id?' selected':''?>><?= $vehicule['nom_modele']; ?></option>
+                    <option value="<?= $vehicule['vehicule_id']; ?>"<?=$vehicule['vehicule_id']==$vehicule_id?' selected':''?>><?= $vehicule['nom_marque'] . ' ' . $vehicule['nom_modele']; ?></option>
 <?php } ?>
                 </select>
             </div>

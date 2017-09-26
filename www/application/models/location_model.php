@@ -146,17 +146,30 @@ class Location_model extends CI_Model {
     /**
      * Récupère les locations effectuées par l'usager passé en paramètre
      * @param EUsager $user
+     * @param array $recherche Paramètres à utiliser dans la recherche
      * @return array
      */
-    public function getLocationsByUser(IUsager $user) {
+    public function getLocationsByUser(IUsager $user, array $recherche = NULL) {
 
         $this->db->order_by('locations.location_id', 'DESC');
+        $this->db->where('locations.locataire_id', $user->getId());
+        if (is_array($recherche)) {
+            if (isset($recherche['vehicule_id']) && $recherche['vehicule_id'] > 0) {
+                $this->db->where('locations.vehicule_id =', $recherche['vehicule_id']);
+            }
+            if (isset($recherche['date_debut']) && $recherche['date_debut']) {
+                $this->db->where('locations.date_debut >=', $recherche['date_debut']);
+            }
+            if (isset($recherche['date_fin']) && $recherche['date_fin']) {
+                $this->db->where('locations.date_debut <=', $recherche['date_fin']);
+            }
+        }
         $this->db->join('vehicules', 'vehicules.vehicule_id = locations.vehicule_id');
         $this->db->join('modeles', 'modeles.modele_id = vehicules.modele_id');
         $this->db->join('marques', 'marques.marque_id = modeles.marque_id');
         $this->db->join('usagers', 'usagers.user_id = vehicules.proprietaire_id');
 
-        $query = $this->db->get_where('locations', ['locations.locataire_id' => $user->getId()]);
+        $query = $this->db->get('locations');
         $result = $query->result_array();
         foreach($result as $pos => $data) {
             $result[$pos] = $this->getInstanceLocationByData($data);
@@ -167,15 +180,27 @@ class Location_model extends CI_Model {
     /**
      * Récupère les locations des véhicules d'un propriétaire
      * @param EUsager $proprietaire l'usager cherchant l'historique de location de ses véhicules
+     * @param array $recherche Paramètres à utiliser dans la recherche
      * @return array
      */
-    public function getLocatairesByUser(IUsager $proprietaire) {
+    public function getLocatairesByUser(IUsager $proprietaire, array $recherche = NULL) {
 
         $this->db->order_by('locations.location_id', 'DESC');
         $this->db->where([
             'vehicules.proprietaire_id' => $proprietaire->getId(),
             'locations.etat_reservation !=' => ELocation::LOCATION_EN_ATTENTE
         ]);
+        if (is_array($recherche)) {
+            if (isset($recherche['locataire_id']) && $recherche['locataire_id'] > 0) {
+                $this->db->where('locations.locataire_id =', $recherche['locataire_id']);
+            }
+            if (isset($recherche['date_debut']) && $recherche['date_debut']) {
+                $this->db->where('locations.date_debut >=', $recherche['date_debut']);
+            }
+            if (isset($recherche['date_fin']) && $recherche['date_fin']) {
+                $this->db->where('locations.date_debut <=', $recherche['date_fin']);
+            }
+        }
         $this->db->join('vehicules', 'locations.vehicule_id = vehicules.vehicule_id');
         $this->db->join('modeles', 'modeles.modele_id = vehicules.modele_id');
         $this->db->join('marques', 'marques.marque_id = modeles.marque_id');

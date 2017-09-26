@@ -23,7 +23,6 @@ include VIEWPATH . 'client/boutons_prestataire.php';
                     <th class="">Jours</th>
                     <th class="">Prix Total</th>
                     <th colspan="2">Action</th>
-                    <!--<th class="titre_editable">Refuser</th>-->
                 </tr>
             </thead>
             <tbody>
@@ -47,7 +46,7 @@ include VIEWPATH . 'client/boutons_prestataire.php';
             </tbody>
         </table>
 <?php } else { ?>
-    <h3 class="alert_title">Aucune demande d'abonnement n'a été trouvée</h3>
+    <h3 class="alert_title">Aucune demande de réservation n'a été trouvée</h3>
 <?php } ?>
     </div>
 </section>

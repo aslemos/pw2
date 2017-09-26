@@ -47,13 +47,18 @@ class Locations extends CI_Controller {
         $data['title'] = 'Historique des locations';
         $data['body_class'] = "subpages membre";
         $data['scripts'] = [base_url() . 'assets/js/calendrier_date_debut_et_fin.js'];
-
-        $data['vehicules'] = $this->vehicule_model->getVehicules();
-        $data['locations'] = $this->location_model->getLocationsByUser($user);
+        // données du form de recherche
         $data['date_debut'] = $this->input->post('date_debut');
         $data['date_fin'] = $this->input->post('date_fin');
         $data['vehicule_id'] = $this->input->post('vehicule_id');
-
+        //
+        $data['vehicules'] = $this->vehicule_model->getVehicules();
+        $data['locations'] = $this->location_model->getLocationsByUser($user, [
+            'vehicule_id' => $data['vehicule_id'],
+            'date_debut' => $data['date_debut'],
+            'date_fin' => $data['date_fin']
+        ]);
+        //
         $this->load->view('membre/historique_location', $data);
     }
 
@@ -70,12 +75,20 @@ class Locations extends CI_Controller {
         $data['page_title'] = 'Locataires du membre';
         $data['title'] = 'Historique - Mes locataires';
         $data['body_class'] = "subpages membre";
+        $data['action'] = base_url() . 'locations/locataires#s';
         $data['scripts'] = [base_url() . 'assets/js/calendrier_date_debut_et_fin.js'];
         $data['usagers'] = $this->usager_model->getUsers();
-        $data['locations'] = $this->location_model->getLocatairesByUser($user);
+        // données du form de recherche
         $data['date_debut'] = $this->input->post('date_debut');
         $data['date_fin'] = $this->input->post('date_fin');
         $data['locataire_id'] = $this->input->post('locataire_id');
+        //
+        $data['locations'] = $this->location_model->getLocatairesByUser($user, [
+            'locataire_id' => $data['locataire_id'],
+            'date_debut' => $data['date_debut'],
+            'date_fin' => $data['date_fin']
+        ]);
+        //
         $this->load->view('membre/historique_locataires', $data); // fichier n'existe pas encore
     }
 

@@ -5,7 +5,7 @@ include VIEWPATH . 'common/header.php';
 include VIEWPATH . 'client/boutons_prestataire.php';
 ?>
 <h2><?=$title?></h2>
-<form action="<?= $base_url ?>locations/locataires#s" method="post" name="formulaire" id="form-demandes-id">
+<form action="<?=$action?>" method="post" name="formulaire" id="form-demandes-id">
     <div class="table-responsive">
 
         <div class="row form-group">
@@ -14,7 +14,7 @@ include VIEWPATH . 'client/boutons_prestataire.php';
                 <select class="form-control" name="locataire_id">
                     <option>-- Tous --</option>
                     <?php foreach ($usagers as $usager) { ?>
-                        <option value="<?= $usager['user_id']; ?>"<?=$usager['user_id']==$locataire_id?' selected':''?>><?= $usager['prenom']; ?></option>
+                        <option value="<?= $usager['user_id']; ?>"<?=$usager['user_id']==$locataire_id?' selected':''?>><?= $usager['prenom'] . ' ' . $usager['nom']; ?></option>
                     <?php } ?>
                 </select>
             </div>
@@ -47,15 +47,12 @@ include VIEWPATH . 'client/boutons_prestataire.php';
         <div class="row hidden-lg hidden-md hidden-sm">
             <button type="submit" class="btn btn-danger position" id="RecherchePeriod">Rechercher</button>
         </div>
-
+<?php if (count($locations) > 0) { ?>
         <table class="table">
             <thead>
                 <tr>
                     <th class="">Nº</th>
                     <th class="">Véhicule</th>
-<!--                    <th class="">Marque</th>
-                    <th class="">Modèle</th>
-                    <th class="">Année</th>-->
                     <th class="">Matricule</th>
                     <th class="">Date début</th>
                     <th class="">Date fin</th>
@@ -71,9 +68,6 @@ include VIEWPATH . 'client/boutons_prestataire.php';
                     <tr>
                         <td class=""><?=$location->getId()?></td>
                         <td class=""><?=$location->getVehicule()->toString()?></td>
-<!--                        <td class=""><?=$location->getVehicule()->getMarque()->getNom()?></td>
-                        <td class=""><?=$location->getVehicule()->getModele()->getNom()?></td>
-                        <td class=""><?=$location->getVehicule()->getAnnee()?></td>-->
                         <td class=""><?=$location->getVehicule()->getMatricule()?></td>
                         <td class=""><?=$location->getDateDebut()?></td>
                         <td class=""><?=$location->getDateFin()?></td>
@@ -90,6 +84,9 @@ include VIEWPATH . 'client/boutons_prestataire.php';
 <?php } ?>
             </tbody>
         </table>
+<?php } else { ?>
+        <h3 class="alert_title">Aucun résultat</h3>
+<?php } ?>
     </div>
 </form>
 <!-- Div pour affichage -->
