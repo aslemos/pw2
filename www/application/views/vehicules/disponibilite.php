@@ -32,7 +32,7 @@ $title_disponibilite = 'disponibilite';
             </div>
             <hr />
 
-            <?php if (UserAcces::getUserId() == $vehicule->getProprietaireId()): ?>
+<?php if (UserAcces::userIsAdmin() || UserAcces::getUserId() == $vehicule->getProprietaireId()): ?>
                 <div class="col-sm-12 col-md-12 col-lg-12">
                     <h4>Période</h4>
                     <?php echo validation_errors(); ?>
@@ -48,7 +48,7 @@ $title_disponibilite = 'disponibilite';
                     <button type='submit' class='btn btn-primary'>Ajouter</button>
                     </form>
                 </div>
-            <?php endif; ?>
+<?php endif; ?>
         </div>
     </div>
 
@@ -73,6 +73,7 @@ $title_disponibilite = 'disponibilite';
                             <li>Carburant: <?php echo $vehicule->getCarburant()->getNom(); ?></li>
                             <li>Transmission: <?php echo $vehicule->getTransmission()->getNom(); ?></li>
                             <li>Site: <?php echo $vehicule->getArrond()->getNom(); ?></li>
+                            <li>Propriétaire: <?php echo $vehicule->getProprietaire()->toString(); ?></li>
                         </ul>
                     </div>
 
@@ -85,7 +86,7 @@ $title_disponibilite = 'disponibilite';
                                     <th>#</th>
                                     <th>Date début</th>
                                     <th>Date fin</th>
-<?php if (UserAcces::getUserId() == $vehicule->getProprietaireId()) { ?>
+<?php if (UserAcces::userIsAdmin() || UserAcces::getUserId() == $vehicule->getProprietaireId()) { ?>
                                     <th>Action</th>
 <?php } ?>
                                 </tr>
@@ -94,7 +95,7 @@ $title_disponibilite = 'disponibilite';
                                         <td><?=($pos+1)?></td>
                                         <td><?php echo $disponibilite->getDateDebut(); ?></td>
                                         <td><?php echo $disponibilite->getDateFin(); ?></td>
-<?php if (UserAcces::getUserId() == $vehicule->getProprietaireId()) { ?>
+<?php if (UserAcces::userIsAdmin() || UserAcces::getUserId() == $vehicule->getProprietaireId()) { ?>
                                         <td><a id="btn-supp-<?=$disponibilite->getId()?>" href="javascript::void(0)"><i class="fa fa-trash-o"></i></a></td>
 <?php } ?>
                                     </tr>

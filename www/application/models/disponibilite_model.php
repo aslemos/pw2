@@ -1,12 +1,17 @@
 <?php
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Modèle de la table Disponibilités.
+ * S'il y a un enregistrement dans cette table, c'est-à-dire que le véhicule peut être réservé.
  */
 
 class Disponibilite_model extends CI_Model {
 
+    /**
+     * Insère une disponibilité
+     * @param IDisponibilite $disponibilite La disponibilité à insérer
+     * @return type bool
+     * @throws Exception
+     */
     public function add_disponibilite(IDisponibilite $disponibilite) {
         if ($disponibilite->getVehiculeId() === NULL) {
             throw new Exception('vehicule_id invalide');
@@ -35,47 +40,27 @@ class Disponibilite_model extends CI_Model {
     public function getDisponibiliteById($dispo_id) {
         $query = $this->db->get_where('disponibilites', ['dispo_id' => $dispo_id]);
         $data = $query->row_array();
-        if (!empty($data) > 0) {
+        if (!empty($data)) {
             $disp = new EDisponibilite($data);
 
             // crée l'objet EVehicule
-            $data_vehicule = $this->getVehicules($data['vehicule_id']);
-            $disp->setVehicule(
-                    new EVehicule($data_vehicule)
-                    );
-
+            $vehicule = $this->vehicule_model->getVehiculeById($data['vehicule_id']);
+            $disp->setVehicule($vehicule);
             return $disp;
         }
         return NULL;
     }
 
+    /**
+     * Trouve les disponibilités d'un véhicule donné
+     * @param int $vehicule_id
+     * @return array
+     */
     public function get_disponibilites($vehicule_id) {
 
+        $this->db->order_by('disponibilites.date_debut');
         $query = $this->db->get_where('disponibilites', array('vehicule_id' => $vehicule_id));
 
         return $query->result_array();
     }
-
-    private function getVehicules($vehicule_id = NULL) {
-
-        $this->db->order_by('vehicule_id', 'DESC');
-
-        $this->db->join('usagers', 'vehicules.proprietaire_id = usagers.user_id');
-        $this->db->join('type_vehicules', 'vehicules.type_id = type_vehicules.type_id');
-        $this->db->join('modeles', 'vehicules.modele_id = modeles.modele_id');
-        $this->db->join('marques', 'modeles.marque_id = marques.marque_id');
-        $this->db->join('carburants', 'vehicules.carburant_id = carburants.carburant_id');
-        $this->db->join('transmissions', 'vehicules.transmission_id = transmissions.transmission_id');
-        $this->db->join('arrondissements', 'vehicules.arr_id = arrondissements.arr_id');
-        $this->db->join('villes', 'villes.ville_id = arrondissements.ville_id');
-
-        if ($vehicule_id === NULL) {
-            $query = $this->db->get('vehicules');
-            return $query->result_array();
-        }
-
-        $query = $this->db->get_where('vehicules', array('vehicule_id' => $vehicule_id));
-        return $query->row_array();
-    }
-
 }
