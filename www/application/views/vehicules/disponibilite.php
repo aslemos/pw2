@@ -85,14 +85,18 @@ $title_disponibilite = 'disponibilite';
                                     <th>#</th>
                                     <th>Date début</th>
                                     <th>Date fin</th>
+<?php if (UserAcces::getUserId() == $vehicule->getProprietaireId()) { ?>
                                     <th>Action</th>
+<?php } ?>
                                 </tr>
                                 <?php foreach ($disponibilites as $pos => $disponibilite) { ?>
                                     <tr>
                                         <td><?=($pos+1)?></td>
                                         <td><?php echo $disponibilite->getDateDebut(); ?></td>
                                         <td><?php echo $disponibilite->getDateFin(); ?></td>
+<?php if (UserAcces::getUserId() == $vehicule->getProprietaireId()) { ?>
                                         <td><a id="btn-supp-<?=$disponibilite->getId()?>" href="javascript::void(0)"><i class="fa fa-trash-o"></i></a></td>
+<?php } ?>
                                     </tr>
                                 <?php } ?>
                             <?php } else { ?>

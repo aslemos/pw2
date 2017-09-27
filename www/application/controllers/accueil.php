@@ -1,7 +1,14 @@
 <?php
 
+/**
+ * Contrôleur de la page d'accueil et quelques pages statiques
+ */
+
 class Accueil extends CI_Controller {
 
+    /**
+     * Affiche la page d'accueil
+     */
     public function index() {
         $data['meta_keywords'] = '';
         $data['meta_description'] = '';
@@ -18,6 +25,9 @@ class Accueil extends CI_Controller {
         $this->load->view('accueil', $data);
     }
 
+    /**
+     * Affiche la page 'à propos'
+     */
     public function apropos() {
 
         $data['title'] = 'À propos de nous';

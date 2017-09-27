@@ -51,7 +51,7 @@ class Vehicule extends CI_Controller {
         $this->load->model('arrondissement_model');
         $data['base_url'] = base_url();
         $data['page_title'] = 'Messages reçus';
-        $data['title'] = 'Ajouter un vehicule';
+        $data['title'] = 'Ajouter un véhicule';
         $data['body_class'] = 'subpages membre';
 
         $data['err_message'] = '* Tous Les Champs Sont Requis!';
@@ -229,7 +229,7 @@ class Vehicule extends CI_Controller {
             base_url() . 'assets/js/calendrier_date_debut_et_fin.js',
             ];
 
-        $data['title'] = 'Mise à jour vehicule';
+        $data['title'] = 'Mise à jour véhicule';
         $data['page_title'] = 'Édition';
         $data['body_class'] = 'subpages membre';
         $data['base_url'] = base_url();
@@ -470,6 +470,9 @@ class Vehicule extends CI_Controller {
         $this->load->view('client/form_location', $data);
     }
 
+    /**
+     * Fait la recherche d'un véhicule en se basant sur les conditions saisies dans le formulaire de recherche
+     */
     public function recherche() {
 
         $data['page_title'] = 'Recherche et réservation';
@@ -505,7 +508,8 @@ class Vehicule extends CI_Controller {
             ['tranche' => '150-999', 'nom_tranche' => 'Plus de 150$']
         ];
 
-        $data['resultat'] = $this->vehicule_model->rechercherVehicules($recherche);
+        // Fait la recherche, en excluant les véhicules qui appartiennent à l'usager logué
+        $data['resultat'] = $this->vehicule_model->rechercherVehicules($recherche, UserAcces::getUserId());
         $this->load->view('vehicules/recherche', $data);
     }
 

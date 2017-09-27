@@ -44,7 +44,7 @@ include VIEWPATH . 'admin/boutons_admin_vehicules.php';
         </table>
     </div>
 <?php } else { ?>
-    <h3 class="alert_title">Aucun véhicule a été trouvé</h3>
+    <h3 class="alert_title">Aucun véhicule n'a été trouvé</h3>
 <?php } ?>
 </section>
 <?php

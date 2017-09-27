@@ -127,6 +127,10 @@ class Ajax extends CI_Controller {
                 ]);
     }
 
+    /**
+     * Approuve un véhicule en attente d'approbation
+     * @param int $vehicule_id
+     */
     public function approuverVehicule($vehicule_id = 0) {
         $vehicule = $this->vehicule_model->getVehiculeById($vehicule_id);
         echo json_encode([
@@ -134,6 +138,10 @@ class Ajax extends CI_Controller {
         ]);
     }
 
+    /**
+     * Refuse un véhicule en attente d'approbation
+     * @param int $vehicule_id
+     */
     public function refuserVehicule($vehicule_id = 0) {
         $vehicule = $this->vehicule_model->getVehiculeById($vehicule_id);
         echo json_encode([
