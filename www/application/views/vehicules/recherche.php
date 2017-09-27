@@ -217,6 +217,9 @@ include VIEWPATH . 'common/header.php';
                                             <p><b>CARBURANT: </b> <?= $vehicule->getCarburant()->getNom() ?></p>
                                             <p><b>TRANSMISSION: </b> <?= $vehicule->getTransmission()->getNom() ?></p>
                                             <p><b>TYPE VÉHICULE: </b>  <?= $vehicule->getType()->getNom() ?></p>
+<?php if (UserAcces::userIsLogged()) { ?>
+                                            <p><b>Propriétaire:</b> <?= $vehicule->getProprietaire()->toString() ?> </p>
+<?php } ?>
                                             <p><b>DISPONIBLE:</b> à <?= $vehicule->getArrond()->toString() ?>
                                                 <br>
                                                 <b> <?= $vehicule->getDisponibilite()->toString() ?></b></p>
