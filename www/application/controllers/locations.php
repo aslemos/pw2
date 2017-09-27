@@ -52,8 +52,13 @@ class Locations extends CI_Controller {
         $data['date_debut'] = $this->input->post('date_debut');
         $data['date_fin'] = $this->input->post('date_fin');
         $data['vehicule_id'] = $this->input->post('vehicule_id');
-        //
-        $data['vehicules'] = $this->vehicule_model->getVehicules();
+
+        // Ne trouve que les véhicules dont on s'est servi. Pas tous.
+        $data['vehicules'] = $this->vehicule_model->getVehicules(
+            ['locataire_id' => UserAcces::getUserId()], // conditions
+            ['nom_marque' => 'ASC', 'nom_modele' => 'ASC', 'annee' => 'ASC', 'locataire_id'], // order by
+            TRUE
+        );
         $data['locations'] = $this->location_model->getLocationsByUser($user, [
             'vehicule_id' => $data['vehicule_id'],
             'date_debut' => $data['date_debut'],
