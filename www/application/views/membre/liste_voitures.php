@@ -18,6 +18,7 @@ include VIEWPATH . 'client/boutons_prestataire.php';
 <h2><?=$title?></h2>
 	<form action="" name="formulaire" id="form-voitures-id">
 		<div class="table-responsive">
+<?php if (count($vehicules) > 0) { ?>
 		<table class="table table-striped">
 			<thead>
 			<tr>
@@ -58,6 +59,9 @@ include VIEWPATH . 'client/boutons_prestataire.php';
 <?php } ?>
 			</tbody>
 		</table>
+<?php } else { ?>
+    <h3 class="alert_title">Vous n'avez pas de véhicule encore</h3>
+<?php } ?>
 		</div>
 	</form>
 <!-- Div pour affichage -->

@@ -5,7 +5,7 @@ include VIEWPATH . 'common/header.php';
 include VIEWPATH . 'client/boutons_client.php';
 ?>
 <h2><?=$title?></h2>
-<form action="<?= $base_url ?>locations/locationsByUser#s" method="post" name="formulaire" id="form-demandes-id">
+<form action="<?=$action?>" method="post" name="formulaire" id="form-demandes-id">
     <div class="table-responsive">
 
         <div class="row form-group">
@@ -48,15 +48,12 @@ include VIEWPATH . 'client/boutons_client.php';
             <button type="submit" class="btn btn-danger position" id="RecherchePeriod">Rechercher</button>
         </div>
 
-
+<?php if (count($locations) > 0) { ?>
         <table class="table">
             <thead>
                 <tr>
                     <th class="">Nº</th>
                     <th class="">Véhicule</th>
-<!--                    <th class="">Marque</th>
-                    <th class="">Modèle</th>
-                    <th class="">Année</th>-->
                     <th class="">Matricule</th>
                     <th class="">Date début</th>
                     <th class="">Date fin</th>
@@ -72,16 +69,11 @@ include VIEWPATH . 'client/boutons_client.php';
                     <tr>
                         <td class=""><?=$location->getId()?></td>
                         <td class=""><?=$location->getVehicule()->toString()?></td>
-<!--                        <td class=""><?=$location->getVehicule()->getMarque()->getNom()?></td>
-                        <td class=""><?=$location->getVehicule()->getModele()->getNom()?></td>
-                        <td class=""><?=$location->getVehicule()->getAnnee()?></td>-->
                         <td class=""><?=$location->getVehicule()->getMatricule()?></td>
                         <td class=""><?=$location->getDateDebut()?></td>
                         <td class=""><?=$location->getDateFin()?></td>
                         <td class=""><?=$location->getNbJours()?></td>
-
                         <td class=""><?=$location->getPrixTotal()?></td>
-
                         <td class=""><?=$location->getLocataire()->toString()?></td>
                         <td class=""><?=ELocation::getDescriptionEtat($location->getEtat())?></td>
 <?php if ($location->estPayee()) { ?>
@@ -98,6 +90,9 @@ include VIEWPATH . 'client/boutons_client.php';
             </tbody>
 
         </table>
+<?php } else { ?>
+        <h3 class="alert_title">Aucun résultat</h3>
+<?php } ?>
     </div>
 </form>
 <!-- Div pour affichage -->

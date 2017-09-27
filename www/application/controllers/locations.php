@@ -46,6 +46,7 @@ class Locations extends CI_Controller {
         $data['page_title'] = 'Historique des locations du membre';
         $data['title'] = 'Historique des locations';
         $data['body_class'] = "subpages membre";
+        $data['action'] = base_url() . 'locations/locationsByUser#s';
         $data['scripts'] = [base_url() . 'assets/js/calendrier_date_debut_et_fin.js'];
         // données du form de recherche
         $data['date_debut'] = $this->input->post('date_debut');
