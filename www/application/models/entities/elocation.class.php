@@ -182,13 +182,13 @@ class ELocation implements ILocation {
         }
         return $total;
     }
-//
+
     public static function getDescriptionEtat($etat_reservation) {
         switch ($etat_reservation) {
             case self::LOCATION_EN_ATTENTE:
                 return 'En attente';
             case self::LOCATION_ACCEPTE:
-                return 'Accepé';
+                return 'En attente de paiement';
             case self::LOCATION_PAYE:
                 return 'Payé';
             case self::LOCATION_ANNULE:
