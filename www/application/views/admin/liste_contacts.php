@@ -21,14 +21,14 @@ require VIEWPATH . 'common/header.php';
 
 
 
-<?php   foreach ($contacts as $contacts) { ?>
+<?php   foreach ($contacts as $contact) { ?>
             <tr>
-                <td class=""><?= $contacts['message_id'] ?></td>
-                <td class=""><?= $contacts['date'] ?></td>
-                <td class=""><?= $contacts['sujet'] ?></td>
+                <td class=""><?= $contact->getId() ?></td>
+                <td class=""><?= $contact->getDate() ?></td>
+                <td class=""><?= $contact->getSujet() ?></td>
 
-                <td class=""><a class="btn btn-inline" href="<?= $base_url ?>contact/view/<?= $contacts['message_id'] ?>#s"></a></td>
-                <td class=""><a class="btn btn-inline"href="<?= $base_url ?>contact/delete/<?= $contacts['message_id'] ?>"></a></td>
+                <td class=""><a class="btn btn-inline" href="<?= $base_url ?>contact/view/<?= $contact->getId() ?>#s"></a></td>
+                <td class=""><a class="btn btn-inline"href="<?= $base_url ?>contact/delete/<?= $contact->getId() ?>"></a></td>
 
             </tr>
 <?php } ?>

@@ -30,7 +30,7 @@ include VIEWPATH . 'common/header.php';
                             <div class="row rows1">
                                 <div class="cols1 col-md-6">
                                     <label for="fullname">Nom complet</label>
-                                    <input type="text" class="form-control" placeholder="" name="fullname" required="">
+                                    <input type="text" class="form-control" placeholder="" name="fullname" required>
                                 </div>
                                 <div class="cols2 col-md-6">
                                     <label for="company">Compagnie (facultatif)</label>
@@ -38,18 +38,18 @@ include VIEWPATH . 'common/header.php';
                                 </div>
                                 <div class="cols3 col-md-6">
                                     <label for="phone">Téléphone</label>
-                                    <input type="tel" class="form-control" placeholder="" name="phone" required="">
+                                    <input type="tel" class="form-control" placeholder="" name="phone" required>
                                 </div>
                                 <div class="cols4 col-md-6">
                                     <label for="email">Courriel</label>
-                                    <input type="email" class="form-control" placeholder="" name="email" required="">
+                                    <input type="email" class="form-control" placeholder="" name="email" required>
                                 </div>
                             </div>
 
                             <div class="rows2">
 
                                 <label for="subject">Sujet</label>
-                                <select class="form-control formSelector" id="subject" name="subject" required="">
+                                <select class="form-control formSelector" id="subject" name="subject" required>
                                     <option value="">-- Sujet (en choisir un) --</option>
                                     <option value="Informations">Informations</option>
                                     <option value="Soumission">Soumission</option>
@@ -59,7 +59,7 @@ include VIEWPATH . 'common/header.php';
                                 </select>
 
                                 <label for="message">Message</label>
-                                <textarea id="comment" placeholder="" name="message" required=""></textarea>
+                                <textarea id="comment" placeholder="" name="message" required></textarea>
 
                                 <div class="containerbottom text-right">
                                     <button class="btn btn-general" type="submit">ENVOYER</button>

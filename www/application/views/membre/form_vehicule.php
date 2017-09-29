@@ -190,10 +190,10 @@ if ($form['vehicule_id'] == '0') { ?>
             <div class="col-xs-offset-3 col-xs-9">
 <?php if ($form['vehicule_id'] == '0') { ?>
                 <input type="submit" class="btn btn-primary" value="Ajouter">
+                <input type="reset" class="btn btn-default" value="Effacez le formulaire!">
 <?php } else { ?>
                 <input type="submit" class="btn btn-primary" value="Sauvegarder">
 <?php } ?>
-                <input type="reset" class="btn btn-default" value="Effacez le formulaire!">
             </div>
         </div>
     </form>

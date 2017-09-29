@@ -120,9 +120,10 @@ class Messagerie extends CI_Controller {
 
     public function view_message_interne($message_id) {
         $data['base_url'] = base_url();
+        $data['page_title'] = 'Contact de membre';
         $data['title'] = 'Contact de membre';
         $data['body_class'] = 'subpages messagerie';
-        $data['messages'] = $this->message_model-> getMessageById($message_id);
+        $data['message'] = $this->message_model->getMessageById($message_id);
         $this->load->view('messagerie/view_message_inter',$data);
     }
 
@@ -131,15 +132,39 @@ class Messagerie extends CI_Controller {
         $this->message_model->deleteMessage($message_id);
         redirect('admin/messages#s');
     }
-    
-      public function view_message_envoyes($message_id) {
+
+    public function view_message_recu($message_id) {
+
+        $message = $this->message_model->getMessageById($message_id);
+        if (!$message) {
+            show_404();
+        }
+
+        $data['page_title'] = 'Message reçu';
+        $data['title'] = 'Message reçu';
+        $data['action'] = base_url() . 'messagerie#s';
         $data['base_url'] = base_url();
-        $data['title'] = 'Liste envoyes';
         $data['body_class'] = 'subpages messagerie';
-        $data['messages'] = $this->message_model-> getMessageById($message_id);
-        $this->load->view('messagerie/view_envoyes',$data);
+        $data['message'] = $message;
+        $this->load->view('messagerie/view_envoyes', $data);
     }
-    
+
+    public function view_message_envoye($message_id) {
+
+        $message = $this->message_model->getMessageById($message_id);
+        if (!$message) {
+            show_404();
+        }
+
+        $data['page_title'] = 'Message envoyé';
+        $data['title'] = $message->getDescription(); //'Message envoyé';
+        $data['action'] = base_url() . 'messagerie/envoyes#s';
+        $data['base_url'] = base_url();
+        $data['body_class'] = 'subpages messagerie';
+        $data['message'] = $message;
+        $this->load->view('messagerie/view_envoyes', $data);
+    }
+
     public function delete_message_envoyes($message_id) {
         $this->load->model('message_model');
         $this->message_model->deleteMessage($message_id);

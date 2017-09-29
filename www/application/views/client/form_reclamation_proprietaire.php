@@ -15,12 +15,12 @@
                 <div class="row">
                     <div class="col-md-6">
                         <label><h4>Nom</h4>
-                            <input class="myInput" type="text" name="nom" disabled value="<?= $voitures['nom']; ?> "/>
+                            <input class="myInput" type="text" name="nom" disabled value="<?= $proprietaire->getNom(); ?> "/>
                         </label>
                     </div>
                     <div class="col-md-6">
                         <label><h4>Prénom</h4>
-                            <input class="myInput" type="text" name="prenom" disabled value="<?= $voitures['prenom']; ?> " />
+                            <input class="myInput" type="text" name="prenom" disabled value="<?= $proprietaire->getPrenom(); ?> " />
                         </label>
                     </div>
                 </div>
@@ -28,12 +28,12 @@
                 <div class="row">
                     <div class="col-md-6">
                         <label><h4>email</h4>
-                            <input class="myInput" type="text" name="nom" disabled value="<?= $voitures['courriel']; ?> "/>
+                            <input class="myInput" type="text" name="nom" disabled value="<?= $proprietaire->getCourriel(); ?> "/>
                         </label>
                     </div>
                     <div class="col-md-6">
                         <label><h4>Tel</h4>
-                            <input class="myInput" type="text" name="prenom" disabled value="<?= $voitures['telephone']; ?> " />
+                            <input class="myInput" type="text" name="prenom" disabled value="<?= $proprietaire->getTelephone(); ?> " />
                         </label>
                     </div>
                 </div>
@@ -44,12 +44,12 @@
                 <div class="row">
                     <div class="col-md-6">
                         <label><h4>Nom</h4>
-                            <input class="myInput" type="text" name="nom" disabled value="<?= $users->getNom() ?> "/>
+                            <input class="myInput" type="text" name="nom" disabled value="<?= $locataire->getNom() ?> "/>
                         </label>
                     </div>
                     <div class="col-md-6">
                         <label><h4>Prénom</h4>
-                            <input class="myInput" type="text" name="prenom" disabled value="<?= $users->getPrenom() ?> " />
+                            <input class="myInput" type="text" name="prenom" disabled value="<?= $locataire->getPrenom() ?> " />
                         </label>
                     </div>
                 </div>

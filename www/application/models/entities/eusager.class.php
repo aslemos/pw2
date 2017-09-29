@@ -1,6 +1,6 @@
 <?php
 
-class EUsager implements IUsager {
+class EUsager extends stdClass implements IUsager {
 
     const ETAT_EN_ATTENTE = -1;
     const ETAT_REFUSE = -2;

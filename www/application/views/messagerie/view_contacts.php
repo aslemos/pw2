@@ -16,31 +16,24 @@ require VIEWPATH . 'common/header.php';
 
 <form id="frm-message" class="form-horizontal"  action="">
 
-<!--        <div class="form-group">
-        <label class="control-label col-sm-3" for="nom_emetteur">Emetteur :</label>
-         <div class="col-sm-9">
-             <input class="form-control" name="nom_emetteur" id="nom_emetteur" type="text" value="<?= $messages['nom_emetteur']?>" readonly>
-        </div>
-    </div>-->
-
     <div class="form-group">
         <label class="control-label col-sm-3" for="sujet">Sujet :</label>
         <div class="col-sm-9">
-            <input class="form-control" name="sujet" id="sujet" type="text" value="<?= $messages['sujet']?>" readonly>
+            <input class="form-control" name="sujet" id="sujet" type="text" value="<?= $message->getSujet()?>" readonly>
         </div>
     </div>
 
     <div class="form-group">
         <label class="control-label col-sm-3" for="sujet">Date :</label>
         <div class="col-sm-9">
-            <input class="form-control" name="sujet" id="sujet" type="text" value="<?= $messages['date']?>" readonly>
+            <input class="form-control" name="sujet" id="sujet" type="text" value="<?= $message->getDate()?>" readonly>
         </div>
     </div>
 
     <div class="form-group">
         <label class="control-label col-sm-3" for="message">Contenu :</label>
         <div class="col-sm-9">
-            <?=$messages['contenu']?>
+            <?=$message->getContenu()?>
         </div>
     </div>
 

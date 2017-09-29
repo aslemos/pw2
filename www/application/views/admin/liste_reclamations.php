@@ -14,7 +14,8 @@ require VIEWPATH . 'common/header.php';
         <tbody><tr>
                 <th class="">Nº</th>
                 <th class="">Date</th>
-                <th class="">Émetteur</th>
+                <th class="">Type</th>
+                <th class="">Réclamant</th>
                 <th class="">Sujet</th>
                 <th class="">Visualiser</th>
                 <th class="">Supprimer</th>
@@ -22,19 +23,17 @@ require VIEWPATH . 'common/header.php';
 
 
 
-<?php   foreach ($reclamation as $reclama) {
-
-               //var_dump($reclamation);
-                ?>
+<?php   foreach ($reclamations as $reclamation) { ?>
             <tr>
-                <td class=""><?= $reclama['message_id'] ?></td>
-                <td class=""><?= $reclama['date'] ?></td>
-                <td class=""><?= $reclama['nom_emetteur'] ?></td>
-                <td class=""><?= $reclama['sujet'] ?></td>
+                <td><?= $reclamation->getId() ?></td>
+                <td><?= $reclamation->getDate() ?></td>
+                <td><?= $reclamation->getDescription() ?></td>
+                <td><?= $reclamation->getEmetteur()->toString() ?></td>
+                <td><?= $reclamation->getSujet() ?></td>
 
 
-                <td class=""><a class="btn btn-inline" href="<?= $base_url ?>reclamation/view/<?= $reclama['message_id'] ?>#s"></a></td>
-                <td class=""><a class="btn btn-inline"href="<?= $base_url ?>reclamation/delete/<?= $reclama['message_id'] ?>"></a></td>
+                <td><a class="btn btn-inline" href="<?= $base_url ?>reclamation/view/<?= $reclamation->getId() ?>#s"></a></td>
+                <td><a class="btn btn-inline"href="<?= $base_url ?>reclamation/delete/<?= $reclamation->getId() ?>"></a></td>
 
             </tr>
 <?php } ?>

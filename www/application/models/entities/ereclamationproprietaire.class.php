@@ -5,7 +5,7 @@
  * and open the template in the editor.
  */
 
-class EReclamationProprietaire extends EMessage {
+class EReclamationProprietaire extends EReclamation {
 
     public function __construct(array $data = NULL) {
         parent::__construct($data);

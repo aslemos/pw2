@@ -25,18 +25,14 @@ require VIEWPATH . 'common/header.php';
 
 <?php foreach ($messages as $message) { ?>
             <tr>
-                <td class=""><?= $message['message_id'] ?></td>
-                <td class=""><?= $message['date'] ?></td>
-                <td class=""><?= $message['nom_emetteur'] ?></td>
-                <td class=""><?= $message['sujet'] ?></td>
-<?php if (isset($message['nom_destinataire'])) { ?>
-                <td class=""><?= $message['nom_destinataire'] ?></td>
-<?php } else { ?>
-                <td class="">-- Non spécifié --</td>
-<?php } ?>
+                <td class=""><?= $message->getId() ?></td>
+                <td class=""><?= $message->getDate() ?></td>
+                <td class=""><?= $message->getEmetteur()->toString() ?></td>
+                <td class=""><?= $message->getSujet() ?></td>
+                <td><?= $message->getNomDestinataire() ?></td>
 
-                <td class=""><a class="btn btn-inline" href="<?= $base_url ?>messagerie/view_message_interne/<?= $message['message_id'] ?>#s"></a></td>
-                <td class=""><a class="btn btn-inline"href="<?= $base_url ?>messagerie/delete_message_interne/<?= $message['message_id'] ?>"></a></td>
+                <td class=""><a class="btn btn-inline" href="<?= $base_url ?>messagerie/view_message_interne/<?= $message->getId() ?>#s"></a></td>
+                <td class=""><a class="btn btn-inline"href="<?= $base_url ?>messagerie/delete_message_interne/<?= $message->getId() ?>"></a></td>
 
             </tr>
 <?php } ?>

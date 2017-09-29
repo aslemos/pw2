@@ -1,6 +1,6 @@
 <?php
 
-class EVehicule implements IVehicule {
+class EVehicule extends stdClass implements IVehicule {
 
     const ETAT_EN_ATTENTE = -1;
     const ETAT_REFUSE = -2;

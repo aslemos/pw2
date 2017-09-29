@@ -98,11 +98,8 @@ class Admin extends CI_Controller {
         $data['title'] = 'Réclamations des membres';
         $data['body_class'] = 'subpages listeAdmin';
         $this->load->model('message_model');
-        $data['reclamation'] = $this->message_model->getReclamations();
-        //this-load-view()
+        $data['reclamations'] = $this->message_model->getReclamations();
         $this->load->view('admin/liste_reclamations', $data);
-        //var_dump($this->data);
-        // message_model function  getreclamayion
     }
 
     /**

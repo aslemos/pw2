@@ -43,6 +43,38 @@ class EMessage {
         }
     }
 
+    /**
+     * Retourne la description du type de message
+     * @return string
+     */
+    public function getDescription() {
+        return self::getDescriptionType($this->_type);
+    }
+
+    /**
+     * Retourne la description concernant le type reçu en paramètre
+     * @param int $type
+     * @return string
+     */
+    public static function getDescriptionType($type) {
+        switch ($type) {
+            case self::MSG_TYPE_INTERNE:
+                return 'Message interne';
+            case self::MSG_TYPE_RECLAMATION_PROPRIETAIRE:
+                return 'Réclamation de propriétaire';
+            case self::MSG_TYPE_RECLAMATION_VEHICULE:
+                return 'Réclamation de véhicule';
+            case self::MSG_TYPE_RECLAMATION_LOCATAIRE:
+                return 'Réclamation de locataire';
+            case self::MSG_TYPE_ADMINISTRATIVE:
+                return 'Message administrative';
+            case self::MSG_TYPE_CONTACT:
+                return 'Contact du site';
+            default:
+                return 'Inconnu';
+        }
+    }
+
     public function getId() {
         return $this->_message_id;
     }
@@ -59,6 +91,12 @@ class EMessage {
 
     public function getDestinataire() {
         return $this->_destinaraire;
+    }
+
+    public function getNomDestinataire() {
+        return $this->_destinaraire
+                ? $this->_destinaraire->toString()
+                : '-- Non spécifié --';
     }
 
     public function getDestinataireId() {
@@ -121,13 +159,5 @@ class EMessage {
     public function setEtat($etat) {
         $this->_etat = $etat;
         return $this;
-    }
-
-    public function getObjetId() {
-        return $this->_objet_id;
-    }
-
-    public function setObjetId($objet_id) {
-        $this->_objet_id = $objet_id;
     }
 }

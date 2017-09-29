@@ -59,7 +59,7 @@ class Contact extends CI_Controller {
          $data['base_url'] = base_url();
          $data['page_title'] = 'Contact du site';
          $data['title'] = 'Contact du site';
-         $data['messages'] = $this->message_model-> getMessageById($message_id);
+         $data['message'] = $this->message_model->getMessageById($message_id);
          $this->load->view('messagerie/view_contacts',$data);
     }
 

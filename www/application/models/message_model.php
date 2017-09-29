@@ -23,7 +23,11 @@ class Message_Model extends CI_Model {
         $sql = 'SELECT * FROM messages WHERE destinataire_id = ' . $this->db->escape($user->getId())
                 . ' AND etat = ' . EMessage::MSG_ETAT_NON_LU;
         $st = $this->db->query($sql);
-        return $st->result_object;
+        $result = $st->result_array();
+        foreach ($result as $pos => $data) {
+            $result[$pos] = $this->getInstanceMessageByArray($data);
+        }
+        return $result;
     }
 
     public function getMessages(EUsager $user) {
@@ -35,9 +39,13 @@ class Message_Model extends CI_Model {
                 . ' LEFT JOIN usagers dest ON (messages.destinataire_id = dest.user_id)'
                 . ' WHERE destinataire_id = ' . $this->db->escape($user->getId())
                 . ' AND messages.type = ' . EMessage::MSG_TYPE_INTERNE
-                . ' ORDER BY date DESC;';
+                . ' ORDER BY date DESC, message_id DESC;';
         $st = $this->db->query($sql);
-        return $st->result();
+        $result = $st->result_array();
+        foreach ($result as $pos => $data) {
+            $result[$pos] = $this->getInstanceMessageByArray($data);
+        }
+        return $result;
     }
 
     public function getMessagesEnvoyes(EUsager $user) {
@@ -49,15 +57,19 @@ class Message_Model extends CI_Model {
                 . ' LEFT JOIN usagers dest ON (messages.destinataire_id = dest.user_id)'
                 . ' WHERE emetteur_id = ' . $this->db->escape($user->getId())
                 . ' AND messages.type IN (' . EMessage::MSG_TYPE_INTERNE . ',' .  EMessage::MSG_TYPE_ADMINISTRATIVE . ')'
-                . ' ORDER BY date DESC;';
+                . ' ORDER BY date DESC, message_id DESC;';
         $st = $this->db->query($sql);
-        return $st->result();
+        $result = $st->result_array();
+        foreach ($result as $pos => $data) {
+            $result[$pos] = $this->getInstanceMessageByArray($data);
+        }
+        return $result;
     }
 
     /**
      * Récupère les réclamations qui correspondent à l'état passé en paramètre
      * @param int $etat l'état des réclamations : lu/non lu
-     * @return array
+     * @return array<EReclamation>
      */
     public function getReclamations($type = NULL, $etat = NULL) {
         $sql = 'SELECT messages.*, usagers.prenom as nom_emetteur FROM messages'
@@ -76,9 +88,13 @@ class Message_Model extends CI_Model {
         if ($etat !== NULL) {
             $sql.= ' AND messages.etat = ' . $etat;
         }
-        $sql.= ' ORDER BY date DESC;';
+        $sql.= ' ORDER BY date DESC, message_id DESC;';
         $st = $this->db->query($sql);
-        return $st->result_array();
+        $result = $st->result_array();
+        foreach ($result as $pos => $data) {
+            $result[$pos] = $this->getInstanceMessageByArray($data);
+        }
+        return $result;
     }
 
     /**
@@ -91,9 +107,13 @@ class Message_Model extends CI_Model {
                 . ' LEFT JOIN usagers ON (messages.emetteur_id = usagers.user_id)'
                 . ' WHERE emetteur_id = \'' . $this->db->escape($user->getId()) . '\''
                 . ' AND messages.type = ' . EMessage::MSG_TYPE_RECLAMATION
-                . ' ORDER BY date DESC;';
+                . ' ORDER BY date DESC, message_id DESC;';
         $st = $this->db->query($sql);
-        return $st->result_array();
+        $result = $st->result_array();
+        foreach ($result as $pos => $data) {
+            $result[$pos] = $this->getInstanceMessageByArray($data);
+        }
+        return $result;
     }
 
     /**
@@ -108,9 +128,13 @@ class Message_Model extends CI_Model {
                 . ' LEFT JOIN usagers emet ON (messages.emetteur_id = emet.user_id)'
                 . ' LEFT JOIN usagers destin ON (messages.destinataire_id = destin.user_id)'
                 . ' WHERE messages.type = ' . EMessage::MSG_TYPE_ADMINISTRATIVE
-                . ' ORDER BY date DESC;';
+                . ' ORDER BY date DESC, message_id DESC;';
         $st = $this->db->query($sql);
-        return $st->result_array();
+        $result = $st->result_array();
+        foreach ($result as $pos => $data) {
+            $result[$pos] = $this->getInstanceMessageByArray($data);
+        }
+        return $result;
     }
 
     /**
@@ -121,9 +145,13 @@ class Message_Model extends CI_Model {
         $sql = 'SELECT messages.*, usagers.prenom as nom_emetteur FROM messages'
                 . ' LEFT JOIN usagers ON (messages.emetteur_id = usagers.user_id)'
                 . ' WHERE messages.type = ' . EMessage::MSG_TYPE_CONTACT
-                . ' ORDER BY date DESC;';
+                . ' ORDER BY date DESC, message_id DESC;';
         $st = $this->db->query($sql);
-        return $st->result_array();
+        $result = $st->result_array();
+        foreach ($result as $pos => $data) {
+            $result[$pos] = $this->getInstanceMessageByArray($data);
+        }
+        return $result;
     }
 
     public function createMessage(EMessage $message) {
@@ -158,7 +186,9 @@ class Message_Model extends CI_Model {
                 . ';';
 
         $st = $this->db->query($sql);
-        return $st->row_array();
+        return $this->getInstanceMessageByArray(
+                $st->row_array()
+                );
     }
 
     /**
@@ -169,5 +199,54 @@ class Message_Model extends CI_Model {
     public function deleteMessage($message_id) {
         $this->db->where('message_id', $message_id);
         return $this->db->delete('messages');
+    }
+
+    /**
+     * Retourne une instance d'un objet de message spécifique
+     * @param array $data
+     * @return EMessage
+     */
+    private function getInstanceMessageByArray(array $data) {
+        switch ($data['type']) {
+            case EMessage::MSG_TYPE_INTERNE:
+                $msg = new EMessage($data);
+                $msg->setEmetteur($this->usager_model->getUserById($data['emetteur_id']));
+                $msg->setDestinataire($this->usager_model->getUserById($data['destinataire_id']));
+                break;
+
+            case EMessage::MSG_TYPE_ADMINISTRATIVE:
+                $msg = new EMessageAdmin($data);
+                $msg->setEmetteur($this->usager_model->getUserById($data['emetteur_id']));
+                if ($data['destinataire_id'] > 0) {
+                    $msg->setDestinataire($this->usager_model->getUserById($data['destinataire_id']));
+                }
+                break;
+
+            case EMessage::MSG_TYPE_RECLAMATION_PROPRIETAIRE:
+                $msg = new EReclamationProprietaire($data);
+                $msg->setEmetteur($this->usager_model->getUserById($data['emetteur_id']));
+                $msg->setObjet($this->usager_model->getUserById($data['objet_id']));
+                break;
+
+            case EMessage::MSG_TYPE_RECLAMATION_LOCATAIRE:
+                $msg = new EReclamationLocataire($data);
+                $msg->setEmetteur($this->usager_model->getUserById($data['emetteur_id']));
+                $msg->setObjet($this->usager_model->getUserById($data['objet_id']));
+                break;
+
+            case EMessage::MSG_TYPE_RECLAMATION_VEHICULE:
+                $msg = new EReclamationVehicule($data);
+                $msg->setEmetteur($this->usager_model->getUserById($data['emetteur_id']));
+                $msg->setObjet($this->vehicule_model->getVehiculeById($data['objet_id']));
+                break;
+
+            case EMessage::MSG_TYPE_CONTACT:
+                $msg = new EContact($data);
+                break;
+
+            default:
+                $msg = NULL;
+        }
+        return $msg;
     }
 }

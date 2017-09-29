@@ -15,12 +15,12 @@
                 <div class="row">
                     <div class="col-md-6">
                         <label><h4>Nom</h4>
-                            <input class="myInput" type="text" name="nom" disabled value="<?= $locations['nom']; ?> "/>
+                            <input class="myInput" type="text" name="nom" disabled value="<?= $locataire->getNom(); ?> "/>
                         </label>
                     </div>
                     <div class="col-md-6">
                         <label><h4>Prénom</h4>
-                            <input class="myInput" type="text" name="prenom" disabled value="<?= $locations['prenom']; ?> " />
+                            <input class="myInput" type="text" name="prenom" disabled value="<?= $locataire->getPrenom(); ?> " />
                         </label>
                     </div>
                 </div>
@@ -28,28 +28,28 @@
                 <div class="row">
                     <div class="col-md-6">
                         <label><h4>email</h4>
-                            <input class="myInput" type="text" name="nom" disabled value="<?= $locations['courriel']; ?> "/>
+                            <input class="myInput" type="text" name="nom" disabled value="<?= $locataire->getCourriel(); ?> "/>
                         </label>
                     </div>
                     <div class="col-md-6">
                         <label><h4>Tel</h4>
-                            <input class="myInput" type="text" name="prenom" disabled value="<?= $locations['telephone']; ?> " />
+                            <input class="myInput" type="text" name="prenom" disabled value="<?= $locataire->getTelephone(); ?> " />
                         </label>
                     </div>
                 </div>
             </div>
 
             <div class="inner-wrap">
-                <div class="section"><span>2</span>Informations du proprietaire</div>
+                <div class="section"><span>2</span>Informations du propriétaire</div>
                 <div class="row">
                     <div class="col-md-6">
                         <label><h4>Nom</h4>
-                            <input class="myInput" type="text" name="nom" disabled value="<?= $users->getNom() ?> "/>
+                            <input class="myInput" type="text" name="nom" disabled value="<?= $proprietaire->getNom() ?> "/>
                         </label>
                     </div>
                     <div class="col-md-6">
                         <label><h4>Prénom</h4>
-                            <input class="myInput" type="text" name="prenom" disabled value="<?= $users->getPrenom() ?> " />
+                            <input class="myInput" type="text" name="prenom" disabled value="<?= $proprietaire->getPrenom() ?> " />
                         </label>
                     </div>
                 </div>
