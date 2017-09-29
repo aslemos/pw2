@@ -159,7 +159,7 @@ class Message_Model extends CI_Model {
         $sql .= ' VALUES (';
         $sql .= ($message->getEmetteurId() ? $message->getEmetteurId() : 'NULL') . ',';
         $sql .= ($message->getDestinataireId() ? $message->getDestinataireId() : 'NULL') . ',';
-        $sql .= ($message->getObjetId() ? $message->getObjetId() : 'NULL') . ',';
+        $sql .= ($message instanceof EReclamation && $message->getObjetId() ? $message->getObjetId() : 'NULL') . ',';
         $sql .= $this->db->escape($message->getDate()) . ',';
         $sql .= $this->db->escape($message->getSujet()) . ',';
         $sql .= $this->db->escape($message->getContenu()) . ',';

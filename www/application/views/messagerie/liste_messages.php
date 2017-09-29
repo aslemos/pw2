@@ -30,8 +30,7 @@ require VIEWPATH . 'common/header.php';
         <th>Destinataire</th>
 <?php } ?>
         <th>Sujet</th>
-        <th class="">Visualiser</th>
-        <th class="">Supprimer</th>
+        <th colspan="2">Action</th>
     </tr>
 <?php foreach($messages as $message) {
     $class = $list_type == 'E' && $message->getEtat() == EMessage::MSG_ETAT_NON_LU
