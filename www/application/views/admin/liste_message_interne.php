@@ -17,11 +17,8 @@ require VIEWPATH . 'common/header.php';
                 <th class="">Émetteur</th>
                 <th class="">Sujet</th>
                 <th class="">Dirigé à</th>
-                <th class="">Visualiser</th>
-                <th class="">Supprimer</th>
+                <th colspan="2">Action</th>
             </tr>
-
-
 
 <?php foreach ($messages as $message) { ?>
             <tr>
@@ -31,8 +28,8 @@ require VIEWPATH . 'common/header.php';
                 <td class=""><?= $message->getSujet() ?></td>
                 <td><?= $message->getNomDestinataire() ?></td>
 
-                <td class=""><a class="btn btn-inline" href="<?= $base_url ?>messagerie/view_message_interne/<?= $message->getId() ?>#s"></a></td>
-                <td class=""><a class="btn btn-inline"href="<?= $base_url ?>messagerie/delete_message_interne/<?= $message->getId() ?>"></a></td>
+                <td class=""><a href="<?= $base_url ?>messagerie/view_message_interne/<?= $message->getId() ?>#s"><i class="fa fa-eye"></i></a></td>
+                <td class=""><a href="<?= $base_url ?>messagerie/delete_message_interne/<?= $message->getId() ?>"><i class="fa fa-trash-o"></i></a></td>
 
             </tr>
 <?php } ?>

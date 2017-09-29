@@ -17,8 +17,7 @@ require VIEWPATH . 'common/header.php';
                 <th class="">Type</th>
                 <th class="">Réclamant</th>
                 <th class="">Sujet</th>
-                <th class="">Visualiser</th>
-                <th class="">Supprimer</th>
+                <th colspan="2">Action</th>
             </tr>
 
 
@@ -31,9 +30,8 @@ require VIEWPATH . 'common/header.php';
                 <td><?= $reclamation->getEmetteur()->toString() ?></td>
                 <td><?= $reclamation->getSujet() ?></td>
 
-
-                <td><a class="btn btn-inline" href="<?= $base_url ?>reclamation/view/<?= $reclamation->getId() ?>#s"></a></td>
-                <td><a class="btn btn-inline"href="<?= $base_url ?>reclamation/delete/<?= $reclamation->getId() ?>"></a></td>
+                <td><a href="<?= $base_url ?>reclamation/view/<?= $reclamation->getId() ?>#s"><i class="fa fa-eye"></i></a></td>
+                <td><a href="<?= $base_url ?>reclamation/delete/<?= $reclamation->getId() ?>"><i class="fa fa-trash-o"></i></a></td>
 
             </tr>
 <?php } ?>

@@ -15,11 +15,8 @@ require VIEWPATH . 'common/header.php';
                 <th class="">Nº</th>
                 <th class="">Date</th>
                 <th class="">Sujet</th>
-                <th class="">Visualiser</th>
-                <th class="">Supprimer</th>
+                <th colspan="2">Action</th>
             </tr>
-
-
 
 <?php   foreach ($contacts as $contact) { ?>
             <tr>
@@ -27,8 +24,8 @@ require VIEWPATH . 'common/header.php';
                 <td class=""><?= $contact->getDate() ?></td>
                 <td class=""><?= $contact->getSujet() ?></td>
 
-                <td class=""><a class="btn btn-inline" href="<?= $base_url ?>contact/view/<?= $contact->getId() ?>#s"></a></td>
-                <td class=""><a class="btn btn-inline"href="<?= $base_url ?>contact/delete/<?= $contact->getId() ?>"></a></td>
+                <td class=""><a href="<?= $base_url ?>contact/view/<?= $contact->getId() ?>#s"><i class="fa fa-eye"></i></a></td>
+                <td class=""><a href="<?= $base_url ?>contact/delete/<?= $contact->getId() ?>"><i class="fa fa-trash-o"></i></a></td>
 
             </tr>
 <?php } ?>
