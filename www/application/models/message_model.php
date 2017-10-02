@@ -206,7 +206,10 @@ class Message_Model extends CI_Model {
      * @param array $data
      * @return EMessage
      */
-    private function getInstanceMessageByArray(array $data) {
+    private function getInstanceMessageByArray(array $data = NULL) {
+        if ($data === NULL) {
+            return NULL;
+        }
         switch ($data['type']) {
             case EMessage::MSG_TYPE_INTERNE:
                 $msg = new EMessage($data);
